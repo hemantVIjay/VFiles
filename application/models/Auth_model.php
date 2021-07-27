@@ -7,12 +7,8 @@ class Auth_model extends MY_Model{
         $this->db->from('users u');
         $this->db->join('users_roles r', 'r.id = u.user_role_id', 'inner');
 		$this->db->where('u.email', $post_data['email']);
-		if($post_data['is_site_login']==TRUE){
-			$this->db->where('r.role_slug', 'customer');
-		}elseif($post_data['is_site_login']==FALSE){
-			$this->db->where('r.role_slug !=', 'customer');
-		}
 		$query = $this->db->get();
+		
 		if ($query->num_rows() == 1) {
 			$result=$query->row_array();
 			if($result['status']==0){

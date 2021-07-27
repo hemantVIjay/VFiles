@@ -68,6 +68,7 @@
                         loader.start();
                     },
                     success: function (data) {
+						console.log(data);
                         if (data.success) {
                             loader.stop();
                             showAlert('success',appLanguage[0]['text_success'],data.message);
