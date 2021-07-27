@@ -8,10 +8,21 @@ class User extends MY_Controller {
 		parent::__construct();
 	}
     //login to account
+	
+	public function index()
+	{
+		$data['title']= 'text_locations';//$this->lang->line("text_locations");
+		$id = $this->uri->segment(4);
+        $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
+        $this->load->view('admin/_layout', $data); 
+	}
+	
+	
+	
+	
 	public function login()
 	{
-		
-        if($this->input->post()){
+		if($this->input->post()){
             $this->form_validation->set_rules('email','email','trim|required|valid_email' );
 			$this->form_validation->set_rules('password','password','trim|required');
 
