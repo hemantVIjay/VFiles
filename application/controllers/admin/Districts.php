@@ -15,7 +15,7 @@ class Districts extends MY_Controller {
         $data['title']=$this->lang->line("text_locations");
 		$id = $this->uri->segment(4);
         if($this->permitted('list_articles')){
-			$districts = $this->districts_model->get_districts($id);
+			$districts = $this->other_model->get_districts($id);
             $data['districts']=$districts;
             $data['sub_view'] = $this->load->view('admin/districts/add_districts', $data, TRUE);
         }else{
@@ -84,7 +84,7 @@ class Districts extends MY_Controller {
                     }
                     //XXS Clean
                     $post_data = $this->security->xss_clean($post_data);
-                    $result = $this->districts_model->create_amenity($post_data);
+                    $result = $this->other_model->create_amenity($post_data);
         redirect('admin/districts/list_districts','refresh');
     }
 	
@@ -100,7 +100,7 @@ class Districts extends MY_Controller {
 				  'status' => 0,
 				  'updated_by' => $this->get_user_id()
 				);
-				$res = $this->districts_model->delete_districts($id, $post_data);
+				$res = $this->other_model->delete_districts($id, $post_data);
 				redirect('admin/districts/list_districts','refresh');
             }else{
                 $data['title']=$this->lang->line("alert_access_denied");
