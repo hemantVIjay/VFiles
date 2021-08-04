@@ -7,70 +7,47 @@
          <li class="sidebar-header">
             Pages
          </li>
-         <li class="sidebar-item active">
-            <a class="sidebar-link" href="index.html">
+         <li class="sidebar-item">
+            <a class="sidebar-link" href="<?= base_url('admin');?>">
             <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
          </li>
-         <li class="sidebar-item">
-            <a class="sidebar-link" href="pages-profile.html">
-            <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
-            </a>
-         </li>
-         <li class="sidebar-item">
-            <a class="sidebar-link" href="pages-sign-in.html">
-            <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Sign In</span>
-            </a>
-         </li>
-         <li class="sidebar-item">
-            <a class="sidebar-link" href="pages-sign-up.html">
-            <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Sign Up</span>
-            </a>
-         </li>
-         <li class="sidebar-item">
-            <a class="sidebar-link" href="pages-blank.html">
-            <i class="align-middle" data-feather="book"></i> <span class="align-middle">Blank</span>
-            </a>
-         </li>
          <li class="sidebar-header">
-            Tools & Components
+            Application Masters
          </li>
-         <li class="sidebar-item">
-            <a class="sidebar-link" href="ui-buttons.html">
-            <i class="align-middle" data-feather="square"></i> <span class="align-middle">Buttons</span>
+         <li class="sidebar-item <?php if($class_name == 'amenities'){ echo'active'; }?>">
+            <a class="sidebar-link" href="<?= base_url('admin/amenities/list_amenities');?>">
+            <i class="align-middle" data-feather="square"></i> <span class="align-middle">Amenities</span>
+            </a>
+         </li>
+		 <li class="sidebar-item">
+            <a class="sidebar-link" href="<?= base_url('admin/localities/list_localities');?>">
+            <i class="align-middle" data-feather="square"></i> <span class="align-middle">Localities</span>
+            </a>
+         </li>
+		 <li class="sidebar-item">
+            <a class="sidebar-link" href="<?= base_url('admin/cities/list_cities');?>">
+            <i class="align-middle" data-feather="square"></i> <span class="align-middle">Cities</span>
+            </a>
+         </li>
+		 <li class="sidebar-item">
+            <a class="sidebar-link" href="<?= base_url('admin/districts/list_districts');?>">
+            <i class="align-middle" data-feather="square"></i> <span class="align-middle">Districts</span>
             </a>
          </li>
          <li class="sidebar-item">
-            <a class="sidebar-link" href="ui-forms.html">
-            <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Forms</span>
+            <a class="sidebar-link" href="<?= base_url('admin/states/list_states');?>">
+            <i class="align-middle" data-feather="square"></i> <span class="align-middle">States</span>
             </a>
          </li>
          <li class="sidebar-item">
-            <a class="sidebar-link" href="ui-cards.html">
-            <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Cards</span>
+            <a class="sidebar-link" href="<?= base_url('admin/countries/list_countries');?>">
+            <i class="align-middle" data-feather="square"></i> <span class="align-middle">Countries</span>
             </a>
          </li>
          <li class="sidebar-item">
-            <a class="sidebar-link" href="ui-typography.html">
-            <i class="align-middle" data-feather="align-left"></i> <span class="align-middle">Typography</span>
-            </a>
-         </li>
-         <li class="sidebar-item">
-            <a class="sidebar-link" href="icons-feather.html">
-            <i class="align-middle" data-feather="coffee"></i> <span class="align-middle">Icons</span>
-            </a>
-         </li>
-         <li class="sidebar-header">
-            Plugins & Addons
-         </li>
-         <li class="sidebar-item">
-            <a class="sidebar-link" href="charts-chartjs.html">
-            <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Charts</span>
-            </a>
-         </li>
-         <li class="sidebar-item">
-            <a class="sidebar-link" href="maps-google.html">
-            <i class="align-middle" data-feather="map"></i> <span class="align-middle">Maps</span>
+            <a class="sidebar-link" href="<?= base_url('admin/builders/list_builders');?>">
+            <i class="align-middle" data-feather="square"></i> <span class="align-middle">Builders</span>
             </a>
          </li>
       </ul>
@@ -227,9 +204,9 @@
                <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="pie-chart"></i> Analytics</a>
                <div class="dropdown-divider"></div>
                <a class="dropdown-item" href="pages-settings.html"><i class="align-middle me-1" data-feather="settings"></i> Settings & Privacy</a>
-               <a class="dropdown-item" href="<?= base_url('admin/logout');?>"><i class="align-middle me-1" data-feather="help-circle"></i> Help Center</a>
+               <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help Center</a>
                <div class="dropdown-divider"></div>
-               <a class="dropdown-item" href="#">Log out</a>
+               <a class="dropdown-item" href="<?= base_url('admin/logout');?>">Log out</a>
             </div>
          </li>
       </ul>

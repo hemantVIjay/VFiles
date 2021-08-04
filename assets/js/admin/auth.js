@@ -8,7 +8,7 @@
     ==============================================*/
     $.ajax({
         type: 'POST',
-        url: baseUrl+'welcome/get_all_language_keys/',
+        url: baseUrl+'pages/get_all_language_keys/',
         data:null,
         dataType: 'json',
         async: false,
@@ -68,7 +68,6 @@
                         loader.start();
                     },
                     success: function (data) {
-						console.log(data);
                         if (data.success) {
                             loader.stop();
                             showAlert('success',appLanguage[0]['text_success'],data.message);
@@ -132,14 +131,15 @@
                     type: "POST",
                     url: baseUrl + "admin/forgot-password",
                     data: forgotPasswordForm.serialize(),
-                    dataType: 'json',
+                    //dataType: 'json',
                     async: false,
                     beforeSend: function() {
                         //show button loader
                         loader.start();
                     },
                     success: function (data) {
-                        if (data.success) {
+                        console.log(data);
+						if (data.success) {
                             loader.stop();
                             showAlert('success',appLanguage[0]['text_success'],data.message);
                             window.setTimeout(function(){
