@@ -8,8 +8,6 @@ class Profile extends MY_Controller {
         $this->is_admin_login();
         //load language
         $this->lang->load('app','english');
-        //load models
-		$this->load->model(array('user_model','settings_model','article_model','ticket_model'));
     }
 
     //profile

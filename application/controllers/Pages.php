@@ -11,9 +11,6 @@ class Pages extends MY_Controller {
 		$this->perPage = 10;
 		//load helper for language
         $this->load->helper('language');
-		//load models
-		$this->load->model(array('faq_model','article_model','ticket_model'));
-		
 	}
 
 	//Home Page
