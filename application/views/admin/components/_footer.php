@@ -2,31 +2,14 @@
    <div class="container-fluid">
       <div class="row text-muted">
          <div class="col-6 text-start">
-            <p class="mb-0">
-               <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>AdminKit Demo</strong></a> &copy;
-            </p>
-         </div>
-         <div class="col-6 text-end">
-            <ul class="list-inline">
-               <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Support</a>
-               </li>
-               <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Help Center</a>
-               </li>
-               <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
-               </li>
-               <li class="list-inline-item">
-                  <a class="text-muted" href="https://adminkit.io/" target="_blank">Terms</a>
-               </li>
-            </ul>
+            <p class="mb-0">&copy; Propvenues. All Rights Reserved.</p>
          </div>
       </div>
    </div>
 </footer>
 </div>
 </div>
+<script src="<?= base_url(); ?>assets/js/bootstrap.bundle.min.js"></script>
 <script src="<?= base_url(); ?>assets/js/app.js"></script>
 </body>
 </html>
