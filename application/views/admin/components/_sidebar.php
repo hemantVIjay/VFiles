@@ -47,6 +47,11 @@
             <i class="align-middle" data-feather="square"></i> <span class="align-middle">Builders</span>
             </a>
          </li>
+		 <li class="sidebar-item">
+            <a class="sidebar-link" href="<?= base_url('admin/properties/list_properties');?>">
+            <i class="align-middle" data-feather="square"></i> <span class="align-middle">Properties</span>
+            </a>
+         </li>
       </ul>
    </div>
 </nav>
