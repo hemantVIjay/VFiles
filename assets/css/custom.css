@@ -67,3 +67,10 @@ label.required:after{
     color: #dc3545;
     margin-left: 3px;
 }
+.form-control.calicon {
+    background-image: url(../images/cal-icon.svg);
+    background-repeat: no-repeat;
+    background-size: 15px 15px;
+    background-position: right .515rem bottom .529rem;
+    padding-right: 30px;
+}
