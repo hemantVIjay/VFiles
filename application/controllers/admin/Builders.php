@@ -21,9 +21,23 @@ class Builders extends MY_Controller {
         $data['title']=$this->lang->line("text_users");
         if($this->permitted('list_users')){
             //get all user types
+            $builders = $this->builder_model->get_all_builders();
+            $data['builders']=$builders;
+            $data['sub_view'] = $this->load->view('admin/builders/list_builders', $data, TRUE);
+        }else{
+            $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
+        }
+        $this->load->view('admin/_layout', $data); 
+    }
+
+	public function add_builder()
+	{
+        $data['title']=$this->lang->line("text_users");
+        if($this->permitted('list_users')){
+            //get all user types
             $user_types = $this->user_model->get_user_types();
             $data['user_types']=$user_types;
-            $data['sub_view'] = $this->load->view('admin/builders/list_builders', $data, TRUE);
+            $data['sub_view'] = $this->load->view('admin/builders/add_builder', $data, TRUE);
         }else{
             $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
         }
@@ -131,54 +145,53 @@ class Builders extends MY_Controller {
     }
 
     //create user
-    public function create_user(){
+    public function create_builder(){
         if($this->input->post()){
             //check permission
             if($this->permitted('add_user')){
-                $this->form_validation->set_rules('user_type','User Type','trim|required');
-                $this->form_validation->set_rules('full_name','Full Name','trim|required');
-                $this->form_validation->set_rules('email','Email','trim|required|valid_email' );
-                $this->form_validation->set_rules('password','password','trim|required');
+                $this->form_validation->set_rules('builder_name','Full Name','trim|required');
                 if ($this->form_validation->run() == FALSE) {
                     $success = FALSE;
                     $message = validation_errors();
                 }else{
                     $post_data = array(
-                        'user_role_id' => $this->input->post('user_type'),
-                        'full_name' => $this->input->post('full_name'),
-                        'email' => $this->input->post('email'),
-                        'password' =>password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+                        'builder_name' => $this->input->post('builder_name'),
+                        'builder_website' => $this->input->post('builder_website'),
+                        'builder_estabilished_year' => $this->input->post('builder_estabilished_year'),
+                        'builder_information' => $this->input->post('builder_information'),
+                        'builder_office_address' => $this->input->post('builder_office_address'),
+                        'builder_phone' => $this->input->post('builder_phone'),
+                        'builder_owner_name' => $this->input->post('builder_owner_name'),
                         'status' => 1,
                         'created_by' => $this->get_user_id(),
                         'updated_by' => $this->get_user_id(),
                     );
+					 //upload config
+                    $config['upload_path'] = 'uploads/builders/';
+                    $config['allowed_types'] = '*';
+                    $config['encrypt_name'] = TRUE;
+                    $config['overwrite'] = TRUE;
+                    $config['max_size'] = '1024'; //1 MB
+                    //Upload Builder logo
+                    if(isset($_FILES['builder_logo']['name'])){
+                        $this->load->library('upload', $config);
+                        if (!$this->upload->do_upload('builder_logo')) {
+                            $success = FALSE;
+                            $message = $this->upload->display_errors();
+                            $json_array = array('success' => $success, 'message' => $message);
+                            echo json_encode($json_array);
+                            exit();
+                        } else {
+                            $upload_data=$this->upload->data();
+                            $post_data['builder_logo']=$upload_data['file_name'];
+                        }
+                    }
                     //XXS Clean
                     $post_data = $this->security->xss_clean($post_data);
-                    $result = $this->user_model->create_user($post_data);
+                    $result = $this->builder_model->create_builder($post_data);
                     if ($result['status']==TRUE &&$result['label']=='SUCCESS') {
                         $success = TRUE;
                         $message = $this->lang->line("alert_user_created");
-                        try{
-                            //Send Mail if Settings enabled
-                            $send_password_created_new_user=$this->load->get_var('send_password_created_new_user');
-                            if($send_password_created_new_user==1 || $send_password_created_new_user=="1"){
-                                $to=$this->input->post('email');
-                                $site_name=$this->load->get_var('site_name');
-                                $data_set=array(
-                                    'fullname'=>$this->input->post('full_name'),
-                                    'sitename'=>$site_name,
-                                    'password'=>$this->input->post('password'),
-                                );
-                                $email_content=$this->generate_email('user_creation',$data_set);
-                                $subject=$this->get_email_subject($slug='user_creation');
-                                @$this->sendEmail($to, $subject, $email_content);
-                            }
-                            
-                        }catch(Exception $e){
-
-                        }
-
-
                     }elseif($result['status']==FALSE &&$result['label']=='EXIST'){
                         $success = FALSE;
                         $message = $this->lang->line("alert_user_exist");
