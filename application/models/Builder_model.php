@@ -53,7 +53,7 @@ class Builder_model extends MY_Model{
 
 	
 	//create new user
-	public function create_builder($post_data){
+	public function create_builder($post_data, $mdata){
 		$this->_table_name='builders';
 		//check user with mail exist
 		$condition=array('builder_name'=>$post_data['builder_name']);
@@ -77,6 +77,12 @@ class Builder_model extends MY_Model{
 					'status'=>TRUE,
 					'label'=>'SUCCESS',
 				);
+				$this->_table_name='contact_persons';
+			    $this->_timestamps=TRUE;
+				foreach($mdata as $kk=>$arr){
+					$arr['parent_id'] = $insert_id;
+					$this->save($arr, $id = NULL);
+				}
 				return $return_data;
 			}else{
 				//if not inseted
