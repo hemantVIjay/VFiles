@@ -59,3 +59,11 @@ body{
 label{
 	margin-bottom:.25rem;
 }
+.form-select, .form-control{
+	font-size:.785rem;
+}
+label.required:after{
+    content: "*";
+    color: #dc3545;
+    margin-left: 3px;
+}

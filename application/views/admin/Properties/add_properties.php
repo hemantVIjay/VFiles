@@ -1,3 +1,5 @@
+<link href="<?= base_url(); ?>assets/plugins/datepicker/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet">
+
 <div class="row">
 <div class="col-xl-8 col-md-7">
 	<div class="cbx">
@@ -82,7 +84,7 @@
 			</div>
 			<div class="col-md-4 mb-3">
 				<label class="required">Project Launch Date</label>
-				<input type="text" class="form-control" />
+				<input type="text" class="form-control datetimepicker-input" id="datetimepicker5" data-toggle="datetimepicker" data-target="#datetimepicker5" />
 			</div>
 			<div class="col-md-12 mb-3">
 				<label class="required">Project Overview</label>
@@ -92,3 +94,13 @@
 	</div>
 </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="<?= base_url(); ?>assets/js/moment.min.js"></script>
+<script src="<?= base_url(); ?>assets/plugins/datepicker/js/tempusdominus-bootstrap-4.min.js"></script>
+
+<script type="text/javascript">
+            $(function () {
+                $('#datetimepicker5').datetimepicker();
+            });
+        </script>
