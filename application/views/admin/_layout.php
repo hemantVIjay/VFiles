@@ -6,6 +6,7 @@
 <?php include_once('components/_sidebar.php'); ?>
 <!-- *****CONTENT***** -->
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 pt-4">
+<script src="<?= base_url(); ?>assets/js/jquery.min.js"></script>
          <?= $sub_view; ?>
 </main>
 <?php include_once('components/_footer.php'); ?>

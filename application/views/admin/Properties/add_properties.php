@@ -95,7 +95,7 @@
 </div>
 </div>
 
-<script src="<?= base_url(); ?>assets/js/jquery.min.js"></script>
+
 <script src="<?= base_url(); ?>assets/js/moment.min.js"></script>
 <script src="<?= base_url(); ?>assets/plugins/datepicker/js/tempusdominus-bootstrap-4.min.js"></script>
 
