@@ -118,19 +118,39 @@ class Builder_model extends MY_Model{
 			return $return_data;
 		}
 	}
+    
+	//get user by id
+	public function get_builder($id){
+		$this->db->select('b.*');
+        $this->db->from('builders b');
+		$this->db->where('b.id', $id);
+		$query = $this->db->get();
+		return ($query->num_rows() == 1)?$query->row_array():FALSE;
+	}
 
+	public function get_contacts($id){
+		$this->db->select('c.*');
+        $this->db->from('contact_persons c');
+		$this->db->where('c.parent_id', $id);
+		$query = $this->db->get();
+		return ($query->num_rows() == 1)?$query->result_array():FALSE;
+	}
+	
 	//delete user
-	public function delete_builder($user_id){
+	public function delete_builder($id){
 		$this->db->trans_start();
 		//get user to unlink profile image
-		$user=$this->get_builder($user_id);
-		if($user){
-			if($user['profile_image']!=NULL){
-				@unlink(FCPATH.'uploads/builders/'.$user['profile_image']);
+		$builder=$this->get_builder($id);
+		if($builder){
+			if($builder['builder_logo']!=NULL){
+				@unlink(FCPATH.'uploads/builders/'.$builder['builder_logo']);
 			}
 		}
+		$this->db->where('parent_id', $id);
+		$this->db->delete('contact_persons');
+		
 		//delete user
-		$this->db->where('id', $user_id);
+		$this->db->where('id', $id);
         $this->db->limit(1);
 		$this->db->delete('builders');
         $this->db->trans_complete();
