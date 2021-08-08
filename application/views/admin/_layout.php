@@ -91,7 +91,7 @@
 				<a class="nav-link" href="<?= base_url('admin/builders/list_builders');?>">Builder List</a>
 			</li>
 			<li>
-				<a class="nav-link" href="<?= base_url('admin/builders/add_builders');?>">Add Builder</a>
+				<a class="nav-link" href="<?= base_url('admin/builders/add_builder');?>">Add Builder</a>
 			</li>
           </ul>
         </div>
