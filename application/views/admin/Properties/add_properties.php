@@ -91,6 +91,25 @@
 				<textarea class="form-control" rows="4"></textarea>
 			</div>
 		</div>
+		
+		<hr />
+		
+		<div class="row">
+			<div class="col-sm-12 mb-3">
+				<div class="grid-x grid-padding-x">
+  <div class="small-10 small-offset-1 medium-8 medium-offset-2 cell">
+
+        <label for="upload_imgs">Add Elevation Images</label>
+		<div>
+        <input class="show-for-sr" type="file" id="upload_imgs" name="upload_imgs[]" multiple/>
+		</div>
+		<div class="quote-imgs-thumbs quote-imgs-thumbs--hidden" id="img_preview" aria-live="polite"></div>
+
+  </div>
+</div>
+			</div>
+		</div>
+		
 	</div>
 </div>
 </div>
@@ -98,6 +117,7 @@
 
 <script src="<?= base_url(); ?>assets/js/moment.min.js"></script>
 <script src="<?= base_url(); ?>assets/plugins/datepicker/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="<?= base_url(); ?>assets/js/custom.js"></script>
 
 <script type="text/javascript">
             $(function () {
