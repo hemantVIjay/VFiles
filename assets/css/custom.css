@@ -95,3 +95,20 @@ label.required:after{
   max-width: 140px;
   padding: 0.25rem;
 }
+
+/*End Images upload */
+.lgn-card{
+	border-radius:1rem;
+}
+.llogo{
+	height:4.5rem;
+}
+.lttl{
+	font-size:.925rem;
+	font-weight:600;
+}
+.lgn-bg{
+	background:#f1eee8 url(../images/login-bg.png) no-repeat;
+	background-position:bottom;
+	background-size:100%;
+}
