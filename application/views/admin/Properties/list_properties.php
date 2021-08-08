@@ -1,5 +1,5 @@
-<link href="<?= base_url(); ?>assets/plugins/datatable/css/datatables.min.css" rel="stylesheet">
-<table id="dt" class="table" style="width:100%">
+<div class="tbl-resp">
+<table class="table tbl-custom" style="width:100%">
         <thead>
             <tr>
                 <th>Name</th>
@@ -479,10 +479,4 @@
             </tr>
         </tfoot>
     </table>
-<script src="<?= base_url(); ?>assets/plugins/datatable/js/datatables.min.js"></script>
-
-<script>
-$(document).ready(function() {
-    $('#dt').DataTable();
-} );
-</script>
+</div>

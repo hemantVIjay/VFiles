@@ -1,23 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Required meta tags-->
     <meta charset="utf-8">
     <base href="<?= base_url(); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title><?= $title; ?> - <?= $site_name; ?></title>
-    <!-- Favicon-->
     <?php if($site_favicon!=NULL) { ?>
     <link rel="icon" type="image/x-icon" href="<?= base_url(); ?>uploads/site/<?= $site_favicon; ?>">
     <?php }else { ?>
         <link rel="icon" type="image/x-icon" href="<?= base_url(); ?>assets/images/favicon.png">
     <?php } ?>
 	
-    <!-- Toast-->
-    <link rel="stylesheet" href="<?= base_url(); ?>assets/vendors/toast/jquery.toast.min.css">
     <link href="<?= base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
 	<link href="<?= base_url(); ?>assets/css/mulish.css" rel="stylesheet">
 	<link href="<?= base_url(); ?>assets/css/bootstrap-icons.css" rel="stylesheet">
+	<link rel="stylesheet" href="<?= base_url(); ?>assets/vendors/toast/jquery.toast.min.css">
 	<link href="<?= base_url(); ?>assets/css/custom.css" rel="stylesheet">
 	
 </head>
@@ -72,7 +69,6 @@
        
 						</div>
                     </div>
-                    <!-- Login Card Ends-->
                   </div>
                </div>
             </div>
@@ -80,7 +76,6 @@
       </main>
 
     <script src="<?= base_url(); ?>assets/js/jquery.min.js"></script>
-	
     <script src="<?= base_url(); ?>assets/vendors/jquery-validation/jquery.validate.min.js"></script>
     <script src="<?= base_url(); ?>assets/vendors/toast/jquery.toast.min.js"></script>
     <script src="<?= base_url(); ?>assets/js/admin/auth.js"></script>
