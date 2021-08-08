@@ -53,7 +53,7 @@
   <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="position-sticky pt-3">
         <ul class="list-unstyled ps-0">
-		<li><a href="<?= base_url('admin');?>" class="link-dark">Dashborad</a></li>
+		<li><a href="<?= base_url('admin');?>" class="nav-link">Dashborad</a></li>
       <li class="mb-1">
         <button class="btn btn-toggle align-items-center collapsed" data-bs-toggle="collapse" data-bs-target="#master-collapse" aria-expanded="false">
           Master

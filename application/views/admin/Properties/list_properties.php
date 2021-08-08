@@ -1,3 +1,5 @@
+<div class="pg-content mb-4">
+
 <div class="tbl-resp">
 <table class="table tbl-custom" style="width:100%">
         <thead>
@@ -479,4 +481,6 @@
             </tr>
         </tfoot>
     </table>
+</div>
+
 </div>
