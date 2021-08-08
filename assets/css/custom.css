@@ -112,3 +112,8 @@ label.required:after{
 	background-position:bottom;
 	background-size:100%;
 }
+.cmnttl {
+	font-size:1.15rem;
+	font-weight:800;
+	margin-bottom:1rem;
+}
