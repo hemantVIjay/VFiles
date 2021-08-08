@@ -21,9 +21,23 @@ class Builders extends MY_Controller {
         $data['title']=$this->lang->line("text_users");
         if($this->permitted('list_users')){
             //get all user types
+            $builders = $this->builder_model->get_all_builders();
+            $data['builders']=$builders;
+            $data['sub_view'] = $this->load->view('admin/builders/list_builders', $data, TRUE);
+        }else{
+            $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
+        }
+        $this->load->view('admin/_layout', $data); 
+    }
+
+	public function add_builder()
+	{
+        $data['title']=$this->lang->line("text_users");
+        if($this->permitted('list_users')){
+            //get all user types
             $user_types = $this->user_model->get_user_types();
             $data['user_types']=$user_types;
-            $data['sub_view'] = $this->load->view('admin/builders/list_builders', $data, TRUE);
+            $data['sub_view'] = $this->load->view('admin/builders/add_builder', $data, TRUE);
         }else{
             $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
         }
@@ -105,80 +119,68 @@ class Builders extends MY_Controller {
         }
     }
 
-    //add user - load view
-	public function add_user()
-	{
-        if($this->input->post()){
-            //check permission
-            if($this->permitted('add_user')){
-                $data['title']=$this->lang->line("text_add_user");
-                //get non admin user types
-                $user_types = $this->user_model->get_non_admin_user_types();
-                $data['user_types']=$user_types;
-                $success = TRUE;
-                $message = '';
-                $content = $this->load->view('admin/users/add_user',$data,TRUE);
-            }else{
-                $data['title']=$this->lang->line("alert_access_denied");
-                $success = TRUE;
-                $message = '';
-                $content = $this->load->view('errors/permission/denied',$data,TRUE);
-            }
-            $json_array = array('success' => $success, 'message' => $message,'content'=>$content);
-            echo json_encode($json_array);
-            exit();
-        }
-    }
-
     //create user
-    public function create_user(){
+    public function create_builder(){
         if($this->input->post()){
             //check permission
             if($this->permitted('add_user')){
-                $this->form_validation->set_rules('user_type','User Type','trim|required');
-                $this->form_validation->set_rules('full_name','Full Name','trim|required');
-                $this->form_validation->set_rules('email','Email','trim|required|valid_email' );
-                $this->form_validation->set_rules('password','password','trim|required');
+                $this->form_validation->set_rules('builder_name','Full Name','trim|required');
                 if ($this->form_validation->run() == FALSE) {
                     $success = FALSE;
                     $message = validation_errors();
                 }else{
                     $post_data = array(
-                        'user_role_id' => $this->input->post('user_type'),
-                        'full_name' => $this->input->post('full_name'),
-                        'email' => $this->input->post('email'),
-                        'password' =>password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+                        'builder_name' => $this->input->post('builder_name'),
+                        'builder_website' => $this->input->post('builder_website'),
+                        'builder_estabilished_year' => $this->input->post('builder_estabilished_year'),
+                        'builder_information' => $this->input->post('builder_information'),
+                        'builder_office_address' => $this->input->post('builder_office_address'),
+                        'builder_phone' => $this->input->post('builder_phone'),
+                        'builder_owner_name' => $this->input->post('builder_owner_name'),
                         'status' => 1,
                         'created_by' => $this->get_user_id(),
                         'updated_by' => $this->get_user_id(),
                     );
+					
+					$mdata = array();
+					foreach($_REQUEST['name'] as $kk=>$rows){
+					  $p_data = array(
+                        'contact_name' => $_REQUEST['name'][$kk],
+                        'contact_phone' => $_REQUEST['phone'][$kk],
+                        'contact_email' => $_REQUEST['email'][$kk],
+                        'status' => 1,
+                        'created_by' => $this->get_user_id(),
+                        'updated_by' => $this->get_user_id(),
+                      );
+					  $mdata[] = $p_data;	
+					}
+					
+					 //upload config
+                    $config['upload_path'] = 'uploads/builders/';
+                    $config['allowed_types'] = '*';
+                    $config['encrypt_name'] = TRUE;
+                    $config['overwrite'] = TRUE;
+                    $config['max_size'] = '1024'; //1 MB
+                    //Upload Builder logo
+                    if(isset($_FILES['builder_logo']['name'])){
+                        $this->load->library('upload', $config);
+                        if (!$this->upload->do_upload('builder_logo')) {
+                            $success = FALSE;
+                            $message = $this->upload->display_errors();
+                            $json_array = array('success' => $success, 'message' => $message);
+                            echo json_encode($json_array);
+                            exit();
+                        } else {
+                            $upload_data=$this->upload->data();
+                            $post_data['builder_logo']=$upload_data['file_name'];
+                        }
+                    }
                     //XXS Clean
                     $post_data = $this->security->xss_clean($post_data);
-                    $result = $this->user_model->create_user($post_data);
+                    $result = $this->builder_model->create_builder($post_data, $mdata);
                     if ($result['status']==TRUE &&$result['label']=='SUCCESS') {
                         $success = TRUE;
                         $message = $this->lang->line("alert_user_created");
-                        try{
-                            //Send Mail if Settings enabled
-                            $send_password_created_new_user=$this->load->get_var('send_password_created_new_user');
-                            if($send_password_created_new_user==1 || $send_password_created_new_user=="1"){
-                                $to=$this->input->post('email');
-                                $site_name=$this->load->get_var('site_name');
-                                $data_set=array(
-                                    'fullname'=>$this->input->post('full_name'),
-                                    'sitename'=>$site_name,
-                                    'password'=>$this->input->post('password'),
-                                );
-                                $email_content=$this->generate_email('user_creation',$data_set);
-                                $subject=$this->get_email_subject($slug='user_creation');
-                                @$this->sendEmail($to, $subject, $email_content);
-                            }
-                            
-                        }catch(Exception $e){
-
-                        }
-
-
                     }elseif($result['status']==FALSE &&$result['label']=='EXIST'){
                         $success = FALSE;
                         $message = $this->lang->line("alert_user_exist");
@@ -198,33 +200,27 @@ class Builders extends MY_Controller {
     }
 
     //edit user - load view
-	public function edit_user()
-	{
-        if($this->input->post()){
-            //check permission
-            if($this->permitted('edit_user')){
-                $data['title']=$this->lang->line("text_edit_user");
-                $user_id = $this->input->post('user_id');
-                //get non admin user types
-                $user_types = $this->user_model->get_non_admin_user_types();
-                $data['user_types']=$user_types;
-                //get user by id
-                $user = $this->user_model->get_user($user_id);
-                $data['user']=$user;
-                $success = TRUE;
-                $message = '';
-                $content = $this->load->view('admin/users/edit_user',$data,TRUE);
-            }else{
-                $data['title']=$this->lang->line("alert_access_denied");
-                $success = TRUE;
-                $message = '';
-                $content = $this->load->view('errors/permission/denied',$data,TRUE);
-            }
-            $json_array = array('success' => $success, 'message' => $message,'content'=>$content);
-            echo json_encode($json_array);
-            exit();
+	public function edit_builder()
+	{   
+	   if($this->uri->segment(4)){
+			$data['title']=$this->lang->line("text_users");
+			if($this->permitted('edit_user')){
+				//get all user types
+				$data['title']=$this->lang->line("text_edit_user");
+				$id = $this->uri->segment(4);
+					//get user by id
+				$contacts = array();	
+				$builder = $this->builder_model->get_builder($id);
+				$contacts = $this->builder_model->get_contacts($id);
+				$data['builder']=$builder;
+				$data['builder']['contacts']=$contacts;					
+				$data['sub_view'] = $this->load->view('admin/builders/edit_builder', $data, TRUE);
+			}else{
+				$data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
+			}
+			$this->load->view('admin/_layout', $data); 		
         }
-    }
+	}
 
     //update user
     public function update_user(){
@@ -264,135 +260,14 @@ class Builders extends MY_Controller {
         }
     }
 
-    //block user - load view
-    public function block_user(){
-        //check permission
-        if($this->permitted('user_blocking')){
-            $data['title']=$this->lang->line("text_block_user");
-            $user_id = $this->input->post('user_id');
-            $data['user_id']=$user_id;
-            $success = true;
-            $message = '';
-            $content = $this->load->view('admin/users/block_user',$data,TRUE);
-        }else{
-            $data['title']=$this->lang->line("alert_access_denied");
-            $success = TRUE;
-            $message = '';
-            $content = $this->load->view('errors/permission/denied',$data,TRUE);
-        }
-        $json_array = array('success' => $success, 'message' => $message,'content'=>$content);
-        echo json_encode($json_array);
-        exit();
-    }
-    
-    //block user action
-    public function block_user_action(){
-        //check permission
-        if($this->permitted('user_blocking')){
-            $user_id = $this->input->post('user_id');
-            $update_data=array(
-                'status'=>2,
-                'updated_by' => $this->get_user_id()
-            );
-            //user blocking
-            $result = $this->user_model->user_blocking($user_id,$update_data);
-            if ($result['status']==TRUE &&$result['label']=='SUCCESS') {
-                $success = TRUE;
-                $message = $this->lang->line("alert_user_blocked");
-            }elseif($result['status']==FALSE &&$result['label']=='ERROR'){
-                $success = FALSE;
-                $message = $this->lang->line("alert_user_not_blocked");
-            }
-        }else{
-            $success = FALSE;
-            $message = $this->lang->line("alert_access_denied");
-        }
-        $json_array = array('success' => $success, 'message' => $message);
-        echo json_encode($json_array);
-        exit();
-    }
-
-    //unblock user - load view
-    public function unblock_user(){
-        //check permission
-        if($this->permitted('user_blocking')){
-            $data['title']=$this->lang->line("text_unblock_user");
-            $user_id = $this->input->post('user_id');
-            $data['user_id']=$user_id;
-            $success = TRUE;
-            $message = '';
-            $content = $this->load->view('admin/users/unblock_user',$data,TRUE);
-        }else{
-            $data['title']=$this->lang->line("alert_access_denied");
-            $success = TRUE;
-            $message = '';
-            $content = $this->load->view('errors/permission/denied',$data,TRUE);
-        }
-        $json_array = array('success' => $success, 'message' => $message,'content'=>$content);
-        echo json_encode($json_array);
-        exit();
-    }
-
-    //unblock user action
-    public function unblock_user_action(){
-        //check permission
-        if($this->permitted('user_blocking')){
-            $user_id = $this->input->post('user_id');
-            $update_data=array(
-                'status'=>1,
-                'updated_by' => $this->get_user_id()
-            );
-            //user blocking
-            $result = $this->user_model->user_blocking($user_id,$update_data);
-            if ($result['status']==TRUE &&$result['label']=='SUCCESS') {
-                $success = TRUE;
-                $message = $this->lang->line("alert_user_unblocked");
-            }elseif($result['status']==FALSE &&$result['label']=='ERROR'){
-                $success = FALSE;
-                $message = $this->lang->line("alert_user_not_unblocked");
-            }
-        }else{
-            $success = FALSE;
-            $message = $this->lang->line("alert_access_denied");
-        }
-        $json_array = array('success' => $success, 'message' => $message);
-        echo json_encode($json_array);
-        exit();
-    }
-
-    //delete user - load view
-	public function delete_user()
-	{
-        if($this->input->post()){
-            //check permission
-            if($this->permitted('delete_user')){
-                $data['title']=$this->lang->line("text_delete_user");
-                $user_id = $this->input->post('user_id');
-                $data['user_id']=$user_id;
-                $success = TRUE;
-                $message = '';
-                $content = $this->load->view('admin/users/delete_user',$data,TRUE);
-            }else{
-                $data['title']=$this->lang->line("alert_access_denied");
-                $success = TRUE;
-                $message = '';
-                $content = $this->load->view('errors/permission/denied',$data,TRUE);
-            }
-            $json_array = array('success' => $success, 'message' => $message,'content'=>$content);
-            echo json_encode($json_array);
-            exit();
-        }
-        
-    }
-
     //delete user action
-    public function delete_user_action(){
+    public function delete_builder(){
         if($this->input->post()){
             //check permission
             if($this->permitted('delete_user')){
-                $user_id = $this->input->post('user_id');
+                $id = $this->input->post('builder_id');
                 //delete user
-                $result = $this->user_model->delete_user($user_id);
+                $result = $this->builder_model->delete_builder($id);
                 if ($result['status']==TRUE &&$result['label']=='SUCCESS') {
                     $success = TRUE;
                     $message = $this->lang->line("alert_user_deleted");

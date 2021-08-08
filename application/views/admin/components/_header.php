@@ -10,11 +10,13 @@
 	
 	<link rel="shortcut icon" href="<?= base_url(); ?>assets/images/favicon.png" />
 
-	<title><?= $title; ?> - <?= $site_name; ?></title>
+	<base href="<?= base_url(); ?>">
+    <title><?= $title; ?> - <?= $site_name; ?></title>
 	<link href="<?= base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
 	<link href="<?= base_url(); ?>assets/css/mulish.css" rel="stylesheet">
 	<link href="<?= base_url(); ?>assets/css/bootstrap-icons.css" rel="stylesheet">
 	<link href="<?= base_url(); ?>assets/css/custom.css" rel="stylesheet">
+	<link rel="stylesheet" href="<?= base_url(); ?>assets/vendors/toast/jquery.toast.min.css">
 	
 </head>
 
