@@ -20,7 +20,7 @@
          <div class="card-header">
             <h5 class="card-title">Cities Lists</h5>
          </div>
-         <div style="overflow:auto;height:390px;">
+         <div style="overflow:auto;height:525px;">
 		 <table class="table" style="width:100%;height:100%;">
             <thead>
                <tr>
