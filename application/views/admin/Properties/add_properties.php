@@ -1,5 +1,5 @@
 <link href="<?= base_url(); ?>assets/plugins/datepicker/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet">
-
+<form method="POST" action="<?= base_url('admin/amenities/add_amenities'); ?>" id="img-upload-form" enctype="multipart/form-data" accept-charset="utf-8">
 <div class="pg-content mb-4">
 
 <div class="row">
@@ -381,6 +381,7 @@
 </div>
 
 </div>
+</form>
 
 	
 
