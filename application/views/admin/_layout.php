@@ -78,6 +78,12 @@
          <li>
             <a class="nav-link" href="<?= base_url('admin/countries/list_countries');?>">Countries</a>
          </li>
+		 <li>
+            <a class="nav-link" href="<?= base_url('admin/masters/list_banks');?>">Banks</a>
+         </li>
+		 <li>
+            <a class="nav-link" href="<?= base_url('admin/masters/list_propertiesType');?>">Property Type</a>
+         </li>
           </ul>
         </div>
       </li>

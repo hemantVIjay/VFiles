@@ -1,7 +1,6 @@
 <div class="row">
    <div class="col-md-8 col-sm-9">
       <div class="card">
-	    <?php echo'<pre/>';print_r($builder); ?>
          <div class="card-header">
             <h5 class="card-title">Update Builder Details</h5>
          </div>
@@ -9,36 +8,36 @@
             <form method="POST" action="<?= base_url();?>admin/builders/create_builder" enctype="multipart/form-data" accept-charset="utf-8">
                <div class="mb-3">
                   <label class="form-label">Builder Name</label>
-                  <input name="builder_name" type="text" class="form-control" placeholder="Enter builder name" value="<??>" >
+                  <input name="builder_name" type="text" class="form-control" placeholder="Enter builder name" value="<?= $builder['builder_name']; ?>" >
                </div>
                <div class="mb-3">
                   <label class="form-label">Builder Website</label>
-                  <input name="builder_website" type="text" class="form-control" placeholder="Enter builder website">
+                  <input name="builder_website" type="text" class="form-control" placeholder="Enter builder website" <?= $builder['builder_website']; ?>>
                </div>
                <div class="mb-3">
                   <label class="form-label">Established Year</label>
-                  <input name="builder_estabilished_year" type="text" class="form-control" placeholder="Enter estd. year">
+                  <input name="builder_estabilished_year" type="text" class="form-control" placeholder="Enter estd. year" <?= $builder['builder_estabilished_year']; ?>>
                </div>
                <div class="mb-3">
                   <label class="form-label">About Builder</label>
-                  <textarea name="builder_information" class="form-control" placeholder="Builder description here..." rows="3"></textarea>
+                  <textarea name="builder_information" class="form-control" placeholder="Builder description here..." rows="3"><?= $builder['builder_information']; ?></textarea>
                </div>
                <div class="mb-3">
                   <label class="form-label">Builder Logo</label>
-                  <input type="file" class="form-control" name="builder_logo" required>
+                  <input type="file" class="form-control" name="builder_logo" accept=".png,.jpg,.jpeg,.webp,.svg" >
                   <div class="text-muted">Note : .png, .jpg, .jpeg, .webp, .svg format accepted</div>
                </div>
                <div class="mb-3">
                   <label class="form-label">Office Address</label>
-                  <textarea name="builder_office_address" class="form-control" placeholder="Office address" rows="2"></textarea>
+                  <textarea name="builder_office_address" class="form-control" placeholder="Office address" rows="2"><?= $builder['builder_office_address']; ?></textarea>
                </div>
                <div class="mb-3">
                   <label class="form-label">Phone Number</label>
-                  <input name="builder_phone" type="text" class="form-control" placeholder="Enter phone numbers">
+                  <input name="builder_phone" type="text" class="form-control" placeholder="Enter phone numbers" value="<?= $builder['builder_phone']; ?>">
                </div>
                <div class="mb-3">
                   <label class="form-label">Owner Name</label>
-                  <input name="builder_owner_name" type="text" class="form-control" placeholder="Enter owner name">
+                  <input name="builder_owner_name" type="text" class="form-control" placeholder="Enter owner name" value="<?= $builder['builder_owner_name']; ?>">
                </div>
                <div class="card-header">
                   <h5 class="card-title">Contact Person Details</h5>
@@ -67,12 +66,22 @@
                      <th></th>
                   </tr>
                   <tbody id="contact_persons">
-                     <tr>
+                     <?php if(!empty($builder['contacts'])){ foreach($builder['contacts'] as $kk=>$contact){ ?>
+					 <tr>
+                        <td><input type="checkbox" id="checkbox_<?=$kk;?>"></td>
+                        <td><input name="name[]" id="name_<?=$kk;?>" type="text" class="form-control form-control-sm" placeholder="Enter name" value="<?=$contact->contact_name;?>" ></td>
+                        <td><input name="phone[]" id="phone_<?=$kk;?>" type="text" class="form-control form-control-sm" placeholder="Enter phone no." value="<?=$contact->contact_phone;?>"></td>
+                        <td><input name="email[]" id="email_<?=$kk;?>" type="text" class="form-control form-control-sm" placeholder="Enter email id" value="<?=$contact->contact_email;?>"></td>
+                     </tr>
+					 <?php } }else{ ?>
+					 <tr>
                         <td><input type="checkbox" id="checkbox_1"></td>
                         <td><input name="name[]" id="name_1" type="text" class="form-control form-control-sm" placeholder="Enter name"></td>
                         <td><input name="phone[]" id="phone_1" type="text" class="form-control form-control-sm" placeholder="Enter phone no."></td>
                         <td><input name="email[]" id="email_1" type="text" class="form-control form-control-sm" placeholder="Enter email id"></td>
                      </tr>
+						 
+					 <?php } ?>
                   </tbody>
                </table>
                <button type="submit" class="btn btn-primary">Submit</button>

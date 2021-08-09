@@ -208,12 +208,12 @@ class Builders extends MY_Controller {
 				//get all user types
 				$data['title']=$this->lang->line("text_edit_user");
 				$id = $this->uri->segment(4);
-					//get user by id
+
 				$contacts = array();	
 				$builder = $this->builder_model->get_builder($id);
 				$contacts = $this->builder_model->get_contacts($id);
-				$data['builder']=$builder;
-				$data['builder']['contacts']=$contacts;					
+				$data['builder'] = $builder;
+				$data['builder']['contacts'] = $contacts;			
 				$data['sub_view'] = $this->load->view('admin/builders/edit_builder', $data, TRUE);
 			}else{
 				$data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
