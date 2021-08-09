@@ -50,15 +50,18 @@
 				<input type="text" class="form-control" />
 			</div>
 		</div>
+		<hr />
+		<div class="cmnttl position-relative">Choose Property Type</div>
 		<div class="row">
 			<div class="col-md-6 mb-3">
 				<label class="required">Property Type</label>
-				<select class="form-select">
-					<option>Flat</option>
-					<option>Plot</option>
+				<select class="form-select" id="choose_pty">
+					<option value="pytflat">Flat</option>
+					<option value="pytplot">Plot</option>
 				</select>
 			</div>
 		</div>
+		<div class="ptyp" id="pty_flat">
 		<div class="row">
 			<div class="col-md-4 mb-3">
 				<label class="required">No. of Towers</label>
@@ -92,6 +95,112 @@
 				<label class="required">Project Overview</label>
 				<textarea class="form-control" rows="4"></textarea>
 			</div>
+		</div>
+		
+		<hr />
+		<div class="cmnttl position-relative">Add Specifications</div>
+		<div class="row">
+			<div class="col-md-3 mb-3"><strong>Doors</strong></div>
+			<div class="col-md-9">
+			<div class="row">
+			<div class="col-md-6 mb-3">
+				<label class="required">Internal</label>
+				<input type="text" class="form-control" />
+			</div>
+			<div class="col-md-6 mb-3">
+				<label class="required">External</label>
+				<input type="text" class="form-control" />
+			</div>
+		</div>
+		</div>
+		</div>
+		<hr />
+		<div class="row">
+			<div class="col-md-3 mb-3"><strong>Flooring</strong></div>
+			<div class="col-md-9">
+			<div class="row">
+			<div class="col-md-6 mb-3">
+				<label class="required">Balcony</label>
+				<input type="text" class="form-control" />
+			</div>
+			<div class="col-md-6 mb-3">
+				<label class="required">Kitchen</label>
+				<input type="text" class="form-control" />
+			</div>
+			<div class="col-md-6 mb-3">
+				<label class="required">Living/Dining</label>
+				<input type="text" class="form-control" />
+			</div>
+			<div class="col-md-6 mb-3">
+				<label class="required">Master Bedroom</label>
+				<input type="text" class="form-control" />
+			</div>
+			<div class="col-md-6 mb-3">
+				<label class="required">Other Bedroom</label>
+				<input type="text" class="form-control" />
+			</div>
+			<div class="col-md-6 mb-3">
+				<label class="required">Toilet</label>
+				<input type="text" class="form-control" />
+			</div>
+		</div>
+		</div>
+		</div>
+		
+		<hr />
+		<div class="row">
+			<div class="col-md-3 mb-3"><strong>Walls</strong></div>
+			<div class="col-md-9">
+			<div class="row">
+			<div class="col-md-6 mb-3">
+				<label class="required">Interior</label>
+				<input type="text" class="form-control" />
+			</div>
+			<div class="col-md-6 mb-3">
+				<label class="required">Kitchen</label>
+				<input type="text" class="form-control" />
+			</div>
+			<div class="col-md-6 mb-3">
+				<label class="required">Toilet</label>
+				<input type="text" class="form-control" />
+			</div>
+		</div>
+		</div>
+		</div>
+		
+		<hr />
+		<div class="row">
+			<div class="col-md-3 mb-3"><strong>Fittings</strong></div>
+			<div class="col-md-9">
+			<div class="row">
+			<div class="col-md-6 mb-3">
+				<label class="required">Kitchen</label>
+				<input type="text" class="form-control" />
+			</div>
+			<div class="col-md-6 mb-3">
+				<label class="required">Toilet</label>
+				<input type="text" class="form-control" />
+			</div>
+		</div>
+		</div>
+		</div>
+		
+		<hr />
+		<div class="row">
+			<div class="col-md-3 mb-3"><strong>Others</strong></div>
+			<div class="col-md-9">
+			<div class="row">
+			<div class="col-md-6 mb-3">
+				<label class="required">Windows</label>
+				<input type="text" class="form-control" />
+			</div>
+			<div class="col-md-6 mb-3">
+				<label class="required">Frame Structure</label>
+				<input type="text" class="form-control" />
+			</div>
+		</div>
+		</div>
+		</div>
 		</div>
 		
 		<hr />
@@ -151,15 +260,6 @@
 					<input class="form-check-input" type="checkbox" name="remember">
 					<span class="form-check-label">Banquet Hall</span>
 				</span>
-			</div>
-		</div>
-		
-		<hr />
-		<div class="cmnttl position-relative">Add Specifications</div>
-		<div class="row">
-			<div class="col-md-12 mb-3">
-				<label class="required">Specifications</label>
-				<textarea class="form-control" rows="4"></textarea>
 			</div>
 		</div>
 		
