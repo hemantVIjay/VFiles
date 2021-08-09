@@ -133,7 +133,7 @@ class Builder_model extends MY_Model{
         $this->db->from('contact_persons c');
 		$this->db->where('c.parent_id', $id);
 		$query = $this->db->get();
-		return ($query->num_rows() == 1)?$query->result_array():FALSE;
+        return ($query->num_rows() > 0)?$query->result():FALSE;
 	}
 	
 	//delete user
