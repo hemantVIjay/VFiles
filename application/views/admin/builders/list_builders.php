@@ -43,15 +43,7 @@
         </tfoot>
     </table>
 	</div>
-<script src="<?= base_url(); ?>assets/js/jquery.min.js"></script>
-<script src="<?= base_url(); ?>assets/plugins/datatable/js/datatables.min.js"></script>
-
 <script>
-
-$(document).ready(function() {
-    $('#dt').DataTable();
-} );
-
    function showAlert(type,head,message){
            $.toast({heading: head ,text: message,loader: false,position : 'top-right',showHideTransition: 'fade', icon: type });
        }
@@ -67,7 +59,6 @@ $(document).ready(function() {
 			  dataType: 'json',
               async: false,
       		  success:function(res){
-   			  //console.log(res);
 			    showAlert('success','Success','Builder successfully deleted');
       			$("#dt").load(location.href + " #dt");
       		  }

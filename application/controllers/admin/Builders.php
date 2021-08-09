@@ -223,25 +223,70 @@ class Builders extends MY_Controller {
 	}
 
     //update user
-    public function update_user(){
+    public function update_builder(){
         if($this->input->post()){
             //check permission
             if($this->permitted('edit_user')){
-                $this->form_validation->set_rules('user_type','User Type','trim|required');
-                $this->form_validation->set_rules('full_name','Full Name','trim|required');
+                $this->form_validation->set_rules('builder_name','Full Name','trim|required');
                 if ($this->form_validation->run() == FALSE) {
                     $success = FALSE;
                     $message = validation_errors();
                 }else{
-                    $user_id=$this->input->post('user_id');
+                    $builder_id=$this->input->post('builder_id');
                     $update_data = array(
-                        'user_role_id' => $this->input->post('user_type'),
-                        'full_name' => $this->input->post('full_name'),
+                        'builder_name' => $this->input->post('builder_name'),
+                        'builder_website' => $this->input->post('builder_website'),
+                        'builder_estabilished_year' => $this->input->post('builder_estabilished_year'),
+                        'builder_information' => $this->input->post('builder_information'),
+                        'builder_office_address' => $this->input->post('builder_office_address'),
+                        'builder_phone' => $this->input->post('builder_phone'),
+                        'builder_owner_name' => $this->input->post('builder_owner_name'),
                         'updated_by' => $this->get_user_id(),
                     );
+					
+					$update_mdata = array();
+					foreach($_REQUEST['name'] as $kk=>$rows){
+					  $p_data = array(
+                        'contact_name' => $_REQUEST['name'][$kk],
+                        'contact_phone' => $_REQUEST['phone'][$kk],
+                        'contact_email' => $_REQUEST['email'][$kk],
+                        'updated_by' => $this->get_user_id(),
+                      );
+					  $update_mdata[] = $p_data;	
+					}
+					
+					if(isset($_FILES['builder_logo']['name']) && $_FILES['builder_logo']['name']!=''){
+						$builder=$this->builder_model->get_builder($builder_id);
+						if($builder){
+							if($builder['builder_logo']!=NULL){
+								@unlink(FCPATH.'uploads/builders/'.$builder['builder_logo']);
+							}
+						}						
+						//upload config
+						$config['upload_path'] = 'uploads/builders/';
+						$config['allowed_types'] = '*';
+						$config['encrypt_name'] = TRUE;
+						$config['overwrite'] = TRUE;
+						$config['max_size'] = '1024'; //1 MB
+						//Upload Builder logo
+						if(isset($_FILES['builder_logo']['name'])){
+							$this->load->library('upload', $config);
+							if (!$this->upload->do_upload('builder_logo')) {
+								$success = FALSE;
+								$message = $this->upload->display_errors();
+								$json_array = array('success' => $success, 'message' => $message);
+								echo json_encode($json_array);
+								exit();
+							} else {
+								$upload_data=$this->upload->data();
+								$update_data['builder_logo']=$upload_data['file_name'];
+							}
+						}						
+					}					
+					
                     //XXS Clean
                     $update_data = $this->security->xss_clean($update_data);
-                    $result = $this->user_model->update_user($user_id,$update_data);
+                    $result = $this->builder_model->update_builder($builder_id,$update_data, $update_mdata);
                     if ($result['status']==TRUE &&$result['label']=='SUCCESS') {
                         $success = TRUE;
                         $message = $this->lang->line("alert_user_updated");

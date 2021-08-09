@@ -97,13 +97,22 @@ class Builder_model extends MY_Model{
 	}
 
 	//update user
-	public function update_builder($user_id,$update_data){
+	public function update_builder($builder_id, $update_data, $mdata){
 		$this->_table_name='builders';
 		$this->_timestamps=TRUE;
 		//update user
-		$update_id=$this->save($data=$update_data, $id = $user_id);
+		$update_id=$this->save($data=$update_data, $id = $builder_id);
 		if($update_id){
 			//if updated
+			$this->db->where('parent_id', $builder_id);
+		    $this->db->delete('contact_persons');
+		
+			$this->_table_name='contact_persons';
+			$this->_timestamps=TRUE;
+			foreach($mdata as $kk=>$arr){
+			   $arr['parent_id'] = $builder_id;
+			   $this->save($arr, $id = NULL);
+			}
 			$return_data=array(
 				'status'=>TRUE,
 				'label'=>'SUCCESS',

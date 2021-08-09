@@ -25,8 +25,8 @@
          <div class="card-header">
             <h5 class="card-title">Amenities Lists</h5>
          </div>
-         <div style="overflow:auto;height:390px;">
-		 <table id="dt" class="table" style="width:100%;height:100%;">
+         <div style="overflow:auto;height:525px;">
+		 <table class="table" style="width:100%;height:100%;">
             <thead>
                <tr>
                   <th style="width:12%;">Sr. No.</th>
@@ -63,12 +63,3 @@
       </div>
    </div>
 </div>
-<script src="<?= base_url(); ?>assets/js/jquery.min.js"></script>
-<script src="<?= base_url(); ?>assets/plugins/datatable/js/datatables.min.js"></script>
-
-<script>
-
-$(document).ready(function() {
-    $('#dt').DataTable();
-} );
-</script>

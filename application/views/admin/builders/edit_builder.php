@@ -1,3 +1,4 @@
+<link href="<?= base_url(); ?>assets/plugins/datepicker/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet">
 <div class="row">
    <div class="col-md-8 col-sm-9">
       <div class="card">
@@ -5,18 +6,19 @@
             <h5 class="card-title">Update Builder Details</h5>
          </div>
          <div class="card-body">
-            <form method="POST" action="<?= base_url();?>admin/builders/create_builder" enctype="multipart/form-data" accept-charset="utf-8">
+            <form method="POST" action="<?= base_url();?>admin/builders/update_builder" enctype="multipart/form-data" accept-charset="utf-8">
                <div class="mb-3">
                   <label class="form-label">Builder Name</label>
+                  <input name="builder_id" type="hidden" class="form-control" value="<?= $builder['id']; ?>" >
                   <input name="builder_name" type="text" class="form-control" placeholder="Enter builder name" value="<?= $builder['builder_name']; ?>" >
                </div>
                <div class="mb-3">
                   <label class="form-label">Builder Website</label>
-                  <input name="builder_website" type="text" class="form-control" placeholder="Enter builder website" <?= $builder['builder_website']; ?>>
+                  <input name="builder_website" type="text" class="form-control" placeholder="Enter builder website" value="<?= $builder['builder_website']; ?>" >
                </div>
                <div class="mb-3">
                   <label class="form-label">Established Year</label>
-                  <input name="builder_estabilished_year" type="text" class="form-control" placeholder="Enter estd. year" <?= $builder['builder_estabilished_year']; ?>>
+                  <input name="builder_estabilished_year" type="text" class="form-control" placeholder="Enter estd. year" value="<?= $builder['builder_estabilished_year']; ?>" id="builder_estabilished_year" autocomplete="off">
                </div>
                <div class="mb-3">
                   <label class="form-label">About Builder</label>
@@ -26,6 +28,7 @@
                   <label class="form-label">Builder Logo</label>
                   <input type="file" class="form-control" name="builder_logo" accept=".png,.jpg,.jpeg,.webp,.svg" >
                   <div class="text-muted">Note : .png, .jpg, .jpeg, .webp, .svg format accepted</div>
+				  <img src="<?= base_url();?>uploads/builders/<?= $builder['builder_logo']; ?>">
                </div>
                <div class="mb-3">
                   <label class="form-label">Office Address</label>
@@ -90,6 +93,8 @@
       </div>
    </div>
 </div>
+<script src="<?= base_url(); ?>assets/js/moment.min.js"></script>
+<script src="<?= base_url(); ?>assets/plugins/datepicker/js/tempusdominus-bootstrap-4.min.js"></script>
 <SCRIPT language="javascript">
    function addRow(tableID) {
    	var table = document.getElementById(tableID);
@@ -134,5 +139,11 @@
    		alert(e);
    	}
    }
+   
+ $(function () {
+                $('#builder_estabilished_year').datetimepicker({
+                    format: 'DD-MMM-YYYY'
+                });
+            });
    
 </SCRIPT>
