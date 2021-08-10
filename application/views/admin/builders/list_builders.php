@@ -1,6 +1,5 @@
-<link href="<?= base_url(); ?>assets/plugins/datatable/css/datatables.min.css" rel="stylesheet">
 <div class="tile-content">
-<table id="dt" class="table" style="width:100%">
+<table class="table" style="width:100%">
         <thead>
             <tr>
                 <th>SNo.</th>
@@ -30,18 +29,8 @@
             </tr>
 			<?php $i++; } ?>
         </tbody>
-        <tfoot>
-            <tr>
-                <th>SNo.</th>
-                <th>Builder Name</th>
-                <th>Established Year</th>
-                <th>Builder Phone</th>
-                <th>Address</th>
-                <th>About</th>
-                <th>Action</th>
-            </tr>
-        </tfoot>
     </table>
+	<div id="pagination" class="mt10"><?= $pagination; ?></div>
 	</div>
 <script>
    function showAlert(type,head,message){

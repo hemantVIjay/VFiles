@@ -2,14 +2,40 @@
 
 class Builder_model extends MY_Model{
 
-	public function get_all_builders(){
+	public function get_all_builders($params = array()){
 		
     	$this->db->select('b.*');
         $this->db->from('builders b');
         $this->db->where('b.status','1');
-		$query = $this->db->get();
-		//return fetched data
-        return ($query->num_rows() > 0)?$query->result():FALSE;
+		if(!empty($params['search']['keyword'])){
+            $this->db->where("(
+                c.name LIKE '%".$params['search']['keyword']."%'             
+            )");
+        }
+        //filter data by searched status
+        if(!empty($params['search']['status'])){
+            $this->db->where('b.status', $status);
+        }
+        //set start and limit
+        if(array_key_exists("start",$params) && array_key_exists("limit",$params)){
+            $this->db->limit($params['limit'],$params['start']);
+        }elseif(!array_key_exists("start",$params) && array_key_exists("limit",$params)){
+            $this->db->limit($params['limit']);
+        }
+        if(array_key_exists("keep_order",$params)){
+            if($params['keep_order']==TRUE){
+                $this->db->order_by("b.ordering","asc");
+            }
+        }else{
+            $this->db->order_by("b.id","desc");
+        }
+        $query = $this->db->get();
+        if($query->num_rows() > 0){
+            $builders=$query->result();
+            return $builders;
+        }else{
+            return FALSE;
+        }
 	
 	}
 	//get all builders

@@ -7,22 +7,43 @@ class Builders extends MY_Controller {
         parent::__construct();
         //check if backend login
         $this->is_admin_login();
-        //Load Libraries
-        $this->load->library(array('pagination'));
         //pagination settings
-        $this->perPage = 10;
-		//load models
-		$this->load->model(array('user_model','settings_model'));
-		
+        $this->perPage = 25;
 	}
     //list users
-	public function list_builders()
+	public function list_builders($page=0)
 	{
         $data['title']=$this->lang->line("text_users");
+		$conditions = array();
+			if($page != 0){
+				$page = ($page-1) * $this->perPage;
+			}
+			$keyword=$this->input->post('keyword');
+			$status=$this->input->post('status');
+			if(!empty($keyword)){
+				$conditions['search']['keyword'] = $keyword;
+			}
+			if(!empty($status)){
+				$conditions['search']['status'] = $status;
+			}
+			$Builders = $this->builder_model->get_all_builders($conditions);
+			if($Builders){
+			   $buildersCount=count($Builders);
+			}   
+			else{
+			  $buildersCount=0;
+			}
+			$conditions['start'] = $page;
+			$conditions['limit'] = $this->perPage;
+			
         if($this->permitted('list_users')){
-            //get all user types
-            $builders = $this->builder_model->get_all_builders();
-            $data['builders']=$builders;
+            $Builders = $this->builder_model->get_all_builders($conditions);
+			$config=$this->pagination_config($base_url=base_url().'admin/builders/list_builders',$total_rows=$buildersCount,$per_page=$this->perPage);
+			$this->pagination->initialize($config);
+			$data['pagination'] = $this->pagination->create_links();
+			$data['page']=$page;
+			
+			$data['builders']=$Builders;
             $data['sub_view'] = $this->load->view('admin/builders/list_builders', $data, TRUE);
         }else{
             $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
@@ -193,9 +214,10 @@ class Builders extends MY_Controller {
                 $success = FALSE;
                 $message = $this->lang->line("alert_access_denied");
             }
-            $json_array = array('success' => $success, 'message' => $message);
-            echo json_encode($json_array);
-            exit();
+			redirect('admin/builders/list_builders','refresh');
+            //$json_array = array('success' => $success, 'message' => $message);
+            //echo json_encode($json_array);
+            //exit();
         }
     }
 

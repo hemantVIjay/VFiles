@@ -25,9 +25,6 @@ class Cities extends MY_Controller {
         if(!empty($keyword)){
             $conditions['search']['keyword'] = $keyword;
         }
-        if(!empty($category)){
-            $conditions['search']['category'] = $category;
-        }
         if(!empty($status)){
             $conditions['search']['status'] = $status;
         }
