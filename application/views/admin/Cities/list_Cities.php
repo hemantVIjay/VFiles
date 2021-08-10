@@ -54,6 +54,7 @@
 			   <?php $i++; } ?>
             </tbody>
          </table>
+		 <div id="pagination" class="mt10"><?= $pagination; ?></div>
 		 </div>
       </div>
    </div>

@@ -2,7 +2,7 @@
 
 class Other_model extends MY_Model{
     
-	public function get_cities(){
+	public function get_cities($params = array()){
 		$this->db->select('c.*, s.name as state');
         $this->db->from('cities c');
         $this->db->join('states s','c.state_id = s.id','left');
@@ -10,9 +10,36 @@ class Other_model extends MY_Model{
         $this->db->where('c.status','1');
         $this->db->where('cs.status','1');
         $this->db->group_by('c.id');
-		$query = $this->db->get();
-		//return fetched data
-        return ($query->num_rows() > 0)?$query->result():FALSE;
+
+        if(!empty($params['search']['keyword'])){
+            $this->db->where("(
+                c.name LIKE '%".$params['search']['keyword']."%'             
+            )");
+        }
+        //filter data by searched status
+        if(!empty($params['search']['status'])){
+            $this->db->where('c.status', $status);
+        }
+        //set start and limit
+        if(array_key_exists("start",$params) && array_key_exists("limit",$params)){
+            $this->db->limit($params['limit'],$params['start']);
+        }elseif(!array_key_exists("start",$params) && array_key_exists("limit",$params)){
+            $this->db->limit($params['limit']);
+        }
+        if(array_key_exists("keep_order",$params)){
+            if($params['keep_order']==TRUE){
+                $this->db->order_by("c.ordering","asc");
+            }
+        }else{
+            $this->db->order_by("c.id","desc");
+        }
+        $query = $this->db->get();
+        if($query->num_rows() > 0){
+            $cities=$query->result();
+            return $cities;
+        }else{
+            return FALSE;
+        }
     }
 	
 	public function get_states(){
