@@ -1,4 +1,1 @@
-<?php
-
-echo date('Y-m-d H:i:s A');
-?>
+<h1>Home Page</h1>
