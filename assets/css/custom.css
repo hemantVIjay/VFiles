@@ -148,3 +148,118 @@ label.required:after{
 .dropdown-menu{
 	font-size:.785rem;
 }
+
+
+
+/* Website */
+a{
+	text-decoration:none;
+}
+.text-primary{color:#ffa506 !important;}
+.section{padding:70px 0;}
+.navbar-brand .ws-logo{
+	height:36px;
+}
+.top-area{
+	background:url(../images/home-banner.jpg) no-repeat;
+	    background-size: cover;
+    background-position: center center;
+	border-bottom:1px solid #ece9e3;
+}
+.srch-box{
+	background:rgba(0,0,0,0.6);
+	padding:1rem 1.75rem;
+}
+.mx-wd-150{
+	max-width: 150px;
+}
+.tb-title{
+	font-weight:700;
+  font-size: 2.25rem;
+  color:#fff;
+}
+.tab-list{
+	margin-bottom:.75rem;
+}
+.tab-list .tab-link{
+	font-size:.875rem;
+	color:#fff;
+	font-weight:500;
+	margin-right:.75rem;
+}
+.tab-list .tab-link.active{
+	color:#ffa506;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #ffa506;
+    border-color: #ffa506;
+}
+.card-img-overlay {
+  background: rgba(0,0,0,0.45);
+}
+.ct-title{
+  position: absolute;
+  left:5%;
+  width:90%;
+  top:50%;
+  transform: translateY(-50%);
+  text-align: center;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #fff;
+}
+.cmn-title{
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.fndhm{
+  background:#ece9e3 url(../images/prop-bg-1.png) no-repeat;
+  background-size: cover;
+background-position: top left;
+}
+.pg-title{font-size: 1.5rem;
+  font-weight: 600;}
+.pg-title-big{
+  font-size: 2rem;
+  font-weight: 800;
+}
+.text-hdln{
+  font-size:.875rem;
+  line-height: 1.8;
+}
+
+@media (max-width: 767px) {
+  .carousel-inner .carousel-item > div {
+      display: none;
+  }
+  .carousel-inner .carousel-item > div:first-child {
+      display: block;
+  }
+}
+
+.carousel-inner .carousel-item.active,
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+  display: flex;
+}
+
+/* medium and up screens */
+@media (min-width: 768px) {
+  
+  .carousel-inner .carousel-item-end.active,
+  .carousel-inner .carousel-item-next {
+    transform: translateX(25%);
+  }
+  
+  .carousel-inner .carousel-item-start.active, 
+  .carousel-inner .carousel-item-prev {
+    transform: translateX(-25%);
+  }
+}
+
+.carousel-inner .carousel-item-end,
+.carousel-inner .carousel-item-start { 
+transform: translateX(0);
+}
