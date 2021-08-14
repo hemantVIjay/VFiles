@@ -24,35 +24,21 @@ class Localities extends MY_Controller {
         $this->load->view('admin/_layout', $data); 
     }
 
-	public function add_localities()
+	public function create_localities()
 	{
 		$post_data = array(
-          'name' => $this->input->post('amenity_name'),
+          'name' => $this->input->post('name'),
+          'city_id' => $this->input->post('city'),
+          'district_id' => $this->input->post('district'),
+          'landmark' => $this->input->post('landmark'),
+          'state_id' => $this->input->post('state_id'),
+          'country_id' => $this->input->post('country_id'),
+          'status' => 1,
           'created_by' => $this->get_user_id()
         );
-                    //upload config
-                    $config['upload_path'] = 'uploads/localities/';
-                    $config['allowed_types'] = '*';
-                    $config['encrypt_name'] = TRUE;
-                    $config['overwrite'] = TRUE;
-                    $config['max_size'] = '1024'; //1 MB
-                    //Upload Category Icon
-                    if(isset($_FILES['amenity_icon']['name'])){
-                        $this->load->library('upload', $config);
-                        if (!$this->upload->do_upload('amenity_icon')) {
-                            $success = FALSE;
-                            $message = $this->upload->display_errors();
-                            $json_array = array('success' => $success, 'message' => $message);
-                            echo json_encode($json_array);
-                            exit();
-                        } else {
-                            $upload_data=$this->upload->data();
-                            $post_data['icon']=$upload_data['file_name'];
-                        }
-                    }
                     //XXS Clean
-                    $post_data = $this->security->xss_clean($post_data);
-                    $result = $this->localities_model->create_amenity($post_data);
+        $post_data = $this->security->xss_clean($post_data);
+        $result = $this->masters->create_locality($post_data);
         redirect('admin/localities/list_localities','refresh');
     }
 	
