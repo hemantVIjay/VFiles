@@ -547,6 +547,24 @@
       }
   }
   
+  if (!function_exists('_builders')) {
+      function _builders($mid)
+      {
+          $ci =& get_instance();
+          $banks = "";
+          $query = $ci->db->get('builders');
+          $Mq    = $query->result();
+          
+          foreach ($Mq as $row) {
+              $Sdata = ($row->id == $mid) ? 'selected' : '';
+              $banks .= "<option " . $Sdata . " value ='" . $row->id . "'>";
+              $banks .= $row->builder_name;
+              $banks .= "</option>";
+          }
+          return $banks;
+      }
+  }
+
   if (!function_exists('_currencies')) {
       function _currencies($mid)
       {
@@ -565,27 +583,27 @@
       }
   }
   
-  if (!function_exists('_zones')) {
-      function _zones($mid)
+  if (!function_exists('_localities')) {
+      function _localities($mid)
       {
           $ci =& get_instance();
           $banks = "";
           $ci->db->select('*');
-          $ci->db->from('zones');
-          $ci->db->where('state_id', 38);
+          $ci->db->from('locations');
+          $ci->db->where('status', 1);
           $query = $ci->db->get();
           $Mq    = $query->result();
           
           foreach ($Mq as $row) {
               $Sdata = ($row->id == $mid) ? 'selected' : '';
               $banks .= "<option " . $Sdata . " value ='" . $row->id . "'>";
-              $banks .= $row->zone_name;
+              $banks .= $row->name;
               $banks .= "</option>";
           }
           return $banks;
       }
   }
-  
+
   if (!function_exists('_cities')) {
       function _cities($mid)
       {
@@ -594,6 +612,27 @@
           $ci->db->select('*');
           $ci->db->from('cities');
           $ci->db->where('state_id', 38);
+          $query = $ci->db->get();
+          $Mq    = $query->result();
+          
+          foreach ($Mq as $row) {
+              $Sdata = ($row->id == $mid) ? 'selected' : '';
+              $banks .= "<option " . $Sdata . " value ='" . $row->id . "'>";
+              $banks .= $row->name;
+              $banks .= "</option>";
+          }
+          return $banks;
+      }
+  }
+
+  if (!function_exists('_districts')) {
+      function _districts($mid)
+      {
+          $ci =& get_instance();
+          $banks = "";
+          $ci->db->select('*');
+          $ci->db->from('districts');
+          $ci->db->where('status', 1);
           $query = $ci->db->get();
           $Mq    = $query->result();
           
@@ -902,8 +941,7 @@
   if (!function_exists('_locations')) {
       
       function _locations()
-      {
-          
+      {          
           $ci =& get_instance();
           $query = $ci->db->get('locations');
           $res   = $query->result();

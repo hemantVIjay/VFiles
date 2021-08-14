@@ -3,14 +3,14 @@
 <div class="pg-content mb-4">
 
 <div class="row">
-<div class="col-xl-8 col-md-7">
+<div class="col-xl-12 col-md-12">
 	<div class="cbx">
 		<div class="row">
 			<div class="col-md-12 mb-3">
 				<label class="required">Choose Builder</label>
 				<select class="form-select">
-					<option>Amrapali</option>
-					<option>Supertech</option>
+					<option>--Select--</option>
+					<?= _builders(''); ?>
 				</select>
 			</div>
 			<div class="col-md-12 mb-3">
@@ -18,17 +18,10 @@
 				<input type="text" class="form-control" />
 			</div>
 			<div class="col-md-3 mb-3">
-				<label class="required">State</label>
+				<label class="required">Locality</label>
 				<select class="form-select">
-					<option>UP</option>
-					<option>HP</option>
-				</select>
-			</div>
-			<div class="col-md-3 mb-3">
-				<label class="required">District</label>
-				<select class="form-select">
-					<option>GB Nagar</option>
-					<option>GHB</option>
+					<option>--Select--</option>
+					<?= _localities(''); ?>
 				</select>
 			</div>
 			<div class="col-md-3 mb-3">
@@ -39,10 +32,17 @@
 				</select>
 			</div>
 			<div class="col-md-3 mb-3">
-				<label class="required">Locality</label>
+				<label class="required">District</label>
 				<select class="form-select">
-					<option>Noida</option>
-					<option>Gr. Noida</option>
+					<option>--Select--</option>
+					<?= _districts(''); ?>
+				</select>
+			</div>
+			<div class="col-md-3 mb-3">
+				<label class="required">State</label>
+				<select class="form-select">
+					<option>UP</option>
+					<option>HP</option>
 				</select>
 			</div>
 			<div class="col-md-12 mb-3">
@@ -278,7 +278,7 @@
 				<th>No. of Toilets</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="floor_plans">
             <tr>
                 <td>1</td>
                 <td>
@@ -301,8 +301,8 @@
 			 </table>
 			 </div>
 			 <div class="addlt">
-				<a href="javascript:;"><i class="bi bi-plus-circle-fill me-1"></i>Add Row</a>
-				<a href="javascript:;" class="ms-2"><i class="bi bi-dash-circle-fill me-1"></i>Delete Row</a>
+				<a href="javascript:;" onclick="addRow('floor_plans');" ><i class="bi bi-plus-circle-fill me-1"></i>Add Row</a>
+				<a href="javascript:;" onclick="deleteRow('floor_plans');" class="ms-2"><i class="bi bi-dash-circle-fill me-1"></i>Delete Row</a>
 			 </div>
 			 
 			 <hr />
@@ -396,4 +396,48 @@
                     format: 'DD-MMM-YYYY'
                 });
             });
-        </script>
+   function addRow(tableID) {
+   	var table = document.getElementById(tableID);
+   	var rowCount = table.rows.length;
+   	var row = table.insertRow(rowCount);
+   	var colCount = table.rows[0].cells.length;
+   	for(var i=0; i<colCount; i++) {
+   		var newcell	= row.insertCell(i);
+   		newcell.innerHTML = table.rows[0].cells[i].innerHTML;
+   		switch(newcell.childNodes[0].type) {
+   			case "text":
+   					newcell.childNodes[0].value = "";
+   					break;
+   			case "checkbox":
+   					newcell.childNodes[0].checked = false;
+   					break;
+   			case "select-one":
+   					newcell.childNodes[0].selectedIndex = 0;
+   					break;
+   		}
+   	}
+   }
+   
+   function deleteRow(tableID) {
+   	try {
+   	var table = document.getElementById(tableID);
+   	var rowCount = table.rows.length;
+   	for(var i=0; i<rowCount; i++) {
+   		var row = table.rows[i];
+   		var chkbox = row.cells[0].childNodes[0];
+   		if(null != chkbox && true == chkbox.checked) {
+   			if(rowCount <= 1) {
+   				alert("Cannot delete all the rows.");
+   				break;
+   			}
+   			table.deleteRow(i);
+   			rowCount--;
+   			i--;
+   		}
+   	}
+   	}catch(e) {
+   		alert(e);
+   	}
+   }
+   
+</SCRIPT>

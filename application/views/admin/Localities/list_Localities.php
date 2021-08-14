@@ -5,28 +5,35 @@
             <h5 class="card-title">Add Locations</h5>
          </div>
          <div class="card-body">
-            <form method="POST" action="<?= base_url('admin/states/add_states'); ?>" enctype="multipart/form-data" accept-charset="utf-8">
+            <form method="POST" action="<?= base_url('admin/localities/create_localities'); ?>" enctype="multipart/form-data" accept-charset="utf-8">
                <div class="mb-3">
                   <label class="form-label">Location Name</label>
-                  <input name="amenity_name" type="text" class="form-control" placeholder="Enter State here...">
+                  <input name="name" type="text" class="form-control" placeholder="Enter State here...">
                </div>
 			   <div class="mb-3">
                   <label class="form-label">City</label>
-                  <select class="form-control" name="city_id" id="city_id">
+                  <select class="form-control" name="city" id="city_id">
 				   <option value="">--Select City--</option>
 				   <?php  echo _cities(''); ?>
 			      </select>
                </div>
 			   <div class="mb-3">
+                  <label class="form-label">District</label>
+                  <select class="form-control" name="district" id="city_id">
+				   <option value="">--Select District--</option>
+				   <?= _districts(''); ?>
+			      </select>
+               </div>
+			   <div class="mb-3">
                   <label class="form-label">State</label>
-                  <select class="form-control" name="state_id" id="state_id">
+                  <select class="form-control" name="state" id="state_id">
 				   <option value="">--Select State--</option>
 				   <?php  echo _states(''); ?>
 			    </select>
                </div>
 			   <div class="mb-3">
                   <label class="form-label">Country</label>
-                  <select class="form-control" name="country_id" id="country_id">
+                  <select class="form-control" name="country" id="country_id">
 				   <option value="">--Select Country--</option>
 				   <?php  echo _countries(''); ?>
 			    </select>
