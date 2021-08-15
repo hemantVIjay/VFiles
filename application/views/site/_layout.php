@@ -25,7 +25,7 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg navbar-light ps-3 pe-3">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
 		<img class="ws-logo" src="<?= base_url(); ?>assets/images/logo.svg" />
@@ -63,8 +63,59 @@
     <?= $sub_view; ?>
 </main>
 
-<footer class="container-fluid text-center">
-  <p>Footer Text</p>
+<footer class="footer-pv ps-3 pe-3 pt-5">
+  <div class="container-fluid mb-5">
+      <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-6">
+          <h6 class="foot-title">Property in India</h6>
+          <div class="foot-link mb-4">
+              <a href="javascript:;">Property in Delhi-NCR</a>
+              <a href="javascript:;">Property in Noida</a>
+              <a href="javascript:;">Property in Greater Noida</a>
+              <a href="javascript:;">Property in Greater Noida West</a>
+              <a href="javascript:;">Property in Yamuna Expressway</a>
+              <a href="javascript:;">Property in Ghaziabad</a>
+              <a href="javascript:;">Property in Faridabad</a>
+              <a href="javascript:;">Property in Gurgaon</a>
+          </div>
+          <h6 class="foot-title">Latest Project in India</h6>
+          <div class="foot-link mb-4">
+              <a href="javascript:;">Experion The Westerlies</a>
+              <a href="javascript:;">Gaur City Yamuna Expressway</a>
+              <a href="javascript:;">Shapoorji Pallonji Joyville Gurugram</a>
+              <a href="javascript:;">DLF The Skycourt</a>
+              <a href="javascript:;">SS The leaf</a>
+              <a href="javascript:;">Experion The Heartsong</a>
+              <a href="javascript:;">ATS Grandstand</a>
+              <a href="javascript:;">Godrej 101</a>
+          </div>
+          <h6 class="foot-title">Popular Builders in India</h6>
+          <div class="foot-link">
+              <a href="javascript:;">ATS Group</a>
+              <a href="javascript:;">Jaypee Greens</a>
+              <a href="javascript:;">Mahagun Group</a>
+              <a href="javascript:;">Prateek Group</a>
+              <a href="javascript:;">Prestige Group</a>
+              <a href="javascript:;">Godrej Properties</a>
+          </div>
+        </div>
+      </div>
+  </div>
 </footer>
+<div class="footer-copyright ps-3 pe-3">
+      <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 cpytxt">
+                Copyright © 2021, Propvenues. All Rights Reserved.
+            </div>
+            <div class="col-md-6 lgl-link text-end">
+                <a href="javascript:;">Privay Policy</a>
+                <a href="javascript:;">Terms of uses</a>
+                <a href="javascript:;">Refund Policy</a>
+            </div>
+        </div>
+      </div>
+ </div>
 <!--Main Footer-->
 <!--<?php //include_once('_footer.php'); ?>-->
