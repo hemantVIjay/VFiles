@@ -63,10 +63,46 @@
     <?= $sub_view; ?>
 </main>
 
-<footer class="footer-pv ps-3 pe-3 pt-5">
+<footer class="footer-pv ps-3 pe-3">
   <div class="container-fluid mb-5">
       <div class="row">
-        <div class="col-md-6"></div>
+        <div class="col-md-6">
+          <div class="row">
+          <div class="col-md-6">
+            <img src="<?= base_url(); ?>assets/images/logo.svg" class="img-fluid ft-logo">
+            <div class="cmp-txt mt-3 mb-4">@Various independent surveys have rated it as India's most popular real estate platform.</div>
+            <div class="tlfr mb-1">Toll Free - 1800 88 88888</div>
+            <div class="txtsb mb-3">Tuesday - Sunday (9:00 AM to 7:00 PM)</div>
+            <div class="tlfr mb-3">Email - service@propvenues.com</div>
+            <h6 class="foot-title">Follow Us</h6>
+          </div>
+            <div class="col-md-3">
+                <h6 class="foot-title">Info Links</h6>
+                <ul class="ftm-link">
+                  <li><a href="javascript:;">About Us</a></li>
+                  <li><a href="javascript:;">Careers</a></li>
+                  <li><a href="javascript:;">Partners</a></li>
+                  <li><a href="javascript:;">Contact Us</a></li>
+                  <li><a href="javascript:;">Feedback</a></li>
+                  <li><a href="javascript:;">Safety Guide</a></li>
+                  <li><a href="javascript:;">Sitemap</a></li>
+                  <li><a href="javascript:;">Blogs</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h6 class="foot-title">Resources</h6>
+                <ul class="ftm-link">
+                  <li><a href="javascript:;">Home Loan</a></li>
+                  <li><a href="javascript:;">ALl Cities</a></li>
+                  <li><a href="javascript:;">All Localities</a></li>
+                  <li><a href="javascript:;">All Builders</a></li>
+                  <li><a href="javascript:;">Price Trends</a></li>
+                  <li><a href="javascript:;">EMI Calculator</a></li>
+                  <li><a href="javascript:;">Blogs</a></li>
+                </ul>
+            </div>
+          </div>
+        </div>
         <div class="col-md-6">
           <h6 class="foot-title">Property in India</h6>
           <div class="foot-link mb-4">
