@@ -305,7 +305,46 @@ font-weight: 700;
   border-top-right-radius: calc(.25rem - 1px);
 }
 .rdmr-link{
-  
+  color: #000;
+  font-weight: 500;
+}
+.rdmr-link i{
+  margin-left: .5rem;
+  vertical-align: middle;
+  font-size: .875rem;
+}
+.nws-title{
+  font-size: 1.05rem;
+  line-height: 1.35;
+  font-weight: 700;
+  overflow: hidden;
+text-overflow: ellipsis;
+display: -webkit-box;
+-webkit-line-clamp: 2;
+-webkit-box-orient: vertical;
+}
+.nws-title a{
+  color: #000;
+}
+.nws-title a:hover{
+  color:#ffa506;
+}
+.nws-desc{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.ta-title{
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+.bg-gray-1{
+  background: #f9f7f2 !important;
+}
+.card{
+  border: 1px solid rgba(0,0,0,.09);
 }
 .owl-carousel .owl-nav{
   position: absolute;
