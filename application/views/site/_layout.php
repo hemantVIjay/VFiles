@@ -93,12 +93,11 @@
                 <h6 class="foot-title">Resources</h6>
                 <ul class="ftm-link">
                   <li><a href="javascript:;">Home Loan</a></li>
-                  <li><a href="javascript:;">ALl Cities</a></li>
+                  <li><a href="javascript:;">All Cities</a></li>
                   <li><a href="javascript:;">All Localities</a></li>
                   <li><a href="javascript:;">All Builders</a></li>
                   <li><a href="javascript:;">Price Trends</a></li>
                   <li><a href="javascript:;">EMI Calculator</a></li>
-                  <li><a href="javascript:;">Blogs</a></li>
                 </ul>
             </div>
           </div>
