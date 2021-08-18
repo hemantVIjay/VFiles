@@ -445,9 +445,24 @@ right:0;
 }
 .pv-header .nav-link .pvh-icon svg [fill]:not(.permanent):not(g) {
 	transition: fill .3s ease;
-	fill: #9a9996;
+	fill: #807f7c;
 }
 	.pv-header .nav-link:hover .pvh-icon svg [fill]:not(.permanent):not(g) {
 		transition: fill .3s ease;
 		fill: #ffa506;
 	}
+.pv-slink{
+	display:inline-block;
+	margin-right:.5rem;
+}
+	.pv-slink:last-child{
+		margin-right:0;
+	}
+	.pv-slink svg [fill]:not(.permanent):not(g) {
+		transition: fill .3s ease;
+		fill: #807f7c;
+	}
+.pv-slink:hover svg [fill]:not(.permanent):not(g) {
+	transition: fill .3s ease;
+	fill: #ffa506;
+}
