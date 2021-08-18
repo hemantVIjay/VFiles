@@ -136,6 +136,7 @@
                   <li><a href="javascript:;">Safety Guide</a></li>
                   <li><a href="javascript:;">Sitemap</a></li>
                   <li><a href="javascript:;">Blogs</a></li>
+				  <li><a href="javascript:;">Advertise With us</a></li>
                 </ul>
             </div>
             <div class="col-md-3">
