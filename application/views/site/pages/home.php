@@ -126,7 +126,7 @@ home to the most profitable budget!</p>
     <div class="card">
       <div class="card-inner">
         <div class="card-img">
-                                <img src="<?= base_url(); ?>assets/images/cities/noida.jpg" class="img-fluid">
+                                <img src="<?= base_url(); ?>assets/images/plots/greater-noida-west.jpg" class="img-fluid">
                             </div>
                             <div class="card-img-overlay">
                               <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
@@ -271,8 +271,8 @@ home to the most profitable budget!</p>
                             </div>
       </div>
   <div class="card-body">
-    <h5 class="pvpr-name">Godrej Nurture Phase 1</h5>
-    <div class="bldr-name mb-1">by Prateek Group</div>
+    <h5 class="pvpr-name">6% Authority Residential Plots</h5>
+    <div class="bldr-name mb-1">by Greater Noida Industrial Development Authority</div>
     <div class="pvpr-loc mb-2">Sector- 151, Noida</div>
     <div class="d-flex justify-content-between">
       <div class="pvpr-bhk">2,3,4 BHK Flats</div>

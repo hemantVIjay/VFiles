@@ -98,7 +98,7 @@
             <div class="cmp-txt mt-3 mb-4">@Various independent surveys have rated it as India's most popular real estate platform.</div>
             <div class="tlfr mb-1">Toll Free - 1800 88 88888</div>
             <div class="txtsb mb-4">Tuesday - Sunday (9:00 AM to 7:00 PM)</div>
-            <div class="tlfr mb-4">Email - service@propvenues.com</div>
+            <div class="tlfr mb-4">Email - properties@propvenues.com</div>
             <h6 class="foot-title">Follow Us</h6>
 			<div class="pv-social">
 			<a href="javascript:;" class="pv-slink">
