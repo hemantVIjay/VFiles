@@ -16,7 +16,7 @@
 	<meta name="keywords" content="">
 	
 	<link rel="shortcut icon" href="<?= base_url(); ?>assets/images/favicon.png" />
-
+    <base href="<?= base_url(); ?>">
 	<title><?= $title; ?> - <?= $site_name; ?></title>
 	<link href="<?= base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
 	<link href="<?= base_url(); ?>assets/css/mulish.css" rel="stylesheet">

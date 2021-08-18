@@ -291,12 +291,50 @@
       }
   }
 
+  if (!function_exists('_banks')) {
+      function _banks()
+      {
+          $ci =& get_instance();
+          $res = $ci->masters->_banks();
+          return $res;
+      }
+  }
+
+  if (!function_exists('_amenities')) {
+      function _amenities()
+      {
+          $ci =& get_instance();
+          $res = $ci->masters->_amenities();
+          return $res;
+      }
+  }
+
   if (!function_exists('_builderCode')) {
       function _builderCode($code)
       {
           $ci =& get_instance();
-          $res = $ci->master_model->_builderCode($code);
+		  $str = 'PROPV';
+          $res = $ci->masters->_builderCode($code);
           return $res;
+      }
+  }
+
+  if (!function_exists('_propertyCode')) {
+      function _propertyCode($builder, $p_type, $loc)
+      {
+          $ci =& get_instance();
+		  $str = 'PROPV';
+		  //$code = $str.$builder.$p_type.$loc;
+		  $code = $str.$p_type;
+          $res = $ci->masters->_propertyCode();
+		  if(!empty($res)){
+			$nCode = substr($res->code, -6);  
+		  }else{
+			$nCode = 0;
+		  }
+		  $nCode = $nCode+1;
+		  $finalCode = $code.sprintf("%06d", $nCode);
+          return $finalCode;
       }
   }
   
@@ -527,26 +565,26 @@
           return $cnt;
       }
   }
+ 
   
-  
-  if (!function_exists('_createdirectory')) {
-      
-      function _createdirectory($dir, $subDir)
+  if (!function_exists('_propertyType')) {
+      function _propertyType($mid)
       {
-          if (!is_dir('uploads/' . $dir)) {
-              mkdir('uploads/' . $dir, 0777, TRUE);
+          $ci =& get_instance();
+          $banks = "";
+          $query = $ci->db->get('property_types');
+          $Mq    = $query->result();
+          
+          foreach ($Mq as $row) {
+              $Sdata = ($row->id == $mid) ? 'selected' : '';
+              $banks .= "<option " . $Sdata . " value ='" . $row->id . "'>";
+              $banks .= $row->name;
+              $banks .= "</option>";
           }
-          if (!is_dir('uploads/' . $dir . '/' . $subDir)) {
-              mkdir('uploads/' . $dir . '/' . $subDir, 0777, TRUE);
-          }
-          if (!is_dir('uploads/' . $dir . '/' . $subDir)) {
-              return FALSE;
-          } else {
-              return TRUE;
-          }
+          return $banks;
       }
   }
-  
+
   if (!function_exists('_builders')) {
       function _builders($mid)
       {
@@ -652,7 +690,7 @@
           $ci =& get_instance();
           $banks = "";
           $ci->db->from('states');
-          $ci->db->where('id', 38);
+          //$ci->db->where('id', 38);
           $query = $ci->db->get();
           $Mq    = $query->result();
           

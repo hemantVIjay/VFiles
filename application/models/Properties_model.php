@@ -1,76 +1,15 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Masters_model extends MY_Model{
+class Properties_model extends MY_Model{
     
-	public function get_banks(){
-		$this->db->select('c.*');
-        $this->db->from('banks c');
-        $this->db->where('c.status','1');
-        $this->db->group_by('c.id');
-		$query = $this->db->get();
-		//return fetched data
-        return ($query->num_rows() > 0)?$query->result():FALSE;
-    }
-
-    /******************************/
-	
-	public function get_location($id){
-		$this->db->select('l.city_id, l.district_id, l.state_id, l.country_id');
-        $this->db->from('locations l');
-		$this->db->where('l.id', $id);
-		$query = $this->db->get();
-		return ($query->num_rows() == 1)?$query->row():FALSE;
-	}
-
-	public function _banks(){
-		$this->db->select('c.*');
-        $this->db->from('banks c');
-        $this->db->where('c.status','1');
-        $this->db->group_by('c.id');
-		$query = $this->db->get();
-		//return fetched data
-        return ($query->num_rows() > 0)?$query->result():FALSE;
-    }
-
-	public function _amenities(){
-		$this->db->select('c.*');
-        $this->db->from('amenities c');
-        $this->db->where('c.status','1');
-        $this->db->group_by('c.id');
-		$query = $this->db->get();
-		//return fetched data
-        return ($query->num_rows() > 0)?$query->result():FALSE;
-    }
-
-	public function _propertyCode(){
-		$this->db->select('c.*');
-        $this->db->from('properties c');
-        $this->db->where('c.status','1');
-        $this->db->order_by('c.id','desc');
-        $this->db->limit(1);
-		$query = $this->db->get();
-		//return fetched data
-        return ($query->num_rows() > 0)?$query->row():FALSE;
-    }
-
-	public function get_propertyTypes(){
-		$this->db->select('c.*');
-        $this->db->from('property_types c');
-        $this->db->where('c.status','1');
-        $this->db->group_by('c.id');
-		$query = $this->db->get();
-		//return fetched data
-        return ($query->num_rows() > 0)?$query->result():FALSE;
-    }
-	
-	public function create_bank($post_data){
-        $this->_table_name='banks';
+	public function create_property($post_data){
+        $this->_table_name='properties';
         $this->_timestamps=TRUE;
         //create faq caregory
         $insert_id=$this->save($data=$post_data, $id = NULL);
         if($insert_id){
             //create slug
-            $slug=$this->create_slug($id=$insert_id, $title=$post_data['name']);
+            $slug=$this->create_slug($id=$insert_id, $title=$post_data['property_name']);
             $update_data=array(
                 'slug'=>$slug
             );

@@ -7,7 +7,7 @@ var imgUpload = document.getElementById("upload_imgs"),
   img;
 
 imgUpload.addEventListener("change", previewImgs, false);
-imgUploadForm.addEventListener(
+/*imgUploadForm.addEventListener(
   "submit",
   function (e) {
     e.preventDefault();
@@ -16,7 +16,7 @@ imgUploadForm.addEventListener(
     );
   },
   false
-);
+);*/
 
 function previewImgs(event) {
   totalFiles = imgUpload.files.length;
