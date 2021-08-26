@@ -646,7 +646,7 @@ right:0;
 	table-layout:fixed;
 }
 	.table.table-fppv tr td, .table.table-fppv tr th {
-		border: 1px dashed #eae9e5;
+		border: 1px solid #f1f0ed;
 	}
 .clbl{
 	color:#a7a49d;

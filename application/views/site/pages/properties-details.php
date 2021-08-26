@@ -364,16 +364,16 @@
 			</div>
 </div>
 <div class="page-section" id="4">
-			<h1>Section Four</h1>
+			<h4 class="cmn-title mb-4">Gallery</h4>
 </div>
 <div class="page-section" id="5">
-			<h1>Section Five</h1>
+			<h4 class="cmn-title mb-4">Price Trends</h4>
 </div>
 <div class="page-section" id="6">
-			<h1>Section Six</h1>
+			<h4 class="cmn-title mb-4">Ratings & Reviews</h4>
 </div>
 <div class="page-section" id="7">
-			<h1>Section Seven</h1>
+			<h4 class="cmn-title mb-4">About Developer</h4>
 </div>
 </div>
 </div>
