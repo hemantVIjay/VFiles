@@ -440,6 +440,9 @@ right:0;
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
 	color: #ffa506;
 }
+.pv-header {
+	border-bottom: 1px solid rgba(0,0,0,.09);
+}
 .pv-header .nav-link:hover .pvh-icon svg, .pv-header .nav-link:hover {
 	color: #ffa506;
 }
@@ -465,4 +468,216 @@ right:0;
 .pv-slink:hover svg [fill]:not(.permanent):not(g) {
 	transition: fill .3s ease;
 	fill: #ffa506;
+}
+.pv-breadcrumb{
+	padding:1rem 0;
+}
+	.pv-breadcrumb a {
+		color: #212529;
+		display:inline-block;
+		position:relative;
+		padding-right:1rem;
+	}
+		.pv-breadcrumb a:before {
+			content: "\f285";
+			display: inline-block;
+			font-family: bootstrap-icons !important;
+			position: absolute;
+			right: 0;
+			font-size: .675rem;
+			vertical-align:middle;
+		}
+		.pv-breadcrumb a.current {
+			color: #abaaa8;
+		}
+.pvpd-title {
+	font-size: 1.5rem;
+	font-weight: 800;
+	position: relative;
+	padding-bottom: .5rem;
+}
+.pvpd-prc {
+	font-size: 1.5rem;
+	font-weight: 800;
+}
+	.pvpd-prc span.pv-sb {
+		font-size: 1.25rem;
+		font-weight: 700;
+		display:block;
+	}
+.pvpd-pemi {
+	font-size: 1rem;
+	font-weight: 600;
+	color: #2894dc;
+}
+.pvpd-py {
+	font-size: .875rem;
+	line-height: 1.7;
+}
+	.pvpd-py span {
+		color: #2894dc;
+	}
+.pvpd-locate {
+	font-size: .875rem;
+	font-weight: 300;
+	line-height: 1.7;
+	color: #a7a49d;
+}
+.cks {
+	margin-top: 3px;
+}
+.pvsml {
+	font-size: .725rem;
+}
+.card.pveq-card{
+	
+}
+.lblpvfd {
+	font-size: .785rem;
+	color: #a7a49d;
+}
+.valuepvfd {
+	font-size: 1rem;
+	font-weight: 800;
+}
+.pv-reras {
+	background: #dcffd3;
+	padding: .45rem .75rem;
+	font-size: .765rem;
+	line-height: .765rem;
+	font-weight:500;
+}
+.bdg {
+	color: #389e1e;
+	border-right: 1px solid #aeec9e;
+	padding-right: .5rem;
+	margin-right: .5rem;
+}
+.spcr-bds {
+	display: block;
+	height: 1px;
+	border-bottom:1px solid #eae9e5;
+}
+.spcr-bdd {
+	display: block;
+	height: 1px;
+	border-bottom: 1px dashed #eae9e5;
+}
+.pvlbtl{
+	font-weight:700;
+}
+/*Scroll Nav*/
+.eqbx-fixed {
+	top: 0;
+	z-index: 1000;
+	position: fixed;
+}
+.page-section {
+	padding: 3em 0;
+}
+.navigation {
+	background-color: #eae9e5;
+	color: #000;
+}
+.navigation-fixed {
+	top: 0;
+	z-index: 100;
+	position: sticky;
+	width: 100%;
+}
+.navigation__link {
+	display: inline-block;
+	color: #212529;
+	text-decoration: none;
+	padding: 1rem;
+	font-weight: 400;
+}
+
+	.navigation__link:hover {
+		background-color: #e2dfd8;
+	}
+
+	.navigation__link.active {
+		color: #000;
+		background-color: rgba(0, 0, 0, 0.1);
+	}
+	/*Scroll Nav End*/
+
+.pvfp-tab .nav-tabs {
+	border-bottom: 2px solid #eae9e5;
+}
+	.pvfp-tab .nav-tabs .nav-link {
+		margin-bottom: -2px;
+		border:0;
+		border-bottom: 2px solid transparent;
+		border-radius: 0 !important;
+		color: #a7a49d;
+		font-weight: 600;
+		padding: .5rem 1.75rem .75rem;
+	}
+		.pvfp-tab .nav-tabs .nav-item.show .nav-link, .pvfp-tab .nav-tabs .nav-link.active {
+			color: #212529;
+			border-bottom:2px solid #ffa506;
+		}
+.vpvtab .nav {
+	border-right: 2px solid #eae9e5;
+}
+.vpvtab .nav-pills .nav-link {
+	margin-right: -2px;
+	border: 0;
+	border-radius: 0;
+	border-right: 2px solid transparent;
+	color: #a7a49d;
+	font-weight: 600;
+	padding: 1rem;
+	white-space: nowrap;
+}
+	.vpvtab .nav-pills .nav-link.active, .vpvtab .nav-pills .show > .nav-link {
+		color: #212529;
+		border-right: 2px solid #ffa506;
+		background: #eae9e5;
+	}
+
+.fp-img{
+	height:auto;
+	max-width:100%;
+}
+.table.table-fppv{
+	table-layout:fixed;
+}
+	.table.table-fppv tr td, .table.table-fppv tr th {
+		border: 1px dashed #eae9e5;
+	}
+.clbl{
+	color:#a7a49d;
+	font-size:.75rem;
+}
+.pvlv{font-size:.875rem;font-weight:700;}
+	.pvlv .sbpv {
+		display: block;
+		font-size: .775rem;
+		font-weight:normal;
+	}
+.pvpclv {
+	font-size: 1.25rem;
+	font-weight: 700;
+}
+.pvtlst {
+	line-height:1.8;
+}
+.pv-amenit {
+	border: 1px solid #f1f0ed;
+	padding: 1rem .35rem;
+	border-radius: .5rem;
+}
+	.pv-amenit img{
+		height:32px;
+	}
+.pv-amenit-name {
+	margin-top: .5rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
 }

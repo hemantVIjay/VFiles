@@ -24,7 +24,7 @@
 	
 </head>
 
-<body>
+<body data-spy="scroll" data-target=".navbar" data-offset="400">
 <nav class="navbar navbar-expand-lg navbar-light pv-header ps-3 pe-3">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
