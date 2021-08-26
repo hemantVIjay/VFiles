@@ -64,15 +64,15 @@
                   <div class="row">
                      <div class="col-md-4 mb-3">
                         <label class="required">No. of Towers</label>
-                        <input type="text" class="form-control" name="no_of_towers"/>
+                        <input type="text" class="form-control" name="no_of_towers" onkeypress="return isNumberKey(this, event);"/>
                      </div>
                      <div class="col-md-4 mb-3">
                         <label class="required">No. of Flats</label>
-                        <input type="text" class="form-control" name="no_of_flats"/>
+                        <input type="text" class="form-control" name="no_of_flats" onkeypress="return isNumberKey(this, event);"/>
                      </div>
                      <div class="col-md-4 mb-3">
                         <label class="required">Total Area (In Acres)</label>
-                        <input type="text" class="form-control" name="total_area"/>
+                        <input type="text" class="form-control" name="total_area" onkeypress="return isNumberKey(this, event);"/>
                      </div>
                      <div class="col-md-4 mb-3">
                         <label class="required">Project Phase</label>
@@ -233,6 +233,7 @@
                            <th>SNo.</th>
                            <th>Flat in BHK</th>
                            <th>Size</th>
+                           <th>Base Price</th>
                            <th>Image</th>
                            <th>Price</th>
                            <th>Study</th>
@@ -247,7 +248,8 @@
                                  <option>1 BHK</option>
                               </select>
                            </td>
-                           <td><input type="text" class="form-control" id="size_1" /></td>
+                           <td><input type="text" class="form-control" id="size_1" onkeyup="totalPrice(this);" onkeypress="return isNumberKey(this, event);"/></td>
+                           <td><input type="text" class="form-control" id="basePrice_1" onkeyup="totalPrice(this);" onkeypress="return isNumberKey(this, event);"/></td>
                            <td><input type="file" class="form-control" id="file_1"/></td>
                            <td><input type="text" class="form-control" id="price_1"/></td>
                            <td>
@@ -391,5 +393,33 @@ function location_details(loc) {
 		}
 	});
 }
-   
+
+function totalPrice(ev){
+	var size, price, totalPrice = 0;
+	price  = $(ev).closest('tr').find('td:nth-child(4)').find('input').val();
+	size  = $(ev).closest('tr').find('td:nth-child(3)').find('input').val();
+	t_price  = $(ev).closest('tr').find('td:nth-child(6)').find('input');
+	
+	if(isNaN(size) || size == ''){ size = 0; }	if(isNaN(price) || price == ''){ price = 0; }
+	
+	totalPrice = parseFloat(size)*parseFloat(price);
+	t_price.val(totalPrice.toFixed(3));	
+}
+
+function isNumberKey(txt, evt) {
+      var charCode = (evt.which) ? evt.which : evt.keyCode;
+      if (charCode == 46) {
+        //Check if the text already contains the . character
+        if (txt.value.indexOf('.') === -1) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        if (charCode > 31 &&
+          (charCode < 48 || charCode > 57))
+          return false;
+      }
+      return true;
+    }
 </SCRIPT>
