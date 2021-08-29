@@ -123,7 +123,7 @@
 			<div class="spcr-bdd mb-4"></div>
 
 			<div class="mb-4">
-				<h5 class="pvlbtl">About Imperia Prideville</h5>
+				<h5 class="pvlbtl">About this property</h5>
 				<div class="pvpd-desc">Imperia Prideville is an upcoming housing project at Yeida in Yeida, being developed by Imperia Structures Ltd. Keeping in mind the needs of modern lifestyle of residents, the project provides various amenities. Imperia Prideville encompasses amenities such as Restaurant , Children's Play Area, Spa/Sauna/Steam, Gymnasium and Golf Course. ATMS, medical facilities, education institutions, and parks are within easy reach. The area is also well-connected by bus and road network.</p>
 			</div>
 </div>
@@ -363,8 +363,35 @@
 
 			</div>
 </div>
+
+<div class="spcr-bds"></div>
+
 <div class="page-section" id="4">
 			<h4 class="cmn-title mb-4">Gallery</h4>
+			<div class="pvfp-tab gllry-tabs">
+				<ul class="nav nav-tabs" id="myTab" role="tablist">
+				  <li class="nav-item" role="presentation">
+					<button class="nav-link active" id="elevgt-tab" data-bs-toggle="tab" data-bs-target="#elevgt" type="button" role="tab" aria-controls="elevgt" aria-selected="true">Elevation</button>
+				  </li>
+				  <li class="nav-item" role="presentation">
+					<button class="nav-link" id="vdogt-tab" data-bs-toggle="tab" data-bs-target="#vdogt" type="button" role="tab" aria-controls="vdogt" aria-selected="false">Video</button>
+				  </li>
+				  <li class="nav-item" role="presentation">
+					<button class="nav-link" id="cnstgt-tab" data-bs-toggle="tab" data-bs-target="#cnstgt" type="button" role="tab" aria-controls="cnstgt" aria-selected="false">Construction Updates</button>
+				  </li>
+				  <li class="nav-item" role="presentation">
+					<button class="nav-link" id="nbhdgt-tab" data-bs-toggle="tab" data-bs-target="#nbhdgt" type="button" role="tab" aria-controls="nbhdgt" aria-selected="false">Neighbourhood</button>
+				  </li>
+				</ul>
+				<div class="tab-content py-4" id="myTabContent">
+				  <div class="tab-pane fade show active" id="elevgt" role="tabpanel" aria-labelledby="elevgt-tab">
+						Ele
+				  </div>
+				  <div class="tab-pane fade" id="vdogt" role="tabpanel" aria-labelledby="vdogt-tab">...</div>
+				  <div class="tab-pane fade" id="cnstgt" role="tabpanel" aria-labelledby="cnstgt-tab">...</div>
+				  <div class="tab-pane fade" id="nbhdgt" role="tabpanel" aria-labelledby="nbhdgt-tab">...</div>
+				</div>
+			</div>
 </div>
 <div class="page-section" id="5">
 			<h4 class="cmn-title mb-4">Price Trends</h4>
