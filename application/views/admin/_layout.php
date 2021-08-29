@@ -84,6 +84,9 @@
 		 <li>
             <a class="nav-link" href="<?= base_url('admin/masters/list_propertiesType');?>">Property Type</a>
          </li>
+		 <li>
+            <a class="nav-link" href="<?= base_url('admin/masters/list_floorType');?>">Floor Type</a>
+         </li>
           </ul>
         </div>
       </li>

@@ -488,19 +488,15 @@
   if (!function_exists('_uploadFile')) {
       
       function _uploadFile($fname, $tmp_name, $Dname, $cName, $subDir, $exists)
-      {
-          
-          $CI =& get_instance();
-          
+      {          
+          $CI =& get_instance();          
           $rfile = '';
           if ($fname != "") {
               $dest   = 'uploads/' . $subDir . '/' . $cName . '/';
               $f_type = explode(".", $fname);
               $ext    = strtolower($f_type[count($f_type) - 1]);
-              $fpath  = md5($Dname . '-' . time() . '') . '.' . $ext;
-              
-              move_uploaded_file($tmp_name, $dest . $fpath);
-              
+              $fpath  = md5($Dname . '-' . time() . '') . '.' . $ext;              
+              move_uploaded_file($tmp_name, $dest . $fpath);              
               if ($exists != "") {
                   if (file_exists($dest . $exists)) {
                       @unlink($dest . $exists);
@@ -585,6 +581,25 @@
       }
   }
 
+
+  if (!function_exists('_Floors')) {
+      function _Floors($mid)
+      {
+          $ci =& get_instance();
+          $banks = "";
+          $query = $ci->db->get('floor_types');
+          $Mq    = $query->result();
+          
+          foreach ($Mq as $row) {
+              $Sdata = ($row->id == $mid) ? 'selected' : '';
+              $banks .= "<option " . $Sdata . " value ='" . $row->id . "'>";
+              $banks .= $row->name;
+              $banks .= "</option>";
+          }
+          return $banks;
+      }
+  }
+
   if (!function_exists('_builders')) {
       function _builders($mid)
       {
@@ -650,6 +665,7 @@
           $ci->db->select('*');
           $ci->db->from('cities');
           $ci->db->where('state_id', 38);
+          $ci->db->order_by('name', 'asc');
           $query = $ci->db->get();
           $Mq    = $query->result();
           
@@ -671,6 +687,7 @@
           $ci->db->select('*');
           $ci->db->from('districts');
           $ci->db->where('status', 1);
+          $ci->db->order_by('name', 'asc');
           $query = $ci->db->get();
           $Mq    = $query->result();
           
@@ -690,7 +707,7 @@
           $ci =& get_instance();
           $banks = "";
           $ci->db->from('states');
-          //$ci->db->where('id', 38);
+          $ci->db->order_by('name');
           $query = $ci->db->get();
           $Mq    = $query->result();
           
@@ -847,6 +864,7 @@
           $ci =& get_instance();
           $ci->db->select('*');
           $ci->db->where('id', $id);
+          $ci->db->order_by('name');
           $query  = $ci->db->get('cities');
           $result = $query->row();
           if (!empty($result)) {
@@ -861,8 +879,7 @@
   if (!function_exists('_cityDetails')) {
       
       function _cityDetails($id)
-      {
-          
+      {          
           $ci =& get_instance();
           $ci->db->select('c.name as city, s.name as state, ct.name as country');
           $ci->db->from('cities c');
@@ -1067,8 +1084,7 @@
   if (!function_exists('_orderDetails')) {
       
       function _orderDetails($id)
-      {
-          
+      {          
           $ci =& get_instance();
           $res = $ci->order_model->_orderDetails($id);
           $arr = array();

@@ -8,7 +8,7 @@ class Properties extends MY_Controller {
         //check if backend login
         $this->is_admin_login();
         //pagination settings
-        $this->perPage = 5;
+        $this->perPage = 10;
 		
 	}
     //list orders
@@ -16,6 +16,7 @@ class Properties extends MY_Controller {
 	{
         $data['title']=$this->lang->line("text_orders");
         $conditions = array();
+		
         // Row position
         if($page != 0){
             $page = ($page-1) * $this->perPage;
@@ -76,7 +77,15 @@ class Properties extends MY_Controller {
 	public function create_property()
 	{
 		$pcode = _propertyCode($_REQUEST['builder'], $_REQUEST['p_type'], $_REQUEST['location']);
-		//echo'<pre/>';print_r($_REQUEST);exit;
+		
+		$amenities = ''; $banks = '';
+		if(!empty($this->input->post('amenities'))){
+		  $amenities = implode(',', $this->input->post('amenities'));
+		}
+		if(!empty($this->input->post('banks'))){
+		  $banks = implode(',', $this->input->post('banks'));
+		}
+		
 		$post_data = array(
           'code' => $pcode,
           'builder_id' => $this->input->post('builder'),
@@ -85,7 +94,7 @@ class Properties extends MY_Controller {
           'city_id' => $this->input->post('city'),
           'district_id' => $this->input->post('district'),
           'state_id' => $this->input->post('state'),
-          'country_id' => 101,//$this->input->post('country'),
+          'country_id' => $this->input->post('country'),
           'property_address' => $this->input->post('address'),
           'property_type' => $this->input->post('p_type'),
           'no_of_towers' => $this->input->post('no_of_towers'),
@@ -96,45 +105,53 @@ class Properties extends MY_Controller {
           'architect_name' => $this->input->post('architect_name'),
           'project_start_date' => $this->input->post('project_start_date'),
           'project_overview' => $this->input->post('project_overview'),
-          'property_amenities' => implode(',', $this->input->post('amenities')),
-          //'specifications' => $this->input->post('country_id'),
-          'banks_available' => implode(',', $this->input->post('banks')),
+          'property_amenities' => $amenities,
+          'banks_available' => $banks,
+          'rera_approved' => $this->input->post('rera_approved'),
+          'rera_registrationNumber' => $this->input->post('rera_registrationNumber'),
           'status' => 1,
           'created_by' => $this->get_user_id()
         );		
+		$specifications = array(); $floorPlans = array();
+		foreach($_REQUEST['specifications'] as $kk=>$val){
+			if(isset($_REQUEST['specifications'][$kk]) && $val!=''){
+			 $specifications[$kk] = $val;	
+			}
+		}
+		foreach($_FILES['floor_planImage']['name'] as $k=>$fval){
+			$fdata[$k]['floor_type'] = $_REQUEST['floor_type'][$k];
+			$fdata[$k]['floor_size'] = $_REQUEST['floor_size'][$k];
+			$fdata[$k]['floor_basePrice'] = $_REQUEST['floor_basePrice'][$k];
+			
+			/******For Floor Image******/
+			$_FILES['mFile']['name']= $_FILES['floor_planImage']['name'][$k];
+			$_FILES['mFile']['type']= $_FILES['floor_planImage']['type'][$k];
+			$_FILES['mFile']['tmp_name']= $_FILES['floor_planImage']['tmp_name'][$k];
+			$_FILES['mFile']['error']= $_FILES['floor_planImage']['error'][$k];
+			$_FILES['mFile']['size']= $_FILES['floor_planImage']['size'][$k];
+			$fdata[$k]['floor_planImage'] = $this->singleUpload('mFile', 'properties/floorPlans');
+			/******For Floor Image******/
+			
+			$fdata[$k]['floor_totalPrice'] = $_REQUEST['floor_totalPrice'][$k];
+			$fdata[$k]['floor_isStudy'] = $_REQUEST['floor_isStudy'][$k];
+			$fdata[$k]['floor_toilets'] = $_REQUEST['floor_toilets'][$k];
+			$floorPlans[] = $fdata;
+		}
 		
-		$post_data['payment_option'] = $this->singleUpload('payment_option', 'payment_option', 'payment_option');
-		$post_data['site_layout'] = $this->singleUpload('site_layout', 'site_layout', 'site_layout');
+		if(isset($_FILES['payment_option']) && $_FILES['payment_option']['name']!=''){
+		 $post_data['payment_option'] = $this->singleUpload('payment_option', 'properties/payment_option');
+		}
+		if(isset($_FILES['site_layout']) && $_FILES['site_layout']['name']!=''){
+		 $post_data['site_layout'] = $this->singleUpload('site_layout', 'properties/site_layout');
+		}				
 		
 		//XXS Clean
         $post_data = $this->security->xss_clean($post_data);
 		
-		$result = $this->properties->create_property($post_data);
+		$result = $this->properties->create_property($post_data, $specifications, $floorPlans);
 		redirect('admin/properties/list_properties','refresh');
     }
 	
-	
-	function singleUpload($field, $postField, $path)
-	{
-		//upload config
-        $config['upload_path'] = 'uploads/properties/'.$path;
-        $config['allowed_types'] = '*';
-        $config['encrypt_name'] = TRUE;
-        $config['overwrite'] = TRUE;
-        $config['max_size'] = '1024'; //1 MB
-        //Upload Category Icon
-        if(isset($_FILES[$postField]['name'])){
-        $this->load->library('upload', $config);
-           if (!$this->upload->do_upload($postField)) {
-            $this->upload->display_errors();
-			return false;
-			} else {
-			  $upload_data=$this->upload->data();
-			  $post_data[$field]=$upload_data['file_name'];
-           }
-        }
-		return $post_data[$field];
-	}
 
 	public function location_details()
 	{
@@ -148,41 +165,30 @@ class Properties extends MY_Controller {
     }
 	
 	
-	private function upload_files($path, $title, $files)
-    {
-        $config = array(
-            'upload_path'   => $path,
-            'allowed_types' => 'jpg|gif|png',
-            'overwrite'     => 1,                       
-        );
-
-        $this->load->library('upload', $config);
-
-        $images = array();
-
-        foreach ($files['name'] as $key => $image) {
-            $_FILES['images[]']['name']= $files['name'][$key];
-            $_FILES['images[]']['type']= $files['type'][$key];
-            $_FILES['images[]']['tmp_name']= $files['tmp_name'][$key];
-            $_FILES['images[]']['error']= $files['error'][$key];
-            $_FILES['images[]']['size']= $files['size'][$key];
-
-            $fileName = $title .'_'. $image;
-
-            $images[] = $fileName;
-
-            $config['file_name'] = $fileName;
-
-            $this->upload->initialize($config);
-
-            if ($this->upload->do_upload('images[]')) {
-                $this->upload->data();
-            } else {
-                return false;
+	public function delete_property()
+	{
+        $id = $this->uri->segment(4);
+		if(isset($id)){
+            //check permission
+            if($this->permitted('delete_article')){
+                $data['title']=$this->lang->line("text_delete_article");
+                $post_data = array(
+				  'status' => 0,
+				  'updated_by' => $this->get_user_id()
+				);
+				$res = $this->properties->delete_property($id, $post_data);
+				redirect('admin/properties/list_properties','refresh');
+            }else{
+                $data['title']=$this->lang->line("alert_access_denied");
+                $success = TRUE;
+                $message = '';
+                $content = $this->load->view('errors/permission/denied',$data,TRUE);
             }
+            $json_array = array('success' => $success, 'message' => $message,'content'=>$content);
+            echo json_encode($json_array);
+            exit();
         }
-
-        return $images;
     }
+
 
 }

@@ -290,6 +290,30 @@ class MY_Controller extends CI_Controller
         }
         return $this->agent->platform().'-'.$agent;
     }
+	
+	
+	function singleUpload($file, $path)
+	{
+		$file_name = '';
+		//upload config
+        $config['upload_path'] = 'uploads/'.$path;
+        $config['allowed_types'] = '*';
+        $config['encrypt_name'] = TRUE;
+        $config['overwrite'] = TRUE;
+        $config['max_size'] = '1024'; 
+		
+        $this->load->library('upload', $config);
+		$this->upload->initialize($config);
+        if(!$this->upload->do_upload($file)) {
+          $this->upload->display_errors();
+		  return false;
+		}else {
+		  $data = $this->upload->data();
+		  $file_name = $data['file_name'];
+		  return $file_name;
+        }
+		
+	}
     
     //generate token
     public function get_token($length)

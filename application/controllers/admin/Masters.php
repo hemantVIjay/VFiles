@@ -38,6 +38,20 @@ class Masters extends MY_Controller {
         $this->load->view('admin/_layout', $data); 
     }
 
+	public function list_floorType()
+	{
+        $data['title']=$this->lang->line("text_locations");
+		$id = $this->uri->segment(4);
+        if($this->permitted('list_articles')){
+			$floorTypes = $this->masters->get_floorTypes($id);
+            $data['floorTypes']=$floorTypes;
+            $data['sub_view'] = $this->load->view('admin/Masters/_floorType', $data, TRUE);
+        }else{
+            $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
+        }
+        $this->load->view('admin/_layout', $data); 
+    }
+
 	public function create_bank()
 	{
 		$post_data = array(
@@ -70,6 +84,39 @@ class Masters extends MY_Controller {
         redirect('admin/masters/list_banks','refresh');
     }
 
+	public function create_floorType()
+	{
+		$post_data = array(
+          'name' => $this->input->post('type_name'),
+          'created_by' => $this->get_user_id()
+        );
+                    //upload config
+                    $config['upload_path'] = 'uploads/propertyType/';
+                    $config['allowed_types'] = '*';
+                    $config['encrypt_name'] = TRUE;
+                    $config['overwrite'] = TRUE;
+                    $config['max_size'] = '1024'; //1 MB
+                    //Upload Category Icon
+                    if(isset($_FILES['type_icon']['name'])){
+                        $this->load->library('upload', $config);
+                        if (!$this->upload->do_upload('type_icon')) {
+                            $success = FALSE;
+                            $message = $this->upload->display_errors();
+                            $json_array = array('success' => $success, 'message' => $message);
+                            echo json_encode($json_array);
+                            exit();
+                        } else {
+                            $upload_data=$this->upload->data();
+                            $post_data['icon']=$upload_data['file_name'];
+                        }
+                    }
+                    //XXS Clean
+                    $post_data = $this->security->xss_clean($post_data);
+                    $result = $this->masters->create_floorType($post_data);
+        redirect('admin/masters/list_floorType','refresh');
+    }
+	
+	
 	public function create_propertyType()
 	{
 		$post_data = array(

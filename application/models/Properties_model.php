@@ -38,19 +38,21 @@ class Properties_model extends MY_Model{
         }
     }
 	
-	public function create_property($post_data){
+	public function create_property($post_data, $specs, $floorPlans){
         $this->_table_name='properties';
         $this->_timestamps=TRUE;
-        //create faq caregory
         $insert_id=$this->save($data=$post_data, $id = NULL);
-        if($insert_id){
+		$specs['property_id'] = $insert_id;
+		if($insert_id){
             //create slug
             $slug=$this->create_slug($id=$insert_id, $title=$post_data['property_name']);
             $update_data=array(
                 'slug'=>$slug
             );
-            //update faq caregory
+            //update property
             $update_id=$this->save($data=$update_data, $id = $insert_id);
+			$this->create_specifications($specs);
+			$this->save_FloorPlans($floorPlans, $insert_id);
             if($update_id){
                 //if updated
                 $return_data=array(
@@ -75,82 +77,30 @@ class Properties_model extends MY_Model{
             return $return_data;
         }
     }
-
-	public function create_locality($post_data){
-        $this->_table_name='locations';
+	
+	public function create_specifications($post_data){
+		$this->_table_name='flat_specifications';
         $this->_timestamps=TRUE;
-        //create faq caregory
         $insert_id=$this->save($data=$post_data, $id = NULL);
-        if($insert_id){
-            //create slug
-            $slug=$this->create_slug($id=$insert_id, $title=$post_data['name']);
-            $update_data=array(
-                'slug'=>$slug
-            );
-            //update faq caregory
-            $update_id=$this->save($data=$update_data, $id = $insert_id);
-            if($update_id){
-                //if updated
-                $return_data=array(
-                    'status'=>TRUE,
-                    'label'=>'SUCCESS',
-                );
-                return $return_data;
-            }else{
-                //if not updated
-                $return_data=array(
-                    'status'=>FALSE,
-                    'label'=>'ERROR',
-                );
-                return $return_data;
-            }
-        }else{
-            //if not inseted
-            $return_data=array(
-                'status'=>FALSE,
-                'label'=>'ERROR',
-            );
-            return $return_data;
-        }
-    }
+        return true;		
+	}
 
-	public function create_propertyType($post_data){
-        $this->_table_name='property_types';
-        $this->_timestamps=TRUE;
-        //create faq caregory
-        $insert_id=$this->save($data=$post_data, $id = NULL);
-        if($insert_id){
-            //create slug
-            $slug=$this->create_slug($id=$insert_id, $title=$post_data['name']);
-            $update_data=array(
-                'slug'=>$slug
-            );
-            //update faq caregory
-            $update_id=$this->save($data=$update_data, $id = $insert_id);
-            if($update_id){
-                //if updated
-                $return_data=array(
-                    'status'=>TRUE,
-                    'label'=>'SUCCESS',
-                );
-                return $return_data;
-            }else{
-                //if not updated
-                $return_data=array(
-                    'status'=>FALSE,
-                    'label'=>'ERROR',
-                );
-                return $return_data;
-            }
-        }else{
-            //if not inseted
-            $return_data=array(
-                'status'=>FALSE,
-                'label'=>'ERROR',
-            );
-            return $return_data;
-        }
-    }
+
+	public function save_FloorPlans($post_data, $id){
+		$mData = array();
+		foreach($post_data as $key=>$data){
+			$sdata['floor_type'] = $data[$key]['floor_type'];
+			$sdata['floor_size'] = $data[$key]['floor_size'];
+			$sdata['floor_basePrice'] = $data[$key]['floor_basePrice'];
+			$sdata['floor_planImage'] = $data[$key]['floor_planImage'];
+			$sdata['floor_totalPrice'] = $data[$key]['floor_totalPrice'];
+			$sdata['floor_toilets'] = $data[$key]['floor_toilets'];
+			$sdata['property_id'] = $id;
+            $mData[$key] = $sdata;
+		}
+        $this->db->insert_batch('floor_plans', $mData);
+        return true;		
+	}
 	
 	public function delete_property($id,$update_data){
 		$this->_table_name='properties';

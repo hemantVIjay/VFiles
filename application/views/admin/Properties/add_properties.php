@@ -1,4 +1,9 @@
 <link href="<?= base_url(); ?>assets/plugins/datepicker/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet">
+<style>
+.reraDetails{
+	display:none;
+}
+</style>
 <form method="POST" action="<?= base_url('admin/properties/create_property'); ?>" id="img-upload-form" enctype="multipart/form-data" accept-charset="utf-8">
    <div class="pg-content mb-4">
       <div class="row">
@@ -14,7 +19,7 @@
                   </div>
                   <div class="col-md-12 mb-3">
                      <label class="required">Project Name</label>
-                     <input type="text" class="form-control" name="project_name"/>
+                     <input type="text" class="form-control" name="project_name" autocomplete="Off"/>
                   </div>
                   <div class="col-md-3 mb-3">
                      <label class="required">Locality</label>
@@ -43,10 +48,11 @@
                         <option value="">--Select--</option>
 						<?= _states(''); ?>
                      </select>
+					 <input type="hidden" name="country" id="country">
                   </div>
                   <div class="col-md-12 mb-3">
                      <label class="required">Address</label>
-                     <input type="text" class="form-control" name="address"/>
+                     <input type="text" class="form-control" name="address" autocomplete="Off"/>
                   </div>
                </div>
                <hr />
@@ -64,15 +70,15 @@
                   <div class="row">
                      <div class="col-md-4 mb-3">
                         <label class="required">No. of Towers</label>
-                        <input type="text" class="form-control" name="no_of_towers" onkeypress="return isNumberKey(this, event);"/>
+                        <input type="text" class="form-control" name="no_of_towers" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/>
                      </div>
                      <div class="col-md-4 mb-3">
                         <label class="required">No. of Flats</label>
-                        <input type="text" class="form-control" name="no_of_flats" onkeypress="return isNumberKey(this, event);"/>
+                        <input type="text" class="form-control" name="no_of_flats" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/>
                      </div>
                      <div class="col-md-4 mb-3">
                         <label class="required">Total Area (In Acres)</label>
-                        <input type="text" class="form-control" name="total_area" onkeypress="return isNumberKey(this, event);"/>
+                        <input type="text" class="form-control" name="total_area" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/>
                      </div>
                      <div class="col-md-4 mb-3">
                         <label class="required">Project Phase</label>
@@ -84,15 +90,15 @@
                      </div>
                      <div class="col-md-4 mb-3">
                         <label class="required">Architech Name</label>
-                        <input type="text" class="form-control" name="architect_name"/>
+                        <input type="text" class="form-control" name="architect_name" autocomplete="Off"/>
                      </div>
                      <div class="col-md-4 mb-3">
                         <label class="required">Project Launch Date</label>
-                        <input type="text" class="form-control calicon" id="dtpicker" data-toggle="datetimepicker" data-target="#dtpicker" name="project_start_date"/>
+                        <input type="text" class="form-control calicon" id="dtpicker" data-toggle="datetimepicker" data-target="#dtpicker" name="project_start_date" autocomplete="Off"/>
                      </div>
                      <div class="col-md-12 mb-3">
                         <label class="required">Project Overview</label>
-                        <textarea class="form-control" rows="4" name="project_overview"></textarea>
+                        <textarea class="form-control" rows="4" name="project_overview" autocomplete="Off"></textarea>
                      </div>
                   </div>
                   <hr />
@@ -103,11 +109,11 @@
                         <div class="row">
                            <div class="col-md-6 mb-3">
                               <label class="required">Internal</label>
-                              <input type="text" class="form-control" />
+                              <input type="text" class="form-control" name="specifications[doors_internal]" autocomplete="Off"/>
                            </div>
                            <div class="col-md-6 mb-3">
                               <label class="required">External</label>
-                              <input type="text" class="form-control" />
+                              <input type="text" class="form-control" name="specifications[doors_external]" autocomplete="Off"/>
                            </div>
                         </div>
                      </div>
@@ -119,27 +125,27 @@
                         <div class="row">
                            <div class="col-md-6 mb-3">
                               <label class="required">Balcony</label>
-                              <input type="text" class="form-control" />
+                              <input type="text" class="form-control" name="specifications[flooring_balcony]" autocomplete="Off"/>
                            </div>
                            <div class="col-md-6 mb-3">
                               <label class="required">Kitchen</label>
-                              <input type="text" class="form-control" />
+                              <input type="text" class="form-control" name="specifications[flooring_kitchen]" autocomplete="Off"/>
                            </div>
                            <div class="col-md-6 mb-3">
                               <label class="required">Living/Dining</label>
-                              <input type="text" class="form-control" />
+                              <input type="text" class="form-control" name="specifications[flooring_living_dining]" autocomplete="Off"/>
                            </div>
                            <div class="col-md-6 mb-3">
                               <label class="required">Master Bedroom</label>
-                              <input type="text" class="form-control" />
+                              <input type="text" class="form-control" name="specifications[flooring_masterbedroom]" autocomplete="Off"/>
                            </div>
                            <div class="col-md-6 mb-3">
                               <label class="required">Other Bedroom</label>
-                              <input type="text" class="form-control" />
+                              <input type="text" class="form-control" name="specifications[flooring_otherbedroom]" autocomplete="Off"/>
                            </div>
                            <div class="col-md-6 mb-3">
                               <label class="required">Toilet</label>
-                              <input type="text" class="form-control" />
+                              <input type="text" class="form-control" name="specifications[flooring_toilet]" autocomplete="Off"/>
                            </div>
                         </div>
                      </div>
@@ -151,15 +157,15 @@
                         <div class="row">
                            <div class="col-md-6 mb-3">
                               <label class="required">Interior</label>
-                              <input type="text" class="form-control" />
+                              <input type="text" class="form-control" name="specifications[walls_interior]" autocomplete="Off"/>
                            </div>
                            <div class="col-md-6 mb-3">
                               <label class="required">Kitchen</label>
-                              <input type="text" class="form-control" />
+                              <input type="text" class="form-control" name="specifications[walls_kitchen]" autocomplete="Off"/>
                            </div>
                            <div class="col-md-6 mb-3">
                               <label class="required">Toilet</label>
-                              <input type="text" class="form-control" />
+                              <input type="text" class="form-control" name="specifications[walls_toilet]" autocomplete="Off"/>
                            </div>
                         </div>
                      </div>
@@ -171,11 +177,11 @@
                         <div class="row">
                            <div class="col-md-6 mb-3">
                               <label class="required">Kitchen</label>
-                              <input type="text" class="form-control" />
+                              <input type="text" class="form-control" name="specifications[fittings_kitchen]" autocomplete="Off"/>
                            </div>
                            <div class="col-md-6 mb-3">
                               <label class="required">Toilet</label>
-                              <input type="text" class="form-control" />
+                              <input type="text" class="form-control" name="specifications[fittings_toilet]" autocomplete="Off"/>
                            </div>
                         </div>
                      </div>
@@ -187,27 +193,12 @@
                         <div class="row">
                            <div class="col-md-6 mb-3">
                               <label class="required">Windows</label>
-                              <input type="text" class="form-control" />
+                              <input type="text" class="form-control" name="specifications[others_windows]" autocomplete="Off"/>
                            </div>
                            <div class="col-md-6 mb-3">
                               <label class="required">Frame Structure</label>
-                              <input type="text" class="form-control" />
+                              <input type="text" class="form-control" name="specifications[others_frame_structure]" autocomplete="Off"/>
                            </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <hr />
-               <div class="row">
-                  <div class="col-sm-12 mb-3">
-                     <div class="cmnttl position-relative">Elevation Images</div>
-                     <div class="grid-x grid-padding-x">
-                        <div class="small-10 small-offset-1 medium-8 medium-offset-2 cell">
-                           <label for="upload_imgs">Upload Multiple Images</label>
-                           <div>
-                              <input class="show-for-sr" type="file" id="upload_imgs" name="elevation_images[]" multiple/>
-                           </div>
-                           <div class="quote-imgs-thumbs quote-imgs-thumbs--hidden" id="img_preview" aria-live="polite"></div>
                         </div>
                      </div>
                   </div>
@@ -230,35 +221,36 @@
                   <table class="table tbl-custom" style="width:100%">
                      <thead>
                         <tr>
-                           <th>SNo.</th>
-                           <th>Flat in BHK</th>
-                           <th>Size</th>
-                           <th>Base Price</th>
-                           <th>Image</th>
-                           <th>Price</th>
-                           <th>Study</th>
-                           <th>No. of Toilets</th>
+                           <th width="50">SNo.</th>
+                           <th width="150">Flat in BHK</th>
+                           <th width="150">Size</th>
+                           <th width="150">Base Price</th>
+                           <th width="150">Image</th>
+                           <th width="150">Price</th>
+                           <th width="100">Study</th>
+                           <th width="200">No. of Toilets</th>
                         </tr>
                      </thead>
                      <tbody id="floor_plans">
                         <tr>
                            <td><input type="checkbox" id="check_1"></td>
                            <td>
-                              <select class="form-select" id="apartment_1">
-                                 <option>1 BHK</option>
+                              <select class="form-select" id="apartment_1" name="floor_type[]">
+                                 <option value="">--Select--</option>
+								 <?= _Floors(''); ?>
                               </select>
                            </td>
-                           <td><input type="text" class="form-control" id="size_1" onkeyup="totalPrice(this);" onkeypress="return isNumberKey(this, event);"/></td>
-                           <td><input type="text" class="form-control" id="basePrice_1" onkeyup="totalPrice(this);" onkeypress="return isNumberKey(this, event);"/></td>
-                           <td><input type="file" class="form-control" id="file_1"/></td>
-                           <td><input type="text" class="form-control" id="price_1"/></td>
-                           <td>
-                              <select class="form-select" id="study_1">
+                           <td><input type="text" class="form-control" id="size_1" name="floor_size[]" onkeyup="totalPrice(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
+                           <td><input type="text" class="form-control" id="basePrice_1" name="floor_basePrice[]" onkeyup="totalPrice(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
+                           <td><input type="file" class="form-control" id="file_1" name="floor_planImage[]"></td>
+                           <td><input type="text" class="form-control" id="tPrice_1" name="floor_totalPrice[]" autocomplete="Off"/></td>
+						   <td>
+                              <select class="form-select" id="study_1" name="floor_isStudy[]">
                                  <option>Yes</option>
                                  <option>No</option>
                               </select>
                            </td>
-                           <td><input type="text" class="form-control" id="toilets_1"/></td>
+						   <td><input type="text" class="form-control" id="toilets_1" name="floor_toilets[]" autocomplete="Off"/></td>
                         </tr>
                      </tbody>
                   </table>
@@ -273,21 +265,6 @@
                   <div class="col-md-12 mb-3">
                      <label class="required">Upload Image</label>
                      <input type="file" class="form-control" name="site_layout"/>
-                  </div>
-               </div>
-               <hr />
-               <div class="row">
-                  <div class="col-sm-12 mb-3">
-                     <div class="cmnttl position-relative">Construction Image</div>
-                     <div class="grid-x grid-padding-x">
-                        <div class="small-10 small-offset-1 medium-8 medium-offset-2 cell">
-                           <label for="upload_imgs">Upload Multiple Images</label>
-                           <div>
-                              <input class="show-for-sr" type="file" id="upload_imgs" name="construction_images[]" multiple/>
-                           </div>
-                           <div class="quote-imgs-thumbs quote-imgs-thumbs--hidden" id="img_preview" aria-live="polite"></div>
-                        </div>
-                     </div>
                   </div>
                </div>
                <hr />
@@ -308,6 +285,20 @@
                      </span>
                   </div>
 				  <?php } ?>
+               </div>
+               <hr />
+               <div class="cmnttl position-relative">Certifications</div>
+               <div class="row">
+                  <div class="col-xl-3 col-md-4">
+                     <span class="form-check">
+                     <input class="form-check-input" name="rera_approved" type="checkbox" id="rera_approved" value="1">
+                     <span class="form-check-label">RERA Approved</span>
+                     </span>
+                  </div>
+				  <div class="col-xl-3 col-md-4 mb-3 reraDetails">
+				     <label class="required">RERA Registration Number</label>
+                     <input type="text" class="form-control" name="rera_registrationNumber" id="rera_registrationNumber"/>
+                  </div>
                </div>
                <hr />
                <div class="btngroup">
@@ -403,7 +394,7 @@ function totalPrice(ev){
 	if(isNaN(size) || size == ''){ size = 0; }	if(isNaN(price) || price == ''){ price = 0; }
 	
 	totalPrice = parseFloat(size)*parseFloat(price);
-	t_price.val(totalPrice.toFixed(3));	
+	t_price.val(totalPrice.toFixed(2));	
 }
 
 function isNumberKey(txt, evt) {
@@ -422,4 +413,11 @@ function isNumberKey(txt, evt) {
       }
       return true;
     }
+$('#rera_approved').change(function(){
+	if ($(this).is(":checked")){
+		$('.reraDetails').css('display','block');
+    }else{
+		$('.reraDetails').css('display','none');
+	}
+});
 </SCRIPT>
