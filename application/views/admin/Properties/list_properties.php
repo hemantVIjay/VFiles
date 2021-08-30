@@ -12,6 +12,7 @@
                 <th>Address</th>
                 <th>Area</th>
                 <th>Status</th>
+				<th>Gallery</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -27,17 +28,15 @@
                 <td><?= $row->property_address;?></td>
                 <td><?= $row->total_area;?></td>
                 <td><?= $row->property_name;?></td>
+				<td><a href="javascript:;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <i class="bi bi-plus-circle-fill me-1"></i>Gallery
+                     </a></td>
                 <td class="table-action">
-                     <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 align-middle">
-                           <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
-                        </svg>
+                     <a href="javascript:;">
+                        <i class="bi bi-pencil"></i>
                      </a>
-                     <a href="<?= base_url('admin/properties/delete_property/').$row->id; ?>">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash align-middle">
-                           <polyline points="3 6 5 6 21 6"></polyline>
-                           <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                        </svg>
+                     <a class="ms-2" href="<?= base_url('admin/properties/delete_property/').$row->id; ?>">
+                       <i class="bi bi-trash"></i>
                      </a>
                   </td>
             </tr>
@@ -47,4 +46,47 @@
 	<div id="pagination" class="mt10"><?= $pagination; ?></div>
 </div>
 
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Gallery</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+		<div class="tbl-resp">
+                  <table class="table tbl-custom" style="width:100%">
+                     <thead>
+                        <tr>
+                           <th width="50">SNo.</th>
+						   <th width="250">Upload Image</th>
+                           <th width="150">Category</th>
+                           <th width="150">Caption</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td><input type="checkbox"></td>
+                           <td><input type="file" class="form-control"/></td>
+                           <td><select class="form-control"><option>Elevation</option><option>Video</option><option>Construction Updates</option><option>Neighbourhood</option></select></td>
+                           <td><input type="text" class="form-control" /></td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <div class="addlt">
+                  <a href="javascript:;" onclick="addRow('floor_plans');" ><i class="bi bi-plus-circle-fill me-1"></i>Add Row</a>
+                  <a href="javascript:;" onclick="deleteRow('floor_plans');" class="ms-2"><i class="bi bi-dash-circle-fill me-1"></i>Delete Row</a>
+               </div>
+		<div class="mt-3">
+        <button type="button" class="btn btn-primary">Submit</button>
+		</div>
+      </div>
+    </div>
+  </div>
 </div>
