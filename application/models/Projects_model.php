@@ -1,10 +1,10 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Properties_model extends MY_Model{
+class Projects_model extends MY_Model{
     
-		public function get_allProperties($params = array()){
+		public function get_allprojects($params = array()){
 		$this->db->select('c.*');
-        $this->db->from('properties c');
+        $this->db->from('projects c');
         $this->db->where('c.status','1');
 
         if(!empty($params['search']['keyword'])){
@@ -38,18 +38,18 @@ class Properties_model extends MY_Model{
         }
     }
 	
-	public function create_property($post_data, $specs, $floorPlans){
-        $this->_table_name='properties';
+	public function create_project($post_data, $specs, $floorPlans){
+        $this->_table_name='projects';
         $this->_timestamps=TRUE;
         $insert_id=$this->save($data=$post_data, $id = NULL);
-		$specs['property_id'] = $insert_id;
+		$specs['project_id'] = $insert_id;
 		if($insert_id){
             //create slug
-            $slug=$this->create_slug($id=$insert_id, $title=$post_data['property_name']);
+            $slug=$this->create_slug($id=$insert_id, $title=$post_data['project_name']);
             $update_data=array(
                 'slug'=>$slug
             );
-            //update property
+            //update project
             $update_id=$this->save($data=$update_data, $id = $insert_id);
 			$this->create_specifications($specs);
 			$this->save_FloorPlans($floorPlans, $insert_id);
@@ -95,21 +95,15 @@ class Properties_model extends MY_Model{
 			$sdata['floor_planImage'] = $data[$key]['floor_planImage'];
 			$sdata['floor_totalPrice'] = $data[$key]['floor_totalPrice'];
 			$sdata['floor_toilets'] = $data[$key]['floor_toilets'];
-			$sdata['property_id'] = $id;
+			$sdata['project_id'] = $id;
             $mData[$key] = $sdata;
 		}
         $this->db->insert_batch('floor_plans', $mData);
         return true;		
 	}
-
-
-	public function upload_PropertyImages($post_data){
-        $this->db->insert_batch('properties_images', $post_data);
-        return true;		
-	}
 	
-	public function delete_property($id,$update_data){
-		$this->_table_name='properties';
+	public function delete_project($id,$update_data){
+		$this->_table_name='projects';
 		$this->_timestamps=TRUE;
 		//update Amenity
 		$update_id=$this->save($data=$update_data, $id = $id);

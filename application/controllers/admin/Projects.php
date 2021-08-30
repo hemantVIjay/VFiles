@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Properties extends MY_Controller {
+class Projects extends MY_Controller {
     public function __construct()
 	{
         parent::__construct();
@@ -12,7 +12,7 @@ class Properties extends MY_Controller {
 		
 	}
     //list orders
-	public function list_properties($page=0)
+	public function list_Projects($page=0)
 	{
         $data['title']=$this->lang->line("text_orders");
         $conditions = array();
@@ -30,12 +30,12 @@ class Properties extends MY_Controller {
         if(!empty($status)){
             $conditions['search']['status'] = $status;
         }
-        $Properties = $this->properties->get_allProperties($conditions);
-		if($Properties){
-           $propertiesCount=count($Properties);
+        $Projects = $this->projects->get_allprojects($conditions);
+		if($Projects){
+           $ProjectsCount=count($Projects);
 		}   
 		else{
-		  $propertiesCount=0;
+		  $ProjectsCount=0;
 		}
 		//set start and limit
 	    $conditions['start'] = $page;
@@ -44,29 +44,29 @@ class Properties extends MY_Controller {
 		$data['title']=$this->lang->line("text_locations");
 		$id = $this->uri->segment(4);
         if($this->permitted('list_articles')){
-			$Properties = $this->properties->get_allProperties($conditions);
+			$Projects = $this->projects->get_allprojects($conditions);
 			//get pagination confing
-			$config=$this->pagination_config($base_url=base_url().'admin/properties/list_properties',$total_rows=$propertiesCount,$per_page=$this->perPage);
+			$config=$this->pagination_config($base_url=base_url().'admin/Projects/list_Projects',$total_rows=$ProjectsCount,$per_page=$this->perPage);
 			// Initialize
 			$this->pagination->initialize($config);
 			//set data array
 			$data['pagination'] = $this->pagination->create_links();
 			$data['page']=$page;
 			
-			$data['Properties']=$Properties;
-            $data['sub_view'] = $this->load->view('admin/Properties/list_properties', $data, TRUE);
+			$data['Projects']=$Projects;
+            $data['sub_view'] = $this->load->view('admin/projects/list_Projects', $data, TRUE);
         }else{
             $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
         }
         $this->load->view('admin/_layout', $data); 
     }
 
-	public function add_properties()
+	public function add_projects()
 	{
         $data['title']=$this->lang->line("text_orders");
         if($this->permitted('list_users')){
             //get all user types
-            $data['sub_view'] = $this->load->view('admin/Properties/add_properties', $data, TRUE);
+            $data['sub_view'] = $this->load->view('admin/projects/add_projects', $data, TRUE);
         }else{
             $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
         }
@@ -129,7 +129,7 @@ class Properties extends MY_Controller {
 			$_FILES['mFile']['tmp_name']= $_FILES['floor_planImage']['tmp_name'][$k];
 			$_FILES['mFile']['error']= $_FILES['floor_planImage']['error'][$k];
 			$_FILES['mFile']['size']= $_FILES['floor_planImage']['size'][$k];
-			$fdata[$k]['floor_planImage'] = $this->singleUpload('mFile', 'properties/floorPlans');
+			$fdata[$k]['floor_planImage'] = $this->singleUpload('mFile', 'projects/floorPlans');
 			/******For Floor Image******/
 			
 			$fdata[$k]['floor_totalPrice'] = $_REQUEST['floor_totalPrice'][$k];
@@ -139,17 +139,17 @@ class Properties extends MY_Controller {
 		}
 		
 		if(isset($_FILES['payment_option']) && $_FILES['payment_option']['name']!=''){
-		 $post_data['payment_option'] = $this->singleUpload('payment_option', 'properties/payment_option');
+		 $post_data['payment_option'] = $this->singleUpload('payment_option', 'projects/payment_option');
 		}
 		if(isset($_FILES['site_layout']) && $_FILES['site_layout']['name']!=''){
-		 $post_data['site_layout'] = $this->singleUpload('site_layout', 'properties/site_layout');
+		 $post_data['site_layout'] = $this->singleUpload('site_layout', 'projects/site_layout');
 		}				
 		
 		//XXS Clean
         $post_data = $this->security->xss_clean($post_data);
 		
-		$result = $this->properties->create_property($post_data, $specifications, $floorPlans);
-		redirect('admin/properties/list_properties','refresh');
+		$result = $this->projects->create_property($post_data, $specifications, $floorPlans);
+		redirect('admin/projects/list_projects','refresh');
     }
 	
 
@@ -161,35 +161,6 @@ class Properties extends MY_Controller {
 		$data['state'] = $locations->state_id;
 		$data['country'] = $locations->country_id;
 		echo json_encode($data);
-        exit;	
-    }
-
-
-	public function upload_propertyImages()
-	{
-     	$propertyImages = array();
-		foreach($_FILES['image_name']['name'] as $k=>$fval){
-			/******For Image******/
-			$_FILES['mFile']['name']= $_FILES['image_name']['name'][$k];
-			$_FILES['mFile']['type']= $_FILES['image_name']['type'][$k];
-			$_FILES['mFile']['tmp_name']= $_FILES['image_name']['tmp_name'][$k];
-			$_FILES['mFile']['error']= $_FILES['image_name']['error'][$k];
-			$_FILES['mFile']['size']= $_FILES['image_name']['size'][$k];
-			$fdata[$k]['image_name'] = $this->singleUpload('mFile', 'properties/'.$_REQUEST['image_type'][$k]);
-			/******For Image******/
-			$fdata[$k]['image_type'] = $_REQUEST['image_type'][$k];
-			$fdata[$k]['image_desc'] = $_REQUEST['image_desc'][$k];
-			$fdata[$k]['property_id'] = $_REQUEST['property_id'];
-			
-			$propertyImages[] = $fdata[$k];
-		}
-		//XXS Clean
-        $propertyImages = $this->security->xss_clean($propertyImages);
-		
-		$result = $this->properties->upload_PropertyImages($propertyImages);
-		redirect('admin/properties/list_properties','refresh');
-		
-		echo'<pre/>';print_r($propertyImages);
         exit;	
     }
 	
@@ -205,8 +176,8 @@ class Properties extends MY_Controller {
 				  'status' => 0,
 				  'updated_by' => $this->get_user_id()
 				);
-				$res = $this->properties->delete_property($id, $post_data);
-				redirect('admin/properties/list_properties','refresh');
+				$res = $this->projects->delete_property($id, $post_data);
+				redirect('admin/projects/list_projects','refresh');
             }else{
                 $data['title']=$this->lang->line("alert_access_denied");
                 $success = TRUE;

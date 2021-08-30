@@ -1,8 +1,8 @@
 <link href="<?= base_url(); ?>assets/plugins/datepicker/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet">
 <style>
-.reraDetails{
-	display:none;
-}
+   .reraDetails{
+   display:none;
+   }
 </style>
 <form method="POST" action="<?= base_url('admin/properties/create_property'); ?>" id="img-upload-form" enctype="multipart/form-data" accept-charset="utf-8">
    <div class="pg-content mb-4">
@@ -32,7 +32,7 @@
                      <label class="required">City</label>
                      <select class="form-select" name="city" id="city">
                         <option value="">--Select--</option>
-						<?= _cities(''); ?>
+                        <?= _cities(''); ?>
                      </select>
                   </div>
                   <div class="col-md-3 mb-3">
@@ -46,9 +46,9 @@
                      <label class="required">State</label>
                      <select class="form-select" name="state"  id="state">
                         <option value="">--Select--</option>
-						<?= _states(''); ?>
+                        <?= _states(''); ?>
                      </select>
-					 <input type="hidden" name="country" id="country">
+                     <input type="hidden" name="country" id="country">
                   </div>
                   <div class="col-md-12 mb-3">
                      <label class="required">Address</label>
@@ -62,7 +62,7 @@
                      <label class="required">Property Type</label>
                      <select class="form-select" id="choose_pty" name="p_type" >
                         <option value="">--Select--</option>
-						<?= _propertyType(''); ?>
+                        <?= _propertyType(''); ?>
                      </select>
                   </div>
                </div>
@@ -204,7 +204,6 @@
                   </div>
                </div>
                <hr />
-              
                <div class="cmnttl position-relative">Floor Plans</div>
                <div class="tbl-resp">
                   <table class="table tbl-custom" style="width:100%">
@@ -226,20 +225,20 @@
                            <td>
                               <select class="form-select" id="apartment_1" name="floor_type[]">
                                  <option value="">--Select--</option>
-								 <?= _Floors(''); ?>
+                                 <?= _Floors(''); ?>
                               </select>
                            </td>
                            <td><input type="text" class="form-control" id="size_1" name="floor_size[]" onkeyup="totalPrice(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
                            <td><input type="text" class="form-control" id="basePrice_1" name="floor_basePrice[]" onkeyup="totalPrice(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
                            <td><input type="file" class="form-control" id="file_1" name="floor_planImage[]"></td>
                            <td><input type="text" class="form-control" id="tPrice_1" name="floor_totalPrice[]" autocomplete="Off"/></td>
-						   <td>
+                           <td>
                               <select class="form-select" id="study_1" name="floor_isStudy[]">
                                  <option>Yes</option>
                                  <option>No</option>
                               </select>
                            </td>
-						   <td><input type="text" class="form-control" id="toilets_1" name="floor_toilets[]" autocomplete="Off"/></td>
+                           <td><input type="text" class="form-control" id="toilets_1" name="floor_toilets[]" autocomplete="Off"/></td>
                         </tr>
                      </tbody>
                   </table>
@@ -248,28 +247,27 @@
                   <a href="javascript:;" onclick="addRow('floor_plans');" ><i class="bi bi-plus-circle-fill me-1"></i>Add Row</a>
                   <a href="javascript:;" onclick="deleteRow('floor_plans');" class="ms-2"><i class="bi bi-dash-circle-fill me-1"></i>Delete Row</a>
                </div>
+            </div>
+            <div class="ptyp" id="pty_plot">
+               <div class="row">
+                  <div class="col-md-4 mb-3">
+                     <label class="required">No. of Plots</label>
+                     <input type="text" class="form-control">
+                  </div>
+                  <div class="col-md-4 mb-3">
+                     <label class="required">Total Area (In Acres)</label>
+                     <input type="text" class="form-control">
+                  </div>
+                  <div class="col-md-4 mb-3">
+                     <label class="required">Project Launch Date</label>
+                     <input type="text" class="form-control calicon" id="project_launch_date" data-toggle="datetimepicker" data-target="#project_launch_date">
+                  </div>
+                  <div class="col-md-12 mb-3">
+                     <label class="required">Project Overview</label>
+                     <textarea class="form-control" rows="4"></textarea>
+                  </div>
                </div>
-			   
-			   <div class="ptyp" id="pty_plot">
-					<div class="row">
-						<div class="col-md-4 mb-3">
-							<label class="required">No. of Plots</label>
-							<input type="text" class="form-control">
-						</div>
-						<div class="col-md-4 mb-3">
-							<label class="required">Total Area (In Acres)</label>
-							<input type="text" class="form-control">
-						</div>
-						<div class="col-md-4 mb-3">
-                        <label class="required">Project Launch Date</label>
-                        <input type="text" class="form-control calicon">
-                     </div>
-					 <div class="col-md-12 mb-3">
-                        <label class="required">Project Overview</label>
-                        <textarea class="form-control" rows="4"></textarea>
-                     </div>
-					</div>
-					  <hr />
+               <hr />
                <div class="cmnttl position-relative">Configuration (Size)</div>
                <div class="tbl-resp">
                   <table class="table tbl-custom" style="width:100%">
@@ -278,96 +276,98 @@
                            <th width="50">SNo.</th>
                            <th width="150">Plot Size in SQ. Yard</th>
                            <th width="150">Base Price</th>
-                           <th width="150">Totoal Price</th>
+                           <th width="150">Total Price</th>
                            <th width="250">Image</th>
                         </tr>
                      </thead>
-                     <tbody>
+                     <tbody id="configuration">
                         <tr>
                            <td><input type="checkbox"></td>
-                           <td><input type="text" class="form-control" /></td>
-                           <td><input type="text" class="form-control" /></td>
-                           <td><input type="text" class="form-control" /></td>
-                           <td><input type="file" class="form-control"/></td>
+                           <td><input type="text" class="form-control" name="plot_size[]" id="plotSize_1"/></td>
+                           <td><input type="text" class="form-control" name="plot_basePrice[]" id="plotBasicPrice_1"/></td>
+                           <td><input type="text" class="form-control" name="plot_totalPrice[]" id="plotTotalPrice_1"/></td>
+                           <td><input type="file" class="form-control" name="plot_Image[]" id="plotImage_1"/></td>
                         </tr>
                      </tbody>
                   </table>
                </div>
                <div class="addlt">
-                  <a href="javascript:;" onclick="addRow('floor_plans');" ><i class="bi bi-plus-circle-fill me-1"></i>Add Row</a>
-                  <a href="javascript:;" onclick="deleteRow('floor_plans');" class="ms-2"><i class="bi bi-dash-circle-fill me-1"></i>Delete Row</a>
+                  <a href="javascript:;" onclick="addRow('configuration');" ><i class="bi bi-plus-circle-fill me-1"></i>Add Row</a>
+                  <a href="javascript:;" onclick="deleteRow('configuration');" class="ms-2"><i class="bi bi-dash-circle-fill me-1"></i>Delete Row</a>
                </div>
-			   </div>
-			   <hr />
-			    <div class="cmnttl position-relative">Amenities</div>
-               <div class="row">
-			      <?php $amenities = _amenities(); foreach($amenities as $key=>$amenity){ ?>
-                  <div class="col-xl-3 col-md-4">
-                     <span class="form-check">
-                     <input class="form-check-input" name="amenities[]" type="checkbox" name="remember" id="amenity_<?= $key+1;?>" value="<?= $amenity->id;?>">
-                     <span class="form-check-label"><?= $amenity->name; ?></span>
-                     </span>
-                  </div>
-				  <?php } ?>
-				  </div>
-				  
-               <hr />
-               <div class="cmnttl position-relative">Site Layout</div>
-               <div class="row">
-                  <div class="col-md-12 mb-3">
-                     <label class="required">Upload Image</label>
-                     <input type="file" class="form-control" name="site_layout"/>
-                  </div>
+            </div>
+            <hr />
+            <div class="cmnttl position-relative">Amenities</div>
+            <div class="row">
+               <?php $amenities = _amenities(); foreach($amenities as $key=>$amenity){ ?>
+               <div class="col-xl-3 col-md-4">
+                  <span class="form-check">
+                  <input class="form-check-input" name="amenities[]" type="checkbox" name="remember" id="amenity_<?= $key+1;?>" value="<?= $amenity->id;?>">
+                  <span class="form-check-label"><?= $amenity->name; ?></span>
+                  </span>
                </div>
-               <hr />
-               <div class="cmnttl position-relative">Payment Option</div>
-               <div class="row">
-                  <div class="col-xl-12 mb-3">
-                     <input type="file" class="form-control" name="payment_option"/>
-                  </div>
+               <?php } ?>
+            </div>
+            <hr />
+            <div class="cmnttl position-relative">Site Layout</div>
+            <div class="row">
+               <div class="col-md-12 mb-3">
+                  <label class="required">Upload Image</label>
+                  <input type="file" class="form-control" name="site_layout"/>
                </div>
-               <hr />
-               <div class="cmnttl position-relative">Bank Available</div>
-               <div class="row">
-			      <?php $banks = _banks(); foreach($banks as $key=>$bank){ ?>
-                  <div class="col-xl-3 col-md-4">
-                     <span class="form-check">
-                     <input class="form-check-input" name="banks[]" type="checkbox" id="bank_<?= $key+1;?>" value="<?= $bank->id;?>">
-                     <span class="form-check-label"><?= $bank->name; ?></span>
-                     </span>
-                  </div>
-				  <?php } ?>
+            </div>
+            <hr />
+            <div class="cmnttl position-relative">Payment Option</div>
+            <div class="row">
+               <div class="col-xl-12 mb-3">
+                  <input type="file" class="form-control" name="payment_option"/>
                </div>
-               <hr />
-               <div class="cmnttl position-relative">Certifications</div>
-               <div class="row">
-                  <div class="col-xl-3 col-md-4">
-                     <span class="form-check">
-                     <input class="form-check-input" name="rera_approved" type="checkbox" id="rera_approved" value="1">
-                     <span class="form-check-label">RERA Approved</span>
-                     </span>
-                  </div>
-				  <div class="col-xl-3 col-md-4 mb-3 reraDetails">
-				     <label class="required">RERA Registration Number</label>
-                     <input type="text" class="form-control" name="rera_registrationNumber" id="rera_registrationNumber"/>
-                  </div>
+            </div>
+            <hr />
+            <div class="cmnttl position-relative">Bank Available</div>
+            <div class="row">
+               <?php $banks = _banks(); foreach($banks as $key=>$bank){ ?>
+               <div class="col-xl-3 col-md-4">
+                  <span class="form-check">
+                  <input class="form-check-input" name="banks[]" type="checkbox" id="bank_<?= $key+1;?>" value="<?= $bank->id;?>">
+                  <span class="form-check-label"><?= $bank->name; ?></span>
+                  </span>
                </div>
-               <hr />
-               <div class="btngroup">
-                  <button class="btn btn-primary">Submit</button>
-                  <button class="btn btn-outline-secondary ms-2">Reset</button>
+               <?php } ?>
+            </div>
+            <hr />
+            <div class="cmnttl position-relative">Certifications</div>
+            <div class="row">
+               <div class="col-xl-3 col-md-4">
+                  <span class="form-check">
+                  <input class="form-check-input" name="rera_approved" type="checkbox" id="rera_approved" value="1">
+                  <span class="form-check-label">RERA Approved</span>
+                  </span>
                </div>
+               <div class="col-xl-3 col-md-4 mb-3 reraDetails">
+                  <label class="required">RERA Registration Number</label>
+                  <input type="text" class="form-control" name="rera_registrationNumber" id="rera_registrationNumber"/>
+               </div>
+            </div>
+            <hr />
+            <div class="btngroup">
+               <button class="btn btn-primary">Submit</button>
+               <button class="btn btn-outline-secondary ms-2">Reset</button>
             </div>
          </div>
       </div>
    </div>
+   </div>
 </form>
 <script src="<?= base_url(); ?>assets/js/moment.min.js"></script>
 <script src="<?= base_url(); ?>assets/plugins/datepicker/js/tempusdominus-bootstrap-4.min.js"></script>
-<script src="<?= base_url(); ?>assets/js/custom.js"></script>
+<!--<script src="<?= base_url(); ?>assets/js/custom.js"></script>-->
 <script type="text/javascript">
    $(function () {
        $('#dtpicker').datetimepicker({
+           format: 'DD-MMM-YYYY'
+       });
+       $('#project_launch_date').datetimepicker({
            format: 'DD-MMM-YYYY'
        });
    });
@@ -376,21 +376,46 @@
    var rowCount = table.rows.length;
    var row = table.insertRow(rowCount);
    var colCount = table.rows[0].cells.length;
-   for(var i=0; i<colCount; i++) {
-   var newcell	= row.insertCell(i);
+   for (var i = 0; i < colCount; i++) {
+   var newcell = row.insertCell(i);
    newcell.innerHTML = table.rows[0].cells[i].innerHTML;
-   switch(newcell.childNodes[0].type) {
-   case "text":
-   newcell.childNodes[0].value = "";
-   break;
-   case "checkbox":
-   newcell.childNodes[0].checked = false;
-   break;
-   case "select-one":
-   newcell.childNodes[0].selectedIndex = 0;
-   break;
+   switch (newcell.childNodes[0].type) {
+   	case "text":
+   		newcell.childNodes[0].value = "";
+   		var nod_id = newcell.childNodes[0].id.split("_");;
+   		if(!isNaN(nod_id[1]))
+   		newcell.childNodes[0].id = nod_id[0]+'_'+rowCount;
+   		else
+   		newcell.childNodes[0].id = nod_id[0]+'_'+nod_id[1]+'_'+rowCount;
+   		break;
+   	case "checkbox":
+   		newcell.childNodes[0].checked = false;
+   		var nod_id = newcell.childNodes[0].id.split("_");;
+   		if(!isNaN(nod_id[1]))
+   		newcell.childNodes[0].id = nod_id[0]+'_'+rowCount;
+   		else
+   		newcell.childNodes[0].id = nod_id[0]+'_'+nod_id[1]+'_'+rowCount;
+   		break;
+   	case "file":
+   		newcell.childNodes[0].value = "";
+   		var nod_id = newcell.childNodes[0].id.split("_");;
+   		if(!isNaN(nod_id[1]))
+   		newcell.childNodes[0].id = nod_id[0]+'_'+rowCount;
+   		else
+   		newcell.childNodes[0].id = nod_id[0]+'_'+nod_id[1]+'_'+rowCount;
+   		break;
+   	case "select-one":
+   		newcell.childNodes[0].selectedIndex = 0;
+   		var nod_id = newcell.childNodes[0].id.split("_");;
+   		if(!isNaN(nod_id[1]))
+   		newcell.childNodes[0].id = nod_id[0]+'_'+rowCount;
+   		else
+   		newcell.childNodes[0].id = nod_id[0]+'_'+nod_id[1]+'_'+rowCount;
+   	    initSelect(newcell.childNodes[0].id);
+   		break;
+   		
    }
-   }
+   }		
    }
    
    function deleteRow(tableID) {
@@ -416,40 +441,40 @@
    }
    
    
-function location_details(loc) {
-	var baseUrl=$('base').attr("href");
-	var id = $(loc).val();
-	$.ajax({
-		type: "POST",
-		url: baseUrl + "admin/properties/location_details",
-		data:{id:id},
-		async: false,
-		success: function (data) {
-			  var mdata = JSON.parse(data);
-			  $('#city').val(mdata['city']);
-			  $('#district').val(mdata['district']);
-			  $('#state').val(mdata['state']);
-			  $('#country').val(mdata['country']);
-		},
-		error: function () {
-
-		}
-	});
-}
-
-function totalPrice(ev){
-	var size, price, totalPrice = 0;
-	price  = $(ev).closest('tr').find('td:nth-child(4)').find('input').val();
-	size  = $(ev).closest('tr').find('td:nth-child(3)').find('input').val();
-	t_price  = $(ev).closest('tr').find('td:nth-child(6)').find('input');
-	
-	if(isNaN(size) || size == ''){ size = 0; }	if(isNaN(price) || price == ''){ price = 0; }
-	
-	totalPrice = parseFloat(size)*parseFloat(price);
-	t_price.val(totalPrice.toFixed(2));	
-}
-
-function isNumberKey(txt, evt) {
+   function location_details(loc) {
+   var baseUrl=$('base').attr("href");
+   var id = $(loc).val();
+   $.ajax({
+   type: "POST",
+   url: baseUrl + "admin/properties/location_details",
+   data:{id:id},
+   async: false,
+   success: function (data) {
+     var mdata = JSON.parse(data);
+     $('#city').val(mdata['city']);
+     $('#district').val(mdata['district']);
+     $('#state').val(mdata['state']);
+     $('#country').val(mdata['country']);
+   },
+   error: function () {
+   
+   }
+   });
+   }
+   
+   function totalPrice(ev){
+   var size, price, totalPrice = 0;
+   price  = $(ev).closest('tr').find('td:nth-child(4)').find('input').val();
+   size  = $(ev).closest('tr').find('td:nth-child(3)').find('input').val();
+   t_price  = $(ev).closest('tr').find('td:nth-child(6)').find('input');
+   
+   if(isNaN(size) || size == ''){ size = 0; }	if(isNaN(price) || price == ''){ price = 0; }
+   
+   totalPrice = parseFloat(size)*parseFloat(price);
+   t_price.val(totalPrice.toFixed(2));	
+   }
+   
+   function isNumberKey(txt, evt) {
       var charCode = (evt.which) ? evt.which : evt.keyCode;
       if (charCode == 46) {
         //Check if the text already contains the . character
@@ -465,11 +490,11 @@ function isNumberKey(txt, evt) {
       }
       return true;
     }
-$('#rera_approved').change(function(){
-	if ($(this).is(":checked")){
-		$('.reraDetails').css('display','block');
+   $('#rera_approved').change(function(){
+   if ($(this).is(":checked")){
+   $('.reraDetails').css('display','block');
     }else{
-		$('.reraDetails').css('display','none');
-	}
-});
+   $('.reraDetails').css('display','none');
+   }
+   });
 </SCRIPT>
