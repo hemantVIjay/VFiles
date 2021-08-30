@@ -1,3 +1,5 @@
+<link href="<?= base_url(); ?>assets/plugins/gallery/jquery.fancybox.min.css" rel="stylesheet">
+
 <div class="pv-dtl">
 	<div class="container">
 		<div class="pv-breadcrumb">
@@ -385,9 +387,38 @@
 				</ul>
 				<div class="tab-content py-4" id="myTabContent">
 				  <div class="tab-pane fade show active" id="elevgt" role="tabpanel" aria-labelledby="elevgt-tab">
-						Ele
+						<div class="row">
+						<div class="col-xl-3 col-md-4 col-sm-6">
+							<a data-fancybox="gallery" href="<?= base_url(); ?>assets/images/cities/delhi.jpg" data-caption="Delhi City">
+								<img src="<?= base_url(); ?>assets/images/cities/delhi.jpg" class="img-fluid" />
+							</a>
+						</div>
+						<div class="col-xl-3 col-md-4 col-sm-6">
+							<a data-fancybox="gallery" href="<?= base_url(); ?>assets/images/cities/faridabad.jpg" data-caption="Faridabad City">
+								<img src="<?= base_url(); ?>assets/images/cities/faridabad.jpg" class="img-fluid" />
+							</a>
+						</div>
+						<div class="col-xl-3 col-md-4 col-sm-6">
+							<a data-fancybox="gallery" href="<?= base_url(); ?>assets/images/cities/ghaziabad.jpg" data-caption="ghaziabad City">
+								<img src="<?= base_url(); ?>assets/images/cities/ghaziabad.jpg" class="img-fluid" />
+							</a>
+						</div>
+						</div>
 				  </div>
-				  <div class="tab-pane fade" id="vdogt" role="tabpanel" aria-labelledby="vdogt-tab">...</div>
+				  <div class="tab-pane fade" id="vdogt" role="tabpanel" aria-labelledby="vdogt-tab">
+						<div class="row">
+						<div class="col-xl-3 col-md-4 col-sm-6">
+							<a data-fancybox="gallery" href="<?= base_url(); ?>assets/images/home-banner.jpg" data-caption="Elevation">
+								<img src="<?= base_url(); ?>assets/images/home-banner.jpg" class="img-fluid" />
+							</a>
+						</div>
+						<div class="col-xl-3 col-md-4 col-sm-6">
+							<a data-fancybox="gallery" href="<?= base_url(); ?>assets/images/home-banner.jpg" data-caption="Layout">
+								<img src="<?= base_url(); ?>assets/images/home-banner.jpg" class="img-fluid" />
+							</a>
+						</div>
+						</div>
+				  </div>
 				  <div class="tab-pane fade" id="cnstgt" role="tabpanel" aria-labelledby="cnstgt-tab">...</div>
 				  <div class="tab-pane fade" id="nbhdgt" role="tabpanel" aria-labelledby="nbhdgt-tab">...</div>
 				</div>
@@ -407,7 +438,20 @@
 
 </div>
 
+
+<script src="<?= base_url(); ?>assets/plugins/gallery/jquery.fancybox.min.js"></script>
+
 <script>
+$(document).ready(function() {
+ $('.fancybox').fancybox({
+  beforeShow : function(){
+   this.title =  $(this.element).data("caption");
+  }
+ });
+});
+
+
+
 $(window).scroll(function () {
   console.log($(window).scrollTop())
   if ($(window).scrollTop() > 63) {
