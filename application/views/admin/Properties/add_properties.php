@@ -204,18 +204,7 @@
                   </div>
                </div>
                <hr />
-               <div class="cmnttl position-relative">Amenities</div>
-               <div class="row">
-			      <?php $amenities = _amenities(); foreach($amenities as $key=>$amenity){ ?>
-                  <div class="col-xl-3 col-md-4">
-                     <span class="form-check">
-                     <input class="form-check-input" name="amenities[]" type="checkbox" name="remember" id="amenity_<?= $key+1;?>" value="<?= $amenity->id;?>">
-                     <span class="form-check-label"><?= $amenity->name; ?></span>
-                     </span>
-                  </div>
-				  <?php } ?>
-               </div>				  
-               <hr />
+              
                <div class="cmnttl position-relative">Floor Plans</div>
                <div class="tbl-resp">
                   <table class="table tbl-custom" style="width:100%">
@@ -259,6 +248,69 @@
                   <a href="javascript:;" onclick="addRow('floor_plans');" ><i class="bi bi-plus-circle-fill me-1"></i>Add Row</a>
                   <a href="javascript:;" onclick="deleteRow('floor_plans');" class="ms-2"><i class="bi bi-dash-circle-fill me-1"></i>Delete Row</a>
                </div>
+               </div>
+			   
+			   <div class="ptyp" id="pty_plot">
+					<div class="row">
+						<div class="col-md-4 mb-3">
+							<label class="required">No. of Plots</label>
+							<input type="text" class="form-control">
+						</div>
+						<div class="col-md-4 mb-3">
+							<label class="required">Total Area (In Acres)</label>
+							<input type="text" class="form-control">
+						</div>
+						<div class="col-md-4 mb-3">
+                        <label class="required">Project Launch Date</label>
+                        <input type="text" class="form-control calicon">
+                     </div>
+					 <div class="col-md-12 mb-3">
+                        <label class="required">Project Overview</label>
+                        <textarea class="form-control" rows="4"></textarea>
+                     </div>
+					</div>
+					  <hr />
+               <div class="cmnttl position-relative">Configuration (Size)</div>
+               <div class="tbl-resp">
+                  <table class="table tbl-custom" style="width:100%">
+                     <thead>
+                        <tr>
+                           <th width="50">SNo.</th>
+                           <th width="150">Plot Size in SQ. Yard</th>
+                           <th width="150">Base Price</th>
+                           <th width="150">Totoal Price</th>
+                           <th width="250">Image</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td><input type="checkbox"></td>
+                           <td><input type="text" class="form-control" /></td>
+                           <td><input type="text" class="form-control" /></td>
+                           <td><input type="text" class="form-control" /></td>
+                           <td><input type="file" class="form-control"/></td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <div class="addlt">
+                  <a href="javascript:;" onclick="addRow('floor_plans');" ><i class="bi bi-plus-circle-fill me-1"></i>Add Row</a>
+                  <a href="javascript:;" onclick="deleteRow('floor_plans');" class="ms-2"><i class="bi bi-dash-circle-fill me-1"></i>Delete Row</a>
+               </div>
+			   </div>
+			   <hr />
+			    <div class="cmnttl position-relative">Amenities</div>
+               <div class="row">
+			      <?php $amenities = _amenities(); foreach($amenities as $key=>$amenity){ ?>
+                  <div class="col-xl-3 col-md-4">
+                     <span class="form-check">
+                     <input class="form-check-input" name="amenities[]" type="checkbox" name="remember" id="amenity_<?= $key+1;?>" value="<?= $amenity->id;?>">
+                     <span class="form-check-label"><?= $amenity->name; ?></span>
+                     </span>
+                  </div>
+				  <?php } ?>
+				  </div>
+				  
                <hr />
                <div class="cmnttl position-relative">Site Layout</div>
                <div class="row">
