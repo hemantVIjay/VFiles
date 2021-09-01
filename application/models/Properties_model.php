@@ -38,11 +38,11 @@ class Properties_model extends MY_Model{
         }
     }
 	
-	public function create_property($post_data, $specs, $floorPlans){
+	public function create_property($post_data, $specs, $floorPlans, $plotPlans){
         $this->_table_name='properties';
         $this->_timestamps=TRUE;
         $insert_id=$this->save($data=$post_data, $id = NULL);
-		$specs['property_id'] = $insert_id;
+		
 		if($insert_id){
             //create slug
             $slug=$this->create_slug($id=$insert_id, $title=$post_data['property_name']);
@@ -51,8 +51,14 @@ class Properties_model extends MY_Model{
             );
             //update property
             $update_id=$this->save($data=$update_data, $id = $insert_id);
-			$this->create_specifications($specs);
-			$this->save_FloorPlans($floorPlans, $insert_id);
+			if(!empty($specs)){
+			 $specs['property_id'] = $insert_id;
+			 $this->create_specifications($specs);
+			}if(!empty($floorPlans)){
+			 $this->save_FloorPlans($floorPlans, $insert_id);
+			}if(!empty($plotPlans)){
+			 $this->save_PlotPlans($plotPlans, $insert_id);
+			}
             if($update_id){
                 //if updated
                 $return_data=array(
@@ -85,6 +91,20 @@ class Properties_model extends MY_Model{
         return true;		
 	}
 
+
+	public function save_PlotPlans($post_data, $id){
+		$mData = array();
+		foreach($post_data as $key=>$data){
+			$sdata['plot_size'] = $data[$key]['plot_size'];
+			$sdata['plot_basePrice'] = $data[$key]['plot_basePrice'];
+			$sdata['plot_Image'] = $data[$key]['plot_Image'];
+			$sdata['plot_totalPrice'] = $data[$key]['plot_totalPrice'];
+			$sdata['property_id'] = $id;
+            $mData[$key] = $sdata;
+		}
+        $this->db->insert_batch('plot_plans', $mData);
+        return true;		
+	}
 
 	public function save_FloorPlans($post_data, $id){
 		$mData = array();

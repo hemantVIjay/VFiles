@@ -3,6 +3,9 @@
    .reraDetails{
    display:none;
    }
+   #pty_flat,#pty_plot{
+	   display:none;
+   }
 </style>
 <form method="POST" action="<?= base_url('admin/properties/create_property'); ?>" id="img-upload-form" enctype="multipart/form-data" accept-charset="utf-8">
    <div class="pg-content mb-4">
@@ -60,12 +63,13 @@
                <div class="row">
                   <div class="col-md-6 mb-3">
                      <label class="required">Property Type</label>
-                     <select class="form-select" id="choose_pty" name="p_type" >
+                     <select class="form-select" id="choose_pty" name="p_type" onchange="changeDetails(this);">
                         <option value="">--Select--</option>
                         <?= _propertyType(''); ?>
                      </select>
                   </div>
                </div>
+			   </div>
                <div class="ptyp" id="pty_flat">
                   <div class="row">
                      <div class="col-md-4 mb-3">
@@ -202,7 +206,7 @@
                         </div>
                      </div>
                   </div>
-               </div>
+               
                <hr />
                <div class="cmnttl position-relative">Floor Plans</div>
                <div class="tbl-resp">
@@ -252,19 +256,19 @@
                <div class="row">
                   <div class="col-md-4 mb-3">
                      <label class="required">No. of Plots</label>
-                     <input type="text" class="form-control">
+                     <input type="text" class="form-control" name="no_of_plots" onkeypress="return isNumberKey(this, event);" autocomplete="Off">
                   </div>
                   <div class="col-md-4 mb-3">
                      <label class="required">Total Area (In Acres)</label>
-                     <input type="text" class="form-control">
+                     <input type="text" class="form-control" name="total_area" onkeypress="return isNumberKey(this, event);" autocomplete="Off">
                   </div>
                   <div class="col-md-4 mb-3">
                      <label class="required">Project Launch Date</label>
-                     <input type="text" class="form-control calicon" id="project_launch_date" data-toggle="datetimepicker" data-target="#project_launch_date">
+                     <input type="text" class="form-control calicon" id="project_launch_date" data-toggle="datetimepicker" data-target="#project_launch_date" name="project_start_date" autocomplete="Off">
                   </div>
                   <div class="col-md-12 mb-3">
                      <label class="required">Project Overview</label>
-                     <textarea class="form-control" rows="4"></textarea>
+                     <textarea class="form-control" rows="4" name="project_overview" autocomplete="Off"></textarea>
                   </div>
                </div>
                <hr />
@@ -283,9 +287,9 @@
                      <tbody id="configuration">
                         <tr>
                            <td><input type="checkbox"></td>
-                           <td><input type="text" class="form-control" name="plot_size[]" id="plotSize_1"/></td>
-                           <td><input type="text" class="form-control" name="plot_basePrice[]" id="plotBasicPrice_1"/></td>
-                           <td><input type="text" class="form-control" name="plot_totalPrice[]" id="plotTotalPrice_1"/></td>
+                           <td><input type="text" class="form-control" name="plot_size[]" id="plotSize_1" onkeyup="total_Price(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
+                           <td><input type="text" class="form-control" name="plot_basePrice[]" id="plotBasicPrice_1" onkeyup="total_Price(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
+                           <td><input type="text" class="form-control" name="plot_totalPrice[]" id="plotTotalPrice_1"  onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
                            <td><input type="file" class="form-control" name="plot_Image[]" id="plotImage_1"/></td>
                         </tr>
                      </tbody>
@@ -473,6 +477,18 @@
    totalPrice = parseFloat(size)*parseFloat(price);
    t_price.val(totalPrice.toFixed(2));	
    }
+
+   function total_Price(ev){
+   var size, price, totalPrice = 0;
+   price  = $(ev).closest('tr').find('td:nth-child(3)').find('input').val();
+   size  = $(ev).closest('tr').find('td:nth-child(2)').find('input').val();
+   t_price  = $(ev).closest('tr').find('td:nth-child(4)').find('input');
+   
+   if(isNaN(size) || size == ''){ size = 0; }	if(isNaN(price) || price == ''){ price = 0; }
+   
+   totalPrice = parseFloat(size)*parseFloat(price);
+   t_price.val(totalPrice.toFixed(2));	
+   }
    
    function isNumberKey(txt, evt) {
       var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -497,4 +513,20 @@
    $('.reraDetails').css('display','none');
    }
    });
+   
+   function changeDetails(ev){
+	   var pType = $(ev).val();
+	   if(pType == '1'){
+		$('#pty_flat').css('display','none');   
+		$('#pty_plot').css('display','block');
+        $('#pty_flat').find('input, textarea, button, select').attr('disabled','disabled');		
+	   }
+	   if(pType == '2'){
+		$('#pty_flat').css('display','block');   
+		$('#pty_plot').css('display','none');
+		$('#pty_plot').find('input, textarea, button, select').attr('disabled','disabled');	
+	   }   
+   }
+   
+   
 </SCRIPT>

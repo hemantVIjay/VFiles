@@ -27,7 +27,31 @@
 	<script src="<?= base_url(); ?>assets/js/bootstrap.bundle.min.js"></script>
 	
 </head>
-
+<style>
+body::-webkit-scrollbar {
+         width: 1em;
+         }
+         body::-webkit-scrollbar-track {
+         box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+         }
+         body::-webkit-scrollbar-thumb {
+         background-color: darkgrey;
+         outline: 1px solid slategrey;
+         }
+         ::-webkit-scrollbar {
+         width: 8px;
+         height: 8px;
+         }
+         ::-webkit-scrollbar-track {
+         -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+         border-radius: 10px;
+         }
+         ::-webkit-scrollbar-thumb {
+         border-radius: 10px;
+         -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+         background-color: #efa41c;
+         }
+</style>
 <body>
 	<header class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0 shadow">
   <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Propvenues</a>
