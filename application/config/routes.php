@@ -55,6 +55,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = TRUE;
 
 $route['properties-details/(:any)'] = 'home/properties_details';
+$route['locations/(:any)'] = 'home/locations_info';
 
 //Admin Authentication
 $route['admin/login'] = 'admin/auth/login';
