@@ -56,7 +56,7 @@
             <h5 class="modal-title" id="exampleModalLabel">Add Gallery</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
          </div>
-         <div class="modal-body" style="max-height:400px;min-height:400px;overflow-y:scroll;">
+         <div class="modal-body" style="max-height:400px;min-height:400px;overflow-y:auto;">
 
 		 <!--Upload Images & Video-->
 		 <div class="pvfp-tab gllry-tabs">
