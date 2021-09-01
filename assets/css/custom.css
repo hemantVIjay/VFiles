@@ -687,6 +687,15 @@ right:0;
 	-webkit-line-clamp: 1;
 	-webkit-box-orient: vertical;
 }
+.bnkcrd {
+	border: 1px solid #f1f0ed;
+	padding: 1rem .35rem;
+	border-radius: .5rem;
+	text-align:center;
+}
+	.bnkcrd img {
+		max-height: 32px;
+	}
 
 /*Start Rating Start*/
 .rating {
@@ -702,10 +711,13 @@ right:0;
 .rating > [id^="star"] {
 	display: none
 }
-
+.rating > label {
+	margin-bottom: 0;
+}
 .rating > label:before {
 	margin: 5px;
-	font-size: 2.25em;
+	font-size: 1.5rem;
+	line-height: 1.5rem;
 	font-family: bootstrap-icons;
 	display: inline-block;
 	content: "\f586"
@@ -742,10 +754,6 @@ right:0;
 	margin: 6px 12px;
 	background-color: rgb(255, 255, 255);
 	text-transform: uppercase
-}
-
-.mt-100 {
-	margin-top: 100px
 }
 
 

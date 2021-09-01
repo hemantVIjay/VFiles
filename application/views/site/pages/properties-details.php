@@ -432,18 +432,73 @@
 			<div class="rtnrvw">
 				<div class="row">
         <div class="col-md-6">
-            <div class="card">
-                <div class="card-body text-center"> <span class="myratings">4.5</span>
+                <div class="text-center"> <span class="myratings">4.5</span>
                     <h4 class="mt-1">Rate us</h4>
-                    <fieldset class="rating"> <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label> <input type="radio" id="star4half" name="rating" value="4.5" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label> <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label> <input type="radio" id="star3half" name="rating" value="3.5" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label> <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Meh - 3 stars"></label> <input type="radio" id="star2half" name="rating" value="2.5" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label> <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Kinda bad - 2 stars"></label> <input type="radio" id="star1half" name="rating" value="1.5" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label> <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label> <input type="radio" id="starhalf" name="rating" value="0.5" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label> <input type="radio" class="reset-option" name="rating" value="reset" /> </fieldset>
+                    <fieldset class="rating"> 
+						<input type="radio" id="star5" name="rating" value="5" />
+						<label class="full" for="star5" title="5 stars"></label> 
+						<input type="radio" id="star4half" name="rating" value="4.5" />
+						<label class="half" for="star4half" title="4.5 stars"></label> 
+						<input type="radio" id="star4" name="rating" value="4" />
+						<label class="full" for="star4" title="4 stars"></label> 
+						<input type="radio" id="star3half" name="rating" value="3.5" />
+						<label class="half" for="star3half" title="3.5 stars"></label> 
+						<input type="radio" id="star3" name="rating" value="3" />
+						<label class="full" for="star3" title="3 stars"></label> 
+						<input type="radio" id="star2half" name="rating" value="2.5" />
+						<label class="half" for="star2half" title="2.5 stars"></label> 
+						<input type="radio" id="star2" name="rating" value="2" />
+						<label class="full" for="star2" title="2 stars"></label> 
+						<input type="radio" id="star1half" name="rating" value="1.5" />
+						<label class="half" for="star1half" title="1.5 stars"></label> 
+						<input type="radio" id="star1" name="rating" value="1" />
+						<label class="full" for="star1" title="1 star"></label> 
+						<input type="radio" id="starhalf" name="rating" value="0.5" />
+						<label class="half" for="starhalf" title="0.5 stars"></label> 
+						<input type="radio" class="reset-option" name="rating" value="reset" /> 
+					</fieldset>
                 </div>
-            </div>
         </div>
     </div>
 			</div>
 </div>
 <div class="page-section" id="7">
 			<h4 class="cmn-title mb-4">About Developer</h4>
+</div>
+<div class="bnksec">
+			<h4 class="cmn-title mb-4">Approved by Banks</h4>
+			<div class="row">
+				<div class="col-xl-2 col-md-3 col-sm-4 mb-3">
+					<div class="bnkcrd">
+						<img src="<?= base_url(); ?>assets/images/banks/hdfc.jpeg" class="img-fluid">
+					</div>
+				</div>
+				<div class="col-xl-2 col-md-3 col-sm-4 mb-3">
+					<div class="bnkcrd">
+						<img src="<?= base_url(); ?>assets/images/banks/iifl.jpeg" class="img-fluid">
+					</div>
+				</div>
+				<div class="col-xl-2 col-md-3 col-sm-4 mb-3">
+					<div class="bnkcrd">
+						<img src="<?= base_url(); ?>assets/images/banks/axis.jpeg" class="img-fluid">
+					</div>
+				</div>
+				<div class="col-xl-2 col-md-3 col-sm-4 mb-3">
+					<div class="bnkcrd">
+						<img src="<?= base_url(); ?>assets/images/banks/indiabulls.jpeg" class="img-fluid">
+					</div>
+				</div>
+				<div class="col-xl-2 col-md-3 col-sm-4 mb-3">
+					<div class="bnkcrd">
+						<img src="<?= base_url(); ?>assets/images/banks/lnt.jpeg" class="img-fluid">
+					</div>
+				</div>
+				<div class="col-xl-2 col-md-3 col-sm-4 mb-3">
+					<div class="bnkcrd">
+						<img src="<?= base_url(); ?>assets/images/banks/pnb.jpeg" class="img-fluid">
+					</div>
+				</div>
+			</div>
 </div>
 </div>
 </div>
