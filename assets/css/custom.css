@@ -721,17 +721,17 @@ right:0;
 .rating > label {
 	margin-bottom: 0;
 }
-.rating > label:before {
-	margin: 5px;
-	font-size: 1.5rem;
-	line-height: 1.5rem;
-	font-family: bootstrap-icons;
-	display: inline-block;
-	content: "\f586"
-}
+	.rating > label:before {
+		margin: 5px;
+		font-size: 1.5rem;
+		line-height: 1.5rem;
+		font-family: FontAwesome;
+		display: inline-block;
+		content: "\f005"
+	}
 
 .rating > .half:before {
-	content: "\f587";
+	content: "\f089";
 	position: absolute
 }
 

@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <link href="<?= base_url(); ?>assets/plugins/gallery/jquery.fancybox.min.css" rel="stylesheet">
 
 <div class="pv-dtl">
@@ -432,8 +434,9 @@
 			<div class="rtnrvw">
 				<div class="row">
         <div class="col-md-6">
-                <div class="text-center"> <span class="myratings">4.5</span>
-                    <h4 class="mt-1">Rate us</h4>
+                <div class="d-flex"> 
+                    <div class="rtstr">
+					<h5 class="rtttl">Rate us</h5>
                     <fieldset class="rating"> 
 						<input type="radio" id="star5" name="rating" value="5" />
 						<label class="full" for="star5" title="5 stars"></label> 
@@ -458,6 +461,8 @@
 						<input type="radio" class="reset-option" name="rating" value="reset" /> 
 					</fieldset>
                 </div>
+				<span class="myratings">4.5</span>
+				</div>
         </div>
     </div>
 			</div>
