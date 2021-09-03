@@ -23,6 +23,13 @@ class Home extends MY_Controller {
         $this->load->view('site/_layout', $data);
 	}
 
+	public function properties_listings()
+	{
+		$data['title']=$this->lang->line("text_home");
+		$data['sub_view'] = $this->load->view('site/pages/properties-listings', $data, TRUE);
+        $this->load->view('site/_layout', $data);
+	}
+
 	public function locations_info()
 	{
 		$data['title']=$this->lang->line("text_home");

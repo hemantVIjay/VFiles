@@ -56,6 +56,7 @@ $route['translate_uri_dashes'] = TRUE;
 
 $route['properties-details/(:any)'] = 'home/properties_details';
 $route['locations/(:any)'] = 'home/locations_info';
+$route['properties-listings/(:any)'] = 'home/properties_listings';
 
 //Admin Authentication
 $route['admin/login'] = 'admin/auth/login';
