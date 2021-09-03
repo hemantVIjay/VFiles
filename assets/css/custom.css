@@ -696,7 +696,14 @@ right:0;
 	.bnkcrd img {
 		max-height: 32px;
 	}
-
+.addlt a{
+	color:#212529;
+}
+.addlt a i{
+	color: #ffa506;
+	font-size:1rem;
+	display:inline-block;
+}
 /*Start Rating Start*/
 .rating {
 	border: none;
@@ -751,7 +758,7 @@ right:0;
 }
 
 .reset-button {
-	margin: 6px 12px;
+	/*margin: 6px 12px;*/
 	background-color: rgb(255, 255, 255);
 	text-transform: uppercase
 }
