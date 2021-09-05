@@ -261,15 +261,16 @@ a{
 }
 
 .card-inner{position: relative;}
-.aprvl-badge{
-  position: absolute;
-  right: 1rem;
-  top: 1rem;
-  font-size: .725rem;
-  background:#6dc756;
-  border:1px solid #6dc756;
-  color: #fff;
-  padding: .05rem .35rem;
+.aprvl-badge {
+	position: absolute;
+	right: 1rem;
+	top: 1rem;
+	background: rgba(0,0,0,0.7);
+	/* border: 1px solid #6dc756; */
+	color: #fff;
+	font-size: .725rem;
+	padding: .2rem .5rem;
+	border-radius: .25rem;
 }
 .cat-badge{
   position: absolute;
@@ -281,7 +282,10 @@ a{
   color: #fff;
   padding: .1rem .5rem;
 }
-.aprvl-badge i{margin-right: .35rem;vertical-align: text-top;}
+.aprvl-badge i {
+	margin-right: .5rem;
+	vertical-align: text-top;
+	color: #6dc756;}
 .prop-snfc{
   position: absolute;
   left: 1rem;

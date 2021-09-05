@@ -91,7 +91,7 @@
     <div class="modal-content">
 	<div class="row g-0">
 		<div class="col-md-7">
-			Offers List
+			<img src="<?= base_url(); ?>assets/images/offer-banner.jpg" class="img-fluid rounded-start">
 		</div>
 		<div class="col-md-5">
 		  <div class="p-4">
