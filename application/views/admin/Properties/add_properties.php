@@ -213,36 +213,34 @@
                   <table class="table tbl-custom" style="width:100%">
                      <thead>
                         <tr>
-                           <th width="50">SNo.</th>
-                           <th width="150">Flat in BHK</th>
-                           <th width="150">Size</th>
-                           <th width="150">Base Price</th>
-                           <th width="150">Image</th>
-                           <th width="150">Price</th>
-                           <th width="100">Study</th>
-                           <th width="200">No. of Toilets</th>
+                           <th width="50">Select</th>
+                           <th width="150">Room Sizes</th>
+                           <th width="100">Description</th>
+                           <th width="90">Bedrooms</th>
+                           <th width="90">Bathrooms</th>
+                           <th width="450">Unit Name</th>
+                           <th width="150">Size(SqFt)</th>
+                           <th width="150">Builtup Area</th>
+                           <th width="150">BSP</th>
+                           <th width="150">Total Price</th>
                         </tr>
                      </thead>
                      <tbody id="floor_plans">
                         <tr>
                            <td><input type="checkbox" id="check_1"></td>
-                           <td>
-                              <select class="form-select" id="apartment_1" name="floor_type[]">
-                                 <option value="">--Select--</option>
-                                 <?= _Floors(''); ?>
-                              </select>
-                           </td>
-                           <td><input type="text" class="form-control" id="size_1" name="floor_size[]" onkeyup="totalPrice(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
+                           <td><a href="javascript:void(0);" onclick="addRoom_Sizes(this);"  style="text-decoration:underline;font-weight:900;">ADD SIZES</a></td>
+						   <td><a href="javascript:void(0);" onclick="addDescription(this);" style="text-decoration:underline;font-weight:900;">ADD DESC.</a></td>
+						   <td><select class="form-select" id="apartment_1" name="floor_type[]">
+                                 <?= _Numbers('', 10); ?>
+                              </select></td>
+						   <td><select class="form-select" id="apartment_1" name="floor_type[]">
+                                 <?= _Numbers('', 10); ?>
+                              </select></td>
+						   <td><input type="text" class="form-control" id="size_1" name="floor_size[]" onkeyup="totalPrice(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
+						   <td><input type="text" class="form-control" id="size_1" name="floor_size[]" onkeyup="totalPrice(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
                            <td><input type="text" class="form-control" id="basePrice_1" name="floor_basePrice[]" onkeyup="totalPrice(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
-                           <td><input type="file" class="form-control" id="file_1" name="floor_planImage[]"></td>
+                           <td><input type="text" class="form-control" id="basePrice_1" name="floor_basePrice[]" onkeyup="totalPrice(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
                            <td><input type="text" class="form-control" id="tPrice_1" name="floor_totalPrice[]" autocomplete="Off"/></td>
-                           <td>
-                              <select class="form-select" id="study_1" name="floor_isStudy[]">
-                                 <option>Yes</option>
-                                 <option>No</option>
-                              </select>
-                           </td>
-                           <td><input type="text" class="form-control" id="toilets_1" name="floor_toilets[]" autocomplete="Off"/></td>
                         </tr>
                      </tbody>
                   </table>
@@ -415,7 +413,6 @@
    		newcell.childNodes[0].id = nod_id[0]+'_'+rowCount;
    		else
    		newcell.childNodes[0].id = nod_id[0]+'_'+nod_id[1]+'_'+rowCount;
-   	    initSelect(newcell.childNodes[0].id);
    		break;
    		
    }
@@ -528,5 +525,13 @@
 	   }   
    }
    
+   
+   function addRoom_Sizes(ev){
+	   console.log(ev);
+   }
+
+   function addDescription(ev){
+	   
+   }
    
 </SCRIPT>

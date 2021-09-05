@@ -600,6 +600,23 @@
       }
   }
 
+
+  if (!function_exists('_Numbers')) {
+      function _Numbers($mid, $max)
+      {
+          $ci =& get_instance();
+          $numbers = "";
+		  
+          for($i=1;$i<=$max; $i++) {
+              $Sdata = ($i == $mid) ? 'selected' : '';
+              $numbers .= "<option " . $Sdata . " value ='" . $i . "'>";
+              $numbers .= $i;
+              $numbers .= "</option>";
+          }
+          return $numbers;
+      }
+  }
+
   if (!function_exists('_builders')) {
       function _builders($mid)
       {

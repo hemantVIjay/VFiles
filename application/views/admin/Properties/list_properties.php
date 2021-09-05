@@ -211,7 +211,6 @@
 					newcell.childNodes[0].id = nod_id[0]+'_'+rowCount;
 					else
 					newcell.childNodes[0].id = nod_id[0]+'_'+nod_id[1]+'_'+rowCount;
-				    initSelect(newcell.childNodes[0].id);
 					break;
 					
 			}
