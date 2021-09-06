@@ -228,7 +228,7 @@
                      <tbody id="floor_plans">
                         <tr>
                            <td><input type="checkbox" id="check_1"></td>
-                           <td><a href="javascript:void(0);" onclick="addRoom_Sizes(this);"  style="text-decoration:underline;font-weight:900;">ADD SIZES</a></td>
+                           <td><a href="javascript:void(0);" onclick="addRoom_Sizes(this);"  style="text-decoration:underline;font-weight:900;">ADD SIZES</a><input type="hidden" name="room_sizes[]" id="roomSizes_1"></td>
 						   <td><a href="javascript:void(0);" onclick="addDescription(this);" style="text-decoration:underline;font-weight:900;">ADD DESC.</a></td>
 						   <td><select class="form-select" id="apartment_1" name="floor_type[]">
                                  <?= _Numbers('', 10); ?>
@@ -236,11 +236,11 @@
 						   <td><select class="form-select" id="apartment_1" name="floor_type[]">
                                  <?= _Numbers('', 10); ?>
                               </select></td>
-						   <td><input type="text" class="form-control" id="size_1" name="floor_size[]" onkeyup="totalPrice(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
-						   <td><input type="text" class="form-control" id="size_1" name="floor_size[]" onkeyup="totalPrice(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
-                           <td><input type="text" class="form-control" id="basePrice_1" name="floor_basePrice[]" onkeyup="totalPrice(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
-                           <td><input type="text" class="form-control" id="basePrice_1" name="floor_basePrice[]" onkeyup="totalPrice(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
-                           <td><input type="text" class="form-control" id="tPrice_1" name="floor_totalPrice[]" autocomplete="Off"/></td>
+						   <td><input type="text" class="form-control" id="unitName_1" name="floor_unit[]" autocomplete="Off"/></td>
+						   <td><input type="text" class="form-control text-right" id="size_1" name="floor_size[]" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
+                           <td><input type="text" class="form-control text-right" id="builtupArea_1" name="floor_builtupArea[]" onkeyup="totalPrice(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
+                           <td><input type="text" class="form-control text-right" id="basePrice_1" name="floor_basePrice[]" onkeyup="totalPrice(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
+                           <td><input type="text" class="form-control text-right" id="tPrice_1" name="floor_totalPrice[]" autocomplete="Off"/></td>
                         </tr>
                      </tbody>
                   </table>
@@ -361,10 +361,12 @@
    </div>
    </div>
 </form>
+
 <script src="<?= base_url(); ?>assets/js/moment.min.js"></script>
 <script src="<?= base_url(); ?>assets/plugins/datepicker/js/tempusdominus-bootstrap-4.min.js"></script>
 <!--<script src="<?= base_url(); ?>assets/js/custom.js"></script>-->
 <script type="text/javascript">
+ var dataURL = $('base').attr("href");
    $(function () {
        $('#dtpicker').datetimepicker({
            format: 'DD-MMM-YYYY'
@@ -465,9 +467,9 @@
    
    function totalPrice(ev){
    var size, price, totalPrice = 0;
-   price  = $(ev).closest('tr').find('td:nth-child(4)').find('input').val();
-   size  = $(ev).closest('tr').find('td:nth-child(3)').find('input').val();
-   t_price  = $(ev).closest('tr').find('td:nth-child(6)').find('input');
+   price  = $(ev).closest('tr').find('td:nth-child(9)').find('input').val();
+   size  = $(ev).closest('tr').find('td:nth-child(8)').find('input').val();
+   t_price  = $(ev).closest('tr').find('td:nth-child(10)').find('input');
    
    if(isNaN(size) || size == ''){ size = 0; }	if(isNaN(price) || price == ''){ price = 0; }
    
@@ -517,21 +519,46 @@
 		$('#pty_flat').css('display','none');   
 		$('#pty_plot').css('display','block');
         $('#pty_flat').find('input, textarea, button, select').attr('disabled','disabled');		
+        $('#pty_plot').find('input, textarea, button, select').attr('disabled',false);		
 	   }
 	   if(pType == '2'){
 		$('#pty_flat').css('display','block');   
 		$('#pty_plot').css('display','none');
-		$('#pty_plot').find('input, textarea, button, select').attr('disabled','disabled');	
+		$('#pty_plot').find('input, textarea, button, select').attr('disabled','disabled');
+        $('#pty_flat').find('input, textarea, button, select').attr('disabled',false);			
 	   }   
    }
    
    
    function addRoom_Sizes(ev){
-	   console.log(ev);
+         $('.modal-content').load(dataURL+'admin/modals/getRoom_Data',function(){
+         $('#dyNamicModal').modal('show');
+    });
+	
    }
 
-   function addDescription(ev){
-	   
+   function addDescription(ev){	 
+         $('.modal-content').load(dataURL+'admin/modals/getDesc_Data',function(){
+         $('#dyNamicModal').modal('show');
+    });	
+   }
+   
+   function saveRoom_sizes(e, tblID){
+    var rowCount = $('#'+tblID+' tr').length;
+	  var rr = 0; var Sizes = [];
+	  $('#'+tblID+' > tr').each(function(i, t){
+		 rr  = $(t).find('td:nth-child(2)').find('input').val();
+         if(rr!=''){
+			Sizes.push(rr); 
+		 }		 
+	  });
+	  var data = JSON.stringify(Sizes);
+	  console.log(data);
+   }
+
+   function saveDesc(e, tblID){
+    
+    	   
    }
    
 </SCRIPT>

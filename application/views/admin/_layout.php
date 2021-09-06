@@ -151,8 +151,11 @@ body::-webkit-scrollbar {
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 pt-4">
          <?= $sub_view; ?>
 </main>
+
 </div>
 </div>
+<?php include_once('components/_baseModal.php'); ?>
 </body>
 </html>
+
 <!--<?php //include_once('components/_footer.php'); ?>-->
