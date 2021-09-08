@@ -109,12 +109,16 @@ class Properties_model extends MY_Model{
 	public function save_FloorPlans($post_data, $id){
 		$mData = array();
 		foreach($post_data as $key=>$data){
-			$sdata['floor_type'] = $data[$key]['floor_type'];
-			$sdata['floor_size'] = $data[$key]['floor_size'];
-			$sdata['floor_basePrice'] = $data[$key]['floor_basePrice'];
-			$sdata['floor_planImage'] = $data[$key]['floor_planImage'];
-			$sdata['floor_totalPrice'] = $data[$key]['floor_totalPrice'];
-			$sdata['floor_toilets'] = $data[$key]['floor_toilets'];
+			$sdata['floor_totalRoomSizes']  = $data[$key]['floor_totalRoomSizes'];
+            $sdata['floor_allRoomSizes']    = $data[$key]['floor_allRoomSizes'];
+            $sdata['floor_roomDesc']        = $data[$key]['floor_roomDesc'];
+            $sdata['floor_bedrooms']        = $data[$key]['floor_bedrooms'];
+            $sdata['floor_bathrooms']       = $data[$key]['floor_bathrooms'];
+            $sdata['floor_unit']            = $data[$key]['floor_unit'];
+            $sdata['floor_size']            = $data[$key]['floor_size'];
+            $sdata['floor_builtupArea']     = $data[$key]['floor_builtupArea'];
+            $sdata['floor_basePrice']       = $data[$key]['floor_basePrice'];
+            $sdata['floor_totalPrice']      = $data[$key]['floor_totalPrice'];
 			$sdata['property_id'] = $id;
             $mData[$key] = $sdata;
 		}

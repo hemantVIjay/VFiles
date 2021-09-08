@@ -76,7 +76,9 @@
       
       public function create_property()
       {
-          $pcode = _propertyCode($_REQUEST['builder'], $_REQUEST['p_type'], $_REQUEST['location']);
+         // echo'<pre/>';print_r($_REQUEST);exit;
+		  
+		  $pcode = _propertyCode($_REQUEST['builder'], $_REQUEST['p_type'], $_REQUEST['location']);
           
           $amenities = '';
           $banks     = '';
@@ -122,25 +124,40 @@
               }
           }
           /*************************---Floor DETAILS---***************************/
-          foreach ($_FILES['floor_planImage']['name'] as $k => $fval) {
+          foreach ($_REQUEST['floor_bedrooms'] as $k => $fval) {
+              $fdata[$k]['floor_totalRoomSizes']      = $_REQUEST['floor_totalRoomSizes'][$k];
+              $fdata[$k]['floor_allRoomSizes']      = $_REQUEST['floor_allRoomSizes'][$k];
+              $fdata[$k]['floor_roomDesc'] = $_REQUEST['floor_roomDesc'][$k];
+              $fdata[$k]['floor_bedrooms'] = $_REQUEST['floor_bedrooms'][$k];
+              $fdata[$k]['floor_bathrooms'] = $_REQUEST['floor_bathrooms'][$k];
+              $fdata[$k]['floor_unit']    = $_REQUEST['floor_unit'][$k];
+              $fdata[$k]['floor_size']    = $_REQUEST['floor_size'][$k];
+              $fdata[$k]['floor_builtupArea']    = $_REQUEST['floor_builtupArea'][$k];
+              $fdata[$k]['floor_basePrice']    = $_REQUEST['floor_basePrice'][$k];
+              $fdata[$k]['floor_totalPrice']    = $_REQUEST['floor_totalPrice'][$k];
+              $floorPlans[]                  = $fdata;
+          }
+		  
+		  /*foreach ($_FILES['floor_planImage']['name'] as $k => $fval) {
               $fdata[$k]['floor_type']      = $_REQUEST['floor_type'][$k];
               $fdata[$k]['floor_size']      = $_REQUEST['floor_size'][$k];
               $fdata[$k]['floor_basePrice'] = $_REQUEST['floor_basePrice'][$k];
               
               /******For Floor Image******/
-              $_FILES['mFile']['name']      = $_FILES['floor_planImage']['name'][$k];
+             /* $_FILES['mFile']['name']      = $_FILES['floor_planImage']['name'][$k];
               $_FILES['mFile']['type']      = $_FILES['floor_planImage']['type'][$k];
               $_FILES['mFile']['tmp_name']  = $_FILES['floor_planImage']['tmp_name'][$k];
               $_FILES['mFile']['error']     = $_FILES['floor_planImage']['error'][$k];
               $_FILES['mFile']['size']      = $_FILES['floor_planImage']['size'][$k];
               $fdata[$k]['floor_planImage'] = $this->singleUpload('mFile', 'properties/floorPlans');
               /******For Floor Image******/
-              
+              /*
               $fdata[$k]['floor_totalPrice'] = $_REQUEST['floor_totalPrice'][$k];
               $fdata[$k]['floor_isStudy']    = $_REQUEST['floor_isStudy'][$k];
               $fdata[$k]['floor_toilets']    = $_REQUEST['floor_toilets'][$k];
               $floorPlans[]                  = $fdata;
-          }
+          }*/
+		  
           /*************************---PLOT DETAILS---***************************/
           foreach ($_FILES['plot_Image']['name'] as $k => $fval) {
               $fdata[$k]['plot_size']      = $_REQUEST['plot_size'][$k];

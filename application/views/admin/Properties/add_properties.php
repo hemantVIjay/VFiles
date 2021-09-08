@@ -227,18 +227,15 @@
                      </thead>
                      <tbody id="floor_plans">
                         <tr>
-                           <td><input type="checkbox" id="check_1"></td>
-                           <td><a href="javascript:void(0);" onclick="addRoom_Sizes(this);" style="text-decoration:underline;font-weight:900;">ADD SIZES</a>
-						   <input type="hidden" name="room_sizes[]" id="roomSizes_1"></td>
-						   <td><a href="javascript:void(0);" onclick="addDescription(this);" style="text-decoration:underline;font-weight:900;">ADD DESC.</a>
-						   <input type="hidden" name="room_desc[]" id="roomDesc_1"></td>
-						   <td><select class="form-select" id="apartment_1" name="floor_type[]" onchange="generateUnitName(this);">
-                                 <?= _Numbers('', 10); ?>
-                              </select></td>
-						   <td><select class="form-select" id="apartment_1" name="floor_type[]" onchange="generateUnitName(this);">
-                                 <?= _Numbers('', 10); ?>
-                              </select></td>
-						   <td><input type="hidden" name="allRooms[]" id="allRooms_1"><input type="text" class="form-control" id="unitName_1" name="floor_unit[]" autocomplete="Off"/></td>
+                           <td><input type="hidden" name="floor_totalRoomSizes[]" id="allRooms_1">
+						   <input type="checkbox" id="check_1"></td>
+                           <td><input type="hidden" name="floor_allRoomSizes[]" id="roomSizes_1">
+						   <a href="javascript:void(0);" onclick="addRoom_Sizes(this);" style="text-decoration:underline;font-weight:900;">ADD SIZES</a></td>
+						   <td><input type="hidden" name="floor_roomDesc[]" id="roomDesc_1">
+						   <a href="javascript:void(0);" onclick="addDescription(this);" style="text-decoration:underline;font-weight:900;">ADD DESC.</a></td>
+						   <td><select class="form-select" id="bedrooms_1" name="floor_bedrooms[]" onchange="generateUnitName(this);"><?= _Numbers('', 10); ?></select></td>
+						   <td><select class="form-select" id="bathrooms_1" name="floor_bathrooms[]" onchange="generateUnitName(this);"><?= _Numbers('', 10); ?></select></td>
+						   <td><input type="text" class="form-control" id="unitName_1" name="floor_unit[]" autocomplete="Off"/></td>
 						   <td><input type="text" class="form-control text-right" id="size_1" name="floor_size[]" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
                            <td><input type="text" class="form-control text-right" id="builtupArea_1" name="floor_builtupArea[]" onkeyup="totalPrice(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
                            <td><input type="text" class="form-control text-right" id="basePrice_1" name="floor_basePrice[]" onkeyup="totalPrice(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
@@ -381,6 +378,8 @@
    var table = document.getElementById(tableID);
    var rowCount = table.rows.length;
    var row = table.insertRow(rowCount);
+   rowCount = rowCount+1;
+   console.log(rowCount);
    var colCount = table.rows[0].cells.length;
    for (var i = 0; i < colCount; i++) {
    var newcell = row.insertCell(i);
@@ -388,7 +387,7 @@
    switch (newcell.childNodes[0].type) {
    	case "text":
    		newcell.childNodes[0].value = "";
-   		var nod_id = newcell.childNodes[0].id.split("_");;
+   		var nod_id = newcell.childNodes[0].id.split("_");
    		if(!isNaN(nod_id[1]))
    		newcell.childNodes[0].id = nod_id[0]+'_'+rowCount;
    		else
@@ -396,7 +395,7 @@
    		break;
    	case "checkbox":
    		newcell.childNodes[0].checked = false;
-   		var nod_id = newcell.childNodes[0].id.split("_");;
+   		var nod_id = newcell.childNodes[0].id.split("_");
    		if(!isNaN(nod_id[1]))
    		newcell.childNodes[0].id = nod_id[0]+'_'+rowCount;
    		else
@@ -404,7 +403,15 @@
    		break;
    	case "file":
    		newcell.childNodes[0].value = "";
-   		var nod_id = newcell.childNodes[0].id.split("_");;
+   		var nod_id = newcell.childNodes[0].id.split("_");
+   		if(!isNaN(nod_id[1]))
+   		newcell.childNodes[0].id = nod_id[0]+'_'+rowCount;
+   		else
+   		newcell.childNodes[0].id = nod_id[0]+'_'+nod_id[1]+'_'+rowCount;
+   		break;
+	case "hidden":
+		newcell.childNodes[0].value = "";
+   		var nod_id = newcell.childNodes[0].id.split("_");
    		if(!isNaN(nod_id[1]))
    		newcell.childNodes[0].id = nod_id[0]+'_'+rowCount;
    		else
@@ -412,7 +419,7 @@
    		break;
    	case "select-one":
    		newcell.childNodes[0].selectedIndex = 0;
-   		var nod_id = newcell.childNodes[0].id.split("_");;
+   		var nod_id = newcell.childNodes[0].id.split("_");
    		if(!isNaN(nod_id[1]))
    		newcell.childNodes[0].id = nod_id[0]+'_'+rowCount;
    		else
@@ -536,7 +543,7 @@
 	     $('.modal-content').load(dataURL+'admin/modals/getRoom_Data',function(){
          var hID = $(ev).closest('tr').find('td:nth-child(2)').find('input[type="hidden"]').attr('id');
 		 $('#button_val').val(hID);
-         $('#dyNamicModal').modal('show');
+         $('#dyNamicModal').modal('show', { backdrop: 'static', keyboard: false });
     });
 	
    }
@@ -546,10 +553,11 @@
 			 var hID = $(ev).closest('tr').find('td:nth-child(3)').find('input[type="hidden"]').attr('id');
 			 var rSizes = $(ev).closest('tr').find('td:nth-child(2)').find('input[type="hidden"]').val();
 			 if(rSizes==''){
-				 alert();
+				 alert('Please add Room sizes first!');
+				 return false;
 			 }   
 			 $('#button_val').val(hID);
-			 $('#dyNamicModal').modal('show');
+			 $('#dyNamicModal').modal('show', { backdrop: 'static', keyboard: false });
 	 });	
    }
    
@@ -560,14 +568,16 @@
 	  $('#'+tblID+' > tr').each(function(i, t){
 		 rr  = $(t).find('td:nth-child(2)').find('input').val();
          if(rr!=''){
-			Sizes.push(rr); 
+			var tmp = {};
+            tmp['room_size'] = rr;			
+			Sizes.push(tmp); 
 			totalSizes = parseFloat(totalSizes) + parseFloat(rr); 
 		 }		 
 	  });
 	  var data = JSON.stringify(Sizes);
 	  $('#'+trT).val(data);
 	  $('#'+trT).closest('tr').find('td:nth-child(4)').find('select').val(rowCount);
-	  $('#'+trT).closest('tr').find('td:nth-child(6)').find('input[type="hidden"]').val(parseFloat(totalSizes));
+	  $('#'+trT).closest('tr').find('td:nth-child(1)').find('input[type="hidden"]').val(parseFloat(totalSizes));
 	  $('#dyNamicModal').modal('hide');
    }
 
@@ -581,7 +591,7 @@
    function generateUnitName(el){
 	   var content = '';
 	   var unit = $(el).closest('tr').find('td:nth-child(6)').find('input[type="text"]');
-	   var totalSizes = $(el).closest('tr').find('td:nth-child(6)').find('input[type="hidden"]').val();
+	   var totalSizes = $(el).closest('tr').find('td:nth-child(1)').find('input[type="hidden"]').val();
 	   var bhk = $(el).closest('tr').find('td:nth-child(4)').find('select').val();
 	   var toilets = $(el).closest('tr').find('td:nth-child(5)').find('select').val();
 	   content = bhk+'BHK '+' + '+toilets+'T ('+totalSizes+' SqFt.)';
