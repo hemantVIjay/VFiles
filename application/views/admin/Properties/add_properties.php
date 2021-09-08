@@ -228,15 +228,17 @@
                      <tbody id="floor_plans">
                         <tr>
                            <td><input type="checkbox" id="check_1"></td>
-                           <td><a href="javascript:void(0);" onclick="addRoom_Sizes(this);"  style="text-decoration:underline;font-weight:900;">ADD SIZES</a><input type="hidden" name="room_sizes[]" id="roomSizes_1"></td>
-						   <td><a href="javascript:void(0);" onclick="addDescription(this);" style="text-decoration:underline;font-weight:900;">ADD DESC.</a></td>
-						   <td><select class="form-select" id="apartment_1" name="floor_type[]">
+                           <td><a href="javascript:void(0);" onclick="addRoom_Sizes(this);" style="text-decoration:underline;font-weight:900;">ADD SIZES</a>
+						   <input type="hidden" name="room_sizes[]" id="roomSizes_1"></td>
+						   <td><a href="javascript:void(0);" onclick="addDescription(this);" style="text-decoration:underline;font-weight:900;">ADD DESC.</a>
+						   <input type="hidden" name="room_desc[]" id="roomDesc_1"></td>
+						   <td><select class="form-select" id="apartment_1" name="floor_type[]" onchange="generateUnitName(this);">
                                  <?= _Numbers('', 10); ?>
                               </select></td>
-						   <td><select class="form-select" id="apartment_1" name="floor_type[]">
+						   <td><select class="form-select" id="apartment_1" name="floor_type[]" onchange="generateUnitName(this);">
                                  <?= _Numbers('', 10); ?>
                               </select></td>
-						   <td><input type="text" class="form-control" id="unitName_1" name="floor_unit[]" autocomplete="Off"/></td>
+						   <td><input type="hidden" name="allRooms[]" id="allRooms_1"><input type="text" class="form-control" id="unitName_1" name="floor_unit[]" autocomplete="Off"/></td>
 						   <td><input type="text" class="form-control text-right" id="size_1" name="floor_size[]" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
                            <td><input type="text" class="form-control text-right" id="builtupArea_1" name="floor_builtupArea[]" onkeyup="totalPrice(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
                            <td><input type="text" class="form-control text-right" id="basePrice_1" name="floor_basePrice[]" onkeyup="totalPrice(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
@@ -531,34 +533,58 @@
    
    
    function addRoom_Sizes(ev){
-         $('.modal-content').load(dataURL+'admin/modals/getRoom_Data',function(){
+	     $('.modal-content').load(dataURL+'admin/modals/getRoom_Data',function(){
+         var hID = $(ev).closest('tr').find('td:nth-child(2)').find('input[type="hidden"]').attr('id');
+		 $('#button_val').val(hID);
          $('#dyNamicModal').modal('show');
     });
 	
    }
 
-   function addDescription(ev){	 
-         $('.modal-content').load(dataURL+'admin/modals/getDesc_Data',function(){
-         $('#dyNamicModal').modal('show');
-    });	
+   function addDescription(ev){	
+      $('.modal-content').load(dataURL+'admin/modals/getDesc_Data',function(){
+			 var hID = $(ev).closest('tr').find('td:nth-child(3)').find('input[type="hidden"]').attr('id');
+			 var rSizes = $(ev).closest('tr').find('td:nth-child(2)').find('input[type="hidden"]').val();
+			 if(rSizes==''){
+				 alert();
+			 }   
+			 $('#button_val').val(hID);
+			 $('#dyNamicModal').modal('show');
+	 });	
    }
    
    function saveRoom_sizes(e, tblID){
     var rowCount = $('#'+tblID+' tr').length;
-	  var rr = 0; var Sizes = [];
+    var trT = $('#button_val').val();
+	var rr = 0; totalSizes = 0; var Sizes = [];
 	  $('#'+tblID+' > tr').each(function(i, t){
 		 rr  = $(t).find('td:nth-child(2)').find('input').val();
          if(rr!=''){
 			Sizes.push(rr); 
+			totalSizes = parseFloat(totalSizes) + parseFloat(rr); 
 		 }		 
 	  });
 	  var data = JSON.stringify(Sizes);
-	  console.log(data);
+	  $('#'+trT).val(data);
+	  $('#'+trT).closest('tr').find('td:nth-child(4)').find('select').val(rowCount);
+	  $('#'+trT).closest('tr').find('td:nth-child(6)').find('input[type="hidden"]').val(parseFloat(totalSizes));
+	  $('#dyNamicModal').modal('hide');
    }
 
-   function saveDesc(e, tblID){
-    
-    	   
+   function saveDesc(e){
+	var trT = $('#button_val').val();   
+	var desc = $('#roomDesc').val();   
+	$('#'+trT).closest('tr').find('td:nth-child(3)').find('input[type="hidden"]').val(desc);   
+	$('#dyNamicModal').modal('hide');
    }
    
+   function generateUnitName(el){
+	   var content = '';
+	   var unit = $(el).closest('tr').find('td:nth-child(6)').find('input[type="text"]');
+	   var totalSizes = $(el).closest('tr').find('td:nth-child(6)').find('input[type="hidden"]').val();
+	   var bhk = $(el).closest('tr').find('td:nth-child(4)').find('select').val();
+	   var toilets = $(el).closest('tr').find('td:nth-child(5)').find('select').val();
+	   content = bhk+'BHK '+' + '+toilets+'T ('+totalSizes+' SqFt.)';
+	   unit.val(content);
+   }
 </SCRIPT>
