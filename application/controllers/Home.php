@@ -19,6 +19,11 @@ class Home extends MY_Controller {
 	public function properties_details()
 	{
 		$data['title']=$this->lang->line("text_home");
+		$id  = $this->uri->segment(2);
+		$result = $this->home->property_details($id);
+		
+        $data['property_info'] = $result;
+        $data['floor_plans'] = $result;
 		$data['sub_view'] = $this->load->view('site/pages/properties-details', $data, TRUE);
         $this->load->view('site/_layout', $data);
 	}
