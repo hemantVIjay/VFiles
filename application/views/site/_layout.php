@@ -36,20 +36,12 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 	  <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="javascript:;" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="javascript:;" id="ctDdwn">
            <span class="pvh-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 <path opacity="0.3" d="M18.0624 15.3454L13.1624 20.7453C12.5624 21.4453 11.5624 21.4453 10.9624 20.7453L6.06242 15.3454C4.56242 13.6454 3.76242 11.4452 4.06242 8.94525C4.56242 5.34525 7.46242 2.44534 11.0624 2.04534C15.8624 1.54534 19.9624 5.24525 19.9624 9.94525C20.0624 12.0452 19.2624 13.9454 18.0624 15.3454ZM13.0624 10.0453C13.0624 9.44534 12.6624 9.04534 12.0624 9.04534C11.4624 9.04534 11.0624 9.44534 11.0624 10.0453V13.0453H13.0624V10.0453Z" fill="black"/>
 <path d="M12.6624 5.54531C12.2624 5.24531 11.7624 5.24531 11.4624 5.54531L8.06241 8.04531V12.0453C8.06241 12.6453 8.46241 13.0453 9.06241 13.0453H11.0624V10.0453C11.0624 9.44531 11.4624 9.04531 12.0624 9.04531C12.6624 9.04531 13.0624 9.44531 13.0624 10.0453V13.0453H15.0624C15.6624 13.0453 16.0624 12.6453 16.0624 12.0453V8.04531L12.6624 5.54531Z" fill="black"/>
 </svg></span> Buy in Gr. Noida
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="javascript:;">Noida</a></li>
-            <li><a class="dropdown-item" href="javascript:;">Greater Noida</a></li>
-			<li><a class="dropdown-item" href="javascript:;">Yamuna Expressway</a></li>
-			<li><a class="dropdown-item" href="javascript:;">Ghaziabad</a></li>
-            <li><a class="dropdown-item" href="javascript:;">Delhi</a></li>
-			<li><a class="dropdown-item" href="javascript:;">Gurgaon</a></li>
-          </ul>
         </li>
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="#">
@@ -83,6 +75,85 @@
     </div>
   </div>
 </nav>
+
+<div class="ddmCity">
+			<div class="row gx-3">
+				<div class="col-xl-1 col-md-2 col-sm-3">
+					<a href="javascript:;" class="ctyLink">
+						<img src="<?= base_url(); ?>assets/images/cities/icons/mumbai.png" class="img-fluid">
+						<span class="ctyName">Delhi</span>
+					</a>
+				</div>
+				<div class="col-xl-1 col-md-2 col-sm-3">
+					<a href="javascript:;" class="ctyLink">
+						<img src="<?= base_url(); ?>assets/images/cities/icons/2.png" class="img-fluid">
+						<span class="ctyName">Noida</span>
+					</a>
+				</div>
+				<div class="col-xl-1 col-md-2 col-sm-3">
+					<a href="javascript:;" class="ctyLink">
+						<img src="<?= base_url(); ?>assets/images/cities/icons/3.png" class="img-fluid">
+						<span class="ctyName">Gurgaon</span>
+					</a>
+				</div>
+				<div class="col-xl-1 col-md-2 col-sm-3">
+					<a href="javascript:;" class="ctyLink">
+						<img src="<?= base_url(); ?>assets/images/cities/icons/4.png" class="img-fluid">
+						<span class="ctyName">Mumbai</span>
+					</a>
+				</div>
+				<div class="col-xl-1 col-md-2 col-sm-3">
+					<a href="javascript:;" class="ctyLink">
+						<img src="<?= base_url(); ?>assets/images/cities/icons/5.png" class="img-fluid">
+						<span class="ctyName">Pune</span>
+					</a>
+				</div>
+				<div class="col-xl-1 col-md-2 col-sm-3">
+					<a href="javascript:;" class="ctyLink">
+						<img src="<?= base_url(); ?>assets/images/cities/icons/6.png" class="img-fluid">
+						<span class="ctyName">Kolkata</span>
+					</a>
+				</div>
+				<div class="col-xl-1 col-md-2 col-sm-3">
+					<a href="javascript:;" class="ctyLink">
+						<img src="<?= base_url(); ?>assets/images/cities/icons/7.png" class="img-fluid">
+						<span class="ctyName">Hyderabad</span>
+					</a>
+				</div>
+				<div class="col-xl-1 col-md-2 col-sm-3">
+					<a href="javascript:;" class="ctyLink">
+						<img src="<?= base_url(); ?>assets/images/cities/icons/8.png" class="img-fluid">
+						<span class="ctyName">Ghaziabad</span>
+					</a>
+				</div>
+				<div class="col-xl-1 col-md-2 col-sm-3">
+					<a href="javascript:;" class="ctyLink">
+						<img src="<?= base_url(); ?>assets/images/cities/icons/9.png" class="img-fluid">
+						<span class="ctyName">Faridabad</span>
+					</a>
+				</div>
+				<div class="col-xl-1 col-md-2 col-sm-3">
+					<a href="javascript:;" class="ctyLink">
+						<img src="<?= base_url(); ?>assets/images/cities/icons/10.png" class="img-fluid">
+						<span class="ctyName">Bengaluru</span>
+					</a>
+				</div>
+				<div class="col-xl-1 col-md-2 col-sm-3">
+					<a href="javascript:;" class="ctyLink">
+						<img src="<?= base_url(); ?>assets/images/cities/icons/11.png" class="img-fluid">
+						<span class="ctyName">Chennai</span>
+					</a>
+				</div>
+				<div class="col-xl-1 col-md-2 col-sm-3">
+					<a href="javascript:;" class="ctyLink">
+						<img src="<?= base_url(); ?>assets/images/cities/icons/12.png" class="img-fluid">
+						<span class="ctyName">Lucknow</span>
+					</a>
+				</div>
+			</div>
+		</div>
+
+
 <!-- *****CONTENT***** -->
 <main class="main-content">
     <?= $sub_view; ?>
@@ -204,3 +275,11 @@
  </div>
 <!--Main Footer-->
 <!--<?php //include_once('_footer.php'); ?>-->
+
+<script>
+$(document).ready(function(){
+  $("#ctDdwn").click(function(){
+    $(".ddmCity").slideToggle();
+  });
+});
+</script>

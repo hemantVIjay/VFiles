@@ -604,6 +604,33 @@ right:0;
 		font-size: .925rem;
 		vertical-align: middle;
 	}
+.ddmCity {
+	display:none;
+	width: 100%;
+	position: fixed;
+	background: #fff;
+	padding: 1rem;
+	box-shadow: rgba(0, 0, 0, .10) 0px 8px 12px 0px;
+	z-index: 10;
+}
+.ctyLink {
+	display: block;
+	text-align: center;
+	border: 1px solid transparent;
+	padding-bottom:.5rem;
+}
+	.ctyLink:hover{
+		border:1px solid #eae9e5;
+	}
+	.ctyLink img {
+		height: 64px;
+	}
+	.ctyName {
+		display: block;
+		color: #212529;
+		font-size: .845rem;
+		font-weight: 600;
+	}
 /*Scroll Nav*/
 .eqbx-fixed {
 	top: 0;
