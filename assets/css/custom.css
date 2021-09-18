@@ -772,6 +772,10 @@ right:0;
 }
 .card-body{padding:1rem 1.25rem;}
 .pv-ptttl{font-weight:700;}
+	.pv-ptttl a{color:#212529;}
+	.pv-ptttl a:hover {
+		color: #ffa506;
+	}
 .pv-lprc {
 	font-size: 1.25rem;
 	font-weight: 700;
