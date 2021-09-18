@@ -302,16 +302,21 @@ a{
 .pvpr-name {
 	font-size: 1.05rem;
 	font-weight: 700;
-	color: #000;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box;
 	-webkit-line-clamp: 1;
 	-webkit-box-orient: vertical;
 }
-.pvpr-loc, .bldr-name{
-  color: #7f7f7f;
-}
+	.pvpr-name a{
+		color:#212529;
+	}
+	.pvpr-name a:hover {
+		color:#ffa506;
+	}
+	.pvpr-loc, .bldr-name {
+		color: #7f7f7f;
+	}
 .pvpr-prc{
 font-weight: 700;
 }

@@ -41,7 +41,7 @@
                             <div class="card-img">
                                 <img src="<?= base_url(); ?>assets/images/cities/noida.jpg" class="img-fluid">
                             </div>
-                            <div class="card-img-overlay"><div class="ct-title">Project in<br />Noida</div></div>
+                            <a href="javascript:;" class="card-img-overlay"><span class="ct-title">Project in<br />Noida</span></a>
                         </div>
     </div>
     <div class="item">
@@ -49,7 +49,7 @@
                             <div class="card-img">
                                 <img src="<?= base_url(); ?>assets/images/cities/greater-noida.jpg" class="img-fluid">
                             </div>
-                            <div class="card-img-overlay"><div class="ct-title">Project in<br />Greater Noida</div></div>
+							<a href="javascript:;" class="card-img-overlay"><span class="ct-title">Project in<br />Greater Noida</span></a>
                         </div>
     </div>
     <div class="item">
@@ -57,7 +57,7 @@
                             <div class="card-img">
                                 <img src="<?= base_url(); ?>assets/images/cities/yamuna-expressway.jpg" class="img-fluid">
                             </div>
-                            <div class="card-img-overlay"><div class="ct-title">Project in<br />Yamuna Expressway</div></div>
+							<a href="javascript:;" class="card-img-overlay"><span class="ct-title">Project in<br />Yamuna Expressway</span></a>
                         </div>
     </div>
     <div class="item">
@@ -65,7 +65,7 @@
                             <div class="card-img">
                                 <img src="<?= base_url(); ?>assets/images/cities/ghaziabad.jpg" class="img-fluid">
                             </div>
-                            <div class="card-img-overlay"><div class="ct-title">Project in<br />Ghaziabad</div></div>
+							<a href="javascript:;" class="card-img-overlay"><span class="ct-title">Project in<br />Ghaziabad</span></a>
                         </div>
     </div>
     <div class="item">
@@ -73,7 +73,7 @@
                             <div class="card-img">
                                 <img src="<?= base_url(); ?>assets/images/cities/delhi.jpg" class="img-fluid">
                             </div>
-                            <div class="card-img-overlay"><div class="ct-title">Project in<br />Delhi</div></div>
+							<a href="javascript:;" class="card-img-overlay"><span class="ct-title">Project in<br />Delhi</span></a>
                         </div>
     </div>
     <div class="item"> 
@@ -82,7 +82,7 @@
                             <div class="card-img">
                                 <img src="<?= base_url(); ?>assets/images/cities/gurgaon.jpg" class="img-fluid">
                             </div>
-                            <div class="card-img-overlay"><div class="ct-title">Project in<br />Gurgaon</div></div>
+							<a href="javascript:;" class="card-img-overlay"><span class="ct-title">Project in<br />Gurgaon</span></a>
                         </div>
                       </div>
 </div>
@@ -91,7 +91,7 @@
                             <div class="card-img">
                                 <img src="<?= base_url(); ?>assets/images/cities/faridabad.jpg" class="img-fluid">
                             </div>
-                            <div class="card-img-overlay"><div class="ct-title">Project in<br />Faridabad</div></div>
+							<a href="javascript:;" class="card-img-overlay"><span class="ct-title">Project in<br />Faridabad</span></a>
                         </div>
                       </div>
 </div>
@@ -125,13 +125,13 @@ home to the most profitable budget!</p>
         <div class="card-img">
                                 <img src="<?= base_url(); ?>assets/images/plots/greater-noida-west.jpg" class="img-fluid">
                             </div>
-                            <div class="card-img-overlay">
+                            <a href="javascript:;" class="card-img-overlay">
                               <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
-                              <div class="prop-snfc">Possession from Mar 2024</div>
-                            </div>
+                              <span class="prop-snfc">Possession from Mar 2024</span>
+                            </a>
       </div>
   <div class="card-body">
-    <h5 class="pvpr-name">Godrej Nurture Phase 1</h5>
+    <h5 class="pvpr-name"><a href="javascript:;">Godrej Nurture Phase 1</a></h5>
     <div class="bldr-name mb-1">by Prateek Group</div>
     <div class="pvpr-loc mb-2">Sector- 151, Noida</div>
     <div class="d-flex justify-content-between">
@@ -147,13 +147,13 @@ home to the most profitable budget!</p>
       <div class="card-img">
                                 <img src="<?= base_url(); ?>assets/images/cities/greater-noida.jpg" class="img-fluid">
                             </div>
-                            <div class="card-img-overlay">
+                            <a href="javascript:;" class="card-img-overlay">
                               <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
-                              <div class="prop-snfc">Possession from Mar 2024</div>
-                            </div>
+                              <span class="prop-snfc">Possession from Mar 2024</span>
+                            </a>
 </div>
   <div class="card-body">
-    <h5 class="pvpr-name">Godrej Nurture Phase 1</h5>
+    <h5 class="pvpr-name"><a href="javascript:;">Godrej Nurture Phase 1</a></h5>
     <div class="bldr-name mb-1">by Prateek Group</div>
     <div class="pvpr-loc mb-2">Sector- 151, Noida</div>
     <div class="d-flex justify-content-between">
@@ -169,13 +169,13 @@ home to the most profitable budget!</p>
       <div class="card-img">
                                 <img src="<?= base_url(); ?>assets/images/cities/ghaziabad.jpg" class="img-fluid">
                             </div>
-                            <div class="card-img-overlay">
+                            <a href="javascript:;" class="card-img-overlay">
                               <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
-                              <div class="prop-snfc">Possession from Mar 2024</div>
-                            </div>
+                              <span class="prop-snfc">Possession from Mar 2024</span>
+                            </a>
 </div>
   <div class="card-body">
-    <h5 class="pvpr-name">Godrej Nurture Phase 1</h5>
+    <h5 class="pvpr-name"><a href="javascript:;">Godrej Nurture Phase 1</a></h5>
     <div class="bldr-name mb-1">by Prateek Group</div>
     <div class="pvpr-loc mb-2">Sector- 151, Noida</div>
     <div class="d-flex justify-content-between">
@@ -191,13 +191,13 @@ home to the most profitable budget!</p>
       <div class="card-img">
                                 <img src="<?= base_url(); ?>assets/images/cities/delhi.jpg" class="img-fluid">
                             </div>
-                            <div class="card-img-overlay">
+                             <a href="javascript:;" class="card-img-overlay">
                               <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
-                              <div class="prop-snfc">Possession from Mar 2024</div>
-                            </div>
+                              <span class="prop-snfc">Possession from Mar 2024</span>
+                            </a>
 </div>
   <div class="card-body">
-    <h5 class="pvpr-name">Godrej Nurture Phase 1</h5>
+    <h5 class="pvpr-name"><a href="javascript:;">Godrej Nurture Phase 1</a></h5>
     <div class="bldr-name mb-1">by Prateek Group</div>
     <div class="pvpr-loc mb-2">Sector- 151, Noida</div>
     <div class="d-flex justify-content-between">
@@ -213,13 +213,13 @@ home to the most profitable budget!</p>
       <div class="card-img">
                                 <img src="<?= base_url(); ?>assets/images/cities/gurgaon.jpg" class="img-fluid">
                             </div>
-                            <div class="card-img-overlay">
+                             <a href="javascript:;" class="card-img-overlay">
                               <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
-                              <div class="prop-snfc">Possession from Mar 2024</div>
-                            </div>
+                              <span class="prop-snfc">Possession from Mar 2024</span>
+                            </a>
 </div>
   <div class="card-body">
-    <h5 class="pvpr-name">Godrej Nurture Phase 1</h5>
+    <h5 class="pvpr-name"><a href="javascript:;">Godrej Nurture Phase 1</a></h5>
     <div class="bldr-name mb-1">by Prateek Group</div>
     <div class="pvpr-loc mb-2">Sector- 151, Noida</div>
     <div class="d-flex justify-content-between">
@@ -235,13 +235,13 @@ home to the most profitable budget!</p>
       <div class="card-img">
                                 <img src="<?= base_url(); ?>assets/images/cities/faridabad.jpg" class="img-fluid">
                             </div>
-                            <div class="card-img-overlay">
+                             <a href="javascript:;" class="card-img-overlay">
                               <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
-                              <div class="prop-snfc">Possession from Mar 2024</div>
-                            </div>
+                              <span class="prop-snfc">Possession from Mar 2024</span>
+                            </a>
 </div>
   <div class="card-body">
-    <h5 class="pvpr-name">Godrej Nurture Phase 1</h5>
+    <h5 class="pvpr-name"><a href="javascript:;">Godrej Nurture Phase 1</a></h5>
     <div class="bldr-name mb-1">by Prateek Group</div>
     <div class="pvpr-loc mb-2">Sector- 151, Noida</div>
     <div class="d-flex justify-content-between">
@@ -262,13 +262,13 @@ home to the most profitable budget!</p>
         <div class="card-img">
                                 <img src="<?= base_url(); ?>assets/images/cities/noida.jpg" class="img-fluid">
                             </div>
-                            <div class="card-img-overlay">
+                            <a href="javascript:;" class="card-img-overlay">
                               <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
-                              <div class="prop-snfc">Possession from Mar 2024</div>
-                            </div>
+                              <span class="prop-snfc">Possession from Mar 2024</span>
+                            </a>
       </div>
   <div class="card-body">
-    <h5 class="pvpr-name">6% Authority Residential Plots</h5>
+    <h5 class="pvpr-name"><a href="javascript:;">6% Authority Residential Plots</a></h5>
     <div class="bldr-name mb-1">by Greater Noida Industrial Development Authority</div>
     <div class="pvpr-loc mb-2">Sector- 151, Noida</div>
     <div class="d-flex justify-content-between">
@@ -284,13 +284,13 @@ home to the most profitable budget!</p>
       <div class="card-img">
                                 <img src="<?= base_url(); ?>assets/images/cities/greater-noida.jpg" class="img-fluid">
                             </div>
-                            <div class="card-img-overlay">
+                            <a href="javascript:;" class="card-img-overlay">
                               <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
-                              <div class="prop-snfc">Possession from Mar 2024</div>
-                            </div>
+                              <span class="prop-snfc">Possession from Mar 2024</span>
+                            </a>
 </div>
   <div class="card-body">
-    <h5 class="pvpr-name">Godrej Nurture Phase 1</h5>
+    <h5 class="pvpr-name"><a href="javascript:;">Godrej Nurture Phase 1</a></h5>
     <div class="bldr-name mb-1">by Prateek Group</div>
     <div class="pvpr-loc mb-2">Sector- 151, Noida</div>
     <div class="d-flex justify-content-between">
@@ -306,13 +306,13 @@ home to the most profitable budget!</p>
       <div class="card-img">
                                 <img src="<?= base_url(); ?>assets/images/cities/ghaziabad.jpg" class="img-fluid">
                             </div>
-                            <div class="card-img-overlay">
+                            <a href="javascript:;" class="card-img-overlay">
                               <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
-                              <div class="prop-snfc">Possession from Mar 2024</div>
-                            </div>
+                              <span class="prop-snfc">Possession from Mar 2024</span>
+                            </a>
 </div>
   <div class="card-body">
-    <h5 class="pvpr-name">Godrej Nurture Phase 1</h5>
+    <h5 class="pvpr-name"><a href="javascript:;">Godrej Nurture Phase 1</a></h5>
     <div class="bldr-name mb-1">by Prateek Group</div>
     <div class="pvpr-loc mb-2">Sector- 151, Noida</div>
     <div class="d-flex justify-content-between">
@@ -328,13 +328,13 @@ home to the most profitable budget!</p>
       <div class="card-img">
                                 <img src="<?= base_url(); ?>assets/images/cities/delhi.jpg" class="img-fluid">
                             </div>
-                            <div class="card-img-overlay">
+                             <a href="javascript:;" class="card-img-overlay">
                               <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
-                              <div class="prop-snfc">Possession from Mar 2024</div>
-                            </div>
+                              <span class="prop-snfc">Possession from Mar 2024</span>
+                            </a>
 </div>
   <div class="card-body">
-    <h5 class="pvpr-name">Godrej Nurture Phase 1</h5>
+    <h5 class="pvpr-name"><a href="javascript:;">Godrej Nurture Phase 1</a></h5>
     <div class="bldr-name mb-1">by Prateek Group</div>
     <div class="pvpr-loc mb-2">Sector- 151, Noida</div>
     <div class="d-flex justify-content-between">
@@ -350,13 +350,13 @@ home to the most profitable budget!</p>
       <div class="card-img">
                                 <img src="<?= base_url(); ?>assets/images/cities/gurgaon.jpg" class="img-fluid">
                             </div>
-                            <div class="card-img-overlay">
+                            <a href="javascript:;" class="card-img-overlay">
                               <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
-                              <div class="prop-snfc">Possession from Mar 2024</div>
-                            </div>
+                              <span class="prop-snfc">Possession from Mar 2024</span>
+                            </a>
 </div>
   <div class="card-body">
-    <h5 class="pvpr-name">Godrej Nurture Phase 1</h5>
+    <h5 class="pvpr-name"><a href="javascript:;">Godrej Nurture Phase 1</a></h5>
     <div class="bldr-name mb-1">by Prateek Group</div>
     <div class="pvpr-loc mb-2">Sector- 151, Noida</div>
     <div class="d-flex justify-content-between">
@@ -372,13 +372,13 @@ home to the most profitable budget!</p>
       <div class="card-img">
                                 <img src="<?= base_url(); ?>assets/images/cities/faridabad.jpg" class="img-fluid">
                             </div>
-                            <div class="card-img-overlay">
+                            <a href="javascript:;" class="card-img-overlay">
                               <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
-                              <div class="prop-snfc">Possession from Mar 2024</div>
-                            </div>
+                              <span class="prop-snfc">Possession from Mar 2024</span>
+                            </a>
 </div>
   <div class="card-body">
-    <h5 class="pvpr-name">Godrej Nurture Phase 1</h5>
+    <h5 class="pvpr-name"><a href="javascript:;">Godrej Nurture Phase 1</a></h5>
     <div class="bldr-name mb-1">by Prateek Group</div>
     <div class="pvpr-loc mb-2">Sector- 151, Noida</div>
     <div class="d-flex justify-content-between">
@@ -399,13 +399,13 @@ home to the most profitable budget!</p>
         <div class="card-img">
                                 <img src="<?= base_url(); ?>assets/images/cities/noida.jpg" class="img-fluid">
                             </div>
-                            <div class="card-img-overlay">
+                             <a href="javascript:;" class="card-img-overlay">
                               <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
-                              <div class="prop-snfc">Possession from Mar 2024</div>
-                            </div>
+                              <span class="prop-snfc">Possession from Mar 2024</span>
+                            </a>
       </div>
   <div class="card-body">
-    <h5 class="pvpr-name">Godrej Nurture Phase 1</h5>
+    <h5 class="pvpr-name"><a href="javascript:;">Godrej Nurture Phase 1</a></h5>
     <div class="bldr-name mb-1">by Prateek Group</div>
     <div class="pvpr-loc mb-2">Sector- 151, Noida</div>
     <div class="d-flex justify-content-between">
@@ -421,13 +421,13 @@ home to the most profitable budget!</p>
       <div class="card-img">
                                 <img src="<?= base_url(); ?>assets/images/cities/greater-noida.jpg" class="img-fluid">
                             </div>
-                            <div class="card-img-overlay">
+                            <a href="javascript:;" class="card-img-overlay">
                               <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
-                              <div class="prop-snfc">Possession from Mar 2024</div>
-                            </div>
+                              <span class="prop-snfc">Possession from Mar 2024</span>
+                            </a>
 </div>
   <div class="card-body">
-    <h5 class="pvpr-name">Godrej Nurture Phase 1</h5>
+    <h5 class="pvpr-name"><a href="javascript:;">Godrej Nurture Phase 1</a></h5>
     <div class="bldr-name mb-1">by Prateek Group</div>
     <div class="pvpr-loc mb-2">Sector- 151, Noida</div>
     <div class="d-flex justify-content-between">
@@ -443,13 +443,13 @@ home to the most profitable budget!</p>
       <div class="card-img">
                                 <img src="<?= base_url(); ?>assets/images/cities/ghaziabad.jpg" class="img-fluid">
                             </div>
-                            <div class="card-img-overlay">
+                            <a href="javascript:;" class="card-img-overlay">
                               <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
-                              <div class="prop-snfc">Possession from Mar 2024</div>
-                            </div>
+                              <span class="prop-snfc">Possession from Mar 2024</span>
+                            </a>
 </div>
   <div class="card-body">
-    <h5 class="pvpr-name">Godrej Nurture Phase 1</h5>
+    <h5 class="pvpr-name"><a href="javascript:;">Godrej Nurture Phase 1</a></h5>
     <div class="bldr-name mb-1">by Prateek Group</div>
     <div class="pvpr-loc mb-2">Sector- 151, Noida</div>
     <div class="d-flex justify-content-between">
@@ -465,13 +465,13 @@ home to the most profitable budget!</p>
       <div class="card-img">
                                 <img src="<?= base_url(); ?>assets/images/cities/delhi.jpg" class="img-fluid">
                             </div>
-                            <div class="card-img-overlay">
+                            <a href="javascript:;" class="card-img-overlay">
                               <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
-                              <div class="prop-snfc">Possession from Mar 2024</div>
-                            </div>
+                              <span class="prop-snfc">Possession from Mar 2024</span>
+                            </a>
 </div>
   <div class="card-body">
-    <h5 class="pvpr-name">Godrej Nurture Phase 1</h5>
+    <h5 class="pvpr-name"><a href="javascript:;">Godrej Nurture Phase 1</a></h5>
     <div class="bldr-name mb-1">by Prateek Group</div>
     <div class="pvpr-loc mb-2">Sector- 151, Noida</div>
     <div class="d-flex justify-content-between">
@@ -487,13 +487,13 @@ home to the most profitable budget!</p>
       <div class="card-img">
                                 <img src="<?= base_url(); ?>assets/images/cities/gurgaon.jpg" class="img-fluid">
                             </div>
-                            <div class="card-img-overlay">
+                            <a href="javascript:;" class="card-img-overlay">
                               <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
-                              <div class="prop-snfc">Possession from Mar 2024</div>
-                            </div>
+                              <span class="prop-snfc">Possession from Mar 2024</span>
+                            </a>
 </div>
   <div class="card-body">
-    <h5 class="pvpr-name">Godrej Nurture Phase 1</h5>
+    <h5 class="pvpr-name"><a href="javascript:;">Godrej Nurture Phase 1</a></h5>
     <div class="bldr-name mb-1">by Prateek Group</div>
     <div class="pvpr-loc mb-2">Sector- 151, Noida</div>
     <div class="d-flex justify-content-between">
@@ -509,13 +509,13 @@ home to the most profitable budget!</p>
       <div class="card-img">
                                 <img src="<?= base_url(); ?>assets/images/cities/faridabad.jpg" class="img-fluid">
                             </div>
-                            <div class="card-img-overlay">
+                            <a href="javascript:;" class="card-img-overlay">
                               <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
-                              <div class="prop-snfc">Possession from Mar 2024</div>
-                            </div>
+                              <span class="prop-snfc">Possession from Mar 2024</span>
+                            </a>
 </div>
   <div class="card-body">
-    <h5 class="pvpr-name">Godrej Nurture Phase 1</h5>
+    <h5 class="pvpr-name"><a href="javascript:;">Godrej Nurture Phase 1</a></h5>
     <div class="bldr-name mb-1">by Prateek Group</div>
     <div class="pvpr-loc mb-2">Sector- 151, Noida</div>
     <div class="d-flex justify-content-between">
