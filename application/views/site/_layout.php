@@ -159,7 +159,7 @@
     <?= $sub_view; ?>
 </main>
 
-<footer class="footer-pv ps-3 pe-3">
+<footer class="footer-pv ps-3 pe-3" id="footer">
   <div class="container-fluid mb-5">
       <div class="row">
         <div class="col-md-6">
