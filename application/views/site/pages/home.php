@@ -21,7 +21,7 @@
 			<option value="2">Ghaziabad</option>
 			<option value="3">Delhi</option>
 		  </select>
-		  <input type="text" class="form-control form-control-lg" placeholder="Search for locality, property type, project, builder...">
+		  <input type="text" class="form-control form-control-lg" placeholder="Search your property here...">
 		  <button class="btn btn-lg btn-primary" type="button">Search</button>
 		</div>
 	  </div>
