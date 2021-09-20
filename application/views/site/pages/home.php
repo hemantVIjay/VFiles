@@ -590,7 +590,7 @@ home to the most profitable budget!</p>
 <h2 class="pg-title-big text-center mt-5">Tools & Advice</h2>
   <div class="row">
       <div class="col-md-3 col-sm-6 text-center">
-          <div class="card bg-gray-1">
+          <div class="card">
               <div class="card-body">
                 <img src="<?= base_url(); ?>assets/images/trends.svg" class="img-fluid ta-icons">
                 <h5 class="ta-title mt-4">Trends & Rates</h5>
@@ -600,7 +600,7 @@ home to the most profitable budget!</p>
           </div>
       </div>
       <div class="col-md-3 col-sm-6 text-center">
-          <div class="card bg-gray-1">
+          <div class="card">
               <div class="card-body">
                 <img src="<?= base_url(); ?>assets/images/investment.svg" class="img-fluid ta-icons">
                 <h5 class="ta-title mt-4">Investment Spotlight</h5>
@@ -610,7 +610,7 @@ home to the most profitable budget!</p>
           </div>
       </div>
       <div class="col-md-3 col-sm-6 text-center">
-          <div class="card bg-gray-1">
+          <div class="card">
               <div class="card-body">
                 <img src="<?= base_url(); ?>assets/images/research.svg" class="img-fluid ta-icons">
                 <h5 class="ta-title mt-4">Research Insights</h5>
@@ -620,7 +620,7 @@ home to the most profitable budget!</p>
           </div>
       </div>
       <div class="col-md-3 col-sm-6 text-center">
-          <div class="card bg-gray-1">
+          <div class="card">
               <div class="card-body">
                 <img src="<?= base_url(); ?>assets/images/calculator.svg" class="img-fluid ta-icons">
                 <h5 class="ta-title mt-4">EMI Calculator</h5>
