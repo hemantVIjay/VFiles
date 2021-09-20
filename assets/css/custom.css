@@ -634,7 +634,8 @@ right:0;
 		border:1px solid #eae9e5;
 	}
 	.ctyLink img {
-		height: 64px;
+		height: 60px;
+	margin-bottom:.35rem;
 	}
 	.ctyName {
 		display: block;

@@ -88,73 +88,73 @@
 			<div class="row gx-3">
 				<div class="col-xl-1 col-md-2 col-sm-3">
 					<a href="javascript:;" class="ctyLink">
-						<img src="<?= base_url(); ?>assets/images/cities/icons/mumbai.png" class="img-fluid">
+						<img src="<?= base_url(); ?>assets/images/cities/icons/india-gate.svg" class="img-fluid">
 						<span class="ctyName">Delhi</span>
 					</a>
 				</div>
 				<div class="col-xl-1 col-md-2 col-sm-3">
 					<a href="javascript:;" class="ctyLink">
-						<img src="<?= base_url(); ?>assets/images/cities/icons/2.png" class="img-fluid">
+						<img src="<?= base_url(); ?>assets/images/cities/icons/vidhana-soudha.svg" class="img-fluid">
 						<span class="ctyName">Noida</span>
 					</a>
 				</div>
 				<div class="col-xl-1 col-md-2 col-sm-3">
 					<a href="javascript:;" class="ctyLink">
-						<img src="<?= base_url(); ?>assets/images/cities/icons/3.png" class="img-fluid">
+						<img src="<?= base_url(); ?>assets/images/cities/icons/open-hand-monument.svg" class="img-fluid">
 						<span class="ctyName">Gurgaon</span>
 					</a>
 				</div>
 				<div class="col-xl-1 col-md-2 col-sm-3">
 					<a href="javascript:;" class="ctyLink">
-						<img src="<?= base_url(); ?>assets/images/cities/icons/4.png" class="img-fluid">
+						<img src="<?= base_url(); ?>assets/images/cities/icons/gateway-of-india.svg" class="img-fluid">
 						<span class="ctyName">Mumbai</span>
 					</a>
 				</div>
 				<div class="col-xl-1 col-md-2 col-sm-3">
 					<a href="javascript:;" class="ctyLink">
-						<img src="<?= base_url(); ?>assets/images/cities/icons/5.png" class="img-fluid">
+						<img src="<?= base_url(); ?>assets/images/cities/icons/surat-municipal-corporation.svg" class="img-fluid">
 						<span class="ctyName">Pune</span>
 					</a>
 				</div>
 				<div class="col-xl-1 col-md-2 col-sm-3">
 					<a href="javascript:;" class="ctyLink">
-						<img src="<?= base_url(); ?>assets/images/cities/icons/6.png" class="img-fluid">
-						<span class="ctyName">Kolkata</span>
+						<img src="<?= base_url(); ?>assets/images/cities/icons/tajmahal.svg" class="img-fluid">
+						<span class="ctyName">Agra</span>
 					</a>
 				</div>
 				<div class="col-xl-1 col-md-2 col-sm-3">
 					<a href="javascript:;" class="ctyLink">
-						<img src="<?= base_url(); ?>assets/images/cities/icons/7.png" class="img-fluid">
+						<img src="<?= base_url(); ?>assets/images/cities/icons/charminar.svg" class="img-fluid">
 						<span class="ctyName">Hyderabad</span>
 					</a>
 				</div>
 				<div class="col-xl-1 col-md-2 col-sm-3">
 					<a href="javascript:;" class="ctyLink">
-						<img src="<?= base_url(); ?>assets/images/cities/icons/8.png" class="img-fluid">
+						<img src="<?= base_url(); ?>assets/images/cities/icons/victoria-memorial.svg" class="img-fluid">
 						<span class="ctyName">Ghaziabad</span>
 					</a>
 				</div>
 				<div class="col-xl-1 col-md-2 col-sm-3">
 					<a href="javascript:;" class="ctyLink">
-						<img src="<?= base_url(); ?>assets/images/cities/icons/9.png" class="img-fluid">
+						<img src="<?= base_url(); ?>assets/images/cities/icons/bara-imambara.svg" class="img-fluid">
 						<span class="ctyName">Faridabad</span>
 					</a>
 				</div>
 				<div class="col-xl-1 col-md-2 col-sm-3">
 					<a href="javascript:;" class="ctyLink">
-						<img src="<?= base_url(); ?>assets/images/cities/icons/10.png" class="img-fluid">
+						<img src="<?= base_url(); ?>assets/images/cities/icons/jhulta-minar.svg" class="img-fluid">
 						<span class="ctyName">Bengaluru</span>
 					</a>
 				</div>
 				<div class="col-xl-1 col-md-2 col-sm-3">
 					<a href="javascript:;" class="ctyLink">
-						<img src="<?= base_url(); ?>assets/images/cities/icons/11.png" class="img-fluid">
+						<img src="<?= base_url(); ?>assets/images/cities/icons/chennai-central-railway-station.svg" class="img-fluid">
 						<span class="ctyName">Chennai</span>
 					</a>
 				</div>
 				<div class="col-xl-1 col-md-2 col-sm-3">
 					<a href="javascript:;" class="ctyLink">
-						<img src="<?= base_url(); ?>assets/images/cities/icons/12.png" class="img-fluid">
+						<img src="<?= base_url(); ?>assets/images/cities/icons/bara-imambara.svg" class="img-fluid">
 						<span class="ctyName">Lucknow</span>
 					</a>
 				</div>
