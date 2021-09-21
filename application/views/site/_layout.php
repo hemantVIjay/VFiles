@@ -100,7 +100,7 @@
 				</div>
 				<div class="col-xl-1 col-md-2 col-sm-3">
 					<a href="javascript:;" class="ctyLink">
-						<img src="<?= base_url(); ?>assets/images/cities/icons/open-hand-monument.svg" class="img-fluid">
+						<img src="<?= base_url(); ?>assets/images/cities/icons/victoria-memorial.svg" class="img-fluid">
 						<span class="ctyName">Gurgaon</span>
 					</a>
 				</div>
