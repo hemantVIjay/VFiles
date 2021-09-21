@@ -28,6 +28,7 @@
   </div>
 </div>
 </section>
+
 <section class="section prop-loc-bys">
    <div class="container">
    <h2 class="cmn-title mb-3">Property in India</h2>
@@ -145,23 +146,10 @@
          </div>
       </div>
    </div>
-                            <div class="card-img">
-                                <img src="<?= base_url(); ?>assets/images/cities/gurgaon.jpg" class="img-fluid">
-                            </div>
-							<a href="javascript:;" class="card-img-overlay"><span class="ct-title">Project in<br />Gurgaon</span></a>
-                        </div>
-                      </div>
-</div>
-                      <div class="item">
-            <div class="card">
-                            <div class="card-img">
-                                <img src="<?= base_url(); ?>assets/images/cities/faridabad.jpg" class="img-fluid">
-                            </div>
-							<a href="javascript:;" class="card-img-overlay"><span class="ct-title">Project in<br />Faridabad</span></a>
-                        </div>
-                      </div>
+                            
 </div>
 </section>
+
 <section class="section fndhm">
    <div class="container">
       <div class="row justify-content-center mt-3 mb-3">
@@ -1006,87 +994,9 @@
       </div>
    </div>
 </section>
+
 <section class="section prop-loc-bys">
-   <div class="container">
-      <h2 class="cmn-title mb-3">Latest News & Articles</h2>
-      <div class="row">
-         <div class="col-md-6">
-            <div class="card">
-               <div class="row g-0">
-                  <div class="col-md-5">
-                     <img src="<?= base_url(); ?>assets/images/cities/gurgaon.jpg" class="img-fluid rounded-start">
-                  </div>
-                  <div class="col-md-7">
-                     <div class="card-body">
-                        <h5 class="nws-title"><a href="javascript:;">We realise the growth potential of Indian real estate, says marketing head of Warren Buffet-backed property brokerage</a></h5>
-                        <p class="nws-desc">In an exclusive interview with propvenues.com News, Sanya Aeren, chief advisor, Berkshire Hathway Home Services and Orenda India, speaks about the opportunities and challenges facing Berkshire Hathway’s foray into the Indian real estate market</p>
-                        <a class="rdmr-link" href="javascript:;">Read More<i class="bi bi-arrow-right"></i></a>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="col-md-6">
-            <div class="card">
-               <div class="row g-0">
-                  <div class="col-md-5">
-                     <img src="<?= base_url(); ?>assets/images/cities/yamuna-expressway.jpg" class="img-fluid rounded-start">
-                  </div>
-                  <div class="col-md-7">
-                     <div class="card-body">
-                        <h5 class="nws-title"><a href="javascript:;">We realise the growth potential of Indian real estate, says marketing head of Warren Buffet-backed property brokerage</a></h5>
-                        <p class="nws-desc">In an exclusive interview with propvenues.com News, Sanya Aeren, chief advisor, Berkshire Hathway Home Services and Orenda India, speaks about the opportunities and challenges facing Berkshire Hathway’s foray into the Indian real estate market</p>
-                        <a class="rdmr-link" href="javascript:;">Read More<i class="bi bi-arrow-right"></i></a>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-   <div class="container">
-      <h2 class="pg-title-big text-center mt-5">Tools & Advice</h2>
-      <div class="row">
-         <div class="col-md-3 col-sm-6 text-center">
-            <div class="card bg-gray-1">
-               <div class="card-body">
-                  <img src="<?= base_url(); ?>assets/images/trends.svg" class="img-fluid ta-icons">
-                  <h5 class="ta-title mt-4">Trends & Rates</h5>
-                  <p class="ta-desc">Get all there is to know about property rates and trends in your city.</p>
-                  <a class="rdmr-link" href="javascript:;">Read More<i class="bi bi-arrow-right"></i></a>
-               </div>
-            </div>
-         </div>
-         <div class="col-md-3 col-sm-6 text-center">
-            <div class="card bg-gray-1">
-               <div class="card-body">
-                  <img src="<?= base_url(); ?>assets/images/investment.svg" class="img-fluid ta-icons">
-                  <h5 class="ta-title mt-4">Investment Spotlight</h5>
-                  <p class="ta-desc">Find out where to invest in your city's best communities.</p>
-                  <a class="rdmr-link" href="javascript:;">Read More<i class="bi bi-arrow-right"></i></a>
-               </div>
-            </div>
-         </div>
-         <div class="col-md-3 col-sm-6 text-center">
-            <div class="card bg-gray-1">
-               <div class="card-body">
-                  <img src="<?= base_url(); ?>assets/images/research.svg" class="img-fluid ta-icons">
-                  <h5 class="ta-title mt-4">Research Insights</h5>
-                  <p class="ta-desc">Get real estate professional advice and research reports.</p>
-                  <a class="rdmr-link" href="javascript:;">Read More<i class="bi bi-arrow-right"></i></a>
-               </div>
-            </div>
-         </div>
-         <div class="col-md-3 col-sm-6 text-center">
-            <div class="card bg-gray-1">
-               <div class="card-body">
-                  <img src="<?= base_url(); ?>assets/images/calculator.svg" class="img-fluid ta-icons">
-                  <h5 class="ta-title mt-4">EMI Calculator</h5>
-                  <p class="ta-desc">Know how much you'll have to pay on your loan each month.</p>
-                  <a class="rdmr-link" href="javascript:;">Read More<i class="bi bi-arrow-right"></i></a>
-               </div>
-            </div>
-         </div>
+
 <div class="container">
     <h2 class="cmn-title mb-3">Latest News & Articles</h2>
        
@@ -1172,6 +1082,7 @@
               </div>
           </div>
       </div>
+   </div>
    </div>
 </section>
 <script src="<?= base_url(); ?>assets/plugins/owlcarousel/js/owl.carousel.min.js"></script>
