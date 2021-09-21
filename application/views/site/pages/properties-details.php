@@ -18,7 +18,7 @@
                   <div class="col-md-8">
                      <h2 class="pvpd-title"><?= $property_info->property_name; ?></h2>
                      <h6 class="pvpd-py">By<span> Imperia Structures Ltd.</span></h6>
-                     <h6 class="pvpd-locate">Gh- A5 Pocket, Jaypee Greens Sports City, Sector 25 Yamuna Expressway, Greater Noida</h6>
+                     <h6 class="pvpd-locate"><?= $property_info->property_address; ?></h6>
                   </div>
                   <div class="col-md-4 text-end">
                      <h1 class="pvpd-prc mb-3">₹ 36.92 L - 54.6 L<span class="pv-sb">₹ 5,200/ sq.ft</span></h1>
@@ -36,32 +36,34 @@
          </div>
          <div class="col-md-3">
             <div class="card pveq-card border-0 shadow" id="eqbx">
-               <div class="p-4">
+               <form action="<?= base_url();?>" method="POST" name="call_back" id="call_back" onsubmit="return validate();">
+			   <div class="p-4">
                   <h4 class="cmn-title mb-3">Contact with us</h4>
                   <div class="mb-3">
                      <label class="required">Full Name</label>
-                     <input type="text" class="form-control" placeholder="Enter your name" />
+                     <input type="text" class="form-control" placeholder="Enter your name" name="full_name" id="full_name"/>
                   </div>
                   <div class="mb-3">
                      <label class="required">Phone Number</label>
-                     <input type="text" class="form-control" placeholder="Enter your phone no." />
+                     <input type="text" class="form-control" placeholder="Enter your phone no." name="phone" id="phone"/>
                   </div>
                   <div class="mb-3">
                      <label class="required">Email ID</label>
-                     <input type="text" class="form-control" placeholder="Enter email id" />
+                     <input type="text" class="form-control" placeholder="Enter email id" name="email" id="email"/>
                   </div>
                   <div class="mb-3 d-flex">
-                     <input type="checkbox" class="cks" checked />
+                     <input type="checkbox" class="cks" checked name="terms" id="terms"/>
                      <span class="pvsml ms-2">I Agree to Propvenue's <a href="javascript:;">Terms of Use</a></span>
                   </div>
                   <div class="mb-3 d-flex">
-                     <input type="checkbox" class="cks" />
+                     <input type="checkbox" class="cks" name="loans" id="loans"/>
                      <span class="pvsml ms-2">I am interested in Home Loans</span>
                   </div>
                   <div class="d-grid gap-2">
-                     <button class="btn btn-primary" type="button">Get Call Back</button>
+                     <button class="btn btn-primary" type="submit" name="submit">Get Call Back</button>
                   </div>
                </div>
+			   </form>
             </div>
          </div>
       </div>
@@ -284,53 +286,26 @@
             <h4 class="cmn-title mb-4">Gallery</h4>
             <div class="pvfp-tab gllry-tabs">
                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                  <li class="nav-item" role="presentation">
-                     <button class="nav-link active" id="elevgt-tab" data-bs-toggle="tab" data-bs-target="#elevgt" type="button" role="tab" aria-controls="elevgt" aria-selected="true">Elevation</button>
+                  <?php foreach($properties_images as $ik=>$im){ $tab = str_replace(' ', '_', strtolower($ik));?>
+				  <li class="nav-item" role="presentation">
+                     <button class="nav-link" id="<?= $tab; ?>-tab" data-bs-toggle="tab" data-bs-target="#<?= $tab; ?>" type="button" role="tab" aria-controls="<?= $tab; ?>" aria-selected="true"><?= $ik; ?></button>
                   </li>
-                  <li class="nav-item" role="presentation">
-                     <button class="nav-link" id="vdogt-tab" data-bs-toggle="tab" data-bs-target="#vdogt" type="button" role="tab" aria-controls="vdogt" aria-selected="false">Video</button>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                     <button class="nav-link" id="cnstgt-tab" data-bs-toggle="tab" data-bs-target="#cnstgt" type="button" role="tab" aria-controls="cnstgt" aria-selected="false">Construction Updates</button>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                     <button class="nav-link" id="nbhdgt-tab" data-bs-toggle="tab" data-bs-target="#nbhdgt" type="button" role="tab" aria-controls="nbhdgt" aria-selected="false">Neighbourhood</button>
-                  </li>
+				  <?php } ?>
                </ul>
                <div class="tab-content py-4" id="myTabContent">
-                  <div class="tab-pane fade show active" id="elevgt" role="tabpanel" aria-labelledby="elevgt-tab">
+			      <?php foreach($properties_images as $kk=>$images){  $ftab = str_replace(' ','_',strtolower($kk)); ?>
+                  <div class="tab-pane fade" id="<?= $ftab; ?>" role="tabpanel" aria-labelledby="<?= $ftab; ?>-tab">
                      <div class="row">
-                        <div class="col-xl-3 col-md-4 col-sm-6">
-                           <a data-fancybox="gallery" href="<?= base_url(); ?>assets/images/cities/delhi.jpg" data-caption="Delhi City">
-                           <img src="<?= base_url(); ?>assets/images/cities/delhi.jpg" class="img-fluid" />
+                        <?php foreach($images as $sk=>$p_image){ ?>
+						<div class="col-xl-3 col-md-4 col-sm-6 mt-2">
+                           <a data-fancybox="gallery" href="<?= base_url(); ?>uploads/properties/<?= $kk; ?>/<?= $p_image->image_name; ?>" data-caption="<?= $p_image->image_desc; ?>">
+                           <img src="<?= base_url(); ?>uploads/properties/<?= $kk; ?>/<?= $p_image->image_name; ?>" class="img-fluid" />
                            </a>
                         </div>
-                        <div class="col-xl-3 col-md-4 col-sm-6">
-                           <a data-fancybox="gallery" href="<?= base_url(); ?>assets/images/cities/faridabad.jpg" data-caption="Faridabad City">
-                           <img src="<?= base_url(); ?>assets/images/cities/faridabad.jpg" class="img-fluid" />
-                           </a>
-                        </div>
-                        <div class="col-xl-3 col-md-4 col-sm-6">
-                           <a data-fancybox="gallery" href="<?= base_url(); ?>assets/images/cities/ghaziabad.jpg" data-caption="ghaziabad City">
-                           <img src="<?= base_url(); ?>assets/images/cities/ghaziabad.jpg" class="img-fluid" />
-                           </a>
-                        </div>
+						<?php } ?>
                      </div>
                   </div>
-                  <div class="tab-pane fade" id="vdogt" role="tabpanel" aria-labelledby="vdogt-tab">
-                     <div class="row">
-                        <div class="col-xl-3 col-md-4 col-sm-6">
-                           <a data-fancybox="gallery" href="<?= base_url(); ?>assets/images/home-banner.jpg" data-caption="Elevation">
-                           <img src="<?= base_url(); ?>assets/images/home-banner.jpg" class="img-fluid" />
-                           </a>
-                        </div>
-                        <div class="col-xl-3 col-md-4 col-sm-6">
-                           <a data-fancybox="gallery" href="<?= base_url(); ?>assets/images/home-banner.jpg" data-caption="Layout">
-                           <img src="<?= base_url(); ?>assets/images/home-banner.jpg" class="img-fluid" />
-                           </a>
-                        </div>
-                     </div>
-                  </div>
+				  <?php } ?>
                   <div class="tab-pane fade" id="cnstgt" role="tabpanel" aria-labelledby="cnstgt-tab">...</div>
                   <div class="tab-pane fade" id="nbhdgt" role="tabpanel" aria-labelledby="nbhdgt-tab">...</div>
                </div>
@@ -473,6 +448,7 @@
    				}
    		});
    }).scroll();
+<<<<<<< Updated upstream
 
 
 $(document).ready(function(){
@@ -537,3 +513,11 @@ $(window).scroll(function () {
 });
 
 </script>
+=======
+   
+   function validate(){
+	   alert();
+   }
+   
+</script>
+>>>>>>> Stashed changes

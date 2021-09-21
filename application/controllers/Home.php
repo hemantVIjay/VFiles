@@ -21,9 +21,15 @@ class Home extends MY_Controller {
 		$data['title']=$this->lang->line("text_home");
 		$id  = $this->uri->segment(2);
 		$result = $this->home->property_details($id);
+		$p_images = $this->home->property_images($id);
+		$i_arr = array();
+		foreach ($p_images as $key => $image) {
+		   $i_arr[$image->image_type][$key] = $image;
+		}
 		
         $data['property_info'] = $result;
         $data['floor_plans'] = $result;
+        $data['properties_images'] = $i_arr;
 		$data['sub_view'] = $this->load->view('site/pages/properties-details', $data, TRUE);
         $this->load->view('site/_layout', $data);
 	}
