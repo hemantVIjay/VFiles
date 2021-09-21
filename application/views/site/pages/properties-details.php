@@ -448,8 +448,6 @@
    				}
    		});
    }).scroll();
-<<<<<<< Updated upstream
-
 
 $(document).ready(function(){
 
@@ -512,12 +510,9 @@ $(window).scroll(function () {
 });
 });
 
-</script>
-=======
    
    function validate(){
 	   alert();
    }
    
 </script>
->>>>>>> Stashed changes
