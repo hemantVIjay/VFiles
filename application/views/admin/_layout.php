@@ -51,8 +51,32 @@ body::-webkit-scrollbar {
          -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
          background-color: #efa41c;
          }
+.page-loader {
+    background: #ffffff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 99999;
+}
+.ripple-loader {
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 50%;
+    width: 64px;
+    height: 64px;
+}
 </style>
 <body>
+      <!-- *****PAGE LOADER*****  -->
+      <div class="page-loader" id="page-loader">
+      <div class="ripple-loader">
+	   <img src="<?= base_url('assets/images/loader.svg'); ?>">
+      </div>
+      </div>
 	<header class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0 shadow">
   <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Propvenues</a>
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -155,6 +179,15 @@ body::-webkit-scrollbar {
 </div>
 </div>
 <?php include_once('components/_baseModal.php'); ?>
+<script>
+    var wn = $(window);
+    /*============================================
+     PAGE PRE LOADER
+	 ==============================================*/
+  wn.on('load', function () {
+        $('#page-loader').fadeOut(500);
+    });
+</script>
 </body>
 </html>
 

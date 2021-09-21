@@ -53,7 +53,7 @@
         <form method="POST" action="<?= base_url('admin/properties/upload_propertyImages'); ?>" id="img-upload-form" enctype="multipart/form-data" accept-charset="utf-8">
 		<input type="hidden" name="property_id" id="property_id">
 		 <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Add Gallery</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Property Gallery</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
          </div>
          <div class="modal-body" style="max-height:400px;min-height:400px;overflow-y:auto;">
