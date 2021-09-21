@@ -290,15 +290,15 @@
 					  <div class="card-img rounded-top-right-0">
 												<img src="<?= base_url(); ?>assets/images/cities/ghaziabad.jpg" class="img-fluid">
 											</div>
-											<div class="card-img-overlay">
+											<a href="javascript:;" class="card-img-overlay">
 											  <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA Approved</span>
-											  <div class="prop-snfc">Posted : 7 Sep. 2021</div>
-											</div>
+											  <span class="prop-snfc">Posted : 7 Sep. 2021</span>
+											</a>
 				</div>
 				</div>
 				<div class="col-md-8">
 				  <div class="card-body">
-					<h5 class="pv-ptttl mb-1">Godrej Serenity Noida</h5>
+					<h5 class="pv-ptttl mb-1"><a href="javascript:;">Godrej Serenity Noida</a></h5>
 					<h6 class="pvpd-py">By<span> Godrej Properties</span></h6>
 					<h6 class="pvpd-locate mb-3">Sector 16C, Greater Noida West</h6>
 					<div class="row mb-3">
@@ -352,15 +352,15 @@
 					  <div class="card-img rounded-top-right-0">
 												<img src="<?= base_url(); ?>assets/images/cities/greater-noida.jpg" class="img-fluid">
 											</div>
-											<div class="card-img-overlay">
+											<a href="javascript:;" class="card-img-overlay">
 											  <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA Approved</span>
-											  <div class="prop-snfc">Posted : 7 Sep. 2021</div>
-											</div>
+											  <span class="prop-snfc">Posted : 7 Sep. 2021</span>
+											</a>
 				</div>
 				</div>
 				<div class="col-md-8">
 				  <div class="card-body">
-					<h5 class="pv-ptttl mb-1">Imperia Prideville Nurture Phase 1</h5>
+					<h5 class="pv-ptttl mb-1"><a href="javascript:;">Imperia Prideville Nurture Phase 1</a></h5>
 					<h6 class="pvpd-py">By<span> Imperia Structures Ltd.</span></h6>
 					<h6 class="pvpd-locate mb-3">Jaypee Greens, Sector 25 Yamuna Expressway, Greater Noida</h6>
 					<div class="row mb-3">

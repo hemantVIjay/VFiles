@@ -403,6 +403,7 @@
 </div>
 <script src="<?= base_url(); ?>assets/plugins/gallery/jquery.fancybox.min.js"></script>
 <script>
+
    $(document).ready(function() {
     $('.fancybox').fancybox({
      beforeShow : function(){
@@ -472,4 +473,67 @@
    				}
    		});
    }).scroll();
+
+
+$(document).ready(function(){
+
+$("input[type='radio']").click(function(){
+var sim = $("input[type='radio']:checked").val();
+//alert(sim);
+if (sim<3) { $('.myratings').css('color','red'); $(".myratings").text(sim); }else{ $('.myratings').css('color','green'); $(".myratings").text(sim); } }); });
+
+$(document).ready(function() {
+		$('a[href*=#]').bind('click', function(e) {
+				e.preventDefault(); // prevent hard jump, the default behavior
+
+				var target = $(this).attr("href"); // Set the target as variable
+
+				// perform animated scrolling by getting top-position of target-element and set it as scroll target
+				$('html, body').stop().animate({
+						scrollTop: $(target).offset().top
+				}, 600, function() {
+						location.hash = target; //attach the hash (#jumptarget) to the pageurl
+				});
+
+				return false;
+		});
+});
+
+$(window).scroll(function() {
+		var scrollDistance = $(window).scrollTop();
+
+		// Show/hide menu on scroll
+		//if (scrollDistance >= 850) {
+		//		$('nav').fadeIn("fast");
+		//} else {
+		//		$('nav').fadeOut("fast");
+		//}
+	
+		// Assign active class to nav links while scolling
+		$('.page-section').each(function(i) {
+				if ($(this).position().top <= scrollDistance) {
+						$('.navigation a.active').removeClass('active');
+						$('.navigation a').eq(i).addClass('active');
+				}
+		});
+}).scroll();
+
+$(document).ready(function(){
+$(window).scroll(function () {   
+   
+ if($(window).scrollTop() > 112) {
+    $('#eqbx').css('position','fixed');
+    $('#eqbx').css('top','0'); 
+ }
+
+ else if ($(window).scrollTop() <= 112) {
+    $('#eqbx').css('position','');
+    $('#eqbx').css('top','');
+ }  
+    if ($('#eqbx').offset().top + $("#eqbx").height() > $("#footer").offset().top) {
+        $('#eqbx').css('top',-($("#eqbx").offset().top + $("#eqbx").height() - $("#footer").offset().top));
+    }
+});
+});
+
 </script>
