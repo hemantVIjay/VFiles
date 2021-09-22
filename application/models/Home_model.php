@@ -59,6 +59,27 @@ class Home_model extends MY_Model{
 		//return fetched data
         return ($query->num_rows() > 0)?$query->result():FALSE;
     }
+	
+	public function create_enquiry($post_data){
+        $this->_table_name='enquiries';
+        $this->_timestamps=TRUE;
+        //create faq caregory
+        $insert_id=$this->save($data=$post_data, $id = NULL);
+        if($insert_id){
+                $return_data=array(
+                    'status'=>TRUE,
+                    'label'=>'SUCCESS',
+                );
+                return $return_data;
+        }else{
+            //if not inseted
+            $return_data=array(
+                'status'=>FALSE,
+                'label'=>'ERROR',
+            );
+            return $return_data;
+        }
+    }
 
 	
 

@@ -530,7 +530,7 @@
         $('#pty_flat').find('input, textarea, button, select').attr('disabled','disabled');		
         $('#pty_plot').find('input, textarea, button, select').attr('disabled',false);		
 	   }
-	   if(pType == '2'){
+	   if(pType == '2' || pType == '3'){
 		$('#pty_flat').css('display','block');   
 		$('#pty_plot').css('display','none');
 		$('#pty_plot').find('input, textarea, button, select').attr('disabled','disabled');

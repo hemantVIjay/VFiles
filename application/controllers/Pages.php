@@ -96,6 +96,19 @@ class Pages extends MY_Controller {
 		$data['sub_view'] = $this->load->view('site/pages/about-us', $data, TRUE);
         $this->load->view('site/_layout', $data); 
 	}	
+
+	public function post_enquiry(){
+		$post_data = array(
+          'full_name' => $this->input->post('full_name'),
+          'phone' => $this->input->post('phone'),
+          'email_address' => $this->input->post('email'),
+          'terms_conditions' => $this->input->post('terms'),
+          'home_loans' => $this->input->post('loans'),
+          'status' => 2
+        ); 
+		
+		$result = $this->home->create_enquiry($post_data);
+	}	
 	
 	public function careers(){
 		$data['title']=$this->lang->line("text_search_result");
