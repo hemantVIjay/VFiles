@@ -73,6 +73,15 @@ class Masters_model extends MY_Model{
 		//return fetched data
         return ($query->num_rows() > 0)?$query->result():FALSE;
     }
+
+	public function _builderDetails($id){
+		$this->db->select('b.*');
+        $this->db->from('builders b');
+		$this->db->where('b.id',$id);
+        $query = $this->db->get();
+		//return fetched data
+        return ($query->num_rows() > 0)?$query->row():FALSE;
+    }
 	
 	public function create_bank($post_data){
         $this->_table_name='banks';

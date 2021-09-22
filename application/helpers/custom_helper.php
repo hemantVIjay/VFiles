@@ -319,6 +319,16 @@
       }
   }
 
+  if (!function_exists('_builderDetails')) {
+      function _builderDetails($id)
+      {
+          $ci =& get_instance();
+		  $str = 'PROPV';
+          $res = $ci->masters->_builderDetails($id);
+          return $res;
+      }
+  }
+
   if (!function_exists('_propertyCode')) {
       function _propertyCode($builder, $p_type, $loc)
       {

@@ -59,11 +59,11 @@
          <div class="row">
             <div class="col-md-4 col-6 mb-4">
                <div class="lblpvfd mb-1">Possession Start Date</div>
-               <div class="valuepvfd">August, 2025</div>
+               <div class="valuepvfd"><?= $property_info->project_phase; ?></div>
             </div>
             <div class="col-md-4 col-6 mb-4">
                <div class="lblpvfd mb-1">Status</div>
-               <div class="valuepvfd">Under Construction</div>
+               <div class="valuepvfd"><?= $property_info->project_phase; ?></div>
             </div>
             <div class="col-md-4 col-6 mb-4">
                <div class="lblpvfd mb-1">Project Area</div>
@@ -71,7 +71,7 @@
             </div>
             <div class="col-md-4 col-6 mb-4">
                <div class="lblpvfd mb-1">Project Size</div>
-               <div class="valuepvfd">6 Buildings - 557 units</div>
+               <div class="valuepvfd"><?= $property_info->no_of_towers; ?> Buildings - <?= $property_info->no_of_flats; ?> units</div>
             </div>
             <div class="col-md-4 col-6 mb-4">
                <div class="lblpvfd mb-1">Total Launched apartments</div>
@@ -287,8 +287,8 @@
          </div>
          <div class="page-section" id="7">
             <h4 class="cmn-title mb-4">About Developer</h4>
-            <div class="pvpd-desc">
-               Imperia Prideville is an upcoming housing project at Yeida in Yeida, being developed by Imperia Structures Ltd. Keeping in mind the needs of modern lifestyle of residents, the project provides various amenities. Imperia Prideville encompasses amenities such as Restaurant , Children's Play Area, Spa/Sauna/Steam, Gymnasium and Golf Course. ATMS, medical facilities, education institutions, and parks are within easy reach. The area is also well-connected by bus and road network.
+            <div class="pvpd-desc"><?php $builder = _builderDetails($property_info->builder_id);
+               echo $builder->builder_information; ?>
                <p></p>
             </div>
          </div>
