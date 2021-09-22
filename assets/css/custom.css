@@ -3,7 +3,7 @@ body{
 	font-size:.785rem;
 	line-height:1.5;
 }
-a, a:hover{color: #e48f27;}
+a, a:hover{color: #ffa506;}
 ul{
 	list-style:none;
 	margin:0;
@@ -74,7 +74,7 @@ ul{
   overflow-y: auto;
 }
 .bg-primary{
-	background:#e48f27 !important;
+	background:#ffa506 !important;
 }
 .bg-gray{background:#ece9e3 !important;}
 .btn{font-size:.785rem;}
@@ -149,7 +149,7 @@ label.required:after{
 	left:0;
 	width:50px;
 	height:2px;
-	background:#e48f27;
+	background:#ffa506;
 	
 }
 .dropdown-menu{
@@ -162,7 +162,7 @@ label.required:after{
 a{
 	text-decoration:none;
 }
-.text-primary{color:#e48f27 !important;}
+.text-primary{color:#ffa506 !important;}
 .section{padding:70px 0;}
 .navbar-brand .ws-logo{
 	height:36px;
@@ -195,13 +195,13 @@ a{
 	margin-right:.75rem;
 }
 .tab-list .tab-link.active{
-	color:#e48f27;
+	color:#ffa506;
 }
 
 .btn-primary {
     color: #fff;
-    background-color: #e48f27;
-    border-color: #e48f27;
+    background-color: #ffa506;
+    border-color: #ffa506;
 }
 .card-img-overlay {
   background: rgba(0,0,0,0.45);
@@ -231,7 +231,7 @@ a{
     width: 50px;
     bottom: 0;
     left: 0;
-    background: #e48f27;
+    background: #ffa506;
 }
 .fndhm {
 	background: #efefef url(../images/shape-1.png) no-repeat;
@@ -260,7 +260,7 @@ a{
   bottom: -1rem;
   left: 50%;
   transform: translateX(-50%);
-  background: #e48f27;
+  background: #ffa506;
 }
 .text-hdln{
   font-size:1rem;
@@ -314,7 +314,7 @@ a{
 		color:#0e263e;
 	}
 	.pvpr-name a:hover {
-		color:#e48f27;
+		color:#ffa506;
 	}
 	.pvpr-loc, .bldr-name {
 		color: #7f7f7f;
@@ -344,12 +344,13 @@ text-overflow: ellipsis;
 display: -webkit-box;
 -webkit-line-clamp: 2;
 -webkit-box-orient: vertical;
+color:#0e263e;
 }
 .nws-title a{
   color: #000;
 }
 .nws-title a:hover{
-  color:#e48f27;
+  color:#ffa506;
 }
 .nws-desc {
 	overflow: hidden;
@@ -415,7 +416,7 @@ right:0;
     margin-left: 1rem;
   }
   .lgl-link a:hover{
-    color:#e48f27;
+    color:#ffa506;
   }
   .foot-title{
     font-weight: 700;
@@ -434,7 +435,7 @@ right:0;
     color: #bfbbb4;
   }
   .foot-link a:hover{
-    color:#e48f27;
+    color:#ffa506;
   }
   .ftm-link{
     list-style: none;
@@ -466,13 +467,13 @@ right:0;
 }
 .pvh-icon{display:inline-block;}
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
-	color: #e48f27;
+	color: #ffa506;
 }
 .pv-header {
 	border-bottom: 1px solid rgba(0,0,0,.09);
 }
 .pv-header .nav-link:hover .pvh-icon svg, .pv-header .nav-link:hover {
-	color: #e48f27;
+	color: #ffa506;
 }
 .pv-header .nav-link .pvh-icon svg [fill]:not(.permanent):not(g) {
 	transition: fill .3s ease;
@@ -480,7 +481,7 @@ right:0;
 }
 	.pv-header .nav-link:hover .pvh-icon svg [fill]:not(.permanent):not(g) {
 		transition: fill .3s ease;
-		fill: #e48f27;
+		fill: #ffa506;
 	}
 
 .pv-slink {
@@ -496,7 +497,7 @@ right:0;
 	}
 .pv-slink:hover svg [fill]:not(.permanent):not(g) {
 	transition: fill .3s ease;
-	fill: #e48f27;
+	fill: #ffa506;
 }
 .pv-breadcrumb{
 	padding:1rem 0;
@@ -687,7 +688,7 @@ right:0;
 	}
 .btn-first {
 	background: transparent;
-	border-color: #e48f27;
+	border-color: #ffa506;
 	color: rgba(0,0,0,1);
 	font-size: .785rem;
 	position: relative;
@@ -697,7 +698,7 @@ right:0;
 }
 	.btn-first:hover {
 		background: rgba(0,0,0,0.05);
-		border-color: #e48f27;
+		border-color: #ffa506;
 		color: rgba(0,0,0,1);
 	}
 	.btn-first .pvh-icon {
@@ -708,7 +709,7 @@ right:0;
 	}
 	.btn-first svg [fill]:not(.permanent):not(g) {
 		transition: fill .3s ease;
-		fill: #e48f27;
+		fill: #ffa506;
 	}
 /*Scroll Nav End*/
 .pvfp-tab .nav-tabs {
@@ -725,7 +726,7 @@ right:0;
 	}
 		.pvfp-tab .nav-tabs .nav-item.show .nav-link, .pvfp-tab .nav-tabs .nav-link.active {
 			color: #212529;
-			border-bottom:2px solid #e48f27;
+			border-bottom:2px solid #ffa506;
 		}
 .vpvtab .nav {
 	border-right: 2px solid #efefef;
@@ -742,7 +743,7 @@ right:0;
 }
 	.vpvtab .nav-pills .nav-link.active, .vpvtab .nav-pills .show > .nav-link {
 		color: #212529;
-		border-right: 2px solid #e48f27;
+		border-right: 2px solid #ffa506;
 		background: #efefef;
 	}
 .gllry-tabs.pvfp-tab .nav-tabs .nav-item {
@@ -808,7 +809,7 @@ right:0;
 	color:#212529;
 }
 .addlt a i{
-	color: #e48f27;
+	color: #ffa506;
 	font-size:1rem;
 	display:inline-block;
 }
@@ -816,7 +817,7 @@ right:0;
 .pv-ptttl{font-weight:700;}
 	.pv-ptttl a{color:#0e263e;}
 	.pv-ptttl a:hover {
-		color: #e48f27;
+		color: #ffa506;
 	}
 .pv-lprc {
 	font-size: 1.25rem;

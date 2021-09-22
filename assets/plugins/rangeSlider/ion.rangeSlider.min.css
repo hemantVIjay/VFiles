@@ -165,7 +165,7 @@
 	.irs--flat .irs-bar {
 		top: 25px;
 		height: 6px;
-		background-color: #e48f27
+		background-color: #ffa506
 	}
 
 	.irs--flat .irs-bar--single {
@@ -193,7 +193,7 @@
 			height: 100%;
 			/*margin-left: -1px;*/
 			background-color: #ffffff;
-			border: 3px solid #e48f27;
+			border: 3px solid #ffa506;
 			cursor:pointer;
 		}
 
@@ -216,7 +216,7 @@
 		line-height: 1.333;
 		text-shadow: none;
 		padding: 1px 5px;
-		background-color: #e48f27;
+		background-color: #ffa506;
 		border-radius: 4px
 	}
 
@@ -231,7 +231,7 @@
 			margin-left: -3px;
 			overflow: hidden;
 			border: 3px solid transparent;
-			border-top-color: #e48f27
+			border-top-color: #ffa506
 		}
 
 	.irs--flat .irs-grid-pol {
