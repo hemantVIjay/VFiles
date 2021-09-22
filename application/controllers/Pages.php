@@ -108,6 +108,7 @@ class Pages extends MY_Controller {
         ); 
 		
 		$result = $this->home->create_enquiry($post_data);
+		
 	}	
 	
 	public function careers(){

@@ -368,7 +368,6 @@
    
    
    $(window).scroll(function () {
-     console.log($(window).scrollTop())
      if ($(window).scrollTop() > 63) {
        $('#mainNav').addClass('navigation-fixed');
      }
@@ -385,7 +384,7 @@
    });
    
    $(document).ready(function() {
-   		$('a[href*=#]').bind('click', function(e) {
+   		$('a[href*=\\#]').bind('click', function(e) {
    				e.preventDefault(); // prevent hard jump, the default behavior
    
    				var target = $(this).attr("href"); // Set the target as variable
@@ -426,23 +425,6 @@ $("input[type='radio']").click(function(){
 var sim = $("input[type='radio']:checked").val();
 //alert(sim);
 if (sim<3) { $('.myratings').css('color','red'); $(".myratings").text(sim); }else{ $('.myratings').css('color','green'); $(".myratings").text(sim); } }); });
-
-$(document).ready(function() {
-		$('a[href*=#]').bind('click', function(e) {
-				e.preventDefault(); // prevent hard jump, the default behavior
-
-				var target = $(this).attr("href"); // Set the target as variable
-
-				// perform animated scrolling by getting top-position of target-element and set it as scroll target
-				$('html, body').stop().animate({
-						scrollTop: $(target).offset().top
-				}, 600, function() {
-						location.hash = target; //attach the hash (#jumptarget) to the pageurl
-				});
-
-				return false;
-		});
-});
 
 $(window).scroll(function() {
 		var scrollDistance = $(window).scrollTop();
@@ -487,19 +469,48 @@ $(window).scroll(function () {
 	   var phone = $('#phone').val();
 	   var email = $('#email').val();
 	   var terms = $('#terms');
+	   var flag  = true;
 	   if(fname == ''){
-		   alert('Please enter Full Name');
-		   return false;
+		   $('#e_full_name').html('Please enter Full Name');
+		   flag = false;
 	   }if(phone == ''){
-		   alert('Please enter Phone number');
-		   return false;
+		   $('#e_phone').html('Please enter Phone number');
+		   flag = false;
 	   }if(email == ''){
-		   alert('Please enter Email Address');
-		   return false;
+		   $('#e_email').html('Please enter Email Address');
+		   flag = false;
 	   }if(terms.is(':checked')!=true){
-		   alert('Please select terms and conditions');
-		   return false;
-	   }
+		   $('#e_terms').html('Please select terms and conditions');
+		  flag = false;
+	   }/*else{
+		   
+	   }*/
+	   return flag;
    }
    
+   function save_enquiries(e){
+	 var baseUrl=$('base').attr("href");  
+	 var vd = validate();
+	 $('#page-loader').fadeIn();
+	 if(vd==true){
+		 $('#e_full_name').html('');
+		 $('#e_phone').html('');
+		 $('#e_email').html('');
+		 $('#e_terms').html('');
+		   
+		   $.ajax({
+			type: 'POST',
+			url:  baseUrl + "pages/post_enquiry",
+			data: $('#call_back').serialize(),
+			success: function (response) {
+			  $('#page-loader').fadeOut();
+			  $('#call_back')[0].reset();
+			}
+		  });	  
+	 }else{
+		$('#page-loader').fadeOut(); 
+	 }
+	 return false;
+   }
+  
 </script>
