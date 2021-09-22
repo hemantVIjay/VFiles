@@ -57,6 +57,27 @@ $route['translate_uri_dashes'] = TRUE;
 $route['properties-details/(:any)'] = 'home/properties_details';
 $route['locations/(:any)'] = 'home/locations_info';
 $route['properties-listings/(:any)'] = 'home/properties_listings';
+$route['about-us'] = 'pages/about_us';
+$route['careers'] = 'pages/careers';
+$route['partners'] = 'pages/partners';
+$route['contact-us'] = 'pages/contact_us';
+$route['feedback-review'] = 'pages/feedback_review';
+$route['advertise-with-us'] = 'pages/advertise_with_us';
+$route['home-loan'] = 'pages/home_loan';
+$route['cities'] = 'pages/cities';
+$route['localities'] = 'pages/localities';
+$route['builders'] = 'pages/builders';
+$route['price-trends'] = 'pages/price_trends';
+$route['offers'] = 'pages/offers';
+$route['emi-calculator'] = 'pages/emi_calculator';
+$route['social-media'] = 'pages/social_media';
+$route['frequently-asked-questions'] = 'pages/frequently_asked_questions';
+$route['safety-guide'] = 'pages/safety_guide';
+$route['privacy-policy'] = 'pages/privacy_policy';
+$route['terms-of-uses'] = 'pages/terms_of_uses';
+$route['refund-policy'] = 'pages/refund_policy';
+$route['disclaimer'] = 'pages/disclaimer';
+$route['profile'] = 'pages/profile';
 
 //Admin Authentication
 $route['admin/login'] = 'admin/auth/login';

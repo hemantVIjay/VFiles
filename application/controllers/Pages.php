@@ -88,6 +88,156 @@ class Pages extends MY_Controller {
         $this->load->view('site/_layout', $data); 
 	}
 
+
+	//Pages
+	public function about_us(){
+		$data['title']=$this->lang->line("text_search_result");
+		$data['keyword']='';
+		$data['sub_view'] = $this->load->view('site/pages/about-us', $data, TRUE);
+        $this->load->view('site/_layout', $data); 
+	}	
+	
+	public function careers(){
+		$data['title']=$this->lang->line("text_search_result");
+		$data['keyword']='';
+		$data['sub_view'] = $this->load->view('site/pages/careers', $data, TRUE);
+        $this->load->view('site/_layout', $data); 
+	}	
+	
+	public function partners(){
+		$data['title']=$this->lang->line("text_search_result");
+		$data['keyword']='';
+		$data['sub_view'] = $this->load->view('site/pages/partners', $data, TRUE);
+        $this->load->view('site/_layout', $data); 
+	}	
+	
+	public function contact_us(){
+		$data['title']=$this->lang->line("text_search_result");
+		$data['keyword']='';
+		$data['sub_view'] = $this->load->view('site/pages/contact-us', $data, TRUE);
+        $this->load->view('site/_layout', $data); 
+	}	
+	
+	public function feedback_review(){
+		$data['title']=$this->lang->line("text_search_result");
+		$data['keyword']='';
+		$data['sub_view'] = $this->load->view('site/pages/feedback-review', $data, TRUE);
+        $this->load->view('site/_layout', $data); 
+	}	
+	
+	public function advertise_with_us(){
+		$data['title']=$this->lang->line("text_search_result");
+		$data['keyword']='';
+		$data['sub_view'] = $this->load->view('site/pages/advertise-with-us', $data, TRUE);
+        $this->load->view('site/_layout', $data); 
+	}	
+	
+	public function home_loan(){
+		$data['title']=$this->lang->line("text_search_result");
+		$data['keyword']='';
+		$data['sub_view'] = $this->load->view('site/pages/home-loan', $data, TRUE);
+        $this->load->view('site/_layout', $data); 
+	}	
+	
+	public function cities(){
+		$data['title']=$this->lang->line("text_search_result");
+		$data['keyword']='';
+		$data['sub_view'] = $this->load->view('site/pages/cities', $data, TRUE);
+        $this->load->view('site/_layout', $data); 
+	}	
+	
+	public function localities(){
+		$data['title']=$this->lang->line("text_search_result");
+		$data['keyword']='';
+		$data['sub_view'] = $this->load->view('site/pages/localities', $data, TRUE);
+        $this->load->view('site/_layout', $data); 
+	}	
+	
+	public function builders(){
+		$data['title']=$this->lang->line("text_search_result");
+		$data['keyword']='';
+		$data['sub_view'] = $this->load->view('site/pages/builders', $data, TRUE);
+        $this->load->view('site/_layout', $data); 
+	}	
+	
+	
+	public function price_trends(){
+		$data['title']=$this->lang->line("text_search_result");
+		$data['keyword']='';
+		$data['sub_view'] = $this->load->view('site/pages/price-trends', $data, TRUE);
+        $this->load->view('site/_layout', $data); 
+	}	
+	
+	public function offers(){
+		$data['title']=$this->lang->line("text_search_result");
+		$data['keyword']='';
+		$data['sub_view'] = $this->load->view('site/pages/offers', $data, TRUE);
+        $this->load->view('site/_layout', $data); 
+	}	
+	
+	public function emi_calculator(){
+		$data['title']=$this->lang->line("text_search_result");
+		$data['keyword']='';
+		$data['sub_view'] = $this->load->view('site/pages/emi-calculator', $data, TRUE);
+        $this->load->view('site/_layout', $data); 
+	}	
+	
+	public function social_media(){
+		$data['title']=$this->lang->line("text_search_result");
+		$data['keyword']='';
+		$data['sub_view'] = $this->load->view('site/pages/social-media', $data, TRUE);
+        $this->load->view('site/_layout', $data); 
+	}	
+	
+	public function frequently_asked_questions(){
+		$data['title']=$this->lang->line("text_search_result");
+		$data['keyword']='';
+		$data['sub_view'] = $this->load->view('site/pages/frequently-asked-questions', $data, TRUE);
+        $this->load->view('site/_layout', $data); 
+	}	
+	
+	public function safety_guide(){
+		$data['title']=$this->lang->line("text_search_result");
+		$data['keyword']='';
+		$data['sub_view'] = $this->load->view('site/pages/safety-guide', $data, TRUE);
+        $this->load->view('site/_layout', $data); 
+	}	
+	
+	public function privacy_policy(){
+		$data['title']=$this->lang->line("text_search_result");
+		$data['keyword']='';
+		$data['sub_view'] = $this->load->view('site/pages/privacy-policy', $data, TRUE);
+        $this->load->view('site/_layout', $data); 
+	}	
+	
+	public function terms_of_uses(){
+		$data['title']=$this->lang->line("text_search_result");
+		$data['keyword']='';
+		$data['sub_view'] = $this->load->view('site/pages/terms-of-uses', $data, TRUE);
+        $this->load->view('site/_layout', $data); 
+	}	
+	
+	public function refund_policy(){
+		$data['title']=$this->lang->line("text_search_result");
+		$data['keyword']='';
+		$data['sub_view'] = $this->load->view('site/pages/refund-policy', $data, TRUE);
+        $this->load->view('site/_layout', $data); 
+	}	
+	
+	public function disclaimer(){
+		$data['title']=$this->lang->line("text_search_result");
+		$data['keyword']='';
+		$data['sub_view'] = $this->load->view('site/pages/disclaimer', $data, TRUE);
+        $this->load->view('site/_layout', $data); 
+	}	
+	
+	public function profile(){
+		$data['title']=$this->lang->line("text_search_result");
+		$data['keyword']='';
+		$data['sub_view'] = $this->load->view('site/pages/profile', $data, TRUE);
+        $this->load->view('site/_layout', $data); 
+	}
+
 	//Search Result AJAX
 	public function search_result_ajax($page=0){
 		// Row position
