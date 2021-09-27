@@ -55,6 +55,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = TRUE;
 
 $route['properties-details/(:any)'] = 'home/properties_details';
+$route['property-post'] = 'home/post_property';
 $route['locations/(:any)'] = 'home/locations_info';
 $route['properties-listings/(:any)'] = 'home/properties_listings';
 $route['about-us'] = 'pages/about_us';
