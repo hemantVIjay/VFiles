@@ -31,120 +31,155 @@
 
 <section class="section prop-loc-bys">
    <div class="container">
-   <h2 class="cmn-title mb-3">Property in India</h2>
-   <div id="#cityCarousel" class="owl-carousel owl-theme">
+   <h2 class="cmn-title mb-3">Explore Property in India</h2>
+   <div id="#cityCarousel" class="owl-carousel owl-theme expprty mb-4">
     <div class="item">
     <div class="card">
-                            <div class="card-img">
-                                <img src="<?= base_url(); ?>assets/images/cities/noida.jpg" class="img-fluid">
+                            <div class="card-img rounded">
+                                <img src="<?= base_url(); ?>assets/images/explore-property/flats.jpg" class="img-fluid rounded">
                             </div>
-                            <a href="javascript:;" class="card-img-overlay"><span class="ct-title">Project in<br />Noida</span></a>
+                            <a href="javascript:;" class="card-img-overlay"><span class="ct-title"><span class="xplpcnt">2750</span><br />Flats</span></a>
                         </div>
     </div>
     <div class="item">
     <div class="card">
-                            <div class="card-img">
-                                <img src="<?= base_url(); ?>assets/images/cities/greater-noida.jpg" class="img-fluid">
+                            <div class="card-img rounded">
+                                <img src="<?= base_url(); ?>assets/images/explore-property/plots.jpg" class="img-fluid rounded">
                             </div>
-							<a href="javascript:;" class="card-img-overlay"><span class="ct-title">Project in<br />Greater Noida</span></a>
+							<a href="javascript:;" class="card-img-overlay"><span class="ct-title"><span class="xplpcnt">1230</span><br />Residential Plots</span></a>
                         </div>
     </div>
     <div class="item">
     <div class="card">
-                            <div class="card-img">
-                                <img src="<?= base_url(); ?>assets/images/cities/yamuna-expressway.jpg" class="img-fluid">
+                            <div class="card-img rounded">
+                                <img src="<?= base_url(); ?>assets/images/explore-property/villas.jpg" class="img-fluid rounded">
                             </div>
-							<a href="javascript:;" class="card-img-overlay"><span class="ct-title">Project in<br />Yamuna Expressway</span></a>
+							<a href="javascript:;" class="card-img-overlay"><span class="ct-title"><span class="xplpcnt">1250</span><br />House & Villas</span></a>
                         </div>
     </div>
     <div class="item">
     <div class="card">
-                            <div class="card-img">
-                                <img src="<?= base_url(); ?>assets/images/cities/ghaziabad.jpg" class="img-fluid">
+                            <div class="card-img rounded">
+                                <img src="<?= base_url(); ?>assets/images/explore-property/builder-floor.jpg" class="img-fluid rounded">
                             </div>
-							<a href="javascript:;" class="card-img-overlay"><span class="ct-title">Project in<br />Ghaziabad</span></a>
+							<a href="javascript:;" class="card-img-overlay"><span class="ct-title"><span class="xplpcnt">540</span><br />Builder Floor</span></a>
                         </div>
     </div>
     <div class="item">
             <div class="card">
-                            <div class="card-img">
-                                <img src="<?= base_url(); ?>assets/images/cities/delhi.jpg" class="img-fluid">
+                            <div class="card-img rounded">
+                                <img src="<?= base_url(); ?>assets/images/explore-property/farm-house.jpg" class="img-fluid rounded">
                             </div>
-							<a href="javascript:;" class="card-img-overlay"><span class="ct-title">Project in<br />Delhi</span></a>
+							<a href="javascript:;" class="card-img-overlay"><span class="ct-title"><span class="xplpcnt">80</span><br />Farm House</span></a>
                         </div>
     </div>
       <div class="item">
          <div class="card">
-            <div class="card-img">
-               <img src="<?= base_url(); ?>assets/images/cities/noida.jpg" class="img-fluid">
+            <div class="card-img rounded">
+               <img src="<?= base_url(); ?>assets/images/explore-property/penthouse.jpg" class="img-fluid rounded">
             </div>
             <div class="card-img-overlay">
-               <div class="ct-title">Project in<br />Noida</div>
+               <div class="ct-title"><span class="xplpcnt">42</span><br />Penthouse</div>
             </div>
          </div>
       </div>
       <div class="item">
          <div class="card">
-            <div class="card-img">
-               <img src="<?= base_url(); ?>assets/images/cities/greater-noida.jpg" class="img-fluid">
+            <div class="card-img rounded">
+               <img src="<?= base_url(); ?>assets/images/explore-property/studio-apartment.jpg" class="img-fluid rounded">
             </div>
             <div class="card-img-overlay">
-               <div class="ct-title">Project in<br />Greater Noida</div>
+               <div class="ct-title"><span class="xplpcnt">10</span><br />Studio Apartment</div>
             </div>
          </div>
       </div>
-      <div class="item">
-         <div class="card">
-            <div class="card-img">
-               <img src="<?= base_url(); ?>assets/images/cities/yamuna-expressway.jpg" class="img-fluid">
-            </div>
-            <div class="card-img-overlay">
-               <div class="ct-title">Project in<br />Yamuna Expressway</div>
-            </div>
-         </div>
-      </div>
-      <div class="item">
-         <div class="card">
-            <div class="card-img">
-               <img src="<?= base_url(); ?>assets/images/cities/ghaziabad.jpg" class="img-fluid">
-            </div>
-            <div class="card-img-overlay">
-               <div class="ct-title">Project in<br />Ghaziabad</div>
-            </div>
-         </div>
-      </div>
-      <div class="item">
-         <div class="card">
-            <div class="card-img">
-               <img src="<?= base_url(); ?>assets/images/cities/delhi.jpg" class="img-fluid">
-            </div>
-            <div class="card-img-overlay">
-               <div class="ct-title">Project in<br />Delhi</div>
-            </div>
-         </div>
-      </div>
-      <div class="item">
-         <div class="item">
+
+   </div>
+
+
+   <h2 class="cmn-title mb-3">Explore Commercial Properties in India</h2>
+   <div id="#cmmpropCarousel" class="owl-carousel owl-theme expcmprty">
+    <div class="item">
+    <div class="card">
+                            <div class="card-img rounded">
+                                <img src="<?= base_url(); ?>assets/images/explore-property/office-space.jpg" class="img-fluid rounded">
+                            </div>
+                            <a href="javascript:;" class="card-img-overlay"><span class="ct-title"><span class="xplpcnt">750</span><br />Office Spaces</span></a>
+                        </div>
+    </div>
+    <div class="item">
+    <div class="card">
+                            <div class="card-img rounded">
+                                <img src="<?= base_url(); ?>assets/images/explore-property/commercial-shop.jpg" class="img-fluid rounded">
+                            </div>
+							<a href="javascript:;" class="card-img-overlay"><span class="ct-title"><span class="xplpcnt">230</span><br />Commercial Shops</span></a>
+                        </div>
+    </div>
+    <div class="item">
+    <div class="card">
+                            <div class="card-img rounded">
+                                <img src="<?= base_url(); ?>assets/images/explore-property/commercial-land.jpg" class="img-fluid rounded">
+                            </div>
+							<a href="javascript:;" class="card-img-overlay"><span class="ct-title"><span class="xplpcnt">310</span><br />Commercial Land</span></a>
+                        </div>
+    </div>
+    <div class="item">
+    <div class="card">
+                            <div class="card-img rounded">
+                                <img src="<?= base_url(); ?>assets/images/explore-property/factory.jpg" class="img-fluid rounded">
+                            </div>
+							<a href="javascript:;" class="card-img-overlay"><span class="ct-title"><span class="xplpcnt">40</span><br />Factory</span></a>
+                        </div>
+    </div>
+    <div class="item">
             <div class="card">
-               <div class="card-img">
-                  <img src="<?= base_url(); ?>assets/images/cities/gurgaon.jpg" class="img-fluid">
-               </div>
-               <div class="card-img-overlay">
-                  <div class="ct-title">Project in<br />Gurgaon</div>
-               </div>
+                            <div class="card-img rounded">
+                                <img src="<?= base_url(); ?>assets/images/explore-property/industrial-land.jpg" class="img-fluid rounded">
+                            </div>
+							<a href="javascript:;" class="card-img-overlay"><span class="ct-title"><span class="xplpcnt">73</span><br />Industrial Land</span></a>
+                        </div>
+    </div>
+      <div class="item">
+         <div class="card">
+            <div class="card-img rounded">
+               <img src="<?= base_url(); ?>assets/images/explore-property/business-center.jpg" class="img-fluid rounded">
+            </div>
+            <div class="card-img-overlay">
+               <div class="ct-title"><span class="xplpcnt">42</span><br />Business Center</div>
             </div>
          </div>
       </div>
       <div class="item">
          <div class="card">
-            <div class="card-img">
-               <img src="<?= base_url(); ?>assets/images/cities/faridabad.jpg" class="img-fluid">
+            <div class="card-img rounded">
+               <img src="<?= base_url(); ?>assets/images/explore-property/showroom.jpg" class="img-fluid rounded">
             </div>
             <div class="card-img-overlay">
-               <div class="ct-title">Project in<br />Faridabad</div>
+               <div class="ct-title"><span class="xplpcnt">10</span><br />Showrooms</div>
             </div>
          </div>
       </div>
+	  <div class="item">
+         <div class="card">
+            <div class="card-img rounded">
+               <img src="<?= base_url(); ?>assets/images/explore-property/hotel.jpg" class="img-fluid rounded">
+            </div>
+            <div class="card-img-overlay">
+               <div class="ct-title"><span class="xplpcnt">10</span><br />Hotels</div>
+            </div>
+         </div>
+      </div>
+	  <div class="item">
+         <div class="card">
+            <div class="card-img rounded">
+               <img src="<?= base_url(); ?>assets/images/explore-property/warehouse.jpg" class="img-fluid rounded">
+            </div>
+            <div class="card-img-overlay">
+               <div class="ct-title"><span class="xplpcnt">10</span><br />Warehouse</div>
+            </div>
+         </div>
+      </div>
+
    </div>
                             
 </div>

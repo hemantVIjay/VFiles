@@ -1,7 +1,7 @@
 //city carousel
-$('#cityCarousel, .owl-carousel').owlCarousel({
+$('#cityCarousel, .expprty').owlCarousel({
   loop:true,
-  margin:12,
+  margin:8,
   autoplay: true,
   autoplayHoverPause: true,
   nav:true,
@@ -18,7 +18,31 @@ $('#cityCarousel, .owl-carousel').owlCarousel({
       },
   
       1366: {
+        items: 6
+      }
+  }
+});
+
+$('#cmmpropCarousel, .expcmprty').owlCarousel({
+  loop:true,
+  margin:8,
+  autoplay: true,
+  autoplayHoverPause: true,
+  nav:true,
+  dots: false,
+  responsive:{
+      0:{
+          items:1
+      },
+      600:{
+          items:3
+      },
+      1024: {
         items: 4
+      },
+  
+      1366: {
+        items: 5
       }
   }
 });

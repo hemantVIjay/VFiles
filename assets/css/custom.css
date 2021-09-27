@@ -213,17 +213,23 @@ a{
   top:50%;
   transform: translateY(-50%);
   text-align: center;
-  font-size: 1.05rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 500;
   color: #fff;
 }
-.cmn-title {
-	font-size: 1.25rem;
-	font-weight: 700;
-	position: relative;
-	padding-bottom: .5rem;
-	color: #0e263e;
-}
+	.ct-title .xplpcnt {
+		color: #ffa506;
+		font-size: 1.5rem;
+		line-height: 1.7rem;
+		font-weight: 700;
+	}
+	.cmn-title {
+		font-size: 1.25rem;
+		font-weight: 700;
+		position: relative;
+		padding-bottom: .5rem;
+		color: #0e263e;
+	}
 .cmn-title:before{
   position: absolute;
     content: '';
