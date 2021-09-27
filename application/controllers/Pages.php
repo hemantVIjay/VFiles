@@ -252,6 +252,13 @@ class Pages extends MY_Controller {
         $this->load->view('site/_layout', $data); 
 	}
 
+	public function post_property(){
+		$data['title']=$this->lang->line("text_search_result");
+		$data['keyword']='';
+		$data['sub_view'] = $this->load->view('site/pages/post-property', $data, TRUE);
+        $this->load->view('site/_layout', $data); 
+	}
+
 	//Search Result AJAX
 	public function search_result_ajax($page=0){
 		// Row position
