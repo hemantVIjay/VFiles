@@ -163,6 +163,12 @@ body::-webkit-scrollbar {
 				<a class="nav-link" href="<?= base_url('admin/properties/list_properties');?>">Properties List</a>
 			</li>
 			<li>
+				<a class="nav-link" href="<?= base_url('admin/properties/list_properties');?>">Projects List</a>
+			</li>
+			<li>
+				<a class="nav-link" href="<?= base_url('admin/properties/add_projects');?>">Add Project</a>
+			</li>
+			<li>
 				<a class="nav-link" href="<?= base_url('admin/properties/add_properties');?>">Add Property</a>
 			</li>
           </ul>

@@ -61,6 +61,19 @@
           $this->load->view('admin/_layout', $data);
       }
       
+      public function add_projects()
+      {
+          $data['title'] = $this->lang->line("text_orders");
+          if ($this->permitted('list_users')) {
+              //get all user types
+              $data['sub_view'] = $this->load->view('admin/Properties/add_projects', $data, TRUE);
+          } else {
+              $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
+          }
+          $this->load->view('admin/_layout', $data);
+      }
+
+
       public function add_properties()
       {
           $data['title'] = $this->lang->line("text_orders");
@@ -76,8 +89,6 @@
       
       public function create_property()
       {
-         // echo'<pre/>';print_r($_REQUEST);exit;
-		  
 		  $pcode = _propertyCode($_REQUEST['builder'], $_REQUEST['p_type'], $_REQUEST['location']);
           
           $amenities = '';
