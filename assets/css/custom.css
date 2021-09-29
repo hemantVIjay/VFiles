@@ -227,7 +227,7 @@ a{
 		font-size: 1.25rem;
 		font-weight: 700;
 		position: relative;
-		padding-bottom: .5rem;
+		padding-bottom: .7rem;
 		color: #0e263e;
 	}
 .cmn-title:before{
@@ -911,6 +911,46 @@ right:0;
 .mnwd{
 	min-width:375px;
 }
+.lgnMdlBg {
+	background: #0e263e;
+	color: #fff;
+}
+	.lgnMdlBg .cmn-title{
+		color:#fff;
+	}
+	.lgnMdlBg p{
+		font-size:.875rem;
+		line-height:1.9;
+	}
+	.psblt {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+	}
+.pvPdMdl {
+	padding: 3rem 2rem;
+}
+.pvPdMdlFrm .form-control {
+	border-radius:0 !important;
+	border-left:0;
+	border-right:0;
+	border-top:0;
+	padding-left:0;
+}
+.pvPdMdlFrm .form-floating > label {
+	padding-left:0 !important;
+}
+.pvPdMdlFrm .form-control:focus {
+	outline: 0;
+	box-shadow: none;
+}
+
+	@media (min-width: 992px) {
+		.modal-lgn {
+		max-width: 675px;
+	}
+}
+
 /*Range Slider*/
 /*Range Slider*/
 @media (min-width:768px) {

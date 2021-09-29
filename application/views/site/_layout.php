@@ -44,7 +44,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
 	  <li class="nav-item">
-          <a class="btn btn-first" href="javascript:;" id="ctDdwn">
+          <a class="btn btn-first" href="javascript:;" data-bs-toggle="modal" data-bs-target="#pvMdlLogin">
 		  <span class="pvh-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 <path opacity="0.3" d="M3 13V11C3 10.4 3.4 10 4 10H20C20.6 10 21 10.4 21 11V13C21 13.6 20.6 14 20 14H4C3.4 14 3 13.6 3 13Z" fill="black"/>
 <path d="M13 21H11C10.4 21 10 20.6 10 20V4C10 3.4 10.4 3 11 3H13C13.6 3 14 3.4 14 4V20C14 20.6 13.6 21 13 21Z" fill="black"/>
@@ -70,7 +70,7 @@
 </svg></span> Download App</a>
         </li>
 		<li class="nav-item">
-          <a class="nav-link" href="javascript:;">
+          <a class="nav-link" href="javascript:;" data-bs-toggle="modal" data-bs-target="#pvMdlLogin">
 		  <span class="pvh-icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                             <path opacity="0.25" fill-rule="evenodd" clip-rule="evenodd" d="M3.11117 13.2288C3.27137 11.0124 5.01376 9.29156 7.2315 9.15059C8.55778 9.06629 10.1795 9 12 9C13.8205 9 15.4422 9.06629 16.7685 9.15059C18.9862 9.29156 20.7286 11.0124 20.8888 13.2288C20.9535 14.1234 21 15.085 21 16C21 16.915 20.9535 17.8766 20.8888 18.7712C20.7286 20.9876 18.9862 22.7084 16.7685 22.8494C15.4422 22.9337 13.8205 23 12 23C10.1795 23 8.55778 22.9337 7.23151 22.8494C5.01376 22.7084 3.27137 20.9876 3.11118 18.7712C3.04652 17.8766 3 16.915 3 16C3 15.085 3.04652 14.1234 3.11117 13.2288Z" fill="#12131A"></path>
@@ -281,6 +281,54 @@
         </div>
       </div>
  </div>
+
+ <!-- Modal -->
+<div class="modal fade" id="pvMdlLogin" tabindex="-1" aria-labelledby="pvMdlLoginLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lgn">
+    <div class="modal-content">
+	<div class="row g-0">
+		<div class="col-md-5 lgnMdlBg position-relative">
+			<div class="pvPdMdl">
+				<h4 class="cmn-title mb-4">Sign In</h4>
+				<p>Get access to your Properties, Wishlist and Recommendations</p>
+			</div>
+			<img src="<?= base_url(); ?>assets/images/hse.png" class="img-fluid psblt" />
+		</div>
+		<div class="col-md-7">
+		  <div class="pvPdMdl pvPdMdlFrm">
+							<div class="d-flex justify-content-end mb-3">
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="form-floating mb-3">
+							  <input type="email" class="form-control" id="floatingInput" placeholder="Username">
+							  <label for="floatingInput">Username</label>
+							</div>
+							<div class="form-floating mb-3">
+							  <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+							  <label for="floatingPassword">Password</label>
+							</div>
+							
+							<div class="mb-3 d-flex">
+								<input type="checkbox" class="cks" checked="">
+								<span class="pvsml ms-2">I Agree to Propvenue's <a href="javascript:;">Terms of Use</a></span>
+							</div>
+							<div class="mb-3 d-flex">
+								<input type="checkbox" class="cks">
+								<span class="pvsml ms-2">I am interested in Home Loans</span>
+							</div>
+							<div class="d-grid gap-2">
+							  <button class="btn btn-primary" type="button">Sign In</button>
+							</div>
+		  </div>
+		  </div>
+		  </div>
+
+
+    </div>
+  </div>
+</div>
+
+
 <!--Main Footer-->
 <!--<?php //include_once('_footer.php'); ?>-->
 

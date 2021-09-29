@@ -5,9 +5,8 @@
     "\\application\\views",
     "\\application\\views\\site",
     "\\application\\views\\site\\pages",
-    "\\assets",
-    "\\assets\\css"
+    "\\assets"
   ],
-  "SelectedNode": "\\application\\views\\site\\pages\\home.php",
+  "SelectedNode": "\\application\\views\\site\\pages\\post-property.php",
   "PreviewInSolutionExplorer": false
 }
