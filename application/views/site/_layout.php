@@ -289,36 +289,65 @@
 	<div class="row g-0">
 		<div class="col-md-5 lgnMdlBg position-relative">
 			<div class="pvPdMdl">
-				<h4 class="cmn-title mb-4">Sign In</h4>
+				<h4 class="cmn-title mb-4"><span id="snI">Sign In</span><span id="snU" style="display:none">Sign Up</span></h4>
 				<p>Get access to your Properties, Wishlist and Recommendations</p>
 			</div>
 			<img src="<?= base_url(); ?>assets/images/hse.png" class="img-fluid psblt" />
 		</div>
 		<div class="col-md-7">
-		  <div class="pvPdMdl pvPdMdlFrm">
-							<div class="d-flex justify-content-end mb-3">
+		  <div class="pvPdMdl pvPdMdlFrm position-relative">
+							<div class="posabs">
 								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 							</div>
-							<div class="form-floating mb-3">
+					<div id="sgnIn">
+							<div class="form-floating mb-4">
 							  <input type="email" class="form-control" id="floatingInput" placeholder="Username">
 							  <label for="floatingInput">Username</label>
 							</div>
-							<div class="form-floating mb-3">
+							<div class="form-floating mb-4">
 							  <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
 							  <label for="floatingPassword">Password</label>
 							</div>
 							
-							<div class="mb-3 d-flex">
+							<div class="mb-4 d-flex">
 								<input type="checkbox" class="cks" checked="">
 								<span class="pvsml ms-2">I Agree to Propvenue's <a href="javascript:;">Terms of Use</a></span>
 							</div>
-							<div class="mb-3 d-flex">
-								<input type="checkbox" class="cks">
-								<span class="pvsml ms-2">I am interested in Home Loans</span>
+							<div class="d-grid gap-2 mb-4">
+							  <button class="btn btn-primary btn-lg" type="button">Sign In</button>
 							</div>
-							<div class="d-grid gap-2">
-							  <button class="btn btn-primary" type="button">Sign In</button>
+							<div class="mb-4">
+								No account? <a href="javascript:;" id="crtAcnt">Create account!</a>
 							</div>
+					</div>
+							<div id="sgnUp" style="display:none;">
+							<div class="form-floating mb-4">
+							  <input type="text" class="form-control" id="floatingInput" placeholder="Name">
+							  <label for="floatingInput">Name</label>
+							</div>
+							<div class="form-floating mb-4">
+							  <input type="email" class="form-control" id="floatingInput" placeholder="Email">
+							  <label for="floatingInput">Email</label>
+							</div>
+							<div class="form-floating mb-4">
+							  <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+							  <label for="floatingPassword">Password</label>
+							</div>
+							<div class="form-floating mb-4">
+							  <input type="number" class="form-control" id="floatingInput" placeholder="Mobile No.">
+							  <label for="floatingInput">Mobile No.</label>
+							</div>
+							<div class="mb-4 d-flex">
+								<input type="checkbox" class="cks" checked="">
+								<span class="pvsml ms-2">I Agree to Propvenue's <a href="javascript:;">Terms of Use</a></span>
+							</div>
+							<div class="d-grid gap-2 mb-4">
+							  <button class="btn btn-primary btn-lg" type="button">Sign Up</button>
+							</div>
+							<div class="mb-2">
+								You h've account? <a href="javascript:;" id="lgnAcnt">Login account!</a>
+							</div>
+					</div>
 		  </div>
 		  </div>
 		  </div>
@@ -338,4 +367,19 @@ $(document).ready(function(){
     $(".ddmCity").slideToggle();
   });
 });
+
+$("#crtAcnt").click(function () {
+    $("#sgnUp").show();
+    $("#sgnIn").hide();
+	$("#snI").hide();
+	$("#snU").show();
+});
+
+$("#lgnAcnt").click(function () {
+    $("#sgnUp").hide();
+    $("#sgnIn").show();
+	$("#snU").hide();
+	$("#snI").show();
+});
+
 </script>
