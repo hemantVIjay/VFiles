@@ -334,7 +334,7 @@
 							  <label for="floatingPassword">Password</label>
 							</div>
 							<div class="form-floating mb-4">
-							  <input type="number" class="form-control" id="floatingInput" placeholder="Mobile No.">
+							  <input type="tel" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"  class="form-control" id="floatingInput" placeholder="Mobile No." required />
 							  <label for="floatingInput">Mobile No.</label>
 							</div>
 							<div class="mb-4 d-flex">
