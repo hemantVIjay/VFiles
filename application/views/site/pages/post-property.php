@@ -249,12 +249,18 @@
 
                 <h2>Location</h2>
                 <section>
-                    <p>Donec mi sapien, hendrerit nec egestas a, rutrum vitae dolor. Nullam venenatis diam ac ligula elementum pellentesque. 
-                        In lobortis sollicitudin felis non eleifend. Morbi tristique tellus est, sed tempor elit. Morbi varius, nulla quis condimentum 
-                        dictum, nisi elit condimentum magna, nec venenatis urna quam in nisi. Integer hendrerit sapien a diam adipiscing consectetur. 
-                        In euismod augue ullamcorper leo dignissim quis elementum arcu porta. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                        Vestibulum leo velit, blandit ac tempor nec, ultrices id diam. Donec metus lacus, rhoncus sagittis iaculis nec, malesuada a diam. 
-                        Donec non pulvinar urna. Aliquam id velit lacus.</p>
+								<div class="form-floating pfff mb-4">
+								  <input type="text" class="form-control" id="floatingInput" placeholder="City">
+								  <label for="floatingInput" class="required">City</label>
+								</div>
+								<div class="form-floating pfff mb-4">
+								  <input type="text" class="form-control" id="floatingInput" placeholder="Maintenance Charges/ month">
+								  <label for="floatingInput">Building/ Project/ Society (Optional)</label>
+								</div>
+								<div class="form-floating pfff mb-4">
+								  <input type="text" class="form-control" id="floatingInput" placeholder="Built Up Area">
+								  <label for="floatingInput" class="required">Locality</label>
+								</div>
                 </section>
 
                 <h2>Property Profile</h2>

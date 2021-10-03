@@ -995,6 +995,13 @@ right:0;
 	outline: 0;
 	box-shadow: none;
 }
+.form-floating > .form-control, .form-floating > .form-select {
+	height: calc(3rem + 2px);
+}
+	.form-floating > .form-control:-webkit-autofill ~ label {
+		opacity: .65;
+		transform: scale(.85) translateY(-.75rem) translateX(0);
+	}
 
 @media (min-width: 992px) {
 	.modal-lgn {
