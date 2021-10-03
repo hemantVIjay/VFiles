@@ -1,4 +1,4 @@
-﻿/*
+/*
     Common 
 */
 
@@ -116,7 +116,7 @@
 .wizard > .steps .current a:hover,
 .wizard > .steps .current a:active
 {
-    background: #2184be;
+    background: #0943a1;
     color: #fff;
     cursor: default;
 }
@@ -139,7 +139,6 @@
 
 .wizard > .content
 {
-    background: #eee;
     display: block;
     margin: 0.5em;
     min-height: 35em;
@@ -163,9 +162,9 @@
 .wizard > .content > .body
 {
     float: left;
-    position: absolute;
+    /*position: absolute;*/
     width: 95%;
-    height: 95%;
+    /*height: 95%;*/
     padding: 2.5%;
 }
 
@@ -186,11 +185,11 @@
     height: 100%;
 }
 
-.wizard > .content > .body input
+/*.wizard > .content > .body input
 {
     display: block;
     border: 1px solid #ccc;
-}
+}*/
 
 .wizard > .content > .body input[type="checkbox"]
 {
@@ -204,11 +203,11 @@
     color: #8a1f11;
 }
 
-.wizard > .content > .body label
-{
-    display: inline-block;
-    margin-bottom: 0.5em;
-}
+	.wizard > .content > .body label {
+		display: inline-block;
+		margin-bottom: 0.65rem;
+		font-weight: 600;
+	}
 
 .wizard > .content > .body label.error
 {
@@ -253,7 +252,7 @@
 .wizard > .actions a:hover,
 .wizard > .actions a:active
 {
-    background: #2184be;
+    background: #0943a1;
     color: #fff;
     display: block;
     padding: 0.5em 1em;
