@@ -19,7 +19,7 @@
 		
 
             <div id="wizard">
-                <h2>Basic Info</h2>
+                <h2>Property Profile</h2>
                 <section>
 					<div class="mb-4">
 						<label class="required">I want to</label>
@@ -249,6 +249,7 @@
 
                 <h2>Location</h2>
                 <section>
+							<label class="required">Upload Photo (Atleast 10 photo: Bedroom, Hall, Kitchen, Bathroom, Balcony etc.)</label>
 								<div class="form-floating pfff mb-4">
 								  <input type="text" class="form-control" id="floatingInput" placeholder="City">
 								  <label for="floatingInput" class="required">City</label>
@@ -263,19 +264,39 @@
 								</div>
                 </section>
 
-                <h2>Property Profile</h2>
-                <section>
-                    <p>Morbi ornare tellus at elit ultrices id dignissim lorem elementum. Sed eget nisl at justo condimentum dapibus. Fusce eros justo, 
-                        pellentesque non euismod ac, rutrum sed quam. Ut non mi tortor. Vestibulum eleifend varius ullamcorper. Aliquam erat volutpat. 
-                        Donec diam massa, porta vel dictum sit amet, iaculis ac massa. Sed elementum dui commodo lectus sollicitudin in auctor mauris 
-                        venenatis.</p>
-                </section>
-
                 <h2>Photo</h2>
                 <section>
-                    <p>Quisque at sem turpis, id sagittis diam. Suspendisse malesuada eros posuere mauris vehicula vulputate. Aliquam sed sem tortor. 
-                        Quisque sed felis ut mauris feugiat iaculis nec ac lectus. Sed consequat vestibulum purus, imperdiet varius est pellentesque vitae. 
-                        Suspendisse consequat cursus eros, vitae tempus enim euismod non. Nullam ut commodo tortor.</p>
+                     <div class="addlt" style="text-align:right;"><a href="javascript:;" ><i class="bi bi-plus-circle-fill me-1"></i>Add Row</a>
+               <a href="javascript:;" class="ms-2"><i class="bi bi-dash-circle-fill me-1"></i>Delete Row</a>
+            </div>
+            <div class="tbl-resp">
+               <table class="table tbl-custom" style="width:100%">
+                  <thead>
+                     <tr>
+                        <th width="50">SNo.</th>
+                        <th width="250">Upload Image</th>
+                        <th width="150">Category</th>
+                        <th width="150">Caption</th>
+                     </tr>
+                  </thead>
+                  <tbody id="gallery">
+                     <tr>
+                        <td><input type="checkbox"></td>
+                        <td><input type="file" class="form-control" name=""/></td>
+                        <td>
+                           <select class="form-select" name="">
+                              <option value="Elevation">Elevation</option>
+                              <option value="Video">Video</option>
+                              <option value="Construction Updates">Construction Updates</option>
+                              <option value="Neighbourhood">Neighbourhood</option>
+                           </select>
+                        </td>
+                        <td><input type="text" class="form-control" name=""/></td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
                 </section>
             </div>
 	</div>
