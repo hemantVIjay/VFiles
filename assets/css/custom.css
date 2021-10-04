@@ -1002,6 +1002,64 @@ right:0;
 		opacity: .65;
 		transform: scale(.85) translateY(-.75rem) translateX(0);
 	}
+.box2RB {
+	background: #efefef;
+	border-radius: .35rem;
+	margin-bottom:1rem;
+	width: 100%;
+	max-width: 100%;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap
+}
+
+.box2RBC {
+	position: relative;
+	display: inline-block;
+	-ms-flex: 0 0 50%;
+	flex: 0 0 50%;
+	max-width: 50%
+}
+
+	.box2RBC input[type=checkbox], .box2RBC input[type=radio] {
+		opacity: 0;
+		position: absolute;
+		min-height: 34px;
+		height: 100%;
+		width: 100%;
+		cursor: pointer
+	}
+
+	.box2RBC input:checked ~ label .chkd {
+		display: inline-block;
+		position: absolute;
+		top: 5px;
+		right: 6px;
+		height: 13px
+	}
+
+	.box2RBC label {
+		font-weight: 500;
+		padding: .5rem 20px .5rem .5rem;
+		color: rgba(0,0,0,.6);
+		border-radius: .35rem;
+		cursor: pointer;
+		margin-bottom: 0;
+		border: 1px solid transparent;
+		width: 100%;
+		font-weight: 500;
+		margin-bottom:0 !important;
+	}
+
+	.box2RBC input:checked ~ label {
+		background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23000000' class='bi bi-check-circle-fill' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z'/%3E%3C/svg%3E");
+		background-repeat: no-repeat;
+		background-position: top 6px right 8px;
+		background-size: 13px 13px;
+		color: #0943a1;
+		border: 1px solid #0943a1
+	}
 
 @media (min-width: 992px) {
 	.modal-lgn {

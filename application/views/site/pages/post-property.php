@@ -41,6 +41,21 @@
 
 					<div class="mb-4">
 						<label class="required">Property Type</label>
+						<div class="row">
+						<div class="col-xl-8 col-md-10 d-flex">
+                        <div class="box2RB">
+                                <span class="box2RBC">
+                                    <input type="radio" id="propResi" name="propertyType"  checked />
+                                    <label for="propResi">Residential</label>
+                                </span>
+                                <span class="box2RBC">
+                                    <input type="radio" id="propComm" name="propertyType" />
+                                    <label for="propComm">Commercial</label>
+                                </span>
+                        </div>
+                    </div>
+					</div>
+
 						<div class="d-flex flex-wrap bdgchkrdo">
 							<span class="chkrdobtn">
 								<input id="pvAprt" type="radio" name="pvPTYP">
