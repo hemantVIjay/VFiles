@@ -264,7 +264,7 @@
 
                 <h2>Location</h2>
                 <section>
-							<label class="required">Upload Photo (Atleast 10 photo: Bedroom, Hall, Kitchen, Bathroom, Balcony etc.)</label>
+							
 								<div class="form-floating pfff mb-4">
 								  <input type="text" class="form-control" id="floatingInput" placeholder="City">
 								  <label for="floatingInput" class="required">City</label>
@@ -281,6 +281,9 @@
 
                 <h2>Photo</h2>
                 <section>
+
+				<label class="required">Upload Photo (Atleast 10 photo: Bedroom, Hall, Kitchen, Bathroom, Balcony etc.)</label>
+
                      <div class="addlt" style="text-align:right;"><a href="javascript:;" ><i class="bi bi-plus-circle-fill me-1"></i>Add Row</a>
                <a href="javascript:;" class="ms-2"><i class="bi bi-dash-circle-fill me-1"></i>Delete Row</a>
             </div>
