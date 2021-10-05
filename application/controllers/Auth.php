@@ -238,7 +238,7 @@ class Auth extends MY_Controller {
 			$this->form_validation->set_rules('full_name','Full Name','trim|required');
             $this->form_validation->set_rules('email','Email','trim|required|valid_email' );
 			$this->form_validation->set_rules('password','Password','trim|required');
-			$this->form_validation->set_rules('confirm_password','Confirm Password','trim|required|matches[password]');
+			//$this->form_validation->set_rules('confirm_password','Confirm Password','trim|required|matches[password]');
 
 			if ($this->form_validation->run() == FALSE) {
 				$success = FALSE;
@@ -250,6 +250,8 @@ class Auth extends MY_Controller {
 					'user_role_id' => 4,	//customer
 					'full_name' => $this->input->post('full_name'),
 					'email' => $this->input->post('email'),
+					'mobile' => $this->input->post('mobile'),
+					'terms_use' => $this->input->post('terms_use'),
 					'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
 					'activation_code' => $activation_code,
 					'status' => 0
