@@ -73,7 +73,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
                   <li class="nav-item">
-                     <a class="btn btn-first" href="javascript:;" data-bs-toggle="modal" data-bs-target="#pvMdlLogin">
+                     <a class="btn btn-first" <?php if(!isset($_SESSION['login']) && $_SESSION['login']['user_id']!=''){ ?>href="javascript:;" data-bs-toggle="modal" data-bs-target="#pvMdlLogin" <?php }else{ ?>href="<?= base_url('post-property');?>"<?php } ?> >
                         <span class="pvh-icon">
                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                               <path opacity="0.3" d="M3 13V11C3 10.4 3.4 10 4 10H20C20.6 10 21 10.4 21 11V13C21 13.6 20.6 14 20 14H4C3.4 14 3 13.6 3 13Z" fill="black"/>
@@ -110,7 +110,8 @@
                      </a>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link" href="javascript:;" data-bs-toggle="modal" data-bs-target="#pvMdlLogin">
+                     <?php if(!isset($_SESSION['login']) && $_SESSION['login']['user_id']!=''){ ?>
+					 <a class="nav-link" href="javascript:;" data-bs-toggle="modal" data-bs-target="#pvMdlLogin">
                         <span class="pvh-icon">
                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                               <path opacity="0.25" fill-rule="evenodd" clip-rule="evenodd" d="M3.11117 13.2288C3.27137 11.0124 5.01376 9.29156 7.2315 9.15059C8.55778 9.06629 10.1795 9 12 9C13.8205 9 15.4422 9.06629 16.7685 9.15059C18.9862 9.29156 20.7286 11.0124 20.8888 13.2288C20.9535 14.1234 21 15.085 21 16C21 16.915 20.9535 17.8766 20.8888 18.7712C20.7286 20.9876 18.9862 22.7084 16.7685 22.8494C15.4422 22.9337 13.8205 23 12 23C10.1795 23 8.55778 22.9337 7.23151 22.8494C5.01376 22.7084 3.27137 20.9876 3.11118 18.7712C3.04652 17.8766 3 16.915 3 16C3 15.085 3.04652 14.1234 3.11117 13.2288Z" fill="#12131A"></path>
@@ -120,6 +121,18 @@
                         </span>
                         Login
                      </a>
+					 <?php }else{ ?>
+					 <a class="nav-link" href="javascript:;" data-bs-toggle="modal" data-bs-target="#pvMdlLogin">
+                        <span class="pvh-icon">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                              <path opacity="0.25" fill-rule="evenodd" clip-rule="evenodd" d="M3.11117 13.2288C3.27137 11.0124 5.01376 9.29156 7.2315 9.15059C8.55778 9.06629 10.1795 9 12 9C13.8205 9 15.4422 9.06629 16.7685 9.15059C18.9862 9.29156 20.7286 11.0124 20.8888 13.2288C20.9535 14.1234 21 15.085 21 16C21 16.915 20.9535 17.8766 20.8888 18.7712C20.7286 20.9876 18.9862 22.7084 16.7685 22.8494C15.4422 22.9337 13.8205 23 12 23C10.1795 23 8.55778 22.9337 7.23151 22.8494C5.01376 22.7084 3.27137 20.9876 3.11118 18.7712C3.04652 17.8766 3 16.915 3 16C3 15.085 3.04652 14.1234 3.11117 13.2288Z" fill="#12131A"></path>
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M13 16.7324C13.5978 16.3866 14 15.7403 14 15C14 13.8954 13.1046 13 12 13C10.8954 13 10 13.8954 10 15C10 15.7403 10.4022 16.3866 11 16.7324V18C11 18.5523 11.4477 19 12 19C12.5523 19 13 18.5523 13 18V16.7324Z" fill="#12131A"></path>
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M7 6C7 3.23858 9.23858 1 12 1C14.7614 1 17 3.23858 17 6V10C17 10.5523 16.5523 11 16 11C15.4477 11 15 10.5523 15 10V6C15 4.34315 13.6569 3 12 3C10.3431 3 9 4.34315 9 6V10C9 10.5523 8.55228 11 8 11C7.44772 11 7 10.5523 7 10V6Z" fill="#12131A"></path>
+                           </svg>
+                        </span>
+                        My Account
+                     </a>
+					 <?php } ?>
                   </li>
                </ul>
             </div>
@@ -338,21 +351,23 @@
                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div id="sgnIn">
-                           <div class="form-floating mb-4">
-                              <input type="email" class="form-control" id="floatingInput" placeholder="Username">
+                           <form name="login" id="login" method="POST">
+						   <div class="form-floating mb-4">
+                              <input type="email" class="form-control" name="email" id="floatingInput" placeholder="Username">
                               <label for="floatingInput">Username</label>
                            </div>
                            <div class="form-floating mb-4">
-                              <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                              <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password">
                               <label for="floatingPassword">Password</label>
                            </div>
-                           <div class="mb-4 d-flex">
+                           <!--<div class="mb-4 d-flex">
                               <input type="checkbox" class="cks" checked="">
                               <span class="pvsml ms-2">I Agree to Propvenue's <a href="javascript:;">Terms of Use</a></span>
-                           </div>
+                           </div>-->
                            <div class="d-grid gap-2 mb-4">
-                              <button class="btn btn-primary btn-lg" type="button">Sign In</button>
+                              <button class="btn btn-primary btn-lg" type="button"  onclick="return login_user(this);">Sign In</button>
                            </div>
+						   </form>
                            <div class="mb-4">
                               No account? <a href="javascript:;" id="crtAcnt">Create account!</a>
                            </div>
@@ -475,6 +490,23 @@
 			$('#page-loader').fadeOut(); 
 		 }
 		 return false;
-	   } 
-         
-      </script>
+	} 
+
+	function login_user(e){
+		 var baseUrl=$('base').attr("href");  
+		 var vd = validate();
+		 $('#page-loader').fadeIn();			   
+			   $.ajax({
+				type: 'POST',
+				url:  baseUrl + "auth/login",
+				data: $('#login').serialize(),
+				success: function (response) {
+				  var res = JSON.parse(response);
+				  $('#page-loader').fadeOut();
+				  $('#login')[0].reset();
+				}
+			  });	  
+		 return false;
+	} 
+   
+</script>
