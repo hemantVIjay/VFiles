@@ -25,7 +25,7 @@
                <td><?= $row->property_name;?></td>
                <td><?= $row->property_name;?></td>
                <td><?= $row->property_address;?></td>
-               <td><?= $row->builtup_area;?></td>
+               <td><?= $row->total_area;?></td>
                <td><?= $row->property_name;?></td>
                <td><a href="javascript:;" data-bs-toggle="modal" data-bs-target="#exampleModal" data-parent-id="<?= $row->id;?>">
                   <i class="bi bi-plus-circle-fill me-1"></i>Gallery

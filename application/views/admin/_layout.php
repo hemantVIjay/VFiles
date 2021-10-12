@@ -160,13 +160,13 @@ body::-webkit-scrollbar {
         <div class="collapse" id="property-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
             <li>
+				<a class="nav-link" href="<?= base_url('admin/properties/list_projects');?>">Projects List</a>
+			</li>
+			<li>
+				<a class="nav-link" href="<?= base_url('admin/projects/add_projects');?>">Add Project</a>
+			</li>
+			<li>
 				<a class="nav-link" href="<?= base_url('admin/properties/list_properties');?>">Properties List</a>
-			</li>
-			<li>
-				<a class="nav-link" href="<?= base_url('admin/properties/list_properties');?>">Projects List</a>
-			</li>
-			<li>
-				<a class="nav-link" href="<?= base_url('admin/properties/add_projects');?>">Add Project</a>
 			</li>
 			<li>
 				<a class="nav-link" href="<?= base_url('admin/properties/add_properties');?>">Add Property</a>
