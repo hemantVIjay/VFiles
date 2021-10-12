@@ -2,11 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\application",
-    "\\application\\views",
     "\\application\\views\\site",
     "\\application\\views\\site\\pages",
     "\\assets"
   ],
-  "SelectedNode": "\\application\\views\\site\\pages\\post-property.php",
+  "SelectedNode": "\\application\\views",
   "PreviewInSolutionExplorer": false
 }
