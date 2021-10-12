@@ -312,7 +312,7 @@ function getRadioValue(groupName) {
                   <label>Amenities</label>
                   <div class="row gx-3">
                      <?php $amenities = _amenities(); foreach($amenities as $key=>$amenity){ ?>
-			   <div class="col-md-4 mb-3">
+			   <div class="col-xl-3 col-md-4 mb-3">
 						 <div class="pv-amenits">
 							 <input id="indoor_<?= $key+1;?>" type="checkbox" name="pvAMNTS[]">
 							 <label for="indoor_<?= $key+1;?>">
