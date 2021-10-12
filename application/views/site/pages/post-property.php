@@ -311,24 +311,17 @@ function getRadioValue(groupName) {
 			   <div class="mb-4">
                   <label>Amenities</label>
                   <div class="row">
-                     <div class="col-md-4">
+                     <?php $amenities = _amenities(); foreach($amenities as $key=>$amenity){ ?>
+			   <div class="col-md-4">
 						 <div class="pv-amenits">
-							 <input id="indoor" type="checkbox" name="pvAMNTS">
-							 <label for="indoor">
-								<img src="http://localhost/VFiles/uploads/amenities/9c579ea2d9323415a29f0560d46b91b7.svg" class="img-fluid">
-								<div class="pv-amenitsn">Indoor Squash &amp; Badm</div>
+							 <input id="indoor_<?= $key+1;?>" type="checkbox" name="pvAMNTS[]">
+							 <label for="indoor_<?= $key+1;?>">
+								<img src="<?= base_url('uploads/amenities/').$amenity->icon; ?>" class="img-fluid">
+								<div class="pv-amenitsn"><?= $amenity->name; ?></div>
 							 </label>
 						  </div>
                      </div>
-					 <div class="col-md-4">
-						 <div class="pv-amenits">
-							 <input id="kidpp" type="checkbox" name="pvAMNTS">
-							 <label for="kidpp">
-								<img src="http://localhost/VFiles/uploads/amenities/73251e597c494ab235c414ad3443c3b7.svg" class="img-fluid">
-								<div class="pv-amenitsn">Kids Play Pool</div>
-							 </label>
-						  </div>
-                     </div>
+               <?php } ?>
                   </div>
 
                <div class="row">
