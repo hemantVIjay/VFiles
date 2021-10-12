@@ -30,7 +30,8 @@ class Projects extends MY_Controller {
         if(!empty($status)){
             $conditions['search']['status'] = $status;
         }
-        $Projects = $this->projects->get_allprojects($conditions);
+        $Projects = $this->project->get_allprojects($conditions);
+
 		if($Projects){
            $ProjectsCount=count($Projects);
 		}   
@@ -44,7 +45,7 @@ class Projects extends MY_Controller {
 		$data['title']=$this->lang->line("text_locations");
 		$id = $this->uri->segment(4);
         if($this->permitted('list_articles')){
-			$Projects = $this->projects->get_allprojects($conditions);
+			$Projects = $this->project->get_allprojects($conditions);
 			//get pagination confing
 			$config=$this->pagination_config($base_url=base_url().'admin/Projects/list_Projects',$total_rows=$ProjectsCount,$per_page=$this->perPage);
 			// Initialize
@@ -148,7 +149,7 @@ class Projects extends MY_Controller {
 		//XXS Clean
         $post_data = $this->security->xss_clean($post_data);
 		
-		$result = $this->projects->create_project($post_data, $specifications, $floorPlans);
+		$result = $this->project->create_project($post_data, $specifications, $floorPlans);
 		redirect('admin/projects/list_projects','refresh');
     }
 	
@@ -176,7 +177,7 @@ class Projects extends MY_Controller {
 				  'status' => 0,
 				  'updated_by' => $this->get_user_id()
 				);
-				$res = $this->projects->delete_project($id, $post_data);
+				$res = $this->project->delete_project($id, $post_data);
 				redirect('admin/projects/list_projects','refresh');
             }else{
                 $data['title']=$this->lang->line("alert_access_denied");

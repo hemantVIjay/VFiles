@@ -6,7 +6,7 @@
                <th>SNo.</th>
                <th>Code</th>
                <th>Name</th>
-               <th>Property Type</th>
+               <th>Project Type</th>
                <th>Locality</th>
                <th>Address</th>
                <th>Area</th>
@@ -16,8 +16,8 @@
             </tr>
          </thead>
          <tbody>
-            <?php $i=0;
-               foreach($Properties as $key=>$row){ ?>
+            <?php $i=0; if(!empty($Projects)){
+               foreach($Projects as $key=>$row){ ?>
             <tr>
                <td><?= $i+1;?></td>
                <td><?= $row->code;?></td>
@@ -40,7 +40,10 @@
                   </a>
                </td>
             </tr>
-            <?php $i++; } ?>
+            <?php $i++; } } ?>
+			<tr>
+			 <td colspan="10" class="text-center">NO RECORDS</td>
+			</tr>
          </tbody>
       </table>
       <div id="pagination" class="mt10"><?= $pagination; ?></div>

@@ -30,6 +30,7 @@ class Projects_model extends MY_Model{
             $this->db->order_by("c.id","desc");
         }
         $query = $this->db->get();
+
         if($query->num_rows() > 0){
             $cities=$query->result();
             return $cities;
