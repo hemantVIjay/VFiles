@@ -74,9 +74,9 @@ class Projects extends MY_Controller {
     }
 
 
-	public function create_property()
+	public function create_project()
 	{
-		$pcode = _propertyCode($_REQUEST['builder'], $_REQUEST['p_type'], $_REQUEST['location']);
+		$pcode = _projectCode($_REQUEST['builder'], $_REQUEST['p_type'], $_REQUEST['location']);
 		
 		$amenities = ''; $banks = '';
 		if(!empty($this->input->post('amenities'))){
@@ -89,14 +89,14 @@ class Projects extends MY_Controller {
 		$post_data = array(
           'code' => $pcode,
           'builder_id' => $this->input->post('builder'),
-          'property_name' => $this->input->post('project_name'),
+          'project_name' => $this->input->post('project_name'),
           'locality_id' => $this->input->post('location'),
           'city_id' => $this->input->post('city'),
           'district_id' => $this->input->post('district'),
           'state_id' => $this->input->post('state'),
           'country_id' => $this->input->post('country'),
-          'property_address' => $this->input->post('address'),
-          'property_type' => $this->input->post('p_type'),
+          'project_address' => $this->input->post('address'),
+          'project_type' => $this->input->post('p_type'),
           'no_of_towers' => $this->input->post('no_of_towers'),
           'no_of_flats' => $this->input->post('no_of_flats'),
           'total_area' => $this->input->post('total_area'),
@@ -105,7 +105,7 @@ class Projects extends MY_Controller {
           'architect_name' => $this->input->post('architect_name'),
           'project_start_date' => $this->input->post('project_start_date'),
           'project_overview' => $this->input->post('project_overview'),
-          'property_amenities' => $amenities,
+          'project_amenities' => $amenities,
           'banks_available' => $banks,
           'rera_approved' => $this->input->post('rera_approved'),
           'rera_registrationNumber' => $this->input->post('rera_registrationNumber'),
@@ -148,7 +148,7 @@ class Projects extends MY_Controller {
 		//XXS Clean
         $post_data = $this->security->xss_clean($post_data);
 		
-		$result = $this->projects->create_property($post_data, $specifications, $floorPlans);
+		$result = $this->projects->create_project($post_data, $specifications, $floorPlans);
 		redirect('admin/projects/list_projects','refresh');
     }
 	
@@ -165,7 +165,7 @@ class Projects extends MY_Controller {
     }
 	
 	
-	public function delete_property()
+	public function delete_project()
 	{
         $id = $this->uri->segment(4);
 		if(isset($id)){
@@ -176,7 +176,7 @@ class Projects extends MY_Controller {
 				  'status' => 0,
 				  'updated_by' => $this->get_user_id()
 				);
-				$res = $this->projects->delete_property($id, $post_data);
+				$res = $this->projects->delete_project($id, $post_data);
 				redirect('admin/projects/list_projects','refresh');
             }else{
                 $data['title']=$this->lang->line("alert_access_denied");
