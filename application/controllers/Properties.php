@@ -15,6 +15,51 @@ class Properties extends MY_Controller {
 		$data['sub_view'] = $this->load->view('site/pages/home', $data, TRUE);
         $this->load->view('site/_layout', $data);
 	}
+	
+	
+	
+	
+	public function create_property()
+      {
+		  //echo$pcode = _propertyCode($_REQUEST['builder'], $_REQUEST['p_type'], $_REQUEST['location']);
+          //exit;
+		  $pcode = '';
+          
+          $post_data  = array(
+              'code' => $pcode,
+              //'builder_id' => $this->input->post('builder'),
+              'property_for' => $this->input->post('pvIWT'),
+			  'property_type' => $this->input->post('propertyType'),
+			  'property_category' => $this->input->post('pvPTYP'),
+              //'property_name' => $this->input->post('project_name'),
+              'bedrooms' => $this->input->post('pvBHK'),
+              'bathrooms' => $this->input->post('pvBTH'),
+              'balcony' => $this->input->post('pvBLCNY'),
+              'furnish_type' => $this->input->post('pvFRNTYP'),
+              'open_parking' => $this->input->post('pvOPNPRK'),
+              'covered_parking' => $this->input->post('pvCVRPRK'),
+              'cost' => $this->input->post('cost'),
+              'maintenance_charges' => $this->input->post('maintenance_charges'),
+              'locality' => $this->input->post('locality'),
+              'project' => $this->input->post('project'),
+              'city_id' => $this->input->post('city'),
+              //'property_address' => $this->input->post('address'),              
+              'builtup_area' => $this->input->post('builtup_area'),
+              'carpet_area' => $this->input->post('carpet_area'),
+              'construction_status' => $this->input->post('pvCONSTS'),
+              'status' => 1,
+              'created_by' => $this->get_user_id()
+          );
+		  
+          //XXS Clean
+          $post_data = $this->security->xss_clean($post_data);
+          $result    = $this->site->create_property($post_data);
+          
+          redirect('post-property', 'refresh');
+      }
+	
+	
+	
 
 
 }
