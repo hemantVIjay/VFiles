@@ -416,41 +416,22 @@
       </div>
 	  
 	  <!-- Toast Code Start -->
-	  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-		  <div class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
-			  <div class="d-flex">
-				<div class="toast-body">
-				  Hello, Success! This is a toast message.
-				</div>
-				<button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-			  </div>
-			</div>
-			
-			<div class="toast align-items-center text-white bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
-			  <div class="d-flex">
-				<div class="toast-body">
-				  Hello, Failed! This is a toast message.
-				</div>
-				<button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-			  </div>
-			</div>
-			
-			<div class="toast align-items-center text-white bg-warning border-0" role="alert" aria-live="assertive" aria-atomic="true">
-			  <div class="d-flex">
-				<div class="toast-body">
-				  Hello, Warning! This is a toast message.
-				</div>
-				<button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-			  </div>
-			</div>
-			
-		</div>
+<div id="toasts"></div>	 
 		
 		<!-- Toast Code End -->
 	  
 <!--Main Footer-->
 <!--<?php //include_once('_footer.php'); ?>-->
       <script>
+	  
+	  function alertToasts(type, message){		  
+		  var content = '<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11"><div class="toast align-items-center text-white bg-'+type+' border-0" role="alert" aria-live="assertive" aria-atomic="true"><div class="d-flex"><div class="toast-body">'+message+'</div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button></div></div>';
+		  $('#toasts').append(content);
+	  }
+  	 function showAlert(type, msg){
+		alertToasts(type,msg); 
+		$('.toast').toast('show');
+	 }
          $(document).ready(function(){
            $("#ctDdwn").click(function(){
              $(".ddmCity").slideToggle();
@@ -480,19 +461,24 @@
 	   var flag  = true;
 	   
 	   if(fname == ''){
+		   showAlert('danger','Please enter Full Name');
 		   $('#e_full_name').html('Please enter Full Name');
 		   flag = false;
 	   }if(phone == ''){
+		   showAlert('danger','Please enter Mobile number');
 		   $('#e_phone').html('Please enter Mobile number');
 		   flag = false;
 	   }if(password == ''){
+		   showAlert('danger','Please enter Mobile number');
 		   $('#e_password').html('Please enter Mobile number');
 		   flag = false;
 	   }if(email == ''){
+		   showAlert('danger','Please enter Email Address');
 		   $('#e_email').html('Please enter Email Address');
 		   flag = false;
 	   }if(terms.is(':checked')!=true){
-		   $('#e_terms').html('Please select terms and conditions');
+		  showAlert('danger','Please select terms and conditions');
+		  $('#e_terms').html('Please select terms and conditions');
 		  flag = false;
 	   }/*else{
 		   
@@ -536,6 +522,7 @@
 				data: $('#login').serialize(),
 				success: function (response) {
 				  var res = JSON.parse(response);
+				  showAlert('success',res.message);
 				  $('#page-loader').fadeOut();
 				  window.location.reload();
 				}
@@ -546,7 +533,7 @@
 	
 	//Toast
 	$(document).ready(function(){
-	  $('.toast').toast('show');
+	  
 	});
    
 </script>

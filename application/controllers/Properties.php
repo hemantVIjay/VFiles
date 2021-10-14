@@ -24,6 +24,10 @@ class Properties extends MY_Controller {
 		  //echo$pcode = _propertyCode($_REQUEST['builder'], $_REQUEST['p_type'], $_REQUEST['location']);
           //exit;
 		  $pcode = '';
+		  $amenities = '';
+          if (!empty($this->input->post('pvAMNTS'))) {
+              $amenities = implode(',', $this->input->post('pvAMNTS'));
+          }
           
           $post_data  = array(
               'code' => $pcode,
@@ -47,6 +51,7 @@ class Properties extends MY_Controller {
               'builtup_area' => $this->input->post('builtup_area'),
               'carpet_area' => $this->input->post('carpet_area'),
               'construction_status' => $this->input->post('pvCONSTS'),
+			  'property_amenities' => $amenities,
               'status' => 1,
               'created_by' => $this->get_user_id()
           );
