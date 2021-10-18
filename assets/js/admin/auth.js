@@ -70,20 +70,20 @@
                     success: function (data) {
                         if (data.success) {
                             loader.stop();
-                            showAlert('success',appLanguage[0]['text_success'],data.message);
+                            showAlerts('success',appLanguage[0]['text_success'],data.message);
                             window.setTimeout(function(){
                                 window.location.replace(baseUrl + "admin");
                             },2000);
                         } else {
                             
                             loader.stop();
-                            showAlert('error',appLanguage[0]['text_error'],data.message);
+                            showAlerts('danger',appLanguage[0]['text_error'],data.message);
 
                         }
                     },
                     error: function () {
                         loader.stop();
-                        showAlert('error',appLanguage[0]['text_error'],appLanguage[0]['alert_went_wrong']);
+                        showAlerts('danger',appLanguage[0]['text_error'],appLanguage[0]['alert_went_wrong']);
                     }
                 });
         
@@ -141,20 +141,20 @@
                         console.log(data);
 						if (data.success) {
                             loader.stop();
-                            showAlert('success',appLanguage[0]['text_success'],data.message);
+                            showAlerts('success',appLanguage[0]['text_success'],data.message);
                             window.setTimeout(function(){
                                 window.location.replace(baseUrl + "admin");
                             },2000);
                         } else {
                             
                             loader.stop();
-                            showAlert('error',appLanguage[0]['text_error'],data.message);
+                            showAlerts('danger',appLanguage[0]['text_error'],data.message);
 
                         }
                     },
                     error: function () {
                         loader.stop();
-                        showAlert('error',appLanguage[0]['text_error'],appLanguage[0]['alert_went_wrong']);
+                        showAlerts('danger',appLanguage[0]['text_error'],appLanguage[0]['alert_went_wrong']);
                     }
                 });
         
@@ -221,25 +221,36 @@
                     success: function (data) {
                         if (data.success) {
                             loader.stop();
-                            showAlert('success',appLanguage[0]['text_success'],data.message);
+                            showAlerts('success',appLanguage[0]['text_success'],data.message);
                             window.setTimeout(function(){
                                 window.location.replace(baseUrl + "admin/login");
                             },2000);
                         } else {
                             loader.stop();
-                            showAlert('error',appLanguage[0]['text_error'],data.message);
+                            showAlerts('danger',appLanguage[0]['text_error'],data.message);
                         }
                     },
                     error: function () {
                         loader.stop();
-                        showAlert('error',appLanguage[0]['text_error'],appLanguage[0]['alert_went_wrong']);
+                        showAlerts('danger',appLanguage[0]['text_error'],appLanguage[0]['alert_went_wrong']);
                     }
                 });
         
             }
         });
     }
+	
+	function alertToasts(type, message){		  
+		  var content = '<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11"><div class="toast align-items-center text-white bg-'+type+' border-0" role="alert" aria-live="assertive" aria-atomic="true"><div class="d-flex"><div class="toast-body">'+message+'</div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button></div></div>';
+		  $('#toasts').append(content);
+	}
 
+    //SHOW ALERT
+    function showAlerts(type,head,message){
+		alertToasts(type,message); 
+		$('.toast').toast('show');
+        //$.toast({heading: head ,text: message,loader: false,position : 'top-center',showHideTransition: 'fade', icon: type });
+    }
 
     //SHOW ALERT
     function showAlert(type,head,message){

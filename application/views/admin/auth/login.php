@@ -14,7 +14,6 @@
     <link href="<?= base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
 	<link href="<?= base_url(); ?>assets/css/mulish.css" rel="stylesheet">
 	<link href="<?= base_url(); ?>assets/css/bootstrap-icons.css" rel="stylesheet">
-	<link rel="stylesheet" href="<?= base_url(); ?>assets/vendors/toast/jquery.toast.min.css">
 	<link href="<?= base_url(); ?>assets/css/custom.css" rel="stylesheet">
 	
 </head>
@@ -74,11 +73,16 @@
             </div>
          </div>
       </main>
-
+<div id="toasts"></div>
     <script src="<?= base_url(); ?>assets/js/jquery.min.js"></script>
+	<script src="<?= base_url(); ?>assets/js/bootstrap.bundle.min.js"></script>
     <script src="<?= base_url(); ?>assets/vendors/jquery-validation/jquery.validate.min.js"></script>
-    <script src="<?= base_url(); ?>assets/vendors/toast/jquery.toast.min.js"></script>
+	    <script src="<?= base_url(); ?>assets/vendors/ladda/spin.min.js"></script>
+    <script src="<?= base_url(); ?>assets/vendors/ladda/ladda.min.js"></script>
     <script src="<?= base_url(); ?>assets/js/admin/auth.js"></script>
+	<script>
+</script>
+</script>
 </body>
 
 </html>

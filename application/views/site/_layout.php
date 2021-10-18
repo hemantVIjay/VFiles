@@ -529,11 +529,4 @@
 			  });	  
 		 return false;
 	} 
-	
-	
-	//Toast
-	$(document).ready(function(){
-	  
-	});
-   
 </script>
