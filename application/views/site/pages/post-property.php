@@ -40,43 +40,43 @@
 	   var locality  = document.getElementById('locality').value;
 	   
 	  if(pvIWT==undefined || pvIWT==''){
-		  alert("Please select one option for I want to.")
+		  showAlert('danger', "Please select one option for I want to.")
          return false;		  
 	  }if(propertyType==undefined || propertyType==''){
-		   alert("Please select one option in Property Type.")
+		   showAlert('danger', "Please select one option in Property Type.")
          return false;		  
 	  }if(pvPTYP==undefined || pvPTYP==''){
-		    alert("Please select one option in Property category.")
+		    showAlert('danger', "Please select one option in Property category.")
          return false;		  
 	  }if(pvCONSTS==undefined || pvCONSTS==''){
-		    alert("Please select one option in Construction status.")
+		    showAlert('danger', "Please select one option in Construction status.")
          return false;		  
 	  }if(pvBHK==undefined || pvBHK==''){
-		    alert("Please select one option in No. of Bedrooms.")
+		    showAlert('danger', "Please select one option in No. of Bedrooms.")
          return false;		  
 	  }if(pvBTH==undefined || pvBTH==''){
-		    alert("Please select one option in No. of Bathrooms.")
+		    showAlert('danger', "Please select one option in No. of Bathrooms.")
          return false;		  
 	  }if(pvBLCNY==undefined || pvBLCNY==''){
-		    alert("Please select one option in No. of Balconies.")
+		    showAlert('danger', "Please select one option in No. of Balconies.")
          return false;		  
 	  }if(pvFRNTYP==undefined || pvFRNTYP==''){
-		    alert("Please select one option in Furnish Type.")
+		    showAlert('danger', "Please select one option in Furnish Type.")
          return false;		  
 	  }if(pvOPNPRK==undefined || pvOPNPRK==''){
-		    alert("Please select one option in Open Parking.")
+		    showAlert('danger', "Please select one option in Open Parking.")
          return false;		  
 	  }if(pvCVRPRK==undefined || pvCVRPRK==''){
-		    alert("Please select one option in Covered Parking.")
+		    showAlert('danger', "Please select one option in Covered Parking.")
          return false;		  
 	  }if(cost==undefined || cost==''){
-		    alert("Please enter property cost.")
+		    showAlert('danger', "Please enter property cost.")
          return false;		  
 	  }if(maintenance_charges==undefined || maintenance_charges==''){
-		    alert("Please enter maintenance charges.")
+		    showAlert('danger', "Please enter maintenance charges.")
          return false;		  
 	  }if(builtup_area==undefined || builtup_area==''){
-		 alert("Please enter builtup area in SQMTR.")
+		 showAlert('danger', "Please enter builtup area in SQMTR.")
          return false;		  
 	  }
 
@@ -99,7 +99,7 @@ function getRadioValue(groupName) {
 </script>
 <div class="container">
    <div class="row justify-content-center mt-4 mb-4">
-     <form name="post_property" id="post_property" method="POST" action="<?= base_url();?>properties/create_property">
+     <form name="post_property" id="post_property" method="POST" action="<?= base_url();?>properties/create_property" enctype="multipart/form-data" accept-charset="utf-8">
       <div class="col-xl-10 col-lg-11 col-md-12">
          <div id="wizard">
             <h2>Property Profile</h2>
@@ -385,16 +385,16 @@ function getRadioValue(groupName) {
                      <tbody id="gallery">
                         <tr>
                            <td><input type="checkbox"></td>
-                           <td><input type="file" class="form-control" name=""/></td>
+                           <td><input type="file" class="form-control" name="image_name[]"/></td>
                            <td>
-                              <select class="form-select" name="">
+                              <select class="form-select" name="image_type[]">
                                  <option value="Elevation">Elevation</option>
                                  <option value="Video">Video</option>
                                  <option value="Construction Updates">Construction Updates</option>
                                  <option value="Neighbourhood">Neighbourhood</option>
                               </select>
                            </td>
-                           <td><input type="text" class="form-control" name=""/></td>
+                           <td><input type="text" class="form-control" name="image_desc[]"/></td>
                         </tr>
                      </tbody>
                   </table>

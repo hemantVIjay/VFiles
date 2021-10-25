@@ -54,6 +54,7 @@ class Site_model extends MY_Model{
 			if($update_id){
                 //if updated
                 $return_data=array(
+                    'id'=>$insert_id,
                     'status'=>TRUE,
                     'label'=>'SUCCESS',
                 );
@@ -61,6 +62,7 @@ class Site_model extends MY_Model{
             }else{
                 //if not updated
                 $return_data=array(
+                    'id'=>'',
                     'status'=>FALSE,
                     'label'=>'ERROR',
                 );
@@ -69,6 +71,7 @@ class Site_model extends MY_Model{
         }else{
             //if not inseted
             $return_data=array(
+                'id'=>'',
                 'status'=>FALSE,
                 'label'=>'ERROR',
             );

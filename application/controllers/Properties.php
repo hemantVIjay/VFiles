@@ -59,6 +59,27 @@ class Properties extends MY_Controller {
           //XXS Clean
           $post_data = $this->security->xss_clean($post_data);
           $result    = $this->site->create_property($post_data);
+		  
+		  $propertyImages = array();
+          foreach ($_FILES['image_name']['name'] as $k => $fval) {
+              /******For Image******/
+              $_FILES['mFile']['name']     = $_FILES['image_name']['name'][$k];
+              $_FILES['mFile']['type']     = $_FILES['image_name']['type'][$k];
+              $_FILES['mFile']['tmp_name'] = $_FILES['image_name']['tmp_name'][$k];
+              $_FILES['mFile']['error']    = $_FILES['image_name']['error'][$k];
+              $_FILES['mFile']['size']     = $_FILES['image_name']['size'][$k];
+              $fdata[$k]['image_name']     = $this->singleUpload('mFile', 'properties/' . $_REQUEST['image_type'][$k]);
+              /******For Image******/
+              $fdata[$k]['image_type']     = $_REQUEST['image_type'][$k];
+              $fdata[$k]['image_desc']     = $_REQUEST['image_desc'][$k];
+              $fdata[$k]['property_id']    = $result['id'];
+              
+              $propertyImages[] = $fdata[$k];
+          }
+          //XXS Clean
+          $propertyImages = $this->security->xss_clean($propertyImages);
+          
+          $result = $this->properties->upload_PropertyImages($propertyImages);
           
           redirect('post-property', 'refresh');
       }
