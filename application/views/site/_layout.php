@@ -414,7 +414,6 @@
             </div>
          </div>
       </div>
-	  
 	  <!-- Toast Code Start -->
 <div id="toasts"></div>	 
 		
