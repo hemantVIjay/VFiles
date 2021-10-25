@@ -81,6 +81,26 @@ class Home_model extends MY_Model{
         }
     }
 
+	public function save_rating($post_data){
+        $this->_table_name='reviews';
+        //create faq caregory
+        $insert_id=$this->save($data=$post_data, $id = NULL);
+        if($insert_id){
+                $return_data=array(
+                    'status'=>TRUE,
+                    'label'=>'SUCCESS',
+                );
+                return $return_data;
+        }else{
+            //if not inseted
+            $return_data=array(
+                'status'=>FALSE,
+                'label'=>'ERROR',
+            );
+            return $return_data;
+        }
+    }
+
 	
 
 }

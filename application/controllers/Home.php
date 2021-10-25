@@ -48,5 +48,27 @@ class Home extends MY_Controller {
         $this->load->view('site/_layout', $data);
 	}
 
+	public function save_review()
+	{
+		$post_data = array(
+                        'listing_id' => $this->input->post('listing_id'),
+                        'stars' => $this->input->post('rating'),
+                        'message' => $this->input->post('message'),
+                        'user_id' => $this->get_user_id(),
+                        'date_publish' => date('Y-m-d')
+                    );
+		$result = $this->home->save_rating($post_data);
+		if ($result['status']==TRUE &&$result['label']=='SUCCESS') {
+                        $success = TRUE;
+                        $message = 'Review successfully posted.';
+                    }elseif($result['status']==FALSE &&$result['label']=='ERROR'){
+                        $success = FALSE;
+                        $message = $this->lang->line("Review not posted.");
+                    }
+					            $json_array = array('success' => $success, 'message' => $message);
+            echo json_encode($json_array);
+            exit();
+	}
+
 
 }
