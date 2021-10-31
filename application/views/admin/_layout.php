@@ -170,6 +170,19 @@
                            </ul>
                         </div>
                      </li>
+					 
+					 <li class="mb-1">
+                        <button class="btn btn-toggle align-items-center collapsed" data-bs-toggle="collapse" data-bs-target="#reviews-collapse" aria-expanded="false">
+                        User Reviews
+                        </button>
+                        <div class="collapse" id="reviews-collapse">
+                           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
+                              <li>
+                                 <a class="nav-link" href="<?= base_url('admin/reviews/list_reviews');?>">Reviews</a>
+                              </li>
+                           </ul>
+                        </div>
+                     </li>
                   </ul>
                </div>
             </nav>
