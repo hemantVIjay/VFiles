@@ -348,6 +348,14 @@
       }
   }
   
+  if (!function_exists('get_user')) {
+    function get_user($id)
+    {
+        $ci =& get_instance();
+        $res = $ci->user_model->get_user($id);
+		return $res;
+    }
+}
   
   if (!function_exists('_dateFormat')) {
       function _dateFormat($dd = '')

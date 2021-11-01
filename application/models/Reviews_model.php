@@ -74,27 +74,10 @@ class Reviews_model extends MY_Model{
         }
     }
 	
-	public function create_specifications($post_data){
-		$this->_table_name='flat_specifications';
+	public function updateReview($post_data, $id){
+		$this->_table_name='reviews';
         $this->_timestamps=TRUE;
-        $insert_id=$this->save($data=$post_data, $id = NULL);
-        return true;		
-	}
-
-
-	public function save_FloorPlans($post_data, $id){
-		$mData = array();
-		foreach($post_data as $key=>$data){
-			$sdata['floor_type'] = $data[$key]['floor_type'];
-			$sdata['floor_size'] = $data[$key]['floor_size'];
-			$sdata['floor_basePrice'] = $data[$key]['floor_basePrice'];
-			$sdata['floor_planImage'] = $data[$key]['floor_planImage'];
-			$sdata['floor_totalPrice'] = $data[$key]['floor_totalPrice'];
-			$sdata['floor_toilets'] = $data[$key]['floor_toilets'];
-			$sdata['project_id'] = $id;
-            $mData[$key] = $sdata;
-		}
-        $this->db->insert_batch('floor_plans', $mData);
+        $insert_id=$this->save($data=$post_data, $id = $id);
         return true;		
 	}
 	

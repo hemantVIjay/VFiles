@@ -154,15 +154,15 @@ class Reviews extends MY_Controller {
     }
 	
 
-	public function location_details()
+	public function publish_Review()
 	{
-     	$locations = $this->masters->get_location($_REQUEST['id']);
-		$data['city'] = $locations->city_id;
-		$data['district'] = $locations->district_id;
-		$data['state'] = $locations->state_id;
-		$data['country'] = $locations->country_id;
-		echo json_encode($data);
-        exit;	
+     	$id = $this->input->post('id');
+		$post_data = array(
+         'id' => $this->input->post('id'),
+  		 'is_visible' => $this->input->post('vl'),
+		);
+		print_r($post_data);
+		$locations = $this->reviews->updateReview($post_data,$id);
     }
 	
 	

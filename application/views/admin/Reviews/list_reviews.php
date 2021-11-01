@@ -8,9 +8,9 @@
                <th>Stars</th>
                <th>User/Customer</th>
                <th>Is Published</th>
-               <th>Message</th>
+               <th>Message/Comments</th>
                <th>Date Posted</th>
-               <th>Action</th>
+               <th>Publish / Delete</th>
             </tr>
          </thead>
          <tbody>
@@ -18,18 +18,17 @@
                foreach($Reviews as $key=>$row){ ?>
             <tr>
                <td><?= $i+1;?></td>
-               <td><?= $row->listing_id;?></td>
+               <td><a href="#" target="_blank"><?= $row->listing_id;?></a></td>
                <td><?= $row->stars;?></td>
-               <td><?= get_userby_id($row->user_id);?></td>
-               <td><?= $row->is_visible;?></td>
+               <td><?php $usr = get_user($row->user_id); if(!empty($usr)){ echo$usr['full_name']; }?></td>
+               <td><?php if($row->is_visible==''||$row->is_visible=='0'){ ?><label class="badge bg-warning">Not Published</label><?php }else{ ?><label class="badge bg-success">Published</label><?php } ?></td>
                <td><?= $row->message;?></td>
                <td><?= $row->date_publish;?></td>
-               <td class="table-action">
+               <td class="table-action" style="display:flex;">
 			   <a class="form-check form-switch">
-			   <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-			   <label class="form-check-label" for="flexSwitchCheckDefault">Publish</label>
+			   <input class="form-check-input" type="checkbox" <?php if($row->is_visible!=''&&$row->is_visible!='0'){ echo'checked'; } ?> id="flexSwitchCheckDefault" value="1" data-id="<?= $row->id; ?>" onchange="publishReview(this);">
 			   </a>
-                  <a class="ms-2" href="<?= base_url('admin/properties/delete_property/').$row->id; ?>">
+                  <a class="ms-2" href="<?= base_url('admin/reviews/delete_review/').$row->id; ?>">
                   <i class="bi bi-trash"></i>
                   </a>
                </td>
@@ -44,3 +43,30 @@
       <div id="pagination" class="mt10"><?= $pagination; ?></div>
    </div>
 </div>
+<script>
+ var baseUrl=$('base').attr("href");
+ function publishReview(e){
+   var id = $(e).data('id');	
+	if(id!=''){
+	if($(e).is(":checked")==true){
+		 vl = 1;
+	   }else{
+		 vl = 0;  
+	   }
+	     $.ajax({
+   			type: 'POST',
+   			url: baseUrl + 'admin/reviews/publish_Review',
+   			data: {id:id,vl:vl},
+   			async: false,
+   			success: function (res) {
+				showAlerts("success",'Review successfully updated.');
+				$(".tbl-resp").load(location.href + " .tbl-resp");
+
+   			},
+   			error: function () {
+   				
+   			}
+   	 }); 
+   }
+ }
+</script>
