@@ -1,5 +1,7 @@
 <link href="<?= base_url(); ?>assets/css/jquery.steps.css" rel="stylesheet">
 <script src="<?= base_url(); ?>assets/js/jquery.steps.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <script>
    $(function ()
    {
@@ -95,6 +97,32 @@ function getRadioValue(groupName) {
     } catch (e) { }
     return _result;
 } 
+
+   $(function() {
+    $("#tags").autocomplete({
+     source: function( request, response ) {
+      $.ajax({
+       url: baseUrl + "admin/home/search_locations",
+       type: 'post',
+       dataType: "json",
+       data: {
+        search: request.term
+       },
+       success: function( data ) {
+        response( data );
+       }
+      });
+     },
+     select: function (event, ui) {
+        $('#tags').val(ui.item.label);
+        return false;
+     },
+     focus: function(event, ui){
+        $( "#tags" ).val( ui.item.label );
+        return false;
+      },
+    });
+   });
    
 </script>
 <div class="container">
@@ -105,6 +133,7 @@ function getRadioValue(groupName) {
             <h2>Property Profile</h2>
             <section data-step="0">
                <div class="mb-4">
+			      <input type="text" name="" id="tags">
                   <label class="required">I want to</label>
                   <div class="d-flex flex-wrap bdgchkrdo">
                      <span class="chkrdobtn">

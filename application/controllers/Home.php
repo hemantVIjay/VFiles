@@ -69,6 +69,17 @@ class Home extends MY_Controller {
             echo json_encode($json_array);
             exit();
 	}
+	
+	
+	public function search_locations(){
+		
+		$cities = [];	  
+      $cities = $this->home->_searchLocations($this->input->get("q"), $this->input->get("city"));
+      echo json_encode($cities);
+	  exit;
+		
+		
+	}
 
 
 }

@@ -28,7 +28,7 @@
 			   <a class="form-check form-switch">
 			   <input class="form-check-input" type="checkbox" <?php if($row->is_visible!=''&&$row->is_visible!='0'){ echo'checked'; } ?> id="flexSwitchCheckDefault" value="1" data-id="<?= $row->id; ?>" onchange="publishReview(this);">
 			   </a>
-                  <a class="ms-2" href="<?= base_url('admin/reviews/delete_review/').$row->id; ?>">
+                  <a class="ms-2" href="javascript:vooid(0);" onclick="deleteReview(this);" data-id="<?= $row->id; ?>">
                   <i class="bi bi-trash"></i>
                   </a>
                </td>
@@ -62,6 +62,25 @@
 				showAlerts("success",'Review successfully updated.');
 				$(".tbl-resp").load(location.href + " .tbl-resp");
 
+   			},
+   			error: function () {
+   				
+   			}
+   	 }); 
+   }
+ }
+ 
+ function deleteReview(e){
+   var id = $(e).data('id');	
+	if(id!=''){
+	     $.ajax({
+   			type: 'POST',
+   			url: baseUrl + 'admin/reviews/delete_Review',
+   			data: {id:id},
+   			async: false,
+   			success: function (res) {
+				showAlerts("success",'Review successfully deleted.');
+				$(".tbl-resp").load(location.href + " .tbl-resp");
    			},
    			error: function () {
    				

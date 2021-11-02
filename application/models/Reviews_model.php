@@ -81,11 +81,11 @@ class Reviews_model extends MY_Model{
         return true;		
 	}
 	
-	public function delete_project($id,$update_data){
-		$this->_table_name='projects';
-		$this->_timestamps=TRUE;
+	public function delete_review($id){
+		$this->_table_name='reviews';
+		$this->_primary_key='id';
 		//update Amenity
-		$update_id=$this->save($data=$update_data, $id = $id);
+		$update_id=$this->delete($id);
 		if($update_id){
 			//if updated
 			$return_data=array(

@@ -166,20 +166,18 @@ class Reviews extends MY_Controller {
     }
 	
 	
-	public function delete_project()
+	public function delete_Review()
 	{
-        $id = $this->uri->segment(4);
+        $id = $this->input->post('id');
 		if(isset($id)){
-            //check permission
+			//check permission
             if($this->permitted('delete_article')){
                 $data['title']=$this->lang->line("text_delete_article");
-                $post_data = array(
-				  'status' => 0,
-				  'updated_by' => $this->get_user_id()
-				);
-				$res = $this->project->delete_project($id, $post_data);
-				redirect('admin/projects/list_projects','refresh');
-            }else{
+                $res = $this->reviews->delete_review($id);
+				$success = TRUE;
+                $message = 'Review successfully Deleted.';
+                $content = '';
+			}else{
                 $data['title']=$this->lang->line("alert_access_denied");
                 $success = TRUE;
                 $message = '';
