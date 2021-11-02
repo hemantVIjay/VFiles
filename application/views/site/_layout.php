@@ -134,6 +134,22 @@
                      </a>
 					 <?php } ?>
                   </li>
+				  <li class="nav-item">
+					<a class="nav-link usrlgd dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="javascript:;" ><img src="<?= base_url(); ?>assets/images/user.jpg" class="userPhot" /><span class="activeStatus"></span></a>
+					<ul class="dropdown-menu dropdown-menu-end">
+						<li class="d-flex align-items-center">
+                            <div class="user-prof-photo">
+                                <img id="imgUser" src="<?= base_url(); ?>assets/images/user.jpg" alt="">
+                            </div>
+                            <div class="user-prof-detail">
+                                <div class="user-prof-name">Hello, Hemant</div>
+                                <div class="user-prof-code">hemantvijay@gmail.com</div>
+                            </div>
+						</li>
+						<li><button class="dropdown-item" type="button">My Account</button></li>
+						<li><button class="dropdown-item" type="button">Logout</button></li>
+					  </ul>
+				  </li>
                </ul>
             </div>
          </div>

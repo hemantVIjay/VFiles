@@ -948,6 +948,45 @@ right:0;
 .dropdown-menu.ddm li a{
 	color:#212529;
 }
+.usrlgd{
+	position:relative;
+}
+.usrlgd{
+	position:relative;
+}
+.usrlgd .activeStatus{
+	position:absolute;
+	right:.25rem;
+	top:.25rem;
+	width:9px;
+	height:9px;
+	background:#47BE7D;
+	border-radius:50%;
+}
+.userPhot{
+	height:35px;
+	width:35px;
+	border-radius:5px;
+}
+.user-prof-body {
+    background: url(../images/pattern.jpg) no-repeat;
+    min-width: 300px;
+    padding: 0.8rem 1.25rem;
+    border-top-left-radius: 0.475rem;
+    border-top-right-radius: 0.475rem;
+}
+.user-prof-photo {
+    width: 45px;
+    max-width: 45px;
+    height: 45px;
+    margin-right: 1rem;
+    overflow: hidden;
+}
+.user-prof-photo img {
+    height: 100%;
+    width: 100%;
+    border-radius: 0.475rem;
+}
 .mnwd{
 	min-width:375px;
 }
