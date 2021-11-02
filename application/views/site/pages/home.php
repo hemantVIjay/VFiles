@@ -1,4 +1,5 @@
 <link href="<?= base_url(); ?>assets/plugins/owlcarousel/css/owl.carousel.min.css" rel="stylesheet">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 <section class="section top-area">
 <div class="container text-center">    
   <div class="row justify-content-center">
@@ -20,7 +21,7 @@
 			<option value="2">Ghaziabad</option>
 			<option value="3">Delhi</option>
 		  </select>
-		  <input type="text" class="form-control form-control-lg" placeholder="Search your property here...">
+		  <input type="text" class="form-control form-control-lg autocomplete" placeholder="Search your property here...">
 		  <button class="btn btn-lg btn-primary" type="button">Search</button>
 		</div>
 	  </div>
@@ -712,3 +713,20 @@
 </section>
 <script src="<?= base_url(); ?>assets/plugins/owlcarousel/js/owl.carousel.min.js"></script>
 <script src="<?= base_url(); ?>assets//js/carousel.js"></script>
+
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+
+<script>
+$(function() {
+  var availableTags = [
+    "ActionScript", "AppleScript", "Asp", "BASIC", "C", "C++",
+    "Clojure", "COBOL", "ColdFusion", "Erlang", "Fortran",
+    "Groovy", "Haskell", "Java", "JavaScript", "Lisp", "Perl",
+    "PHP", "Python", "Ruby", "Scala", "Scheme"
+  ];
+  
+  $(".autocomplete").autocomplete({
+    source: availableTags
+  });
+});
+</script>
