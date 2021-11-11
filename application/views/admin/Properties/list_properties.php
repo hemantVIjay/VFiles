@@ -32,7 +32,7 @@
                   </a>
                </td>
                <td class="table-action">
-                  <a href="javascript:;">
+                  <a href="<?= base_url('admin/properties/edit_property/').$row->id; ?>">
                   <i class="bi bi-pencil"></i>
                   </a>
                   <a class="ms-2" href="<?= base_url('admin/properties/delete_property/').$row->id; ?>">

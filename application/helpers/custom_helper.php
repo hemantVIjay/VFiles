@@ -699,7 +699,7 @@
           $banks = "";
           $ci->db->select('*');
           $ci->db->from('cities');
-          $ci->db->where('state_id', 38);
+          $ci->db->where('status', 1);
           $ci->db->order_by('name', 'asc');
           $query = $ci->db->get();
           $Mq    = $query->result();

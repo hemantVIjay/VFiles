@@ -85,118 +85,74 @@
           }
           $this->load->view('admin/_layout', $data);
       }
+
+	  public function edit_property()
+      {
+          $data['title'] = $this->lang->line("text_orders");
+          if ($this->permitted('list_users')) {
+              //get all user types
+		  $id = $this->uri->segment(4);	  
+		  $propertyData = $this->properties->propertyDetails($id);	 
+          $data['info'] = $propertyData;		  
+              $data['sub_view'] = $this->load->view('admin/Properties/edit_properties', $data, TRUE);
+          } else {
+              $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
+          }
+          $this->load->view('admin/_layout', $data);
+      }
       
       
       public function create_property()
       {
-		  $pcode = _propertyCode($_REQUEST['builder'], $_REQUEST['p_type'], $_REQUEST['location']);
-          
-          $amenities = '';
-          $banks     = '';
-          if (!empty($this->input->post('amenities'))) {
-              $amenities = implode(',', $this->input->post('amenities'));
+		  //echo$pcode = _propertyCode($_REQUEST['builder'], $_REQUEST['p_type'], $_REQUEST['location']);
+          //exit;
+		  $pcode = '';
+		  $amenities = '';
+		  $banks = '';
+          if (!empty($this->input->post('pvAMNTS'))) {
+              $amenities = implode(',', $this->input->post('pvAMNTS'));
           }
-          if (!empty($this->input->post('banks'))) {
-              $banks = implode(',', $this->input->post('banks'));
-          }
+		  if(!empty($this->input->post('banks'))){
+		   $banks = implode(',', $this->input->post('banks'));
+		  }
           
           $post_data  = array(
               'code' => $pcode,
-              'builder_id' => $this->input->post('builder'),
-              'property_name' => $this->input->post('project_name'),
-              'locality_id' => $this->input->post('location'),
-              'city_id' => $this->input->post('city'),
-              'district_id' => $this->input->post('district'),
-              'state_id' => $this->input->post('state'),
-              'country_id' => $this->input->post('country'),
-              'property_address' => $this->input->post('address'),
-              'property_type' => $this->input->post('p_type'),
-              'no_of_towers' => $this->input->post('no_of_towers'),
-              'no_of_flats' => $this->input->post('no_of_flats'),
-              'no_of_plots' => $this->input->post('no_of_plots'),
-              'total_area' => $this->input->post('total_area'),
-              'project_phase' => $this->input->post('project_phase'),
-              'project_start_date' => date('Y-m-d', strtotime($this->input->post('project_start_date'))),
-              'architect_name' => $this->input->post('architect_name'),
-              'project_overview' => $this->input->post('project_overview'),
-              'property_amenities' => $amenities,
-              'banks_available' => $banks,
+              'property_name' => $this->input->post('property_name'),
+              'property_for' => $this->input->post('pvIWT'),
+			  'property_type' => $this->input->post('propertyType'),
+			  'property_category' => $this->input->post('pvPTYP'),
+              'bedrooms' => $this->input->post('pvBHK'),
+              'bathrooms' => $this->input->post('pvBTH'),
+              'balcony' => $this->input->post('pvBLCNY'),
+              'furnish_type' => $this->input->post('pvFRNTYP'),
+              'open_parking' => $this->input->post('pvOPNPRK'),
+              'covered_parking' => $this->input->post('pvCVRPRK'),
+              'cost' => $this->input->post('cost'),
+              'maintenance_charges' => $this->input->post('maintenance_charges'),
+              'locality' => $this->input->post('locality'),
+              'project' => $this->input->post('project'),
+              'city_id' => $this->input->post('city'),             
+              'builtup_area' => $this->input->post('builtup_area'),
+              'carpet_area' => $this->input->post('carpet_area'),
+              'construction_status' => $this->input->post('pvCONSTS'),
+              'description' => $this->input->post('description'),
+			  'property_amenities' => $amenities,
+			  'banks_available' => $banks,
               'rera_approved' => $this->input->post('rera_approved'),
               'rera_registrationNumber' => $this->input->post('rera_registrationNumber'),
               'status' => 1,
               'created_by' => $this->get_user_id()
           );
-          $specifications = array();
-          $floorPlans     = array();
-          $plotPlans      = array();
-          foreach ($_REQUEST['specifications'] as $kk => $val) {
-              if (isset($_REQUEST['specifications'][$kk]) && $val != '') {
-                  $specifications[$kk] = $val;
-              }
-          }
-          /*************************---Floor DETAILS---***************************/
-          foreach ($_REQUEST['floor_bedrooms'] as $k => $fval) {
-              $fdata[$k]['floor_totalRoomSizes']      = $_REQUEST['floor_totalRoomSizes'][$k];
-              $fdata[$k]['floor_allRoomSizes']      = $_REQUEST['floor_allRoomSizes'][$k];
-              $fdata[$k]['floor_roomDesc'] = $_REQUEST['floor_roomDesc'][$k];
-              $fdata[$k]['floor_bedrooms'] = $_REQUEST['floor_bedrooms'][$k];
-              $fdata[$k]['floor_bathrooms'] = $_REQUEST['floor_bathrooms'][$k];
-              $fdata[$k]['floor_unit']    = $_REQUEST['floor_unit'][$k];
-              $fdata[$k]['floor_size']    = $_REQUEST['floor_size'][$k];
-              $fdata[$k]['floor_builtupArea']    = $_REQUEST['floor_builtupArea'][$k];
-              $fdata[$k]['floor_basePrice']    = $_REQUEST['floor_basePrice'][$k];
-              $fdata[$k]['floor_totalPrice']    = $_REQUEST['floor_totalPrice'][$k];
-              $floorPlans[]                  = $fdata;
-          }
-		  
-		  /*foreach ($_FILES['floor_planImage']['name'] as $k => $fval) {
-              $fdata[$k]['floor_type']      = $_REQUEST['floor_type'][$k];
-              $fdata[$k]['floor_size']      = $_REQUEST['floor_size'][$k];
-              $fdata[$k]['floor_basePrice'] = $_REQUEST['floor_basePrice'][$k];
-              
-              /******For Floor Image******/
-             /* $_FILES['mFile']['name']      = $_FILES['floor_planImage']['name'][$k];
-              $_FILES['mFile']['type']      = $_FILES['floor_planImage']['type'][$k];
-              $_FILES['mFile']['tmp_name']  = $_FILES['floor_planImage']['tmp_name'][$k];
-              $_FILES['mFile']['error']     = $_FILES['floor_planImage']['error'][$k];
-              $_FILES['mFile']['size']      = $_FILES['floor_planImage']['size'][$k];
-              $fdata[$k]['floor_planImage'] = $this->singleUpload('mFile', 'properties/floorPlans');
-              /******For Floor Image******/
-              /*
-              $fdata[$k]['floor_totalPrice'] = $_REQUEST['floor_totalPrice'][$k];
-              $fdata[$k]['floor_isStudy']    = $_REQUEST['floor_isStudy'][$k];
-              $fdata[$k]['floor_toilets']    = $_REQUEST['floor_toilets'][$k];
-              $floorPlans[]                  = $fdata;
-          }*/
-		  
-          /*************************---PLOT DETAILS---***************************/
-          foreach ($_FILES['plot_Image']['name'] as $k => $fval) {
-              $fdata[$k]['plot_size']      = $_REQUEST['plot_size'][$k];
-              $fdata[$k]['plot_basePrice'] = $_REQUEST['plot_basePrice'][$k];
-              
-              /******For PLOT Image******/
-              $_FILES['mFile']['name']     = $_FILES['plot_Image']['name'][$k];
-              $_FILES['mFile']['type']     = $_FILES['plot_Image']['type'][$k];
-              $_FILES['mFile']['tmp_name'] = $_FILES['plot_Image']['tmp_name'][$k];
-              $_FILES['mFile']['error']    = $_FILES['plot_Image']['error'][$k];
-              $_FILES['mFile']['size']     = $_FILES['plot_Image']['size'][$k];
-              $fdata[$k]['plot_Image']     = $this->singleUpload('mFile', 'properties/plotPlans');
-              /******For PLOT Image******/
-              
-              $fdata[$k]['plot_totalPrice'] = $_REQUEST['plot_totalPrice'][$k];
-              $plotPlans[]                  = $fdata;
-          }
-          
-          if (isset($_FILES['payment_option']) && $_FILES['payment_option']['name'] != '') {
-              $post_data['payment_option'] = $this->singleUpload('payment_option', 'properties/payment_option');
-          }
-          if (isset($_FILES['site_layout']) && $_FILES['site_layout']['name'] != '') {
-              $post_data['site_layout'] = $this->singleUpload('site_layout', 'properties/site_layout');
-          }
-          
+		  if(isset($_FILES['payment_option']) && $_FILES['payment_option']['name']!=''){
+			 $post_data['payment_option'] = $this->singleUpload('payment_option', 'projects/payment_option');
+     	  }
+		  if(isset($_FILES['site_layout']) && $_FILES['site_layout']['name']!=''){
+			 $post_data['site_layout'] = $this->singleUpload('site_layout', 'projects/site_layout');
+		  }	
           //XXS Clean
           $post_data = $this->security->xss_clean($post_data);
-          $result    = $this->properties->create_property($post_data, $specifications, $floorPlans, $plotPlans);
+          $result    = $this->properties->create_property($post_data);
           
           redirect('admin/properties/list_properties', 'refresh');
       }
@@ -205,6 +161,17 @@
       public function location_details()
       {
           $locations        = $this->masters->get_location($_REQUEST['id']);
+          $data['city']     = $locations->city_id;
+          $data['district'] = $locations->district_id;
+          $data['state']    = $locations->state_id;
+          $data['country']  = $locations->country_id;
+          echo json_encode($data);
+          exit;
+      }
+	  
+	  public function _cityLocations()
+      {
+          $locations        = $this->masters->get_cityLocations($_REQUEST['id']);
           $data['city']     = $locations->city_id;
           $data['district'] = $locations->district_id;
           $data['state']    = $locations->state_id;

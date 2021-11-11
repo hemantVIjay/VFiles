@@ -216,17 +216,18 @@
                   </span>
                </div>
             </div>
-			<div class="row">
-            <div class="col-md-5 mb-3">
-               <label class="required">Property Name</label>
-               <input type="text" class="form-control" name="property_name" autocomplete="Off" required />
-            </div>
-			<div class="col-md-7 mb-3">
+            <div class="col-md-7 mb-3">
                <label class="required">Description/Details</label>
-               <textarea type="text" class="form-control" name="description" autocomplete="Off" required ></textarea>
-            </div>
+               <textarea type="text" class="form-control" name="project_name" autocomplete="Off"></textarea>
             </div>
             <div class="row">
+               <div class="col-md-3 mb-3">
+                  <label class="required">Locality</label>
+                  <select class="form-select" name="location" onchange="location_details(this);">
+                     <option value="">--Select--</option>
+                     <?= _localities(''); ?>
+                  </select>
+               </div>
                <div class="col-md-3 mb-3">
                   <label class="required">City</label>
                   <select class="form-select" name="city" id="city">
@@ -234,26 +235,20 @@
                      <?= _cities(''); ?>
                   </select>
                </div>
-			   <div class="col-md-3 mb-3">
-                  <label class="required">Location</label>
-                  <select class="form-select" name="location" onchange="location_details(this);">
-                     <option value="">--Select--</option>
-                     <?= _localities(''); ?>
-                  </select>
-               </div>               
                <div class="col-md-3 mb-3">
-                  <label class="required">Builder</label>
+                  <label class="required">District</label>
                   <select class="form-select" name="district" id="district">
                      <option value="">--Select--</option>
                      <?= _districts(''); ?>
                   </select>
                </div>
                <div class="col-md-3 mb-3">
-                  <label class="required">Project</label>
+                  <label class="required">State</label>
                   <select class="form-select" name="state"  id="state">
                      <option value="">--Select--</option>
                      <?= _states(''); ?>
                   </select>
+                  <input type="hidden" name="country" id="country">
                </div>
             </div>
             <div class="row">
@@ -363,27 +358,7 @@
      });
      
      
-	 
-	 
-     function city_locations(ct) {
-     var baseUrl=$('base').attr("href");
-     var id = $(ct).val();
-     $.ajax({
-     type: "POST",
-     url: baseUrl + "admin/properties/_cityLocations",
-     data:{id:id},
-     async: false,
-     success: function (data) {
-       var mdata = JSON.parse(data);
-       $('#location').val(mdata['city']);
-     },
-     error: function () {
-     
-     }
-     });
-     }
-	 
-	 function location_details(loc) {
+     function location_details(loc) {
      var baseUrl=$('base').attr("href");
      var id = $(loc).val();
      $.ajax({

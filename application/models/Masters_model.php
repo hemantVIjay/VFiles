@@ -14,6 +14,14 @@ class Masters_model extends MY_Model{
 
     /******************************/
 	
+	public function get_cityLocations($id){
+		$this->db->select('l.city_id, l.district_id, l.state_id, l.country_id');
+        $this->db->from('locations l');
+		$this->db->where('l.id', $id);
+		$query = $this->db->get();
+		return ($query->num_rows() == 1)?$query->row():FALSE;
+	}
+	
 	public function get_location($id){
 		$this->db->select('l.city_id, l.district_id, l.state_id, l.country_id');
         $this->db->from('locations l');

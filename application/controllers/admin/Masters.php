@@ -51,6 +51,48 @@ class Masters extends MY_Controller {
         }
         $this->load->view('admin/_layout', $data); 
     }
+	
+	public function list_bedrooms()
+	{
+        $data['title']=$this->lang->line("text_locations");
+		$id = $this->uri->segment(4);
+        if($this->permitted('list_articles')){
+			$floorTypes = $this->masters->get_floorTypes($id);
+            $data['floorTypes']=$floorTypes;
+            $data['sub_view'] = $this->load->view('admin/Masters/_bedrooms', $data, TRUE);
+        }else{
+            $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
+        }
+        $this->load->view('admin/_layout', $data); 
+    }
+	
+	public function list_bathrooms()
+	{
+        $data['title']=$this->lang->line("text_locations");
+		$id = $this->uri->segment(4);
+        if($this->permitted('list_articles')){
+			$floorTypes = $this->masters->get_floorTypes($id);
+            $data['floorTypes']=$floorTypes;
+            $data['sub_view'] = $this->load->view('admin/Masters/_bathrooms', $data, TRUE);
+        }else{
+            $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
+        }
+        $this->load->view('admin/_layout', $data); 
+    }
+
+	public function list_categories()
+	{
+        $data['title']=$this->lang->line("text_locations");
+		$id = $this->uri->segment(4);
+        if($this->permitted('list_articles')){
+			$floorTypes = $this->masters->get_floorTypes($id);
+            $data['floorTypes']=$floorTypes;
+            $data['sub_view'] = $this->load->view('admin/Masters/_categories', $data, TRUE);
+        }else{
+            $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
+        }
+        $this->load->view('admin/_layout', $data); 
+    }
 
 	public function create_bank()
 	{

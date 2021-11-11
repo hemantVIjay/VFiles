@@ -343,7 +343,7 @@ function getRadioValue(groupName) {
                      <?php $amenities = _amenities(); foreach($amenities as $key=>$amenity){ ?>
 			   <div class="col-xl-3 col-md-4 mb-3">
 						 <div class="pv-amenits">
-							 <input id="indoor_<?= $key+1;?>" type="checkbox" name="pvAMNTS[]">
+							 <input id="indoor_<?= $key+1;?>" type="checkbox" name="pvAMNTS[]" value="<?= $amenity->id; ?>">
 							 <label for="indoor_<?= $key+1;?>">
 								<img src="<?= base_url('uploads/amenities/').$amenity->icon; ?>" class="img-fluid">
 								<div class="pv-amenitsn"><?= $amenity->name; ?></div>

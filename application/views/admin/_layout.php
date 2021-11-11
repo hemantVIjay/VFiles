@@ -128,8 +128,23 @@
                               <li>
                                  <a class="nav-link" href="<?= base_url('admin/masters/list_propertiesType');?>">Property Type</a>
                               </li>
-                              <li>
-                                 <a class="nav-link" href="<?= base_url('admin/masters/list_floorType');?>">Floor Type</a>
+							  <li>
+                                 <a class="nav-link" href="<?= base_url('admin/masters/list_propertiesType');?>">Categories</a>
+                              </li>
+							  <li>
+                                 <a class="nav-link" href="<?= base_url('admin/masters/list_floorType');?>">Bedrooms</a>
+                              </li>
+							  <li>
+                                 <a class="nav-link" href="<?= base_url('admin/masters/list_floorType');?>">Bathrooms</a>
+                              </li>
+							  <li>
+                                 <a class="nav-link" href="<?= base_url('admin/masters/list_floorType');?>">Construction Status</a>
+                              </li>
+							  <li>
+                                 <a class="nav-link" href="<?= base_url('admin/masters/list_floorType');?>">Furnish Type</a>
+                              </li>
+							  <li>
+                                 <a class="nav-link" href="<?= base_url('admin/masters/list_floorType');?>">Parkings</a>
                               </li>
                            </ul>
                         </div>
