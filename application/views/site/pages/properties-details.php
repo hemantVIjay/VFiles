@@ -15,7 +15,7 @@
             </div>
             <div class="pvpds mb-4">
                <div class="row">
-                  <div class="col-md-8">
+			      <div class="col-md-8">
                      <h2 class="pvpd-title"><?= $property_info->property_name; ?></h2>
                      <h6 class="pvpd-py">By<span> Imperia Structures Ltd.</span></h6>
                      <h6 class="pvpd-locate"><?= $property_info->property_address; ?></h6>
