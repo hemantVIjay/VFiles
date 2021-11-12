@@ -2,17 +2,21 @@
 
 <section class="bldrsec">
 	<div class="container">
-		<div class="row justify-content-center align-items-center">
+		<div class="row justify-content-center">
+			<div class="col-xl-11 col-md-11 col-sm-12">
+			<div class="row">
 			<div class="col-md-8">
 				<div class="pv-breadcrumb twht mb-4">
 					<a href="javascript:;">Home</a>
-					<a href="javascript:;">Property in Noida</a>
-					<a href="javascript:;" class="current">Property in Sector 150</a>
+					<a href="javascript:;">SKA Developers & Builders</a>
+					<a href="javascript:;" class="current">Residential Projects by SKA Builders</a>
 				</div>
 			</div>
-			<div class="col-md-4 text-end">
+			<div class="col-md-4 text-end py-3">
 				<span class="ludt">Last updated: 12-Nov-2021</span>
 			</div>
+		</div>
+		</div>
 		</div>
 		<div class="row justify-content-center">
 		<div class="col-xl-11 col-md-11 col-sm-12">
