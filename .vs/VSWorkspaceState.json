@@ -2,10 +2,13 @@
   "ExpandedNodes": [
     "",
     "\\application",
+    "\\application\\views",
     "\\application\\views\\site",
     "\\application\\views\\site\\pages",
-    "\\assets"
+    "\\assets",
+    "\\assets\\css",
+    "\\assets\\scss"
   ],
-  "SelectedNode": "\\application\\views",
+  "SelectedNode": "\\application\\views\\site\\_layout.php",
   "PreviewInSolutionExplorer": false
 }
