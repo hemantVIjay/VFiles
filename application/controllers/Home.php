@@ -23,10 +23,11 @@ class Home extends MY_Controller {
 		$result = $this->home->property_details($id);
 		$p_images = $this->home->property_images($id);
 		$i_arr = array();
-		foreach ($p_images as $key => $image) {
-		   $i_arr[$image->image_type][$key] = $image;
+		if(!empty($p_images)){
+		  foreach ($p_images as $key => $image) {
+			   $i_arr[$image->image_type][$key] = $image;
+		  }	
 		}
-		
         $data['property_info'] = $result;
         $data['floor_plans'] = $result;
         $data['properties_images'] = $i_arr;
