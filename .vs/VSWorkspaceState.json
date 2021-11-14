@@ -6,9 +6,9 @@
     "\\application\\views\\site",
     "\\application\\views\\site\\pages",
     "\\assets",
-    "\\assets\\css",
+    "\\assets\\plugins",
     "\\assets\\scss"
   ],
-  "SelectedNode": "\\application\\views\\site\\_layout.php",
+  "SelectedNode": "\\application\\views\\site\\pages\\home.php",
   "PreviewInSolutionExplorer": false
 }
