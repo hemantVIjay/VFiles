@@ -268,9 +268,23 @@ a{
   transform: translateX(-50%);
   background: #ffa506;
 }
+.pg-title-c {
+	font-size: 1.5rem;
+	font-weight: 700;
+	position: relative;
+	margin-bottom: 1rem;
+	padding-bottom:1rem;
+	color: #36312d;
+	border-bottom: 3px solid rgba(0,0,0,.09);
+}
 .text-hdln{
   font-size:1rem;
   line-height: 1.8;
+}
+.textc {
+	font-size: .875rem;
+	line-height: 1.8;
+	color:#7f7f7f;
 }
 
 .card-inner{position: relative;}
