@@ -1168,7 +1168,9 @@ right:0;
 	border-right: 1px solid rgba(0,0,0,.09);
 }
 .upbody {
-	background: #36312d;
+	background: url(../images/acprof.png) no-repeat;
+	background-size: cover;
+	background-position: top center;
 	min-width: 300px;
 	padding: 0.8rem 1.25rem;
 	border-top-left-radius: 0.475rem;
@@ -1298,6 +1300,10 @@ input[type=radio], input[type=checkbox] {
 	}
 	.bdra > div:first-child {
 		border-left: 0;
+	}
+	#sidebarMenu{
+		height:calc(100vh - 40px);
+		    overflow-y: auto;
 	}
 	}
 

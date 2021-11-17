@@ -4,6 +4,7 @@
 			<div class="col-xl-11">
 				<h2 class="pg-title-c">About <span class="text-primary">Propvenues</span></h2>
 				<p class="textc">Get a brief summary of RERA &amp; Its benefits. You can also browse through RERA registered projects in Top cities.</p>
+			
 			</div>
 		</div>
 	</div>

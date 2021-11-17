@@ -6,9 +6,10 @@
     "\\application\\views\\site",
     "\\application\\views\\site\\pages",
     "\\assets",
-    "\\assets\\plugins",
+    "\\assets\\plugins\\jqueryui",
+    "\\assets\\plugins\\jqueryui\\css",
     "\\assets\\scss"
   ],
-  "SelectedNode": "\\application\\views\\site\\pages\\home.php",
+  "SelectedNode": "\\application\\views\\site\\pages\\reviews.php",
   "PreviewInSolutionExplorer": false
 }
