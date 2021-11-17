@@ -1282,6 +1282,9 @@ input[type=radio], input[type=checkbox] {
 	width: 16px;
 	height: 16px;
 }
+table.table tr td, table.table tr th{
+	
+}
 
 @media (min-width: 992px) {
 	.modal-lgn {
