@@ -6,13 +6,31 @@
     <div class="col-xl-8 col-lg-9 col-md-10 col-sm-11">
       <h1 class="tb-title">Beautiful spaces in the best places</h1>
 	  <div class="srch-box mt-5 mb-5">
-		<div class="tab-list d-flex">
-			<a class="tab-link active" href="javascript:;">Flat</a>
-			<a class="tab-link" href="javascript:;">Plot</a>
-			<a class="tab-link" href="javascript:;">Residential</a>
-			<a class="tab-link" href="javascript:;">Commercial</a>
-			<a class="tab-link" href="javascript:;">Industrial</a>
-			<a class="tab-link" href="javascript:;">Villa</a>
+		<div class="d-flex flex-wrap fltrRDO">
+                     <span class="frdo">
+                     <input id="pvAprt" type="radio" name="pvPTYP" checked />
+                     <label for="pvAprt">Flat</label>
+                     </span>
+                     <span class="frdo">
+                     <input id="pvIndHs" type="radio" name="pvPTYP">
+                     <label for="pvIndHs">Plot</label>
+                     </span>
+                     <span class="frdo">
+                     <input id="pvIndFl" type="radio" name="pvPTYP">
+                     <label for="pvIndFl">Residential</label>
+                     </span>
+                     <span class="frdo">
+                     <input id="pvVill" type="radio" name="pvPTYP">
+                     <label for="pvVill">Commercial</label>
+                     </span>
+                     <span class="frdo">
+                     <input id="pvPlt" type="radio" name="pvPTYP">
+                     <label for="pvPlt">Industrial</label>
+                     </span>
+                     <span class="frdo">
+                     <input id="pvAgLand" type="radio" name="pvPTYP">
+                     <label for="pvAgLand">Villa</label>
+                     </span>             
 		</div>
 		<div class="input-group mb-2">
 			<select class="form-select form-select-lg mx-wd-150" id="inputGroupSelect01">
