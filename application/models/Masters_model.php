@@ -50,9 +50,19 @@ class Masters_model extends MY_Model{
         return ($query->num_rows() > 0)?$query->result():FALSE;
     }
 
-	public function _propertyCode(){
-		$this->db->select('c.*');
-        $this->db->from('properties c');
+	public function _lastCode($type){
+		if($type=='Project'||$type=='Property'){
+		 $this->db->select('c.code');
+		 if($type=='Property'){
+		   $this->db->from('properties c'); 
+		 }elseif($type=='Project'){
+		   $this->db->from('projects c');
+		 }		 
+        }
+		if($type=='Builder'){
+		 $this->db->select('c.builder_code as code');
+		 $this->db->from('builders c');
+        }
         $this->db->where('c.status','1');
         $this->db->order_by('c.id','desc');
         $this->db->limit(1);

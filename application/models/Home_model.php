@@ -59,6 +59,24 @@ class Home_model extends MY_Model{
 		//return fetched data
         return ($query->num_rows() > 0)?$query->result():FALSE;
     }
+
+
+	public function _searchProperties($data){
+		$this->db->select('a.property_name as name, a.id as val, pr.project_name as name, pr.id as val, l.name as name, l.id as val, b.builder_name as name, b.id as val');
+        $this->db->from('properties ps');
+        $this->db->join('properties a','ps.id = a.id','inner');
+        $this->db->join('projects pr','a.project = pr.id','right');
+        $this->db->join('locations l','a.locality = l.id','right');
+        $this->db->join('builders b','a.builder_id = b.id','right');
+		$this->db->like('a.property_name',$data);
+		$this->db->or_like('a.property_name',$data);
+		$this->db->or_like('pr.project_name',$data);
+		$this->db->or_like('l.name',$data);
+		$this->db->or_like('b.builder_name',$data);
+		$query = $this->db->get();
+		//return fetched data
+        return ($query->num_rows() > 0)?$query->result():FALSE;
+    }
 	
 	public function create_enquiry($post_data){
         $this->_table_name='enquiries';

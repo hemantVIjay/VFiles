@@ -34,176 +34,167 @@
 		</div>
 		<div class="input-group mb-2">
 			<select class="form-select form-select-lg mx-wd-150" id="inputGroupSelect01">
-			<option selected>Noida</option>
-			<option value="1">Greater Noida</option>
-			<option value="2">Ghaziabad</option>
-			<option value="3">Delhi</option>
-		  </select>
-		  <input type="text" class="form-control form-control-lg autocomplete" placeholder="Search your property here...">
-		  <button class="btn btn-lg btn-primary" type="button">Search</button>
+                     <?php echo _topCities(''); ?>
+                  </select>
+                  <input type="text" class="form-control form-control-lg autocomplete" placeholder="Search your property here...">
+				  <input type="hidden" id="search">
+                  <button class="btn btn-lg btn-primary" type="button">Search</button>
 		</div>
 	  </div>
     </div>
   </div>
 </div>
 </section>
-
 <section class="section prop-loc-bys">
    <div class="container">
-   <h2 class="cmn-title mb-3">Explore Property in India</h2>
-   <div id="#cityCarousel" class="owl-carousel owl-theme expprty mb-4">
-    <div class="item">
-    <div class="card">
-                            <div class="card-img rounded">
-                                <img src="<?= base_url(); ?>assets/images/explore-property/flats.jpg" class="img-fluid rounded">
-                            </div>
-                            <a href="javascript:;" class="card-img-overlay"><span class="ct-title"><span class="xplpcnt">2750</span><br />Flats</span></a>
-                        </div>
-    </div>
-    <div class="item">
-    <div class="card">
-                            <div class="card-img rounded">
-                                <img src="<?= base_url(); ?>assets/images/explore-property/plots.jpg" class="img-fluid rounded">
-                            </div>
-							<a href="javascript:;" class="card-img-overlay"><span class="ct-title"><span class="xplpcnt">1230</span><br />Residential Plots</span></a>
-                        </div>
-    </div>
-    <div class="item">
-    <div class="card">
-                            <div class="card-img rounded">
-                                <img src="<?= base_url(); ?>assets/images/explore-property/villas.jpg" class="img-fluid rounded">
-                            </div>
-							<a href="javascript:;" class="card-img-overlay"><span class="ct-title"><span class="xplpcnt">1250</span><br />House & Villas</span></a>
-                        </div>
-    </div>
-    <div class="item">
-    <div class="card">
-                            <div class="card-img rounded">
-                                <img src="<?= base_url(); ?>assets/images/explore-property/builder-floor.jpg" class="img-fluid rounded">
-                            </div>
-							<a href="javascript:;" class="card-img-overlay"><span class="ct-title"><span class="xplpcnt">540</span><br />Builder Floor</span></a>
-                        </div>
-    </div>
-    <div class="item">
+      <h2 class="cmn-title mb-3">Explore Property in India</h2>
+      <div id="#cityCarousel" class="owl-carousel owl-theme expprty mb-4">
+         <div class="item">
             <div class="card">
-                            <div class="card-img rounded">
-                                <img src="<?= base_url(); ?>assets/images/explore-property/farm-house.jpg" class="img-fluid rounded">
-                            </div>
-							<a href="javascript:;" class="card-img-overlay"><span class="ct-title"><span class="xplpcnt">80</span><br />Farm House</span></a>
-                        </div>
-    </div>
-      <div class="item">
-         <div class="card">
-            <div class="card-img rounded">
-               <img src="<?= base_url(); ?>assets/images/explore-property/penthouse.jpg" class="img-fluid rounded">
-            </div>
-            <div class="card-img-overlay">
-               <div class="ct-title"><span class="xplpcnt">42</span><br />Penthouse</div>
+               <div class="card-img rounded">
+                  <img src="<?= base_url(); ?>assets/images/explore-property/flats.jpg" class="img-fluid rounded">
+               </div>
+               <a href="javascript:;" class="card-img-overlay"><span class="ct-title"><span class="xplpcnt">2750</span><br />Flats</span></a>
             </div>
          </div>
-      </div>
-      <div class="item">
-         <div class="card">
-            <div class="card-img rounded">
-               <img src="<?= base_url(); ?>assets/images/explore-property/studio-apartment.jpg" class="img-fluid rounded">
-            </div>
-            <div class="card-img-overlay">
-               <div class="ct-title"><span class="xplpcnt">10</span><br />Studio Apartment</div>
-            </div>
-         </div>
-      </div>
-
-   </div>
-
-
-   <h2 class="cmn-title mb-3">Explore Commercial Properties in India</h2>
-   <div id="#cmmpropCarousel" class="owl-carousel owl-theme expcmprty">
-    <div class="item">
-    <div class="card">
-                            <div class="card-img rounded">
-                                <img src="<?= base_url(); ?>assets/images/explore-property/office-space.jpg" class="img-fluid rounded">
-                            </div>
-                            <a href="javascript:;" class="card-img-overlay"><span class="ct-title"><span class="xplpcnt">750</span><br />Office Spaces</span></a>
-                        </div>
-    </div>
-    <div class="item">
-    <div class="card">
-                            <div class="card-img rounded">
-                                <img src="<?= base_url(); ?>assets/images/explore-property/commercial-shop.jpg" class="img-fluid rounded">
-                            </div>
-							<a href="javascript:;" class="card-img-overlay"><span class="ct-title"><span class="xplpcnt">230</span><br />Commercial Shops</span></a>
-                        </div>
-    </div>
-    <div class="item">
-    <div class="card">
-                            <div class="card-img rounded">
-                                <img src="<?= base_url(); ?>assets/images/explore-property/commercial-land.jpg" class="img-fluid rounded">
-                            </div>
-							<a href="javascript:;" class="card-img-overlay"><span class="ct-title"><span class="xplpcnt">310</span><br />Commercial Land</span></a>
-                        </div>
-    </div>
-    <div class="item">
-    <div class="card">
-                            <div class="card-img rounded">
-                                <img src="<?= base_url(); ?>assets/images/explore-property/factory.jpg" class="img-fluid rounded">
-                            </div>
-							<a href="javascript:;" class="card-img-overlay"><span class="ct-title"><span class="xplpcnt">40</span><br />Factory</span></a>
-                        </div>
-    </div>
-    <div class="item">
+         <div class="item">
             <div class="card">
-                            <div class="card-img rounded">
-                                <img src="<?= base_url(); ?>assets/images/explore-property/industrial-land.jpg" class="img-fluid rounded">
-                            </div>
-							<a href="javascript:;" class="card-img-overlay"><span class="ct-title"><span class="xplpcnt">73</span><br />Industrial Land</span></a>
-                        </div>
-    </div>
-      <div class="item">
-         <div class="card">
-            <div class="card-img rounded">
-               <img src="<?= base_url(); ?>assets/images/explore-property/business-center.jpg" class="img-fluid rounded">
+               <div class="card-img rounded">
+                  <img src="<?= base_url(); ?>assets/images/explore-property/plots.jpg" class="img-fluid rounded">
+               </div>
+               <a href="javascript:;" class="card-img-overlay"><span class="ct-title"><span class="xplpcnt">1230</span><br />Residential Plots</span></a>
             </div>
-            <div class="card-img-overlay">
-               <div class="ct-title"><span class="xplpcnt">42</span><br />Business Center</div>
+         </div>
+         <div class="item">
+            <div class="card">
+               <div class="card-img rounded">
+                  <img src="<?= base_url(); ?>assets/images/explore-property/villas.jpg" class="img-fluid rounded">
+               </div>
+               <a href="javascript:;" class="card-img-overlay"><span class="ct-title"><span class="xplpcnt">1250</span><br />House & Villas</span></a>
+            </div>
+         </div>
+         <div class="item">
+            <div class="card">
+               <div class="card-img rounded">
+                  <img src="<?= base_url(); ?>assets/images/explore-property/builder-floor.jpg" class="img-fluid rounded">
+               </div>
+               <a href="javascript:;" class="card-img-overlay"><span class="ct-title"><span class="xplpcnt">540</span><br />Builder Floor</span></a>
+            </div>
+         </div>
+         <div class="item">
+            <div class="card">
+               <div class="card-img rounded">
+                  <img src="<?= base_url(); ?>assets/images/explore-property/farm-house.jpg" class="img-fluid rounded">
+               </div>
+               <a href="javascript:;" class="card-img-overlay"><span class="ct-title"><span class="xplpcnt">80</span><br />Farm House</span></a>
+            </div>
+         </div>
+         <div class="item">
+            <div class="card">
+               <div class="card-img rounded">
+                  <img src="<?= base_url(); ?>assets/images/explore-property/penthouse.jpg" class="img-fluid rounded">
+               </div>
+               <div class="card-img-overlay">
+                  <div class="ct-title"><span class="xplpcnt">42</span><br />Penthouse</div>
+               </div>
+            </div>
+         </div>
+         <div class="item">
+            <div class="card">
+               <div class="card-img rounded">
+                  <img src="<?= base_url(); ?>assets/images/explore-property/studio-apartment.jpg" class="img-fluid rounded">
+               </div>
+               <div class="card-img-overlay">
+                  <div class="ct-title"><span class="xplpcnt">10</span><br />Studio Apartment</div>
+               </div>
             </div>
          </div>
       </div>
-      <div class="item">
-         <div class="card">
-            <div class="card-img rounded">
-               <img src="<?= base_url(); ?>assets/images/explore-property/showroom.jpg" class="img-fluid rounded">
+      <h2 class="cmn-title mb-3">Explore Commercial Properties in India</h2>
+      <div id="#cmmpropCarousel" class="owl-carousel owl-theme expcmprty">
+         <div class="item">
+            <div class="card">
+               <div class="card-img rounded">
+                  <img src="<?= base_url(); ?>assets/images/explore-property/office-space.jpg" class="img-fluid rounded">
+               </div>
+               <a href="javascript:;" class="card-img-overlay"><span class="ct-title"><span class="xplpcnt">750</span><br />Office Spaces</span></a>
             </div>
-            <div class="card-img-overlay">
-               <div class="ct-title"><span class="xplpcnt">10</span><br />Showrooms</div>
+         </div>
+         <div class="item">
+            <div class="card">
+               <div class="card-img rounded">
+                  <img src="<?= base_url(); ?>assets/images/explore-property/commercial-shop.jpg" class="img-fluid rounded">
+               </div>
+               <a href="javascript:;" class="card-img-overlay"><span class="ct-title"><span class="xplpcnt">230</span><br />Commercial Shops</span></a>
+            </div>
+         </div>
+         <div class="item">
+            <div class="card">
+               <div class="card-img rounded">
+                  <img src="<?= base_url(); ?>assets/images/explore-property/commercial-land.jpg" class="img-fluid rounded">
+               </div>
+               <a href="javascript:;" class="card-img-overlay"><span class="ct-title"><span class="xplpcnt">310</span><br />Commercial Land</span></a>
+            </div>
+         </div>
+         <div class="item">
+            <div class="card">
+               <div class="card-img rounded">
+                  <img src="<?= base_url(); ?>assets/images/explore-property/factory.jpg" class="img-fluid rounded">
+               </div>
+               <a href="javascript:;" class="card-img-overlay"><span class="ct-title"><span class="xplpcnt">40</span><br />Factory</span></a>
+            </div>
+         </div>
+         <div class="item">
+            <div class="card">
+               <div class="card-img rounded">
+                  <img src="<?= base_url(); ?>assets/images/explore-property/industrial-land.jpg" class="img-fluid rounded">
+               </div>
+               <a href="javascript:;" class="card-img-overlay"><span class="ct-title"><span class="xplpcnt">73</span><br />Industrial Land</span></a>
+            </div>
+         </div>
+         <div class="item">
+            <div class="card">
+               <div class="card-img rounded">
+                  <img src="<?= base_url(); ?>assets/images/explore-property/business-center.jpg" class="img-fluid rounded">
+               </div>
+               <div class="card-img-overlay">
+                  <div class="ct-title"><span class="xplpcnt">42</span><br />Business Center</div>
+               </div>
+            </div>
+         </div>
+         <div class="item">
+            <div class="card">
+               <div class="card-img rounded">
+                  <img src="<?= base_url(); ?>assets/images/explore-property/showroom.jpg" class="img-fluid rounded">
+               </div>
+               <div class="card-img-overlay">
+                  <div class="ct-title"><span class="xplpcnt">10</span><br />Showrooms</div>
+               </div>
+            </div>
+         </div>
+         <div class="item">
+            <div class="card">
+               <div class="card-img rounded">
+                  <img src="<?= base_url(); ?>assets/images/explore-property/hotel.jpg" class="img-fluid rounded">
+               </div>
+               <div class="card-img-overlay">
+                  <div class="ct-title"><span class="xplpcnt">10</span><br />Hotels</div>
+               </div>
+            </div>
+         </div>
+         <div class="item">
+            <div class="card">
+               <div class="card-img rounded">
+                  <img src="<?= base_url(); ?>assets/images/explore-property/warehouse.jpg" class="img-fluid rounded">
+               </div>
+               <div class="card-img-overlay">
+                  <div class="ct-title"><span class="xplpcnt">10</span><br />Warehouse</div>
+               </div>
             </div>
          </div>
       </div>
-	  <div class="item">
-         <div class="card">
-            <div class="card-img rounded">
-               <img src="<?= base_url(); ?>assets/images/explore-property/hotel.jpg" class="img-fluid rounded">
-            </div>
-            <div class="card-img-overlay">
-               <div class="ct-title"><span class="xplpcnt">10</span><br />Hotels</div>
-            </div>
-         </div>
-      </div>
-	  <div class="item">
-         <div class="card">
-            <div class="card-img rounded">
-               <img src="<?= base_url(); ?>assets/images/explore-property/warehouse.jpg" class="img-fluid rounded">
-            </div>
-            <div class="card-img-overlay">
-               <div class="ct-title"><span class="xplpcnt">10</span><br />Warehouse</div>
-            </div>
-         </div>
-      </div>
-
    </div>
-                            
-</div>
 </section>
-
 <section class="section fndhm">
    <div class="container">
       <div class="row justify-content-center mt-3 mb-3">
@@ -624,9 +615,7 @@
          </div>
       </div>
    </div>
-
-
-</div>
+   </div>
 </section>
 <section class="section rrsec">
    <div class="container">
@@ -638,112 +627,125 @@
       </div>
    </div>
 </section>
-
 <section class="section prop-loc-bys">
-
-<div class="container">
-    <h2 class="cmn-title mb-3">Latest News & Articles</h2>
-       
-    <div class="row">
-      <div class="col-md-6">
-          <div class="card">
-            <div class="row g-0">
-              <div class="col-md-5">
-              <img src="<?= base_url(); ?>assets/images/cities/gurgaon.jpg" class="img-fluid rounded-start">
-              </div>
-              <div class="col-md-7">
-                <div class="card-body">
-                    <h5 class="nws-title"><a href="javascript:;">We realise the growth potential of Indian real estate, says marketing head of Warren Buffet-backed property brokerage</a></h5>
-                    <p class="nws-desc">In an exclusive interview with propvenues.com News, Sanya Aeren, chief advisor, Berkshire Hathway Home Services and Orenda India, speaks about the opportunities and challenges facing Berkshire Hathway’s foray into the Indian real estate market</p>
-                    <a class="rdmr-link" href="javascript:;">Read More<i class="bi bi-arrow-right"></i></a>
-                </div>
-              </div>
+   <div class="container">
+      <h2 class="cmn-title mb-3">Latest News & Articles</h2>
+      <div class="row">
+         <div class="col-md-6">
+            <div class="card">
+               <div class="row g-0">
+                  <div class="col-md-5">
+                     <img src="<?= base_url(); ?>assets/images/cities/gurgaon.jpg" class="img-fluid rounded-start">
+                  </div>
+                  <div class="col-md-7">
+                     <div class="card-body">
+                        <h5 class="nws-title"><a href="javascript:;">We realise the growth potential of Indian real estate, says marketing head of Warren Buffet-backed property brokerage</a></h5>
+                        <p class="nws-desc">In an exclusive interview with propvenues.com News, Sanya Aeren, chief advisor, Berkshire Hathway Home Services and Orenda India, speaks about the opportunities and challenges facing Berkshire Hathway’s foray into the Indian real estate market</p>
+                        <a class="rdmr-link" href="javascript:;">Read More<i class="bi bi-arrow-right"></i></a>
+                     </div>
+                  </div>
+               </div>
             </div>
-          </div>
-      </div>
-
-      <div class="col-md-6">
-          <div class="card">
-            <div class="row g-0">
-              <div class="col-md-5">
-              <img src="<?= base_url(); ?>assets/images/cities/yamuna-expressway.jpg" class="img-fluid rounded-start">
-              </div>
-              <div class="col-md-7">
-                <div class="card-body">
-                    <h5 class="nws-title"><a href="javascript:;">We realise the growth potential of Indian real estate, says marketing head of Warren Buffet-backed property brokerage</a></h5>
-                    <p class="nws-desc">In an exclusive interview with propvenues.com News, Sanya Aeren, chief advisor, Berkshire Hathway Home Services and Orenda India, speaks about the opportunities and challenges facing Berkshire Hathway’s foray into the Indian real estate market</p>
-                    <a class="rdmr-link" href="javascript:;">Read More<i class="bi bi-arrow-right"></i></a>
-                </div>
-              </div>
+         </div>
+         <div class="col-md-6">
+            <div class="card">
+               <div class="row g-0">
+                  <div class="col-md-5">
+                     <img src="<?= base_url(); ?>assets/images/cities/yamuna-expressway.jpg" class="img-fluid rounded-start">
+                  </div>
+                  <div class="col-md-7">
+                     <div class="card-body">
+                        <h5 class="nws-title"><a href="javascript:;">We realise the growth potential of Indian real estate, says marketing head of Warren Buffet-backed property brokerage</a></h5>
+                        <p class="nws-desc">In an exclusive interview with propvenues.com News, Sanya Aeren, chief advisor, Berkshire Hathway Home Services and Orenda India, speaks about the opportunities and challenges facing Berkshire Hathway’s foray into the Indian real estate market</p>
+                        <a class="rdmr-link" href="javascript:;">Read More<i class="bi bi-arrow-right"></i></a>
+                     </div>
+                  </div>
+               </div>
             </div>
-          </div>
-      </div>
-
-    </div>
-
-</div>
-
-<div class="container">
-<h2 class="pg-title-big text-center mt-5">Tools & Advice</h2>
-  <div class="row">
-      <div class="col-md-3 col-sm-6 text-center">
-          <div class="card">
-              <div class="card-body">
-                <img src="<?= base_url(); ?>assets/images/trends.svg" class="img-fluid ta-icons">
-                <h5 class="ta-title mt-4">Trends & Rates</h5>
-                <p class="ta-desc">Get all there is to know about property rates and trends in your city.</p>
-                <a class="rdmr-link" href="javascript:;">Read More<i class="bi bi-arrow-right"></i></a>
-              </div>
-          </div>
-      </div>
-      <div class="col-md-3 col-sm-6 text-center">
-          <div class="card">
-              <div class="card-body">
-                <img src="<?= base_url(); ?>assets/images/investment.svg" class="img-fluid ta-icons">
-                <h5 class="ta-title mt-4">Investment Spotlight</h5>
-                <p class="ta-desc">Find out where to invest in your city's best communities.</p>
-                <a class="rdmr-link" href="javascript:;">Read More<i class="bi bi-arrow-right"></i></a>
-              </div>
-          </div>
-      </div>
-      <div class="col-md-3 col-sm-6 text-center">
-          <div class="card">
-              <div class="card-body">
-                <img src="<?= base_url(); ?>assets/images/research.svg" class="img-fluid ta-icons">
-                <h5 class="ta-title mt-4">Research Insights</h5>
-                <p class="ta-desc">Get real estate professional advice and research reports.</p>
-                <a class="rdmr-link" href="javascript:;">Read More<i class="bi bi-arrow-right"></i></a>
-              </div>
-          </div>
-      </div>
-      <div class="col-md-3 col-sm-6 text-center">
-          <div class="card">
-              <div class="card-body">
-                <img src="<?= base_url(); ?>assets/images/calculator.svg" class="img-fluid ta-icons">
-                <h5 class="ta-title mt-4">EMI Calculator</h5>
-                <p class="ta-desc">Know how much you'll have to pay on your loan each month.</p>
-                <a class="rdmr-link" href="javascript:;">Read More<i class="bi bi-arrow-right"></i></a>
-              </div>
-          </div>
+         </div>
       </div>
    </div>
+   <div class="container">
+      <h2 class="pg-title-big text-center mt-5">Tools & Advice</h2>
+      <div class="row">
+         <div class="col-md-3 col-sm-6 text-center">
+            <div class="card">
+               <div class="card-body">
+                  <img src="<?= base_url(); ?>assets/images/trends.svg" class="img-fluid ta-icons">
+                  <h5 class="ta-title mt-4">Trends & Rates</h5>
+                  <p class="ta-desc">Get all there is to know about property rates and trends in your city.</p>
+                  <a class="rdmr-link" href="javascript:;">Read More<i class="bi bi-arrow-right"></i></a>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-3 col-sm-6 text-center">
+            <div class="card">
+               <div class="card-body">
+                  <img src="<?= base_url(); ?>assets/images/investment.svg" class="img-fluid ta-icons">
+                  <h5 class="ta-title mt-4">Investment Spotlight</h5>
+                  <p class="ta-desc">Find out where to invest in your city's best communities.</p>
+                  <a class="rdmr-link" href="javascript:;">Read More<i class="bi bi-arrow-right"></i></a>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-3 col-sm-6 text-center">
+            <div class="card">
+               <div class="card-body">
+                  <img src="<?= base_url(); ?>assets/images/research.svg" class="img-fluid ta-icons">
+                  <h5 class="ta-title mt-4">Research Insights</h5>
+                  <p class="ta-desc">Get real estate professional advice and research reports.</p>
+                  <a class="rdmr-link" href="javascript:;">Read More<i class="bi bi-arrow-right"></i></a>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-3 col-sm-6 text-center">
+            <div class="card">
+               <div class="card-body">
+                  <img src="<?= base_url(); ?>assets/images/calculator.svg" class="img-fluid ta-icons">
+                  <h5 class="ta-title mt-4">EMI Calculator</h5>
+                  <p class="ta-desc">Know how much you'll have to pay on your loan each month.</p>
+                  <a class="rdmr-link" href="javascript:;">Read More<i class="bi bi-arrow-right"></i></a>
+               </div>
+            </div>
+         </div>
+      </div>
    </div>
 </section>
 <script src="<?= base_url(); ?>assets/plugins/jqueryui/js/jquery-ui.js"></script>
 <script src="<?= base_url(); ?>assets/plugins/owlcarousel/js/owl.carousel.min.js"></script>
 <script src="<?= base_url(); ?>assets/js/carousel.js"></script>
-
 <script>
-$(function() {
-  var availableTags = [
-    "ActionScript", "AppleScript", "Asp", "BASIC", "C", "C++",
-    "Clojure", "COBOL", "ColdFusion", "Erlang", "Fortran",
-    "Groovy", "Haskell", "Java", "JavaScript", "Lisp", "Perl",
-    "PHP", "Python", "Ruby", "Scala", "Scheme"
-  ];
-  
-  $(".autocomplete").autocomplete({
-    source: availableTags
-  });
-});
+var baseUrl=$('base').attr("href");
+   $(function() {
+	 $(".autocomplete" ).autocomplete({
+      source: function( request, response ) {
+        $.ajax({
+				url: baseUrl + 'home/search_properties',
+				dataType: "json",
+				data: {
+					q: request.term
+				},
+				success: function (data) {
+					response($.map(data, function (item) {
+						return {
+							label: item.name,
+							value: item.name,							
+							val: item.val						
+						};
+					}));
+				}
+			});
+      },
+      minLength: 2,
+      select: function( event, ui ) {
+		  console.log(ui);
+        $('#search').val(ui.item.val)
+      }
+    });
+
+	 
+	 
+	 
+	 
+   });
 </script>

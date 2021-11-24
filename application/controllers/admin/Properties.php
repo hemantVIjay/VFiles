@@ -104,10 +104,8 @@
       
       public function create_property()
       {
-		  //echo$pcode = _propertyCode($_REQUEST['builder'], $_REQUEST['p_type'], $_REQUEST['location']);
-          //exit;
-		  $pcode = '';
-		  $amenities = '';
+		  $pcode = _autoCode('Property');
+          $amenities = '';
 		  $banks = '';
           if (!empty($this->input->post('pvAMNTS'))) {
               $amenities = implode(',', $this->input->post('pvAMNTS'));

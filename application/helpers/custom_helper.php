@@ -329,21 +329,26 @@
       }
   }
 
-  if (!function_exists('_propertyCode')) {
-      function _propertyCode($builder, $p_type, $loc)
+  if (!function_exists('_autoCode')) {
+      function _autoCode($type)
       {
           $ci =& get_instance();
-		  $str = 'PROPV';
-		  //$code = $str.$builder.$p_type.$loc;
-		  $code = $str.$p_type;
-          $res = $ci->masters->_propertyCode();
-		  if(!empty($res)){
-			$nCode = substr($res->code, -6);  
+		  if($type=='Project'){
+			  $str = 'PVPRJ';
+		  }if($type=='Property'){
+			  $str = 'PVPRT';
+		  }if($type=='Builder'){
+			  $str = 'PVBLD';
+		  }
+		  $code = $str;
+          $res = $ci->masters->_lastCode($type);
+		  if($res->code!=''){
+			$nCode = substr($res->code, -5);  
 		  }else{
 			$nCode = 0;
 		  }
 		  $nCode = $nCode+1;
-		  $finalCode = $code.sprintf("%06d", $nCode);
+		  $finalCode = $code.sprintf("%05d", $nCode);
           return $finalCode;
       }
   }
@@ -794,6 +799,28 @@
           return $banks;
       }
   }
+
+
+  if (!function_exists('_topCities')) {
+      function _topCities($mid)
+      {
+          $ci =& get_instance();
+          $banks = "";
+		  $ids = array(4776,5022,4759,706,707);
+          $ci->db->where('status', 1);
+          $ci->db->where_in('id', $ids);
+          $query = $ci->db->get('cities');
+          $Mq    = $query->result();
+          
+          foreach ($Mq as $row) {
+              $Sdata = ($row->id == $mid) ? 'selected' : '';
+              $banks .= "<option " . $Sdata . " value ='" . $row->id . "'>";
+              $banks .= $row->name;
+              $banks .= "</option>";
+          }
+          return $banks;
+      }
+  }
   
   if (!function_exists('paypal_payment')) {
       
@@ -881,8 +908,7 @@
   if (!function_exists('_getSetting')) {
       
       function _getSetting()
-      {
-          
+      {          
           $ci =& get_instance();
           $ci->db->select('*');
           $query  = $ci->db->get('settings');
@@ -894,8 +920,7 @@
   if (!function_exists('_cityName')) {
       
       function _cityName($id)
-      {
-          
+      {          
           $ci =& get_instance();
           $ci->db->select('*');
           $ci->db->where('id', $id);
@@ -906,8 +931,7 @@
               return $result->name;
           } else {
               return '';
-          }
-          
+          }          
       }
   }
   
@@ -941,9 +965,9 @@
           $ci->load->library('phpmailer_lib');
           $mail = $ci->phpmailer_lib->load();
           
-          $mail->Host       = 'mail.desimurgawala.com';
+          $mail->Host       = 'mail.propvenues.com';
           $mail->SMTPAuth   = true;
-          $mail->Username   = 'enquiry@desimurgawala.com';
+          $mail->Username   = 'enquiry@propvenues.com';
           $mail->Password   = '!RHPodeygyz#';
           $mail->SMTPSecure = 'tls';
           $mail->Port       = 587;
@@ -951,8 +975,8 @@
           $mail->setFrom('', '');
           
           $data['logo']               = $logo;
-          $data['application_title']  = 'DesiMurgawala';
-          $data['application_footer'] = 'DesiMurgawala';
+          $data['application_title']  = 'Propvenues';
+          $data['application_footer'] = 'Propvenues';
           $data['email_content']      = $message;
           
           $email_body = $ci->load->view('email/template_mail', $data, true);
@@ -972,62 +996,6 @@
       
   }
   
-  if (!function_exists('_availableQuantity')) {
-      
-      function _availableQuantity($pid)
-      {
-          
-          $ci =& get_instance();
-          
-          $sql    = "Select A.purchased_quantity, (A.purchased_quantity - SUM(B.assigned_quantity)) as available_quantity from daily_purchases A JOIN user_quantities B on A.id = B.purchase_id where A.id = $pid";
-          $query  = $ci->db->query($sql);
-          $result = $query->row();
-          if (!empty($result)) {
-              if ($result->available_quantity != '') {
-                  return $result->available_quantity;
-              } else {
-                  return $result->purchased_quantity;
-              }
-          } else {
-              return 0;
-          }
-          
-      }
-  }
-  
-  if (!function_exists('_allProducts')) {
-      
-      function _allProducts()
-      {
-          
-          $ci =& get_instance();
-          $query = $ci->db->get('products');
-          $res   = $query->result();
-          if (!empty($res)) {
-              return $res;
-          } else {
-              return array();
-          }
-      }
-  }
-  
-  if (!function_exists('_deliveryGuys')) {
-      
-      function _deliveryGuys()
-      {
-          
-          $ci =& get_instance();
-          $ci->db->where('user_role_id', 5);
-          $query = $ci->db->get('users');
-          $res   = $query->result();
-          if (!empty($res)) {
-              return $res;
-          } else {
-              return array();
-          }
-      }
-  }
-  
   if (!function_exists('_locations')) {
       
       function _locations()
@@ -1035,56 +1003,6 @@
           $ci =& get_instance();
           $query = $ci->db->get('locations');
           $res   = $query->result();
-          if (!empty($res)) {
-              return $res;
-          } else {
-              return array();
-          }
-      }
-  }
-  
-  if (!function_exists('_assign_zones')) {
-      
-      function _assign_zones()
-      {
-          
-          $ci =& get_instance();
-          $query = $ci->db->get('zones');
-          $res   = $query->result();
-          if (!empty($res)) {
-              return $res;
-          } else {
-              return array();
-          }
-      }
-  }
-  
-  if (!function_exists('_userlocations')) {
-      
-      function _userlocations($uid)
-      {
-          
-          $ci =& get_instance();
-          $ci->db->where('user_id', $uid);
-          $query = $ci->db->get('user_locations');
-          $res   = $query->row();
-          
-          if (!empty($res)) {
-              $loc = $res->locations;
-              return explode(',', $loc);
-          } else {
-              return array();
-          }
-      }
-  }
-  
-  
-  if (!function_exists('_remaining_product_qty')) {
-      
-      function _remaining_product_qty()
-      {
-          $ci =& get_instance();
-          $res = $ci->inventory_model->_remaining_product_qty();
           if (!empty($res)) {
               return $res;
           } else {
@@ -1115,185 +1033,4 @@
       }
       
   }
-  
-  if (!function_exists('_orderDetails')) {
-      
-      function _orderDetails($id)
-      {          
-          $ci =& get_instance();
-          $res = $ci->order_model->_orderDetails($id);
-          $arr = array();
-          foreach ($res as $ar) {
-              $srr['key']   = $ar->meta_key;
-              $srr['value'] = $ar->meta_value;
-              $arr[]        = $srr;
-          }
-          $result = array_map(function($v)
-          {
-              //return [$v['key'] => $v['value']];
-          }, $arr);
-          
-          if (!empty($result)) {
-              return array_flatten($result);
-          } else {
-              return array();
-          }
-      }
-  }
-  
-  
-  
-  if (!function_exists('_products')) {
-      
-      function _products()
-      {
-          $ci =& get_instance();
-          $res = $ci->inventory_model->_products();
-          if (!empty($res)) {
-              return $res;
-          } else {
-              return array();
-          }
-      }
-  }
-  
-  if (!function_exists('_orders')) {
-      
-      function _orders()
-      {
-          $ci =& get_instance();
-          $res = $ci->order_model->_orders();
-          if (!empty($res)) {
-              return $res;
-          } else {
-              return array();
-          }
-      }
-  }
-  
-  
-  if (!function_exists('_customers')) {
-      
-      function _customers()
-      {
-          $ci =& get_instance();
-          $res = $ci->order_model->_customers();
-          if (!empty($res)) {
-              return $res;
-          } else {
-              return array();
-          }
-      }
-  }
-  
-  if (!function_exists('_productInfo')) {
-      
-      function _productInfo($id)
-      {
-          $ci =& get_instance();
-          $res = $ci->inventory_model->_productInfo($id);
-          if (!empty($res)) {
-              return $res;
-          } else {
-              return array();
-          }
-      }
-  }
-  
-  if (!function_exists('_wURL')) {
-      
-      function _wURL()
-      {
-          $ci =& get_instance();
-          $res = $ci->inventory_model->_wURL();
-          if (!empty($res)) {
-              return $res->option_value;
-          } else {
-              return array();
-          }
-      }
-  }
-  
-  if (!function_exists('_unitPrice')) {
-      
-      function _unitPrice($pid)
-      {
-          $ci =& get_instance();
-          $res = $ci->inventory_model->_unitPrice($pid);
-          if (!empty($res)) {
-              return $res->min_price;
-          } else {
-              return array();
-          }
-      }
-  }
-  
-  if (!function_exists('_thumbnail')) {
-      
-      function _thumbnail($id)
-      {
-          $ci =& get_instance();
-          $res = $ci->inventory_model->_thumbnail($id);
-          if (!empty($res)) {
-              $img   = $res->meta_value; //str_replace('.jpg', '-300x300.jpg',$res->meta_value);
-              $thumb = _wURL() . '/wp-content/uploads/' . $img;
-              return $thumb;
-          } else {
-              $str = '';
-              return $str;
-          }
-      }
-  }
-  
-  if (!function_exists('_customerDetails')) {
-      
-      function _customerDetails($id)
-      {
-          
-          $ci =& get_instance();
-          $res = $ci->order_model->_customerDetails($id);
-          $arr = array();
-          foreach ($res as $ar) {
-              $srr['key']   = $ar->meta_key;
-              $srr['value'] = $ar->meta_value;
-              $arr[]        = $srr;
-          }
-          $result = array_map(function($v)
-          {
-              //return [$v['key'] => $v['value']];
-          }, $arr);
-          
-          if (!empty($result)) {
-              return array_flatten($result);
-          } else {
-              return array();
-          }
-      }
-  }
-  
-  
-  if (!function_exists('_productDetails')) {
-      
-      function _productDetails($id)
-      {
-          $ci =& get_instance();
-          $res = $ci->inventory_model->_productDetails($id);
-          
-          $arr = array();
-          foreach ($res as $ar) {
-              $srr['key']   = $ar->meta_key;
-              $srr['value'] = $ar->meta_value;
-              $arr[]        = $srr;
-          }
-          $result = array_map(function($v)
-          {
-              //return [$v['key'] => $v['value']];
-          }, $arr);
-          
-          if (!empty($result)) {
-              return array_flatten($result);
-          } else {
-              return array();
-          }
-      }
-  }
+ 

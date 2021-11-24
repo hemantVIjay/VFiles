@@ -82,5 +82,15 @@ class Home extends MY_Controller {
 		
 	}
 
+	public function search_properties(){
+		
+	  $cities = [];	  
+      $cities = $this->home->_searchProperties($this->input->get("q"));
+	  echo json_encode($cities);
+	  exit;
+		
+		
+	}
+
 
 }
