@@ -474,4 +474,15 @@ function getRadioValue(groupName) {
       }
       }
 	  
+
+	  // Remove a few plugins from the default setup.
+ClassicEditor
+    .create( document.querySelector( '#ckedtr' ), {
+        removePlugins: [ 'Heading', 'Link' ],
+        toolbar: [ 'bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote' ]
+    } )
+    .catch( error => {
+        console.log( error );
+    } );
+
 </script>

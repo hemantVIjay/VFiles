@@ -711,9 +711,18 @@
       </div>
    </div>
 </section>
+
+<!-- Start CKEditor -->
+				  <div class="container mb-3">
+                    <label for="Description">Description</label>
+					<textarea cols="80" id="editor1" name="editor1" rows="10"></textarea>
+                  </div>
+				  <!-- End CKEditor -->
+				  
 <script src="<?= base_url(); ?>assets/plugins/jqueryui/js/jquery-ui.js"></script>
 <script src="<?= base_url(); ?>assets/plugins/owlcarousel/js/owl.carousel.min.js"></script>
 <script src="<?= base_url(); ?>assets/js/carousel.js"></script>
+<script src="https://cdn.ckeditor.com/4.17.1/standard-all/ckeditor.js"></script>
 <script>
 var baseUrl=$('base').attr("href");
    $(function() {
@@ -748,4 +757,16 @@ var baseUrl=$('base').attr("href");
 	 
 	 
    });
+   
+   
+   // CKEditor
+   CKEDITOR.replace('editor1', {
+      fullPage: true,
+      extraPlugins: 'docprops',
+      // Disable content filtering because if you use full page mode, you probably
+      // want to  freely enter any HTML content in source mode without any limitations.
+      allowedContent: true,
+      height: 320,
+      removeButtons: 'PasteFromWord'
+    });
 </script>
