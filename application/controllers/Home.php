@@ -16,6 +16,29 @@ class Home extends MY_Controller {
         $this->load->view('site/_layout', $data);
 	}
 
+	public function search()
+	{
+		$pdata = array(); $result = array();
+		$city = $this->uri->segment(3);
+		$mt = explode('_',base64_decode($_GET['content']));
+		if($mt[0]=='BLD'){
+		 $pdata['builder_id'] = $mt[1];	
+		}if($mt[0]=='PROJ'){
+		 $pdata['project'] = $mt[1];	
+		}if($mt[0]=='LOC'){
+		 $pdata['locality'] = $mt[1];	
+		}
+		$data['title']=$this->lang->line("text_home");
+		$pdata['property_type'] = _getSlugID('property_categories', $_GET['type']);
+		//$pdata['location'] = $_GET['location'];
+		//$pdata['content'] = 
+		$pdata['city_id'] = _getSlugID('cities', $city); 
+		$result = $this->home->search_properties($pdata);
+		$data['listings'] = $result;
+		$data['sub_view'] = $this->load->view('site/pages/properties-listings', $data, TRUE);
+        $this->load->view('site/_layout', $data);
+	}
+
 	public function properties_details()
 	{
 		$data['title']=$this->lang->line("text_home");
@@ -83,13 +106,17 @@ class Home extends MY_Controller {
 	}
 
 	public function search_properties(){
-		
 	  $cities = [];	  
       $cities = $this->home->_searchProperties($this->input->get("q"));
 	  echo json_encode($cities);
-	  exit;
-		
-		
+	  exit;		
+	}
+
+	public function find_listings(){
+	  $cities = [];	  
+      $cities = $this->home->_searchListing($this->input->get("q"));
+	  echo json_encode($cities);
+	  exit;		
 	}
 
 

@@ -61,19 +61,48 @@ class Home_model extends MY_Model{
     }
 
 
-	public function _searchProperties($data){
-		$this->db->select('a.property_name as name, a.id as val, pr.project_name as name, pr.id as val, l.name as name, l.id as val, b.builder_name as name, b.id as val');
-        $this->db->from('properties ps');
-        $this->db->join('properties a','ps.id = a.id','inner');
-        $this->db->join('projects pr','a.project = pr.id','right');
-        $this->db->join('locations l','a.locality = l.id','right');
-        $this->db->join('builders b','a.builder_id = b.id','right');
-		$this->db->like('a.property_name',$data);
-		$this->db->or_like('a.property_name',$data);
-		$this->db->or_like('pr.project_name',$data);
-		$this->db->or_like('l.name',$data);
-		$this->db->or_like('b.builder_name',$data);
+	public function _searchProperties($search){
+		//$sql = "SELECT a.property_name as name, CONCAT('PROP','_', a.id) as val 
+		//FROM properties a where a.property_name LIKE '%$search%'
+	    //UNION
+		//SELECT pr.project_name as name, CONCAT('PROJ','_', pr.id) as val
+		//FROM projects pr where pr.project_name LIKE '%$search%'
+		//UNION	
+		//SELECT l.name as name,  CONCAT('BLD','_', l.id) as val 
+		//FROM locations l where l.name LIKE '%$search%'
+		//UNION	
+		//SELECT b.builder_name as name, b.id as val
+		//FROM builders b where b.builder_name LIKE '%$search%'";
+		
+		$sql = "SELECT pr.project_name as name, CONCAT('PROJ','_', pr.id) as val
+		FROM projects pr where pr.project_name LIKE '%$search%'
+		UNION	
+		SELECT l.name as name, CONCAT('LOC','_', l.id) as val 
+		FROM locations l where l.name LIKE '%$search%'
+		UNION	
+		SELECT b.builder_name as name, CONCAT('BLD','_', b.id) as val
+		FROM builders b where b.builder_name LIKE '%$search%'";
+        $query = $this->db->query($sql);
+		//return fetched data
+        return ($query->num_rows() > 0)?$query->result():FALSE;
+    }
+
+
+	public function _searchListing($search){
+		$this->db->select('a.*');
+        $this->db->from('properties a');
 		$query = $this->db->get();
+		//return fetched data
+        return ($query->num_rows() > 0)?$query->result():FALSE;
+    }
+	
+	
+	public function search_properties($search){
+		$this->db->select('*');
+        $this->db->from('properties');
+        $this->db->where($search);
+		$query = $this->db->get();
+		echo$this->db->last_query();
 		//return fetched data
         return ($query->num_rows() > 0)?$query->result():FALSE;
     }

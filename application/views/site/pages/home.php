@@ -5,40 +5,20 @@
   <div class="row justify-content-center">
     <div class="col-xl-8 col-lg-9 col-md-10 col-sm-11">
       <h1 class="tb-title">Beautiful spaces in the best places</h1>
+	  <form name="search_properties" id="search_properties" method="POST" action="">
 	  <div class="srch-box mt-5 mb-5">
 		<div class="d-flex flex-wrap fltrRDO">
-                     <span class="frdo">
-                     <input id="pvAprt" type="radio" name="pvPTYP" checked />
-                     <label for="pvAprt">Flat</label>
-                     </span>
-                     <span class="frdo">
-                     <input id="pvIndHs" type="radio" name="pvPTYP">
-                     <label for="pvIndHs">Plot</label>
-                     </span>
-                     <span class="frdo">
-                     <input id="pvIndFl" type="radio" name="pvPTYP">
-                     <label for="pvIndFl">Residential</label>
-                     </span>
-                     <span class="frdo">
-                     <input id="pvVill" type="radio" name="pvPTYP">
-                     <label for="pvVill">Commercial</label>
-                     </span>
-                     <span class="frdo">
-                     <input id="pvPlt" type="radio" name="pvPTYP">
-                     <label for="pvPlt">Industrial</label>
-                     </span>
-                     <span class="frdo">
-                     <input id="pvAgLand" type="radio" name="pvPTYP">
-                     <label for="pvAgLand">Villa</label>
-                     </span>             
+           <?php echo _categories(''); ?>                      
 		</div>
 		<div class="input-group mb-2">
-			<select class="form-select form-select-lg mx-wd-150" id="inputGroupSelect01">
+			<select class="form-select form-select-lg mx-wd-150" id="inputGroupSelect01" name="cities">
                      <?php echo _topCities(''); ?>
                   </select>
-                  <input type="text" class="form-control form-control-lg autocomplete" placeholder="Search your property here...">
-				  <input type="hidden" id="search">
-                  <button class="btn btn-lg btn-primary" type="button">Search</button>
+                  <input type="text" class="form-control form-control-lg autocomplete" placeholder="Search your property here..." name="search">
+                  <button class="btn btn-lg btn-primary" type="button" id="main_search">Search</button>
+				  <input type="hidden" id="search" name="content">
+	  
+				  </form>
 		</div>
 	  </div>
     </div>
@@ -747,17 +727,22 @@ var baseUrl=$('base').attr("href");
       },
       minLength: 2,
       select: function( event, ui ) {
-		  console.log(ui);
-        $('#search').val(ui.item.val)
+		var content = btoa(ui.item.val);  
+        $('#search').val('');
+        $('#search').val(content);
       }
-    });
-
-	 
-	 
-	 
-	 
+    });	 
+	$('#main_search').click(function(){
+	    var lc = $('#search').val();
+		if(lc==''){
+			alert('Please search a locality first!.');
+			return false;
+		}
+		search_properties();
+	});
    });
    
+<<<<<<< Updated upstream
    
    // CKEditor
    CKEDITOR.replace('editor1', {
@@ -769,4 +754,20 @@ var baseUrl=$('base').attr("href");
       height: 320,
       removeButtons: 'PasteFromWord'
     });
+=======
+   function search_properties(){
+	   var main = $('select[name="cities"]').val();
+	   var type = $('input[name="type"]:checked').val();
+	   var location = $('input[name="search"]').val();
+	   var content = $('input[name="content"]').val();
+	   if(type==undefined){
+		 type = '';
+	   }if(location==undefined){
+		 location = '';
+	   }if(content==undefined){
+		 content = '';
+	   }
+       window.location.href = baseUrl + 'search/properties/'+main+'?location='+location+'&type='+type+'&content='+content;
+   }
+>>>>>>> Stashed changes
 </script>

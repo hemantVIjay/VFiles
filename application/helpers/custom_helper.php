@@ -801,6 +801,48 @@
   }
 
 
+  if (!function_exists('_categories')) {
+      function _categories($mid)
+      {
+          $ci =& get_instance();
+          $banks = "";
+          $ci->db->where('status', 1);
+          $query = $ci->db->get('property_categories');
+          $Mq    = $query->result();
+          
+          foreach ($Mq as $row) {
+              if($mid==''){
+				  $mid = 'apartment';
+			  }
+			  $Sdata = ($row->slug == $mid) ? 'checked' : '';
+              $banks .= '<span class="frdo"><input '.$Sdata.' id="pv_'.$row->id.'" type="radio" name="type" value ="'.$row->slug.'" /><label for="pv_'.$row->id.'">';
+              $banks .= $row->name;
+              $banks .= "</label></span>";
+          }
+          return $banks;
+      }
+  }
+
+  if (!function_exists('_checkCategories')) {
+      function _checkCategories($mid)
+      {
+          $ci =& get_instance();
+          $banks = "";
+          $ci->db->where('status', 1);
+          $query = $ci->db->get('property_categories');
+          $Mq    = $query->result();
+          
+          foreach ($Mq as $row) {
+			  $Sdata = ($row->slug == $mid) ? 'checked' : '';
+              $banks .= '<li><div class="form-check"><input class="form-check-input" type="checkbox" value="'.$row->slug.'" id="pv_'.$row->id.'" '.$Sdata.' ><label class="form-check-label" for="pv_'.$row->id.'">';
+              $banks .= $row->name;
+              $banks .= "</label></div></li>";
+          }
+          return $banks;
+      }
+  }
+
+
   if (!function_exists('_topCities')) {
       function _topCities($mid)
       {
@@ -813,8 +855,8 @@
           $Mq    = $query->result();
           
           foreach ($Mq as $row) {
-              $Sdata = ($row->id == $mid) ? 'selected' : '';
-              $banks .= "<option " . $Sdata . " value ='" . $row->id . "'>";
+              $Sdata = ($row->slug == $mid) ? 'selected' : '';
+              $banks .= "<option " . $Sdata . " value ='" . $row->slug . "'>";
               $banks .= $row->name;
               $banks .= "</option>";
           }
@@ -901,6 +943,17 @@
           $ci->db->order_by('id', 'desc');
           $ci->db->limit(1, 1);
           $res = $ci->db->get('invoices')->row();
+          return $res->id;
+      }
+  }
+
+  if (!function_exists('_getSlugID')) {
+      
+      function _getSlugID($tbl, $slug)
+      {
+          $ci =& get_instance();
+          $ci->db->where('slug',$slug);
+          $res = $ci->db->get($tbl)->row();
           return $res->id;
       }
   }
