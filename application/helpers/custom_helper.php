@@ -823,6 +823,139 @@
       }
   }
 
+  if (!function_exists('_pFor')) {
+      function _pFor($mid)
+      {
+          $ci =& get_instance();
+          $banks = "";
+          $ci->db->where('status', 1);
+          $query = $ci->db->get('property_types');
+          $Mq    = $query->result();
+          
+          foreach ($Mq as $row) {
+              $Sdata = ($row->id == $mid) ? 'checked' : '';
+              $banks .= '<span class="box2RBC"><input '.$Sdata.' id="prop_'.$row->id.'" type="radio" name="propertyType" value="'.$row->id.'"><label for="prop_'.$row->id.'">';
+              $banks .= $row->name;
+              $banks .= "</label></span>";
+          }
+          return $banks;
+      }
+  }
+
+  if (!function_exists('_pTypes')) {
+      function _pTypes($mid)
+      {
+          $ci =& get_instance();
+          $banks = "";
+          $ci->db->where('status', 1);
+          $query = $ci->db->get('property_types');
+          $Mq    = $query->result();
+          
+          foreach ($Mq as $row) {
+              $Sdata = ($row->id == $mid) ? 'checked' : '';
+              $banks .= '<span class="box2RBC"><input '.$Sdata.' id="prop_'.$row->id.'" type="radio" name="propertyType" value="'.$row->id.'"><label for="prop_'.$row->id.'">';
+              $banks .= $row->name;
+              $banks .= "</label></span>";
+          }
+          return $banks;
+      }
+  }
+
+  if (!function_exists('_p_categories')) {
+      function _p_categories($mid)
+      {
+          $ci =& get_instance();
+          $banks = "";
+          $ci->db->where('status', 1);
+          $query = $ci->db->get('property_categories');
+          $Mq    = $query->result();
+          
+          foreach ($Mq as $row) {
+              $Sdata = ($row->id == $mid) ? 'checked' : '';
+              $banks .= '<span class="chkrdobtn"><input '.$Sdata.' id="pvAprt_'.$row->id.'" type="radio" name="pvPTYP" value="'.$row->id.'"><label for="pvAprt_'.$row->id.'">';
+              $banks .= $row->name;
+              $banks .= "</label></span>";
+          }
+          return $banks;
+      }
+  }
+
+  if (!function_exists('_floorTypes')) {
+      function _floorTypes($mid)
+      {
+          $ci =& get_instance();
+          $banks = "";
+          $ci->db->where('status', 1);
+          $query = $ci->db->get('floor_types');
+          $Mq    = $query->result();
+          
+          foreach ($Mq as $row) {
+              $Sdata = ($row->id == $mid) ? 'checked' : '';
+              $banks .= '<span class="chkrdobtn"><input '.$Sdata.' id="pvBHK_'.$row->id.'" type="radio" name="pvBHK" value="'.$row->id.'"><label for="pvBHK_'.$row->id.'">';
+              $banks .= $row->name;
+              $banks .= "</label></span>";
+          }
+          return $banks;
+      }
+  }
+
+  if (!function_exists('_bathrooms')) {
+      function _bathrooms($mid)
+      {
+          $ci =& get_instance();
+          $banks = "";
+          $ci->db->where('status', 1);
+          $query = $ci->db->get('bathrooms');
+          $Mq    = $query->result();
+          
+          foreach ($Mq as $row) {
+              $Sdata = ($row->id == $mid) ? 'checked' : '';
+              $banks .= '<span class="chkrdobtn"><input '.$Sdata.' id="pv_'.$row->id.'" type="radio" name="pvBTH" value="'.$row->id.'"><label for="pv_'.$row->id.'">';
+              $banks .= $row->name;
+              $banks .= "</label></span>";
+          }
+          return $banks;
+      }
+  }
+
+  if (!function_exists('_balconies')) {
+      function _balconies($mid)
+      {
+          $ci =& get_instance();
+          $banks = "";
+          $ci->db->where('status', 1);
+          $query = $ci->db->get('balconies');
+          $Mq    = $query->result();
+          
+          foreach ($Mq as $row) {
+              $Sdata = ($row->id == $mid) ? 'checked' : '';
+              $banks .= '<span class="chkrdobtn"><input '.$Sdata.' id="pv_'.$row->id.'" type="radio" name="pvBLCNY" value="'.$row->id.'"><label for="pv_'.$row->id.'">';
+              $banks .= $row->name;
+              $banks .= "</label></span>";
+          }
+          return $banks;
+      }
+  }
+
+  if (!function_exists('_furnishType')) {
+      function _furnishType($mid)
+      {
+          $ci =& get_instance();
+          $banks = "";
+          $ci->db->where('status', 1);
+          $query = $ci->db->get('furnish_types');
+          $Mq    = $query->result();
+          
+          foreach ($Mq as $row) {
+              $Sdata = ($row->id == $mid) ? 'checked' : '';
+              $banks .= '<span class="chkrdobtn"><input '.$Sdata.' id="pvfllfrns_'.$row->id.'" type="radio" name="pvFRNTYP" value="'.$row->id.'"><label for="pvfllfrns_'.$row->id.'">';
+              $banks .= $row->name;
+              $banks .= "</label></span>";
+          }
+          return $banks;
+      }
+  }
+
   if (!function_exists('_checkCategories')) {
       function _checkCategories($mid)
       {
@@ -1086,4 +1219,59 @@
       }
       
   }
+  
+  
+	function no_to_words($nm)
+	{   $ns = explode('.',$nm);
+	    $no = $ns[0];
+	    $finalval = '';
+	    if($no == 0) {
+			return ' ';
+
+		}else {
+			$n =  strlen($no); // 7
+			switch ($n) {
+				case 3:
+					$val = $no/100;
+					$val = round($val, 2);
+					$finalval =  $val ." hundred";
+					break;
+				case 4:
+					$val = $no/1000;
+					$val = round($val, 2);
+					$finalval =  $val ." thousand";
+					break;
+				case 5:
+					$val = $no/1000;
+					$val = round($val, 2);
+					$finalval =  $val ." thousand";
+					break;
+				case 6:
+					$val = $no/100000;
+					$val = round($val, 2);
+					$finalval =  $val ." Lac";
+					break;
+				case 7:
+					$val = $no/100000;
+					$val = round($val, 2);
+					$finalval =  $val ." Lac";
+					break;
+				case 8:
+					$val = $no/10000000;
+					$val = round($val, 2);
+					$finalval =  $val ." Cr";
+					break;
+				case 9:
+					$val = $no/10000000;
+					$val = round($val, 2);
+					$finalval =  $val ." Cr";
+					break;
+
+				default:
+					echo "";
+			}
+			return $finalval;
+
+		}
+	}
  

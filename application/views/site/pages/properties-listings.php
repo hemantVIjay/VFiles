@@ -234,7 +234,8 @@
 		 <?php if(!empty($listings)){ $lcount = count($listings); }else{ $lcount = 0; } ?>
          <h3 class="pvSrchTitle">Properties in Greater Noida Extension <span>(<?= $lcount; ?> Properties)</span></h3>
          <div class="pvpts-list">
-            <div class="card mb-3">
+            <?php if(!empty($listings)){ foreach($listings as $listing){ ?>
+			<div class="card mb-3">
                <div class="row g-0">
                   <div class="col-md-4">
                      <div class="card-inner">
@@ -254,12 +255,12 @@
                         <h6 class="pvpd-locate mb-3">Sector 16C, Greater Noida West</h6>
                         <div class="row mb-3">
                            <div class="col-xl-3 col-4">
-                              <h5 class="pv-lprc">₹ 36.92 L</h5>
+                              <h5 class="pv-lprc">₹ <?= no_to_words($listing->cost); ?></h5>
                               <div class="pv-lprc-sml">₹ 5,830 per sq.ft.</div>
                            </div>
                            <div class="col-xl-3 col-4">
                               <h5 class="pv-lprc dropdown">
-                                 780<span class="ms-1 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">sq.ft.</span>
+                                 <?= round($listing->builtup_area); ?><span class="ms-1 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">sq.ft.</span>
                                  <ul class="dropdown-menu dmbody shadow" aria-labelledby="navbarDropdown">
                                     <li>72 Sq. Meters</li>
                                     <li>90 Sq. Yards</li>
@@ -279,7 +280,7 @@
                            <span class="badge badge-secondary">Ready to Move</span>
                            <span class="badge badge-secondary ms-1">Resale</span>
                         </div>
-                        <a href="javascript:;" class="rmLink">Read More<i class="bi bi-arrow-right"></i></a>
+                        <a href="<?php echo base_url();?>properties-details/<?= $listing->slug; ?>" class="rmLink" target="_blank">Read More<i class="bi bi-arrow-right"></i></a>
                      </div>
                   </div>
                </div>
@@ -295,6 +296,7 @@
                   </div>
                </div>
             </div>
+			<?php } } ?>
             <div class="card mb-3">
                <div class="row g-0">
                   <div class="col-md-4">

@@ -27,6 +27,10 @@
                      <input id="pvIWTPG" type="radio" name="pvIWT" value="PG">
                      <label for="pvIWTPG">PG</label>
                      </span>
+					 <span class="chkrdobtn">
+                     <input id="pvIWTResale" type="radio" name="pvIWT" value="Resale">
+                     <label for="pvIWTResale">Resale</label>
+                     </span>
                   </div>
                </div>
                <div class="mb-4">
@@ -34,42 +38,12 @@
                   <div class="row">
                      <div class="col-xl-8 col-md-10 d-flex">
                         <div class="box2RB">
-                           <span class="box2RBC">
-                           <input type="radio" id="propResi" name="propertyType" checked  value="0"/>
-                           <label for="propResi">Residential</label>
-                           </span>
-                           <span class="box2RBC">
-                           <input type="radio" id="propComm" name="propertyType"  value="0"/>
-                           <label for="propComm">Commercial</label>
-                           </span>
+						   <?php echo _pTypes(''); ?>
                         </div>
                      </div>
                   </div>
                   <div class="d-flex flex-wrap bdgchkrdo">
-                     <span class="chkrdobtn">
-                     <input id="pvAprt" type="radio" name="pvPTYP" value="0">
-                     <label for="pvAprt">Apartment</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pvIndHs" type="radio" name="pvPTYP" value="0">
-                     <label for="pvIndHs">Independent House</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pvIndFl" type="radio" name="pvPTYP" value="0">
-                     <label for="pvIndFl">Independent Floor</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pvVill" type="radio" name="pvPTYP" value="0">
-                     <label for="pvVill">Villa</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pvPlt" type="radio" name="pvPTYP" value="0">
-                     <label for="pvPlt">Plot</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pvAgLand" type="radio" name="pvPTYP" value="0">
-                     <label for="pvAgLand">Agricultural Land</label>
-                     </span>
+                     <?php echo _p_categories(''); ?>
                   </div>
                </div>
             </div>
@@ -89,81 +63,25 @@
             <div class="mb-4">
                <label class="required">BHK</label>
                <div class="d-flex flex-wrap bdgchkrdo">
-                  <span class="chkrdobtn">
-                  <input id="pv1BHK" type="radio" name="pvBHK" value="0">
-                  <label for="pv1BHK">1 BHK</label>
-                  </span>
-                  <span class="chkrdobtn">
-                  <input id="pv2BHK" type="radio" name="pvBHK" value="0">
-                  <label for="pv2BHK">2 BHK</label>
-                  </span>
-                  <span class="chkrdobtn">
-                  <input id="pv3BHK" type="radio" name="pvBHK" value="0">
-                  <label for="pv3BHK">3 BHK</label>
-                  </span>
-                  <span class="chkrdobtn">
-                  <input id="pv3PBHK" type="radio" name="pvBHK" value="0">
-                  <label for="pv3PBHK">3+ BHK</label>
-                  </span>
+                  <?php echo _floorTypes(''); ?>
                </div>
             </div>
             <div class="mb-4">
                <label class="required">Bathroom</label>
                <div class="d-flex flex-wrap bdgchkrdo">
-                  <span class="chkrdobtn">
-                  <input id="pv1bth" type="radio" name="pvBTH" value="0">
-                  <label for="pv1bth">1</label>
-                  </span>
-                  <span class="chkrdobtn">
-                  <input id="pv2bth" type="radio" name="pvBTH" value="0">
-                  <label for="pv2bth">2</label>
-                  </span>
-                  <span class="chkrdobtn">
-                  <input id="pv3bth" type="radio" name="pvBTH" value="0">
-                  <label for="pv3bth">3</label>
-                  </span>
-                  <span class="chkrdobtn">
-                  <input id="pv3pbth" type="radio" name="pvBTH" value="0">
-                  <label for="pv3pbth">3+</label>
-                  </span>
+                  <?php echo _bathrooms(''); ?>
                </div>
             </div>
             <div class="mb-4">
                <label class="required">Balcony</label>
                <div class="d-flex flex-wrap bdgchkrdo">
-                  <span class="chkrdobtn">
-                  <input id="pv1blcn" type="radio" name="pvBLCNY" value="0">
-                  <label for="pv1blcn">1</label>
-                  </span>
-                  <span class="chkrdobtn">
-                  <input id="pv2blcn" type="radio" name="pvBLCNY" value="0">
-                  <label for="pv2blcn">2</label>
-                  </span>
-                  <span class="chkrdobtn">
-                  <input id="pv3blcn" type="radio" name="pvBLCNY" value="0">
-                  <label for="pv3blcn">3</label>
-                  </span>
-                  <span class="chkrdobtn">
-                  <input id="pv3pblcn" type="radio" name="pvBLCNY" value="0">
-                  <label for="pv3pblcn">3+</label>
-                  </span>
+			   <?php echo _balconies(''); ?>
                </div>
             </div>
             <div class="mb-4">
                <label class="required">Furnish Type</label>
                <div class="d-flex flex-wrap bdgchkrdo">
-                  <span class="chkrdobtn">
-                  <input id="pvfllfrns" type="radio" name="pvFRNTYP" value="0">
-                  <label for="pvfllfrns">Fully Furnished</label>
-                  </span>
-                  <span class="chkrdobtn">
-                  <input id="pvsmifrns" type="radio" name="pvFRNTYP" value="0">
-                  <label for="pvsmifrns">Semi Furnished</label>
-                  </span>
-                  <span class="chkrdobtn">
-                  <input id="pvunfrns" type="radio" name="pvFRNTYP" value="0">
-                  <label for="pvunfrns">Unfurnished</label>
-                  </span>
+                  <?php echo _furnishType(''); ?>
                </div>
             </div>
             <div class="mb-4">
@@ -217,13 +135,13 @@
                </div>
             </div>
 			<div class="row">
-            <div class="col-md-5 mb-3">
+            <div class="col-md-12 mb-3">
                <label class="required">Property Name</label>
                <input type="text" class="form-control" name="property_name" autocomplete="Off" required />
             </div>
-			<div class="col-md-7 mb-3">
+			<div class="col-md-12 mb-3">
                <label class="required">Description/Details</label>
-               <textarea type="text" class="form-control" name="description" autocomplete="Off" required ></textarea>
+               <textarea type="text" class="form-control" name="description" autocomplete="Off" required id="description"></textarea>
             </div>
             </div>
             <div class="row">
@@ -350,6 +268,7 @@
 </form>
 <script src="<?= base_url(); ?>assets/js/moment.min.js"></script>
 <script src="<?= base_url(); ?>assets/plugins/datepicker/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.17.1/standard-all/ckeditor.js"></script>
 <!--<script src="<?= base_url(); ?>assets/js/custom.js"></script>-->
 <script type="text/javascript">
    var dataURL = $('base').attr("href");
@@ -362,7 +281,17 @@
          });
      });
      
-     
+        
+   // CKEditor
+   CKEDITOR.replace('description', {
+      fullPage: true,
+      extraPlugins: 'docprops',
+      // Disable content filtering because if you use full page mode, you probably
+      // want to  freely enter any HTML content in source mode without any limitations.
+      allowedContent: true,
+      height: 120,
+      removeButtons: 'PasteFromWord'
+    });
 	 
 	 
      function city_locations(ct) {
