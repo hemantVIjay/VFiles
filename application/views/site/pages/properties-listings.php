@@ -228,11 +228,11 @@
          </div>
          <div class="pv-breadcrumb mt-3">
             <a href="javascript:;">Home</a>
-            <a href="javascript:;">Property in Noida</a>
-            <a href="javascript:;" class="current">Property in Sector 150</a>
+            <a href="javascript:;">Property in <?= ucfirst($city); ?></a>
+            <a href="javascript:;" class="current">Property in <?= ucfirst($s_content['location']); ?></a>
          </div>
 		 <?php if(!empty($listings)){ $lcount = count($listings); }else{ $lcount = 0; } ?>
-         <h3 class="pvSrchTitle">Properties in Greater Noida Extension <span>(<?= $lcount; ?> Properties)</span></h3>
+         <?php if(!empty($listings)){ ?><h3 class="pvSrchTitle">Properties in <?= ucfirst($s_content['location']); ?> <span>(<?= $lcount; ?> Properties)</span></h3><?php }?>
          <div class="pvpts-list">
             <?php if(!empty($listings)){ foreach($listings as $listing){ ?>
 			<div class="card mb-3">
@@ -250,37 +250,39 @@
                   </div>
                   <div class="col-md-8">
                      <div class="card-body">
-                        <h5 class="pv-ptttl mb-1"><a href="javascript:;">Godrej Serenity Noida</a></h5>
-                        <h6 class="pvpd-py">By<span> Godrej Properties</span></h6>
-                        <h6 class="pvpd-locate mb-3">Sector 16C, Greater Noida West</h6>
+                        <h5 class="pv-ptttl mb-1"><a href="javascript:;"><?= $listing->property_name; ?></a></h5>
+                        <?php if($listing->builder_id!=''&& $listing->builder_id!='0'){ $builder = _builderDetails($listing->builder_id); print_r($builder); ?>
+			            <h6 class="pvpd-py">By<span> <?=$builder->builder_name;?></span></h6><?php } ?>
+                        <h6 class="pvpd-locate mb-3"><?= $listing->property_address; ?></h6>
                         <div class="row mb-3">
                            <div class="col-xl-3 col-4">
                               <h5 class="pv-lprc">₹ <?= no_to_words($listing->cost); ?></h5>
-                              <div class="pv-lprc-sml">₹ 5,830 per sq.ft.</div>
+                              <?php $rate = ($listing->cost/$listing->builtup_area); ?>
+							  <div class="pv-lprc-sml">₹ <?php echo number_format($rate); ?> per sq.ft.</div>
                            </div>
                            <div class="col-xl-3 col-4">
                               <h5 class="pv-lprc dropdown">
-                                 <?= round($listing->builtup_area); ?><span class="ms-1 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">sq.ft.</span>
+                                 <?= round($listing->builtup_area); ?><span class="ms-1 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">sq.ft.</span><!--
                                  <ul class="dropdown-menu dmbody shadow" aria-labelledby="navbarDropdown">
                                     <li>72 Sq. Meters</li>
                                     <li>90 Sq. Yards</li>
                                     <li>0.06 Acres</li>
                                     <li>0.09 Bigha</li>
                                     <li>0.045 Hectares</li>
-                                 </ul>
+                                 </ul>-->
                               </h5>
                               <div class="pv-lprc-sml">Super built-up Area</div>
                            </div>
                            <div class="col-xl-3 col-4">
-                              <h5 class="pv-lprc">1 BHK</h5>
-                              <div class="pv-lprc-sml">1 Bath, 2 R Balcony</div>
+                              <h5 class="pv-lprc"><?= $listing->bd_name; ?></h5>
+                              <div class="pv-lprc-sml"><?= $listing->bt_name; ?> Bath, <?= $listing->bl_name; ?> R Balcony</div>
                            </div>
                         </div>
                         <div class="mb-4">
-                           <span class="badge badge-secondary">Ready to Move</span>
-                           <span class="badge badge-secondary ms-1">Resale</span>
+                           <span class="badge badge-secondary"><?= $listing->cs_name; ?></span>
+                           <span class="badge badge-secondary ms-1"><?= $listing->lt_name; ?></span>
                         </div>
-                        <a href="<?php echo base_url();?>properties-details/<?= $listing->slug; ?>" class="rmLink" target="_blank">Read More<i class="bi bi-arrow-right"></i></a>
+                        <a href="<?php echo base_url();?>properties-details/<?= $listing->slug; ?>---<?= $listing->id; ?>" class="rmLink" target="_blank">Read More<i class="bi bi-arrow-right"></i></a>
                      </div>
                   </div>
                </div>
@@ -296,68 +298,9 @@
                   </div>
                </div>
             </div>
-			<?php } } ?>
-            <div class="card mb-3">
-               <div class="row g-0">
-                  <div class="col-md-4">
-                     <div class="card-inner">
-                        <div class="card-img rounded-top-right-0">
-                           <img src="<?= base_url(); ?>assets/images/cities/greater-noida.jpg" class="img-fluid">
-                        </div>
-                        <a href="javascript:;" class="card-img-overlay">
-                        <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA Approved</span>
-                        <span class="prop-snfc">Posted : 7 Sep. 2021</span>
-                        </a>
-                     </div>
-                  </div>
-                  <div class="col-md-8">
-                     <div class="card-body">
-                        <h5 class="pv-ptttl mb-1"><a href="javascript:;">Imperia Prideville Nurture Phase 1</a></h5>
-                        <h6 class="pvpd-py">By<span> Imperia Structures Ltd.</span></h6>
-                        <h6 class="pvpd-locate mb-3">Jaypee Greens, Sector 25 Yamuna Expressway, Greater Noida</h6>
-                        <div class="row mb-3">
-                           <div class="col-xl-3 col-4">
-                              <h5 class="pv-lprc">₹ 36.92 L</h5>
-                              <div class="pv-lprc-sml">₹ 5,830 per sq.ft.</div>
-                           </div>
-                           <div class="col-xl-3 col-4">
-                              <h5 class="pv-lprc dropdown">
-                                 780<span class="ms-1 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">sq.ft.</span>
-                                 <ul class="dropdown-menu dmbody shadow" aria-labelledby="navbarDropdown">
-                                    <li>72 Sq. Meters</li>
-                                    <li>90 Sq. Yards</li>
-                                    <li>0.06 Acres</li>
-                                    <li>0.09 Bigha</li>
-                                    <li>0.045 Hectares</li>
-                                 </ul>
-                              </h5>
-                              <div class="pv-lprc-sml">Super built-up Area</div>
-                           </div>
-                           <div class="col-xl-3 col-4">
-                              <h5 class="pv-lprc">1 BHK</h5>
-                              <div class="pv-lprc-sml">1 Bath, 2 R Balcony</div>
-                           </div>
-                        </div>
-                        <div class="mb-4">
-                           <span class="badge badge-secondary">Ready to Move</span>
-                           <span class="badge badge-secondary ms-1">Resale</span>
-                        </div>
-                        <a href="javascript:;" class="rmLink">Read More<i class="bi bi-arrow-right"></i></a>
-                     </div>
-                  </div>
-               </div>
-               <div class="spcr-bds"></div>
-               <div class="py-2 px-3">
-                  <div class="row align-items-center">
-                     <div class="col-6">
-                        <span class="pvrrrg"><i class="bi bi-check-circle-fill me-2"></i>RERA ID : UPRERAPRJ5112</span>
-                     </div>
-                     <div class="col-6 text-end">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pvGetCallback">Get Current Offers</button>
-                     </div>
-                  </div>
-               </div>
-            </div>
+			<?php } }else{ ?>
+			<h3 class="pvSrchTitle text-center"><span>No Properties in Greater Noida Extension</span></h3>
+			<?php } ?>
          </div>
       </div>
    </div>

@@ -829,12 +829,12 @@
           $ci =& get_instance();
           $banks = "";
           $ci->db->where('status', 1);
-          $query = $ci->db->get('property_types');
+          $query = $ci->db->get('listing_type');
           $Mq    = $query->result();
           
           foreach ($Mq as $row) {
               $Sdata = ($row->id == $mid) ? 'checked' : '';
-              $banks .= '<span class="box2RBC"><input '.$Sdata.' id="prop_'.$row->id.'" type="radio" name="propertyType" value="'.$row->id.'"><label for="prop_'.$row->id.'">';
+              $banks .= '<span class="chkrdobtn"><input '.$Sdata.' id="propf_'.$row->id.'" type="radio" name="pvIWT" value="'.$row->id.'"><label for="propf_'.$row->id.'">';
               $banks .= $row->name;
               $banks .= "</label></span>";
           }
@@ -929,7 +929,7 @@
           
           foreach ($Mq as $row) {
               $Sdata = ($row->id == $mid) ? 'checked' : '';
-              $banks .= '<span class="chkrdobtn"><input '.$Sdata.' id="pv_'.$row->id.'" type="radio" name="pvBLCNY" value="'.$row->id.'"><label for="pv_'.$row->id.'">';
+              $banks .= '<span class="chkrdobtn"><input '.$Sdata.' id="pvb_'.$row->id.'" type="radio" name="pvBLCNY" value="'.$row->id.'"><label for="pvb_'.$row->id.'">';
               $banks .= $row->name;
               $banks .= "</label></span>";
           }

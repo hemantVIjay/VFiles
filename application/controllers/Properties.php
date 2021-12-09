@@ -55,7 +55,6 @@ class Properties extends MY_Controller {
               'status' => 1,
               'created_by' => $this->get_user_id()
           );
-		  
           //XXS Clean
           $post_data = $this->security->xss_clean($post_data);
           $result    = $this->site->create_property($post_data);

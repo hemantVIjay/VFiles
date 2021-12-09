@@ -707,11 +707,13 @@ var baseUrl=$('base').attr("href");
    $(function() {
 	 $(".autocomplete" ).autocomplete({
       source: function( request, response ) {
+     	var city = $('select[name="cities"]').val();
         $.ajax({
 				url: baseUrl + 'home/search_properties',
 				dataType: "json",
 				data: {
-					q: request.term
+					q: request.term,
+					city: city	  
 				},
 				success: function (data) {
 					response($.map(data, function (item) {

@@ -143,10 +143,13 @@
               'created_by' => $this->get_user_id()
           );
 		  if(isset($_FILES['payment_option']) && $_FILES['payment_option']['name']!=''){
-			 $post_data['payment_option'] = $this->singleUpload('payment_option', 'projects/payment_option');
-     	  }
+		   $post_data['payment_option'] = $this->singleUpload('payment_option', 'properties/Payment Option');
+		  }
 		  if(isset($_FILES['site_layout']) && $_FILES['site_layout']['name']!=''){
-			 $post_data['site_layout'] = $this->singleUpload('site_layout', 'projects/site_layout');
+		   $post_data['site_layout'] = $this->singleUpload('site_layout', 'properties/Site Layout');
+		  }
+		  if(isset($_FILES['main_image']) && $_FILES['main_image']['name']!=''){
+		   $post_data['main_image'] = $this->singleUpload('main_image', 'properties/Main Image');
 		  }	
           //XXS Clean
           $post_data = $this->security->xss_clean($post_data);

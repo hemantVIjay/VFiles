@@ -61,7 +61,7 @@ class Home_model extends MY_Model{
     }
 
 
-	public function _searchProperties($search){
+	public function _searchProperties($search, $city){
 		//$sql = "SELECT a.property_name as name, CONCAT('PROP','_', a.id) as val 
 		//FROM properties a where a.property_name LIKE '%$search%'
 	    //UNION
@@ -75,10 +75,10 @@ class Home_model extends MY_Model{
 		//FROM builders b where b.builder_name LIKE '%$search%'";
 		
 		$sql = "SELECT pr.project_name as name, CONCAT('PROJ','_', pr.id) as val
-		FROM projects pr where pr.project_name LIKE '%$search%'
+		FROM projects pr where pr.project_name LIKE '%$search%' AND city_id = (SELECT id FROM cities where slug = '".$city."') 
 		UNION	
 		SELECT l.name as name, CONCAT('LOC','_', l.id) as val 
-		FROM locations l where l.name LIKE '%$search%'
+		FROM locations l where l.name LIKE '%$search%' AND city_id = (SELECT id FROM cities where slug = '".$city."')
 		UNION	
 		SELECT b.builder_name as name, CONCAT('BLD','_', b.id) as val
 		FROM builders b where b.builder_name LIKE '%$search%'";
@@ -92,17 +92,23 @@ class Home_model extends MY_Model{
 		$this->db->select('a.*');
         $this->db->from('properties a');
 		$query = $this->db->get();
+		//echo$this->db->last_query();
 		//return fetched data
         return ($query->num_rows() > 0)?$query->result():FALSE;
     }
 	
 	
 	public function search_properties($search){
-		$this->db->select('*');
-        $this->db->from('properties');
+		$this->db->select('a.*, ft.name as bd_name, bt.name as bt_name, cs.name as cs_name, lt.name as lt_name, bl.name as bl_name');
+        $this->db->from('properties a');
+		$this->db->join('floor_types ft','a.bedrooms = ft.id','left');
+        $this->db->join('bathrooms bt','a.bathrooms = bt.id','left');
+        $this->db->join('construction_status cs','a.construction_status = bt.id','left');
+        $this->db->join('listing_type lt','a.property_for = lt.id','left');
+        $this->db->join('balconies bl','a.balcony = bl.id','left');
         $this->db->where($search);
 		$query = $this->db->get();
-		echo$this->db->last_query();
+		//echo$this->db->last_query();
 		//return fetched data
         return ($query->num_rows() > 0)?$query->result():FALSE;
     }

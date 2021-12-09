@@ -35,6 +35,8 @@ class Home extends MY_Controller {
 		$pdata['city_id'] = _getSlugID('cities', $city); 
 		$result = $this->home->search_properties($pdata);
 		$data['listings'] = $result;
+		$data['s_content'] = $_GET;
+		$data['city'] = $city;
 		$data['sub_view'] = $this->load->view('site/pages/properties-listings', $data, TRUE);
         $this->load->view('site/_layout', $data);
 	}
@@ -42,9 +44,9 @@ class Home extends MY_Controller {
 	public function properties_details()
 	{
 		$data['title']=$this->lang->line("text_home");
-		$id  = $this->uri->segment(2);
-		$result = $this->home->property_details($id);
-		$p_images = $this->home->property_images($id);
+		$ids  = explode('---',$this->uri->segment(2));
+		$result = $this->home->property_details($ids[1]);
+		$p_images = $this->home->property_images($ids[1]);
 		$i_arr = array();
 		if(!empty($p_images)){
 		  foreach ($p_images as $key => $image) {
@@ -107,7 +109,7 @@ class Home extends MY_Controller {
 
 	public function search_properties(){
 	  $cities = [];	  
-      $cities = $this->home->_searchProperties($this->input->get("q"));
+      $cities = $this->home->_searchProperties($this->input->get("q"), $this->input->get("city"));
 	  echo json_encode($cities);
 	  exit;		
 	}

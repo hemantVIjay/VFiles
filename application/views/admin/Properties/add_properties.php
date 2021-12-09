@@ -15,22 +15,7 @@
                <div class="mb-4">
                   <label class="required">Property For</label>
                   <div class="d-flex flex-wrap bdgchkrdo">
-                     <span class="chkrdobtn">
-                     <input id="pvIWTSell" type="radio" name="pvIWT" value="Sell">
-                     <label for="pvIWTSell">Sell</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pvIWTRent" type="radio" name="pvIWT" value="Rent/Lease">
-                     <label for="pvIWTRent">Rent/ Lease</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pvIWTPG" type="radio" name="pvIWT" value="PG">
-                     <label for="pvIWTPG">PG</label>
-                     </span>
-					 <span class="chkrdobtn">
-                     <input id="pvIWTResale" type="radio" name="pvIWT" value="Resale">
-                     <label for="pvIWTResale">Resale</label>
-                     </span>
+                     <?php echo _pFor(''); ?>
                   </div>
                </div>
                <div class="mb-4">
@@ -217,6 +202,12 @@
          </div>
       </div>
       <hr />
+      <div class="cmnttl position-relative">Main Image</div>
+      <div class="col-6">
+         <div class="col-xl-12 mb-3">
+            <input type="file" class="form-control" name="main_image"/>
+         </div>
+      </div>
       <div class="cmnttl position-relative">Site Layout</div>
       <div class="col-6">
          <div class="col-md-12 mb-3">
