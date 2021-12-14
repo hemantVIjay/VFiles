@@ -11,18 +11,22 @@
       <div class="row">
          <div class="col-md-9">
             <div class="pvd-banner mb-3">
-               <img src="<?= base_url(); ?>assets/images/home-banner.jpg" class="img-fluid">
+               <?php if($property_info->main_image!=''){ ?>
+			   <img src="<?= base_url(); ?>uploads/properties/Main Image/<?= $property_info->main_image; ?>" class="img-fluid">
+			   <?php }else{ ?>
+			   <img src="<?= base_url(); ?>assets/images/home-banner.jpg" class="img-fluid">
+			   <?php }?>
             </div>
             <div class="pvpds mb-4">
                <div class="row">
 			      <div class="col-md-8">
                      <h2 class="pvpd-title"><?= $property_info->property_name; ?></h2>
-                     <h6 class="pvpd-py">By<span> Imperia Structures Ltd.</span></h6>
+                      <h6 class="pvpd-py"><?php if($property_info->builder_id!='0'){ ?> By<span><?php $builder = _builderDetails($property_info->builder_id); echo $builder->builder_name; ?></span><?php } ?></h6>
                      <h6 class="pvpd-locate"><?= $property_info->property_address; ?></h6>
                   </div>
                   <div class="col-md-4 text-end">
-                     <h1 class="pvpd-prc mb-3">₹ 36.92 L - 54.6 L<span class="pv-sb">₹ 5,200/ sq.ft</span></h1>
-                     <h5 class="pvpd-pemi">EMI starts at ₹ 19,550</h5>
+                     <h1 class="pvpd-prc mb-3">₹ <?= no_to_words($property_info->cost); ?><?php $rate = ($property_info->cost/$property_info->builtup_area); ?><span class="pv-sb">₹ <?php echo number_format($rate); ?>/ sq.ft</span></h1>
+                     <!--<h5 class="pvpd-pemi">EMI starts at ₹ 19,550</h5>-->
                   </div>
                </div>
                <?php $rera = $property_info->rera_approved; 
@@ -43,10 +47,10 @@
 <nav class="navigation" id="mainNav">
    <div class="container">
       <a class="navigation__link" href="#1">Overview</a>
-      <a class="navigation__link" href="#2">Floor Plan & Unit</a>
+      <!--<a class="navigation__link" href="#2">Floor Plan & Unit</a>-->
       <a class="navigation__link" href="#3">Amenities</a>
       <a class="navigation__link" href="#4">Gallery</a>
-      <a class="navigation__link" href="#5">Price Trends</a>
+      <!--<a class="navigation__link" href="#5">Price Trends</a>-->
       <a class="navigation__link" href="#6">Ratings & Reviews</a>
       <a class="navigation__link" href="#7">About Developer</a>
    </div>
@@ -56,49 +60,16 @@
    <div class="col-md-9">
       <div class="page-section hero" id="1">
          <h4 class="cmn-title mb-4">Overview</h4>
-         <div class="row">
-            <div class="col-md-4 col-6 mb-4">
-               <div class="lblpvfd mb-1">Possession Start Date</div>
-               <div class="valuepvfd"><?= $property_info->project_phase; ?></div>
-            </div>
-            <div class="col-md-4 col-6 mb-4">
-               <div class="lblpvfd mb-1">Status</div>
-               <div class="valuepvfd"><?= $property_info->project_phase; ?></div>
-            </div>
-            <div class="col-md-4 col-6 mb-4">
-               <div class="lblpvfd mb-1">Project Area</div>
-               <div class="valuepvfd">9 Acres</div>
-            </div>
-            <div class="col-md-4 col-6 mb-4">
-               <div class="lblpvfd mb-1">Project Size</div>
-               <div class="valuepvfd"><?= $property_info->no_of_towers; ?> Buildings - <?= $property_info->no_of_flats; ?> units</div>
-            </div>
-            <div class="col-md-4 col-6 mb-4">
-               <div class="lblpvfd mb-1">Total Launched apartments</div>
-               <div class="valuepvfd">313</div>
-            </div>
-            <div class="col-md-4 col-6 mb-4">
-               <div class="lblpvfd mb-1">Launch Date</div>
-               <div class="valuepvfd">January, 2022</div>
-            </div>
-            <div class="col-md-4 col-6 mb-4">
-               <div class="lblpvfd mb-1">Availability</div>
-               <div class="valuepvfd">New/ Resale</div>
-            </div>
-            <div class="col-md-4 col-6 mb-4">
-               <div class="lblpvfd mb-1">Configuration</div>
-               <div class="valuepvfd">1, 2 BHK Apartments</div>
-            </div>
-         </div>
+         
          <div class="spcr-bdd mb-4"></div>
          <div class="mb-4">
             <h5 class="pvlbtl">About this property</h5>
-            <div class="pvpd-desc"><?= $property_info->project_overview; ?></p>
+            <div class="pvpd-desc"><?= $property_info->description; ?></p>
             </div>
          </div>
          <div class="spcr-bds"></div>
          <div class="page-section" id="2">
-            <h4 class="cmn-title mb-4">Floor Plan & Units</h4>
+            <!--<h4 class="cmn-title mb-4">Floor Plan & Units</h4>
             <div class="pvfp-tab">
                <ul class="nav nav-tabs" id="myTab" role="tablist">
                   <li class="nav-item" role="presentation">
@@ -235,7 +206,7 @@
                   <div class="tab-pane fade" id="bhka3" role="tabpanel" aria-labelledby="bhka3-tab">...</div>
                   <div class="tab-pane fade" id="bhka4" role="tabpanel" aria-labelledby="bhka4-tab">...</div>
                </div>
-            </div>
+            </div>-->
          </div>
          <div class="spcr-bds"></div>
          <div class="page-section" id="3">
@@ -282,17 +253,13 @@
                </div>
             </div>
          </div>
-         <div class="page-section" id="5">
-            <h4 class="cmn-title mb-4">Price Trends</h4>
-         </div>
          <div class="page-section" id="7">
             <h4 class="cmn-title mb-4">About Developer</h4>
-            <div class="pvpd-desc"><?php $builder = _builderDetails($property_info->builder_id);
-               echo $builder->builder_information; ?>
+            <div class="pvpd-desc"><?php if($property_info->builder_id!='0'){ $builder = _builderDetails($property_info->builder_id); echo $builder->builder_information; } ?>
                <p></p>
             </div>
          </div>
-         <div class="bnksec">
+         <!--<div class="bnksec">
             <h4 class="cmn-title mb-4">Approved by Banks</h4>
             <div class="row">
                <?php $banks  = $this->home->_banks($property_info->banks_available); 
@@ -304,7 +271,7 @@
                </div>
 			   <?php } ?>
             </div>
-         </div>
+         </div>-->
          <div class="page-section" id="6">
             <h4 class="cmn-title mb-4">Ratings & Reviews</h4>
             <?php include('reviews.php'); ?>

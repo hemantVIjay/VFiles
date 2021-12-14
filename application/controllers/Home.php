@@ -20,17 +20,23 @@ class Home extends MY_Controller {
 	{
 		$pdata = array(); $result = array();
 		$city = $this->uri->segment(3);
-		$mt = explode('_',base64_decode($_GET['content']));
-		if($mt[0]=='BLD'){
-		 $pdata['builder_id'] = $mt[1];	
-		}if($mt[0]=='PROJ'){
-		 $pdata['project'] = $mt[1];	
-		}if($mt[0]=='LOC'){
-		 $pdata['locality'] = $mt[1];	
+		
+		if(isset($_GET['content'])){
+		  $mt = explode('_',base64_decode($_GET['content']));
+			if($mt[0]=='BLD'){
+			 $pdata['builder_id'] = $mt[1];	
+			}if($mt[0]=='PROJ'){
+			 $pdata['project'] = $mt[1];	
+			}if($mt[0]=='LOC'){
+			 $pdata['locality'] = $mt[1];	
+			}	
 		}
+		
 		$data['title']=$this->lang->line("text_home");
-		$pdata['property_type'] = _getSlugID('property_categories', $_GET['type']);
-		//$pdata['location'] = $_GET['location'];
+		if(isset($_GET['type'])&& $_GET['type']!=''){
+		 $pdata['property_type'] = _getSlugID('property_categories', $_GET['type']);
+		}
+		//$pdata['locality'] = $_GET['location'];
 		//$pdata['content'] = 
 		$pdata['city_id'] = _getSlugID('cities', $city); 
 		$result = $this->home->search_properties($pdata);
@@ -46,18 +52,23 @@ class Home extends MY_Controller {
 		$data['title']=$this->lang->line("text_home");
 		$ids  = explode('---',$this->uri->segment(2));
 		$result = $this->home->property_details($ids[1]);
-		$p_images = $this->home->property_images($ids[1]);
-		$i_arr = array();
-		if(!empty($p_images)){
-		  foreach ($p_images as $key => $image) {
-			   $i_arr[$image->image_type][$key] = $image;
-		  }	
+		if(!empty($result)){
+		  $p_images = $this->home->property_images($ids[1]);
+		  $i_arr = array();
+		  if(!empty($p_images)){
+			 foreach ($p_images as $key => $image) {
+				   $i_arr[$image->image_type][$key] = $image;
+			 }	
+		  }
+		  $data['property_info'] = $result;
+		  $data['floor_plans'] = $result;
+		  $data['properties_images'] = $i_arr;
+		  $data['sub_view'] = $this->load->view('site/pages/properties-details', $data, TRUE);
+		  $this->load->view('site/_layout', $data);
+		}else{
+			show_404();
 		}
-        $data['property_info'] = $result;
-        $data['floor_plans'] = $result;
-        $data['properties_images'] = $i_arr;
-		$data['sub_view'] = $this->load->view('site/pages/properties-details', $data, TRUE);
-        $this->load->view('site/_layout', $data);
+		
 	}
 
 	public function properties_listings()

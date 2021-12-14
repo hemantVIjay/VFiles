@@ -21,7 +21,7 @@
                   </span>
                   </a>
                   <ul class="dropdown-menu ddm" aria-labelledby="ptypeDropdown">
-                     <?php echo _checkCategories($_GET['type']); ?>
+                     <?php if(isset($_GET['type'])){ echo _checkCategories($_GET['type']); }else{ echo _checkCategories('');} ?>
                   </ul>
                </div>
                <div class="col-xl-2 dropdown spdropdown">
@@ -77,7 +77,7 @@
                      </div>
                   </div>
                </div>
-               <div class="col-xl-2 dropdown spdropdown">
+               <!--<div class="col-xl-2 dropdown spdropdown">
                   <a href="javascript:;" class="pvfbxb d-flex justify-content-between dropdown-toggle" id="bhkteDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <span class="pvfbx">
                   Project Status
@@ -223,16 +223,21 @@
                         </div>
                      </li>
                   </ul>
-               </div>
+               </div>-->
+			   <div class="col-xl-6" style="text-align:right;">
+			   <button type="button" class="btn btn-primary" onclick="search_properties();">Search</button>
+			   </div>
             </div>
          </div>
          <div class="pv-breadcrumb mt-3">
             <a href="javascript:;">Home</a>
             <a href="javascript:;">Property in <?= ucfirst($city); ?></a>
-            <a href="javascript:;" class="current">Property in <?= ucfirst($s_content['location']); ?></a>
+            <?php if(isset($s_content['location'])){ ?>
+			<a href="javascript:;" class="current">Property in <?= ucfirst($s_content['location']); ?></a>
+			<?php } ?>
          </div>
 		 <?php if(!empty($listings)){ $lcount = count($listings); }else{ $lcount = 0; } ?>
-         <?php if(!empty($listings)){ ?><h3 class="pvSrchTitle">Properties in <?= ucfirst($s_content['location']); ?> <span>(<?= $lcount; ?> Properties)</span></h3><?php }?>
+         <?php if(!empty($listings)){ if(isset($s_content['location'])){?><h3 class="pvSrchTitle">Properties in <?= ucfirst($s_content['location']); ?> <span>(<?= $lcount; ?> Properties)</span></h3><?php } }?>
          <div class="pvpts-list">
             <?php if(!empty($listings)){ foreach($listings as $listing){ ?>
 			<div class="card mb-3">
@@ -350,6 +355,7 @@
 </div>
 <script src="<?= base_url(); ?>assets/plugins/rangeslider/ion.rangeSlider.min.js"></script>
 <script>
+var baseUrl=$('base').attr("href");
    $('.dropdown.spdropdown .dropdown-menu').click(function(e) {
        e.stopPropagation();
    });   
@@ -365,11 +371,28 @@
            from: my_from,
            to: my_to,
            values: custom_values,
-   		 prefix: "₹",
-   		 step: 1000,
+   		   prefix: "₹",
+   		   step: 1000,
            prettify_enabled: true,
            prettify_separator: ","
        });
        
-   
+      function search_properties(){
+	   var slider = $("#example_id").data("ionRangeSlider");
+	   var from = slider.result.from;
+	   var to = slider.result.to;
+	   return false;
+	   var main = $('select[name="cities"]').val();
+	   var type = $('input[name="type"]:checked').val();
+	   var location = $('input[name="search"]').val();
+	   var content = $('input[name="content"]').val();
+	   if(type==undefined){
+		 type = '';
+	   }if(location==undefined){
+		 location = '';
+	   }if(content==undefined){
+		 content = '';
+	   }
+       window.location.href = baseUrl + 'search/properties/'+main+'?location='+location+'&type='+type+'&content='+content;
+   }
 </script>

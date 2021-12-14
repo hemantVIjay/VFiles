@@ -106,18 +106,7 @@ function getRadioValue(groupName) {
                <div class="mb-4">
 			      <label class="required">I want to</label>
                   <div class="d-flex flex-wrap bdgchkrdo">
-                     <span class="chkrdobtn">
-                     <input id="pvIWTSell" type="radio" name="pvIWT" value="Sell">
-                     <label for="pvIWTSell">Sell</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pvIWTRent" type="radio" name="pvIWT" value="Rent/Lease">
-                     <label for="pvIWTRent">Rent/ Lease</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pvIWTPG" type="radio" name="pvIWT" value="PG">
-                     <label for="pvIWTPG">PG</label>
-                     </span>
+                     <?php echo _pFor(''); ?>
                   </div>
                </div>
                <div class="mb-4">
@@ -125,185 +114,55 @@ function getRadioValue(groupName) {
                   <div class="row">
                      <div class="col-xl-8 col-md-10 d-flex">
                         <div class="box2RB">
-                           <span class="box2RBC">
-                           <input type="radio" id="propResi" name="propertyType" checked />
-                           <label for="propResi">Residential</label>
-                           </span>
-                           <span class="box2RBC">
-                           <input type="radio" id="propComm" name="propertyType" />
-                           <label for="propComm">Commercial</label>
-                           </span>
+                           <?php echo _pTypes(''); ?>
                         </div>
                      </div>
                   </div>
                   <div class="d-flex flex-wrap bdgchkrdo">
-                     <span class="chkrdobtn">
-                     <input id="pvAprt" type="radio" name="pvPTYP">
-                     <label for="pvAprt">Apartment</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pvIndHs" type="radio" name="pvPTYP">
-                     <label for="pvIndHs">Independent House</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pvIndFl" type="radio" name="pvPTYP">
-                     <label for="pvIndFl">Independent Floor</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pvVill" type="radio" name="pvPTYP">
-                     <label for="pvVill">Villa</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pvPlt" type="radio" name="pvPTYP">
-                     <label for="pvPlt">Plot</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pvAgLand" type="radio" name="pvPTYP">
-                     <label for="pvAgLand">Agricultural Land</label>
-                     </span>
+                     <?php echo _p_categories(''); ?>
                   </div>
                </div>
                <div class="mb-4">
                   <label class="required">Construction Status</label>
                   <div class="d-flex flex-wrap bdgchkrdo">
-                     <span class="chkrdobtn">
-                     <input id="pvrtm" type="radio" name="pvCONSTS">
-                     <label for="pvrtm">Ready to Move</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pvucont" type="radio" name="pvCONSTS">
-                     <label for="pvucont">Under Construction</label>
-                     </span>
+                     <?php echo _constructionStatus(''); ?>
                   </div>
                </div>
                <div class="mb-4">
                   <label class="required">BHK</label>
                   <div class="d-flex flex-wrap bdgchkrdo">
-                     <span class="chkrdobtn">
-                     <input id="pv1BHK" type="radio" name="pvBHK">
-                     <label for="pv1BHK">1 BHK</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pv2BHK" type="radio" name="pvBHK">
-                     <label for="pv2BHK">2 BHK</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pv3BHK" type="radio" name="pvBHK">
-                     <label for="pv3BHK">3 BHK</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pv3PBHK" type="radio" name="pvBHK">
-                     <label for="pv3PBHK">3+ BHK</label>
+                     <?php echo _floorTypes(''); ?>
                      </span>
                   </div>
                </div>
                <div class="mb-4">
                   <label class="required">Bathroom</label>
                   <div class="d-flex flex-wrap bdgchkrdo">
-                     <span class="chkrdobtn">
-                     <input id="pv1bth" type="radio" name="pvBTH">
-                     <label for="pv1bth">1</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pv2bth" type="radio" name="pvBTH">
-                     <label for="pv2bth">2</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pv3bth" type="radio" name="pvBTH">
-                     <label for="pv3bth">3</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pv3pbth" type="radio" name="pvBTH">
-                     <label for="pv3pbth">3+</label>
-                     </span>
+                     <?php echo _bathrooms(''); ?>
                   </div>
                </div>
                <div class="mb-4">
                   <label class="required">Balcony</label>
                   <div class="d-flex flex-wrap bdgchkrdo">
-                     <span class="chkrdobtn">
-                     <input id="pv1blcn" type="radio" name="pvBLCNY">
-                     <label for="pv1blcn">1</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pv2blcn" type="radio" name="pvBLCNY">
-                     <label for="pv2blcn">2</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pv3blcn" type="radio" name="pvBLCNY">
-                     <label for="pv3blcn">3</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pv3pblcn" type="radio" name="pvBLCNY">
-                     <label for="pv3pblcn">3+</label>
-                     </span>
+                     <?php echo _balconies(''); ?>
                   </div>
                </div>
                <div class="mb-4">
                   <label class="required">Furnish Type</label>
                   <div class="d-flex flex-wrap bdgchkrdo">
-                     <span class="chkrdobtn">
-                     <input id="pvfllfrns" type="radio" name="pvFRNTYP">
-                     <label for="pvfllfrns">Fully Furnished</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pvsmifrns" type="radio" name="pvFRNTYP">
-                     <label for="pvsmifrns">Semi Furnished</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pvunfrns" type="radio" name="pvFRNTYP">
-                     <label for="pvunfrns">Unfurnished</label>
-                     </span>
+                     <?php echo _furnishType(''); ?>
                   </div>
                </div>
                <div class="mb-4">
                   <label class="required">Open Parking</label>
                   <div class="d-flex flex-wrap bdgchkrdo">
-                     <span class="chkrdobtn">
-                     <input id="pv0opnprk" type="radio" name="pvOPNPRK">
-                     <label for="pv0opnprk">0</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pv1opnprk" type="radio" name="pvOPNPRK">
-                     <label for="pv1opnprk">1</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pv2opnprk" type="radio" name="pvOPNPRK">
-                     <label for="pv2opnprk">2</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pv3opnprk" type="radio" name="pvOPNPRK">
-                     <label for="pv3opnprk">3</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pv3popnprk" type="radio" name="pvOPNPRK">
-                     <label for="pv3popnprk">3+</label>
-                     </span>
+                     <?php echo _openParkings(''); ?>
                   </div>
                </div>
                <div class="mb-4">
                   <label class="required">Covered Parking</label>
                   <div class="d-flex flex-wrap bdgchkrdo">
-                     <span class="chkrdobtn">
-                     <input id="pv0cvrprk" type="radio" name="pvCVRPRK">
-                     <label for="pv0cvrprk">0</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pv1cvrprk" type="radio" name="pvCVRPRK">
-                     <label for="pv1cvrprk">1</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pv2cvrprk" type="radio" name="pvCVRPRK">
-                     <label for="pv2cvrprk">2</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pv3cvrprk" type="radio" name="pvCVRPRK">
-                     <label for="pv3cvrprk">3</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pv3pcvrprk" type="radio" name="pvCVRPRK">
-                     <label for="pv3pcvrprk">3+</label>
-                     </span>
+                     <?php echo _coverParkings(''); ?>
                   </div>
                </div>
 

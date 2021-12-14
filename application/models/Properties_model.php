@@ -89,6 +89,44 @@ class Properties_model extends MY_Model{
             return $return_data;
         }
     }
+
+	public function update_property($update_data, $property_id){
+        $this->_table_name='properties';
+        $this->_timestamps=TRUE;
+        $update_id=$this->save($data=$update_data, $id = $property_id);
+		
+		if($update_id){
+            //create slug
+            $slug=$this->create_slug($id=$update_id, $title=$update_data['property_name']);
+            $update_datas=array(
+                'slug'=>$slug
+            );
+            //update property
+            $update_id=$this->save($data=$update_datas, $id = $update_id);
+			if($update_id){
+                //if updated
+                $return_data=array(
+                    'status'=>TRUE,
+                    'label'=>'SUCCESS',
+                );
+                return $return_data;
+            }else{
+                //if not updated
+                $return_data=array(
+                    'status'=>FALSE,
+                    'label'=>'ERROR',
+                );
+                return $return_data;
+            }
+        }else{
+            //if not inseted
+            $return_data=array(
+                'status'=>FALSE,
+                'label'=>'ERROR',
+            );
+            return $return_data;
+        }
+    }
 	
 	public function create_specifications($post_data){
 		$this->_table_name='flat_specifications';

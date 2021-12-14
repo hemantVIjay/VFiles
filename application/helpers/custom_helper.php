@@ -956,6 +956,25 @@
       }
   }
 
+  if (!function_exists('_constructionStatus')) {
+      function _constructionStatus($mid)
+      {
+          $ci =& get_instance();
+          $banks = "";
+          $ci->db->where('status', 1);
+          $query = $ci->db->get('construction_status');
+          $Mq    = $query->result();
+          
+          foreach ($Mq as $row) {
+              $Sdata = ($row->id == $mid) ? 'checked' : '';
+              $banks .= '<span class="chkrdobtn"><input '.$Sdata.' id="cs_'.$row->id.'" type="radio" name="pvCONSTS" value="'.$row->id.'"><label for="cs_'.$row->id.'">';
+              $banks .= $row->name;
+              $banks .= "</label></span>";
+          }
+          return $banks;
+      }
+  }
+
   if (!function_exists('_checkCategories')) {
       function _checkCategories($mid)
       {
@@ -970,6 +989,44 @@
               $banks .= '<li><div class="form-check"><input class="form-check-input" type="checkbox" value="'.$row->slug.'" id="pv_'.$row->id.'" '.$Sdata.' ><label class="form-check-label" for="pv_'.$row->id.'">';
               $banks .= $row->name;
               $banks .= "</label></div></li>";
+          }
+          return $banks;
+      }
+  }
+
+  if (!function_exists('_openParkings')) {
+      function _openParkings($mid)
+      {
+          $ci =& get_instance();
+          $banks = "";
+          $ci->db->where('status', 1);
+          $query = $ci->db->get('parkings');
+          $Mq    = $query->result();
+          
+          foreach ($Mq as $row) {
+			  $Sdata = ($row->slug == $mid) ? 'checked' : '';
+              $banks .= '<span class="chkrdobtn"><input type="radio" value="'.$row->slug.'" id="opr_'.$row->id.'" '.$Sdata.' name="pvOPNPRK" ><label class="form-check-label" for="opr_'.$row->id.'">';
+              $banks .= $row->name;
+              $banks .= "</span>";
+          }
+          return $banks;
+      }
+  }
+
+  if (!function_exists('_coverParkings')) {
+      function _coverParkings($mid)
+      {
+          $ci =& get_instance();
+          $banks = "";
+          $ci->db->where('status', 1);
+          $query = $ci->db->get('parkings');
+          $Mq    = $query->result();
+          
+          foreach ($Mq as $row) {
+			  $Sdata = ($row->slug == $mid) ? 'checked' : '';
+              $banks .= '<span class="chkrdobtn"><input type="radio" value="'.$row->slug.'" id="cpr_'.$row->id.'" '.$Sdata.'  name="pvCVRPRK" ><label class="form-check-label" for="cpr_'.$row->id.'">';
+              $banks .= $row->name;
+              $banks .= "</span>";
           }
           return $banks;
       }

@@ -73,11 +73,27 @@ class Projects extends MY_Controller {
         }
         $this->load->view('admin/_layout', $data); 
     }
+    
 
+    public function edit_project()
+      {
+          $data['title'] = $this->lang->line("text_orders");
+          if ($this->permitted('list_users')) {
+              //get all user types
+		  $id = $this->uri->segment(4);	  
+		  $projectData = $this->project->projectDetails($id);	 
+          $data['info'] = $projectData;		  
+          $data['id'] = $id;		  
+              $data['sub_view'] = $this->load->view('admin/Projects/edit_projects', $data, TRUE);
+          } else {
+              $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
+          }
+          $this->load->view('admin/_layout', $data);
+      }	
 
 	public function create_project()
 	{
-		$pcode = _projectCode($_REQUEST['builder'], $_REQUEST['p_type'], $_REQUEST['location']);
+		$pcode = _autoCode('Project');
 		
 		$amenities = ''; $banks = '';
 		if(!empty($this->input->post('amenities'))){
@@ -114,30 +130,35 @@ class Projects extends MY_Controller {
           'created_by' => $this->get_user_id()
         );		
 		$specifications = array(); $floorPlans = array();
-		foreach($_REQUEST['specifications'] as $kk=>$val){
-			if(isset($_REQUEST['specifications'][$kk]) && $val!=''){
-			 $specifications[$kk] = $val;	
+		if(isset($_REQUEST['specifications'])){
+			foreach($_REQUEST['specifications'] as $kk=>$val){
+  			  if(isset($_REQUEST['specifications'][$kk]) && $val!=''){
+			   $specifications[$kk] = $val;	
+			  }
+			}		
+		}
+		if(isset($_FILES['floor_planImage'])){
+			foreach($_FILES['floor_planImage']['name'] as $k=>$fval){
+				$fdata[$k]['floor_type'] = $_REQUEST['floor_type'][$k];
+				$fdata[$k]['floor_size'] = $_REQUEST['floor_size'][$k];
+				$fdata[$k]['floor_basePrice'] = $_REQUEST['floor_basePrice'][$k];
+				
+				/******For Floor Image******/
+				$_FILES['mFile']['name']= $_FILES['floor_planImage']['name'][$k];
+				$_FILES['mFile']['type']= $_FILES['floor_planImage']['type'][$k];
+				$_FILES['mFile']['tmp_name']= $_FILES['floor_planImage']['tmp_name'][$k];
+				$_FILES['mFile']['error']= $_FILES['floor_planImage']['error'][$k];
+				$_FILES['mFile']['size']= $_FILES['floor_planImage']['size'][$k];
+				$fdata[$k]['floor_planImage'] = $this->singleUpload('mFile', 'projects/floorPlans');
+				/******For Floor Image******/
+				
+				$fdata[$k]['floor_totalPrice'] = $_REQUEST['floor_totalPrice'][$k];
+				$fdata[$k]['floor_isStudy'] = $_REQUEST['floor_isStudy'][$k];
+				$fdata[$k]['floor_toilets'] = $_REQUEST['floor_toilets'][$k];
+				$floorPlans[] = $fdata;
 			}
 		}
-		foreach($_FILES['floor_planImage']['name'] as $k=>$fval){
-			$fdata[$k]['floor_type'] = $_REQUEST['floor_type'][$k];
-			$fdata[$k]['floor_size'] = $_REQUEST['floor_size'][$k];
-			$fdata[$k]['floor_basePrice'] = $_REQUEST['floor_basePrice'][$k];
-			
-			/******For Floor Image******/
-			$_FILES['mFile']['name']= $_FILES['floor_planImage']['name'][$k];
-			$_FILES['mFile']['type']= $_FILES['floor_planImage']['type'][$k];
-			$_FILES['mFile']['tmp_name']= $_FILES['floor_planImage']['tmp_name'][$k];
-			$_FILES['mFile']['error']= $_FILES['floor_planImage']['error'][$k];
-			$_FILES['mFile']['size']= $_FILES['floor_planImage']['size'][$k];
-			$fdata[$k]['floor_planImage'] = $this->singleUpload('mFile', 'projects/floorPlans');
-			/******For Floor Image******/
-			
-			$fdata[$k]['floor_totalPrice'] = $_REQUEST['floor_totalPrice'][$k];
-			$fdata[$k]['floor_isStudy'] = $_REQUEST['floor_isStudy'][$k];
-			$fdata[$k]['floor_toilets'] = $_REQUEST['floor_toilets'][$k];
-			$floorPlans[] = $fdata;
-		}
+		
 		
 		if(isset($_FILES['payment_option']) && $_FILES['payment_option']['name']!=''){
 		 $post_data['payment_option'] = $this->singleUpload('payment_option', 'projects/payment_option');

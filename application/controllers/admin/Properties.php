@@ -94,6 +94,7 @@
 		  $id = $this->uri->segment(4);	  
 		  $propertyData = $this->properties->propertyDetails($id);	 
           $data['info'] = $propertyData;		  
+          $data['id'] = $id;		  
               $data['sub_view'] = $this->load->view('admin/Properties/edit_properties', $data, TRUE);
           } else {
               $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
@@ -154,6 +155,61 @@
           //XXS Clean
           $post_data = $this->security->xss_clean($post_data);
           $result    = $this->properties->create_property($post_data);
+          
+          redirect('admin/properties/list_properties', 'refresh');
+      }
+	  
+	  
+	  public function update_property()
+      {
+		  $amenities = '';
+		  $banks = '';
+		  $id = $this->input->post('id');
+          if (!empty($this->input->post('pvAMNTS'))) {
+              $amenities = implode(',', $this->input->post('pvAMNTS'));
+          }
+		  if(!empty($this->input->post('banks'))){
+		   $banks = implode(',', $this->input->post('banks'));
+		  }
+          
+          $post_data  = array(
+              'property_name' => $this->input->post('property_name'),
+              'property_for' => $this->input->post('pvIWT'),
+			  'property_type' => $this->input->post('propertyType'),
+			  'property_category' => $this->input->post('pvPTYP'),
+              'bedrooms' => $this->input->post('pvBHK'),
+              'bathrooms' => $this->input->post('pvBTH'),
+              'balcony' => $this->input->post('pvBLCNY'),
+              'furnish_type' => $this->input->post('pvFRNTYP'),
+              'open_parking' => $this->input->post('pvOPNPRK'),
+              'covered_parking' => $this->input->post('pvCVRPRK'),
+              'cost' => $this->input->post('cost'),
+              'maintenance_charges' => $this->input->post('maintenance_charges'),
+              'locality' => $this->input->post('location'),
+              'project' => $this->input->post('project'),
+              'city_id' => $this->input->post('city'),             
+              'builtup_area' => $this->input->post('builtup_area'),
+              'carpet_area' => $this->input->post('carpet_area'),
+              'construction_status' => $this->input->post('pvCONSTS'),
+              'description' => $this->input->post('description'),
+			  'property_amenities' => $amenities,
+			  'banks_available' => $banks,
+              'rera_approved' => $this->input->post('rera_approved'),
+              'rera_registrationNumber' => $this->input->post('rera_registrationNumber'),
+              'updated_by' => $this->get_user_id()
+          );
+		  if(isset($_FILES['payment_option']) && $_FILES['payment_option']['name']!=''){
+		   $post_data['payment_option'] = $this->singleUpload('payment_option', 'properties/Payment Option');
+		  }
+		  if(isset($_FILES['site_layout']) && $_FILES['site_layout']['name']!=''){
+		   $post_data['site_layout'] = $this->singleUpload('site_layout', 'properties/Site Layout');
+		  }
+		  if(isset($_FILES['main_image']) && $_FILES['main_image']['name']!=''){
+		   $post_data['main_image'] = $this->singleUpload('main_image', 'properties/Main Image');
+		  }	
+          //XXS Clean
+          $post_data = $this->security->xss_clean($post_data);
+          $result    = $this->properties->update_property($post_data, $id);
           
           redirect('admin/properties/list_properties', 'refresh');
       }

@@ -39,11 +39,25 @@ class Projects_model extends MY_Model{
         }
     }
 	
+	public function projectDetails($id){
+	 $this->db->select('c.*');
+     $this->db->from('projects c');
+     $this->db->where('c.id',$id);
+	 $query = $this->db->get();
+        if($query->num_rows() > 0){
+            $details=$query->row();
+            return $details;
+        }else{
+            return FALSE;
+        }	
+		
+	}
+	
 	public function create_project($post_data, $specs, $floorPlans){
         $this->_table_name='projects';
         $this->_timestamps=TRUE;
         $insert_id=$this->save($data=$post_data, $id = NULL);
-		$specs['project_id'] = $insert_id;
+		$specs['listing_id'] = $insert_id;
 		if($insert_id){
             //create slug
             $slug=$this->create_slug($id=$insert_id, $title=$post_data['project_name']);
@@ -52,8 +66,12 @@ class Projects_model extends MY_Model{
             );
             //update project
             $update_id=$this->save($data=$update_data, $id = $insert_id);
-			$this->create_specifications($specs);
-			$this->save_FloorPlans($floorPlans, $insert_id);
+			if(!empty($specs)){
+			  $this->create_specifications($specs);
+			}
+			if(!empty($floorPlans)){
+			  $this->save_FloorPlans($floorPlans, $insert_id);
+			}			
             if($update_id){
                 //if updated
                 $return_data=array(
@@ -96,7 +114,7 @@ class Projects_model extends MY_Model{
 			$sdata['floor_planImage'] = $data[$key]['floor_planImage'];
 			$sdata['floor_totalPrice'] = $data[$key]['floor_totalPrice'];
 			$sdata['floor_toilets'] = $data[$key]['floor_toilets'];
-			$sdata['project_id'] = $id;
+			$sdata['listing_id'] = $id;
             $mData[$key] = $sdata;
 		}
         $this->db->insert_batch('floor_plans', $mData);

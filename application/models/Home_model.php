@@ -3,10 +3,15 @@
 class Home_model extends MY_Model{
     
 	public function property_details($id){
-		$this->db->select('*');
-        $this->db->from('properties p');
-        $this->db->where('p.status','1');
-        $this->db->where('p.id',$id);
+		$this->db->select('a.*, ft.name as bd_name, bt.name as bt_name, cs.name as cs_name, lt.name as lt_name, bl.name as bl_name');
+        $this->db->from('properties a');
+		$this->db->join('floor_types ft','a.bedrooms = ft.id','left');
+        $this->db->join('bathrooms bt','a.bathrooms = bt.id','left');
+        $this->db->join('construction_status cs','a.construction_status = cs.id','left');
+        $this->db->join('listing_type lt','a.property_for = lt.id','left');
+        $this->db->join('balconies bl','a.balcony = bl.id','left');
+        $this->db->where('a.status','1');
+        $this->db->where('a.id',$id);
 		$query = $this->db->get();
 		//return fetched data
         return ($query->num_rows() > 0)?$query->row():FALSE;
@@ -103,7 +108,7 @@ class Home_model extends MY_Model{
         $this->db->from('properties a');
 		$this->db->join('floor_types ft','a.bedrooms = ft.id','left');
         $this->db->join('bathrooms bt','a.bathrooms = bt.id','left');
-        $this->db->join('construction_status cs','a.construction_status = bt.id','left');
+        $this->db->join('construction_status cs','a.construction_status = cs.id','left');
         $this->db->join('listing_type lt','a.property_for = lt.id','left');
         $this->db->join('balconies bl','a.balcony = bl.id','left');
         $this->db->where($search);
