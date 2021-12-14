@@ -7,7 +7,8 @@
 	   display:none;
    }
 </style>
-<form method="POST" action="<?= base_url('admin/projects/create_project'); ?>" id="img-upload-form" enctype="multipart/form-data" accept-charset="utf-8">
+<?php print_r($info);?>
+<form method="POST" action="<?= base_url('admin/projects/update_project'); ?>" id="img-upload-form" enctype="multipart/form-data" accept-charset="utf-8">
    <div class="pg-content mb-4">
       <div class="row">
          <div class="col-xl-12 col-md-12">
@@ -17,12 +18,12 @@
                      <label class="required">Choose Builder</label>
                      <select class="form-select" name="builder">
                         <option value="">--Select--</option>
-                        <?= _builders(''); ?>
+                        <?= _builders($info->builder_id); ?>
                      </select>
                   </div>
                   <div class="col-md-12 mb-3">
                      <label class="required">Project Name</label>
-                     <input type="text" class="form-control" name="project_name" autocomplete="Off"/>
+                     <input type="text" class="form-control" name="project_name" autocomplete="Off" value="<?= $info->project_name; ?>" />
                   </div>
                   <div class="col-md-3 mb-3">
                      <label class="required">Locality</label>
@@ -65,7 +66,7 @@
                      <label class="required">Property Type</label>
                      <select class="form-select" id="choose_pty" name="p_type" onchange="changeDetails(this);">
                         <option value="">--Select--</option>
-                        <?= _propertyType(''); ?>
+                        <?= _propertyType($info->project_type); ?>
                      </select>
                   </div>
                </div>
@@ -74,22 +75,22 @@
                   <div class="row">
                      <div class="col-md-4 mb-3">
                         <label class="required">No. of Towers</label>
-                        <input type="text" class="form-control" name="no_of_towers" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/>
+                        <input type="text" class="form-control" name="no_of_towers" onkeypress="return isNumberKey(this, event);" autocomplete="Off" value="<?= $info->no_of_towers; ?>"/>
                      </div>
                      <div class="col-md-4 mb-3">
                         <label class="required">No. of Flats</label>
-                        <input type="text" class="form-control" name="no_of_flats" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/>
+                        <input type="text" class="form-control" name="no_of_flats" onkeypress="return isNumberKey(this, event);" autocomplete="Off" value="<?= $info->no_of_flats; ?>"/>
                      </div>
                      <div class="col-md-4 mb-3">
                         <label class="required">Total Area (In Acres)</label>
-                        <input type="text" class="form-control" name="total_area" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/>
+                        <input type="text" class="form-control" name="total_area" onkeypress="return isNumberKey(this, event);" autocomplete="Off" value="<?= $info->total_area; ?>"/>
                      </div>
                      <div class="col-md-4 mb-3">
                         <label class="required">Project Phase</label>
                         <select class="form-select" name="project_phase">
-                           <option value="On Going">On Going</option>
-                           <option value="Pre-Launch">Pre-Launch</option>
-                           <option value="Completed">Completed</option>
+                           <option value="On Going" <?php if($info->project_phase=='On Going'){ echo'selected'; } ?>>On Going</option>
+                           <option value="Pre-Launch" <?php if($info->project_phase=='Pre-Launch'){ echo'selected'; } ?>>Pre-Launch</option>
+                           <option value="Completed" <?php if($info->project_phase=='Completed'){ echo'selected'; } ?>>Completed</option>
                         </select>
                      </div>
                      <div class="col-md-4 mb-3">
@@ -102,7 +103,7 @@
                      </div>
                      <div class="col-md-12 mb-3">
                         <label class="required">Project Overview</label>
-                        <textarea class="form-control" rows="4" name="project_overview" autocomplete="Off"></textarea>
+                        <textarea class="form-control" rows="4" name="project_overview" id="project_overview" autocomplete="Off"><?= $info->project_overview; ?></textarea>
                      </div>
                   </div>
                   <hr />
@@ -265,7 +266,7 @@
                   </div>
                   <div class="col-md-12 mb-3">
                      <label class="required">Project Overview</label>
-                     <textarea class="form-control" rows="4" name="project_overview" autocomplete="Off"></textarea>
+                     <textarea class="form-control" rows="4" name="project_overview" id="project_overview1" autocomplete="Off"></textarea>
                   </div>
                </div>
                <hr />
@@ -300,10 +301,10 @@
             <hr />
             <div class="cmnttl position-relative">Amenities</div>
             <div class="row">
-               <?php $amenities = _amenities(); foreach($amenities as $key=>$amenity){ ?>
+               <?php $c_amenities = explode(',', $info->project_amenities); $amenities = _amenities(); foreach($amenities as $key=>$amenity){ $checked=''; if(in_array($amenity->id, $c_amenities)){ $checked='checked'; } ?>
                <div class="col-xl-3 col-md-4">
                   <span class="form-check">
-                  <input class="form-check-input" name="amenities[]" type="checkbox" name="remember" id="amenity_<?= $key+1;?>" value="<?= $amenity->id;?>">
+                  <input class="form-check-input" name="amenities[]" type="checkbox" name="remember" id="amenity_<?= $key+1;?>" value="<?= $amenity->id;?>" <?= $checked; ?> >
                   <span class="form-check-label"><?= $amenity->name; ?></span>
                   </span>
                </div>
@@ -341,19 +342,19 @@
             <div class="row">
                <div class="col-xl-3 col-md-4">
                   <span class="form-check">
-                  <input class="form-check-input" name="rera_approved" type="checkbox" id="rera_approved" value="1">
+                  <input class="form-check-input" name="rera_approved" type="checkbox" id="rera_approved" value="1" <?php if($info->rera_approved=='1'){echo'checked'; } ?>>
                   <span class="form-check-label">RERA Approved</span>
                   </span>
                </div>
                <div class="col-xl-3 col-md-4 mb-3 reraDetails">
                   <label class="required">RERA Registration Number</label>
-                  <input type="text" class="form-control" name="rera_registrationNumber" id="rera_registrationNumber"/>
+                  <input type="text" class="form-control" name="rera_registrationNumber" id="rera_registrationNumber" value="<?= $info->rera_registrationNumber;?>"/>
                </div>
             </div>
             <hr />
             <div class="btngroup">
                <button class="btn btn-primary">Submit</button>
-               <button class="btn btn-outline-secondary ms-2">Reset</button>
+               <button class="btn btn-outline-secondary ms-2" type="button" onclick="history.back();">Reset</button>
             </div>
          </div>
       </div>
@@ -363,10 +364,36 @@
 
 <script src="<?= base_url(); ?>assets/js/moment.min.js"></script>
 <script src="<?= base_url(); ?>assets/plugins/datepicker/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.17.1/standard-all/ckeditor.js"></script>
 <!--<script src="<?= base_url(); ?>assets/js/custom.js"></script>-->
 <script type="text/javascript">
+   // CKEditor
+   CKEDITOR.replace('project_overview1', {
+      fullPage: true,
+      extraPlugins: 'docprops',
+      // Disable content filtering because if you use full page mode, you probably
+      // want to  freely enter any HTML content in source mode without any limitations.
+      allowedContent: true,
+      height: 120,
+      removeButtons: 'PasteFromWord'
+    }); 
+	CKEDITOR.replace('project_overview', {
+      fullPage: true,
+      extraPlugins: 'docprops',
+      // Disable content filtering because if you use full page mode, you probably
+      // want to  freely enter any HTML content in source mode without any limitations.
+      allowedContent: true,
+      height: 120,
+      removeButtons: 'PasteFromWord'
+    });
  var dataURL = $('base').attr("href");
    $(function () {
+	changeDetails($('#choose_pty'));
+	if ($('#rera_approved').is(":checked")){
+     $('.reraDetails').css('display','block');
+      }else{
+     $('.reraDetails').css('display','none');
+     } 
        $('#dtpicker').datetimepicker({
            format: 'DD-MMM-YYYY'
        });

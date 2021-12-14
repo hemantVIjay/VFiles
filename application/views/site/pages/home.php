@@ -691,14 +691,6 @@
       </div>
    </div>
 </section>
-
-<!-- Start CKEditor -->
-				  <div class="container mb-3">
-                    <label for="Description">Description</label>
-					<textarea cols="80" id="editor1" name="editor1" rows="10"></textarea>
-                  </div>
-				  <!-- End CKEditor -->
-				  
 <script src="<?= base_url(); ?>assets/plugins/jqueryui/js/jquery-ui.js"></script>
 <script src="<?= base_url(); ?>assets/plugins/owlcarousel/js/owl.carousel.min.js"></script>
 <script src="<?= base_url(); ?>assets/js/carousel.js"></script>
@@ -726,7 +718,7 @@ var baseUrl=$('base').attr("href");
 				}
 			});
       },
-      minLength: 2,
+      minLength: 1,
       select: function( event, ui ) {
 		var content = btoa(ui.item.val);  
         $('#search').val('');
@@ -756,4 +748,5 @@ var baseUrl=$('base').attr("href");
 	   }
        window.location.href = baseUrl + 'search/properties/'+main+'?location='+location+'&type='+type+'&content='+content;
    }
+   
 </script>

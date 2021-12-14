@@ -20,7 +20,7 @@
                </div>
                <div class="mb-3">
                   <label class="form-label">About Builder</label>
-                  <textarea name="builder_information" class="form-control" placeholder="Builder description here..." rows="3"></textarea>
+                  <textarea id="description" name="builder_information" class="form-control" placeholder="Builder description here..." rows="3"></textarea>
                </div>
                <div class="mb-3">
                   <label class="form-label">Builder Logo</label>
@@ -80,7 +80,19 @@
       </div>
    </div>
 </div>
+<script src="https://cdn.ckeditor.com/4.17.1/standard-all/ckeditor.js"></script>
 <SCRIPT language="javascript">
+   // CKEditor
+   CKEDITOR.replace('description', {
+      fullPage: true,
+      extraPlugins: 'docprops',
+      // Disable content filtering because if you use full page mode, you probably
+      // want to  freely enter any HTML content in source mode without any limitations.
+      allowedContent: true,
+      height: 120,
+      removeButtons: 'PasteFromWord'
+   });
+	
    function addRow(tableID) {
    	var table = document.getElementById(tableID);
    	var rowCount = table.rows.length;

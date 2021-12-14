@@ -7,7 +7,8 @@
    display:none;
    }
 </style>
-<form method="POST" action="<?= base_url('admin/properties/create_property'); ?>" id="img-upload-form" enctype="multipart/form-data" accept-charset="utf-8">
+<form method="POST" action="<?= base_url('admin/properties/update_property'); ?>" id="img-upload-form" enctype="multipart/form-data" accept-charset="utf-8">
+<input type="hidden" name="id" value="<?=$id; ?>">
    <div class="pg-content mb-4">
       <div class="row">
          <div class="col-xl-12 col-md-12">
@@ -15,18 +16,7 @@
                <div class="mb-4">
                   <label class="required">Property For</label>
                   <div class="d-flex flex-wrap bdgchkrdo">
-                     <span class="chkrdobtn">
-                     <input id="pvIWTSell" type="radio" name="pvIWT" value="Sell">
-                     <label for="pvIWTSell">Sell</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pvIWTRent" type="radio" name="pvIWT" value="Rent/Lease">
-                     <label for="pvIWTRent">Rent/ Lease</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pvIWTPG" type="radio" name="pvIWT" value="PG">
-                     <label for="pvIWTPG">PG</label>
-                     </span>
+                     <?php echo _pFor($info->property_for); ?>
                   </div>
                </div>
                <div class="mb-4">
@@ -34,136 +24,43 @@
                   <div class="row">
                      <div class="col-xl-8 col-md-10 d-flex">
                         <div class="box2RB">
-                           <span class="box2RBC">
-                           <input type="radio" id="propResi" name="propertyType" checked  value="0"/>
-                           <label for="propResi">Residential</label>
-                           </span>
-                           <span class="box2RBC">
-                           <input type="radio" id="propComm" name="propertyType"  value="0"/>
-                           <label for="propComm">Commercial</label>
-                           </span>
+						   <?php echo _pTypes($info->property_type); ?>
                         </div>
                      </div>
                   </div>
                   <div class="d-flex flex-wrap bdgchkrdo">
-                     <span class="chkrdobtn">
-                     <input id="pvAprt" type="radio" name="pvPTYP" value="0">
-                     <label for="pvAprt">Apartment</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pvIndHs" type="radio" name="pvPTYP" value="0">
-                     <label for="pvIndHs">Independent House</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pvIndFl" type="radio" name="pvPTYP" value="0">
-                     <label for="pvIndFl">Independent Floor</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pvVill" type="radio" name="pvPTYP" value="0">
-                     <label for="pvVill">Villa</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pvPlt" type="radio" name="pvPTYP" value="0">
-                     <label for="pvPlt">Plot</label>
-                     </span>
-                     <span class="chkrdobtn">
-                     <input id="pvAgLand" type="radio" name="pvPTYP" value="0">
-                     <label for="pvAgLand">Agricultural Land</label>
-                     </span>
+                     <?php echo _p_categories($info->property_category); ?>
                   </div>
                </div>
             </div>
             <div class="mb-4">
                <label class="required">Construction Status</label>
                <div class="d-flex flex-wrap bdgchkrdo">
-                  <span class="chkrdobtn">
-                  <input id="pvrtm" type="radio" name="pvCONSTS" value="0">
-                  <label for="pvrtm">Ready to Move</label>
-                  </span>
-                  <span class="chkrdobtn">
-                  <input id="pvucont" type="radio" name="pvCONSTS" value="0">
-                  <label for="pvucont">Under Construction</label>
-                  </span>
+                  <?php echo _constructionStatus($info->construction_status); ?>
                </div>
             </div>
             <div class="mb-4">
                <label class="required">BHK</label>
                <div class="d-flex flex-wrap bdgchkrdo">
-                  <span class="chkrdobtn">
-                  <input id="pv1BHK" type="radio" name="pvBHK" value="0">
-                  <label for="pv1BHK">1 BHK</label>
-                  </span>
-                  <span class="chkrdobtn">
-                  <input id="pv2BHK" type="radio" name="pvBHK" value="0">
-                  <label for="pv2BHK">2 BHK</label>
-                  </span>
-                  <span class="chkrdobtn">
-                  <input id="pv3BHK" type="radio" name="pvBHK" value="0">
-                  <label for="pv3BHK">3 BHK</label>
-                  </span>
-                  <span class="chkrdobtn">
-                  <input id="pv3PBHK" type="radio" name="pvBHK" value="0">
-                  <label for="pv3PBHK">3+ BHK</label>
-                  </span>
+                  <?php echo _floorTypes($info->bedrooms); ?>
                </div>
             </div>
             <div class="mb-4">
                <label class="required">Bathroom</label>
                <div class="d-flex flex-wrap bdgchkrdo">
-                  <span class="chkrdobtn">
-                  <input id="pv1bth" type="radio" name="pvBTH" value="0">
-                  <label for="pv1bth">1</label>
-                  </span>
-                  <span class="chkrdobtn">
-                  <input id="pv2bth" type="radio" name="pvBTH" value="0">
-                  <label for="pv2bth">2</label>
-                  </span>
-                  <span class="chkrdobtn">
-                  <input id="pv3bth" type="radio" name="pvBTH" value="0">
-                  <label for="pv3bth">3</label>
-                  </span>
-                  <span class="chkrdobtn">
-                  <input id="pv3pbth" type="radio" name="pvBTH" value="0">
-                  <label for="pv3pbth">3+</label>
-                  </span>
+                  <?php echo _bathrooms($info->bathrooms); ?>
                </div>
             </div>
             <div class="mb-4">
                <label class="required">Balcony</label>
                <div class="d-flex flex-wrap bdgchkrdo">
-                  <span class="chkrdobtn">
-                  <input id="pv1blcn" type="radio" name="pvBLCNY" value="0">
-                  <label for="pv1blcn">1</label>
-                  </span>
-                  <span class="chkrdobtn">
-                  <input id="pv2blcn" type="radio" name="pvBLCNY" value="0">
-                  <label for="pv2blcn">2</label>
-                  </span>
-                  <span class="chkrdobtn">
-                  <input id="pv3blcn" type="radio" name="pvBLCNY" value="0">
-                  <label for="pv3blcn">3</label>
-                  </span>
-                  <span class="chkrdobtn">
-                  <input id="pv3pblcn" type="radio" name="pvBLCNY" value="0">
-                  <label for="pv3pblcn">3+</label>
-                  </span>
+			   <?php echo _balconies($info->balcony); ?>
                </div>
             </div>
             <div class="mb-4">
                <label class="required">Furnish Type</label>
                <div class="d-flex flex-wrap bdgchkrdo">
-                  <span class="chkrdobtn">
-                  <input id="pvfllfrns" type="radio" name="pvFRNTYP" value="0">
-                  <label for="pvfllfrns">Fully Furnished</label>
-                  </span>
-                  <span class="chkrdobtn">
-                  <input id="pvsmifrns" type="radio" name="pvFRNTYP" value="0">
-                  <label for="pvsmifrns">Semi Furnished</label>
-                  </span>
-                  <span class="chkrdobtn">
-                  <input id="pvunfrns" type="radio" name="pvFRNTYP" value="0">
-                  <label for="pvunfrns">Unfurnished</label>
-                  </span>
+                  <?php echo _furnishType($info->furnish_type); ?>
                </div>
             </div>
             <div class="mb-4">
@@ -216,18 +113,17 @@
                   </span>
                </div>
             </div>
-            <div class="col-md-7 mb-3">
+			<div class="row">
+            <div class="col-md-12 mb-3">
+               <label class="required">Property Name</label>
+               <input type="text" class="form-control" name="property_name" autocomplete="Off" required value="<?= $info->property_name?>"/>
+            </div>
+			<div class="col-md-12 mb-3">
                <label class="required">Description/Details</label>
-               <textarea type="text" class="form-control" name="project_name" autocomplete="Off"></textarea>
+               <textarea type="text" class="form-control" name="description" autocomplete="Off" required id="description"><?= $info->description?></textarea>
+            </div>
             </div>
             <div class="row">
-               <div class="col-md-3 mb-3">
-                  <label class="required">Locality</label>
-                  <select class="form-select" name="location" onchange="location_details(this);">
-                     <option value="">--Select--</option>
-                     <?= _localities(''); ?>
-                  </select>
-               </div>
                <div class="col-md-3 mb-3">
                   <label class="required">City</label>
                   <select class="form-select" name="city" id="city">
@@ -235,44 +131,50 @@
                      <?= _cities(''); ?>
                   </select>
                </div>
+			   <div class="col-md-3 mb-3">
+                  <label class="required">Location</label>
+                  <select class="form-select" name="location" onchange="location_details(this);">
+                     <option value="">--Select--</option>
+                     <?= _localities(''); ?>
+                  </select>
+               </div>               
                <div class="col-md-3 mb-3">
-                  <label class="required">District</label>
+                  <label class="required">Builder</label>
                   <select class="form-select" name="district" id="district">
                      <option value="">--Select--</option>
                      <?= _districts(''); ?>
                   </select>
                </div>
                <div class="col-md-3 mb-3">
-                  <label class="required">State</label>
+                  <label class="required">Project</label>
                   <select class="form-select" name="state"  id="state">
                      <option value="">--Select--</option>
                      <?= _states(''); ?>
                   </select>
-                  <input type="hidden" name="country" id="country">
                </div>
             </div>
             <div class="row">
                <div class="col-6 mb-4">
                   <div class="form-floating pfff">
-                     <input type="text" class="form-control" name="cost" id="cost" placeholder="Cost">
+                     <input type="text" class="form-control" name="cost" id="cost" placeholder="Cost" value="<?= $info->cost;?>">
                      <label for="cost" class="required">Cost</label>
                   </div>
                </div>
                <div class="col-6 mb-4">
                   <div class="form-floating pfff">
-                     <input type="text" class="form-control" name="maintenance_charges" id="maintenance_charges" placeholder="Maintenance Charges/ month">
+                     <input type="text" class="form-control" name="maintenance_charges" id="maintenance_charges" placeholder="Maintenance Charges/ month" value="<?= $info->maintenance_charges;?>">
                      <label for="maintenance_charges">Maintenance Charges/ month</label>
                   </div>
                </div>
                <div class="col-6 mb-4">
                   <div class="form-floating pfff">
                      <input type="text" class="form-control" name="builtup_area" id="builtup_area" placeholder="Built Up Area">
-                     <label for="builtup_area" class="required">Built Up Area</label>
+                     <label for="builtup_area" class="required" value="<?= $info->builtup_area;?>">Built Up Area</label>
                   </div>
                </div>
                <div class="col-6 mb-4">
                   <div class="form-floating pfff">
-                     <input type="text" class="form-control" name="carpet_area" id="carpet_area" placeholder="Carpet Area (Optional)">
+                     <input type="text" class="form-control" name="carpet_area" id="carpet_area" placeholder="Carpet Area (Optional)" value="<?= $info->carpet_area;?>">
                      <label for="carpet_area">Carpet Area (Optional)</label>
                   </div>
                </div>
@@ -280,10 +182,11 @@
          </div>
          <div class="cmnttl position-relative">Amenities</div>
          <div class="row gx-3">
-            <?php $amenities = _amenities(); foreach($amenities as $key=>$amenity){ ?>
+            <?php $c_amenities = explode(',', $info->property_amenities);  $amenities = _amenities(); 
+			foreach($amenities as $key=>$amenity){ $checked=''; if(in_array($amenity->id, $c_amenities)){ $checked='checked'; }?>
             <div class="col-xl-2 col-md-2 mb-3">
                <div class="pv-amenits">
-                  <input id="indoor_<?= $key+1;?>" type="checkbox" name="pvAMNTS[]" value="<?= $amenity->id; ?>">
+                  <input id="indoor_<?= $key+1;?>" type="checkbox" name="pvAMNTS[]" value="<?= $amenity->id; ?>" <?= $checked; ?>>
                   <label for="indoor_<?= $key+1;?>">
                      <img src="<?= base_url('uploads/amenities/').$amenity->icon; ?>" class="img-fluid">
                      <div class="pv-amenitsn"><?= $amenity->name; ?></div>
@@ -294,6 +197,12 @@
          </div>
       </div>
       <hr />
+      <div class="cmnttl position-relative">Main Image</div>
+      <div class="col-6">
+         <div class="col-xl-12 mb-3">
+            <input type="file" class="form-control" name="main_image"/>
+         </div>
+      </div>
       <div class="cmnttl position-relative">Site Layout</div>
       <div class="col-6">
          <div class="col-md-12 mb-3">
@@ -324,13 +233,13 @@
       <div class="row">
          <div class="col-xl-3 col-md-4">
             <span class="form-check">
-            <input class="form-check-input" name="rera_approved" type="checkbox" id="rera_approved" value="1">
+            <input class="form-check-input" name="rera_approved" type="checkbox" id="rera_approved" value="1" <?php if($info->rera_approved=='1'){echo'checked'; } ?>>
             <span class="form-check-label">RERA Approved</span>
             </span>
          </div>
          <div class="col-xl-3 col-md-4 mb-3 reraDetails">
             <label class="required">RERA Registration Number</label>
-            <input type="text" class="form-control" name="rera_registrationNumber" id="rera_registrationNumber"/>
+            <input type="text" class="form-control" name="rera_registrationNumber" id="rera_registrationNumber" value="<?= $info->rera_registrationNumber;?>"/>
          </div>
       </div>
       <hr />
@@ -345,11 +254,17 @@
 </form>
 <script src="<?= base_url(); ?>assets/js/moment.min.js"></script>
 <script src="<?= base_url(); ?>assets/plugins/datepicker/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.17.1/standard-all/ckeditor.js"></script>
 <!--<script src="<?= base_url(); ?>assets/js/custom.js"></script>-->
 <script type="text/javascript">
    var dataURL = $('base').attr("href");
      $(function () {
-         $('#dtpicker').datetimepicker({
+     if ($('#rera_approved').is(":checked")){
+     $('.reraDetails').css('display','block');
+      }else{
+     $('.reraDetails').css('display','none');
+     }
+		 $('#dtpicker').datetimepicker({
              format: 'DD-MMM-YYYY'
          });
          $('#project_launch_date').datetimepicker({
@@ -357,8 +272,38 @@
          });
      });
      
+        
+   // CKEditor
+   CKEDITOR.replace('description', {
+      fullPage: true,
+      extraPlugins: 'docprops',
+      // Disable content filtering because if you use full page mode, you probably
+      // want to  freely enter any HTML content in source mode without any limitations.
+      allowedContent: true,
+      height: 120,
+      removeButtons: 'PasteFromWord'
+    });
+	 
+	 
+     function city_locations(ct) {
+     var baseUrl=$('base').attr("href");
+     var id = $(ct).val();
+     $.ajax({
+     type: "POST",
+     url: baseUrl + "admin/properties/_cityLocations",
+     data:{id:id},
+     async: false,
+     success: function (data) {
+       var mdata = JSON.parse(data);
+       $('#location').val(mdata['city']);
+     },
+     error: function () {
      
-     function location_details(loc) {
+     }
+     });
+     }
+	 
+	 function location_details(loc) {
      var baseUrl=$('base').attr("href");
      var id = $(loc).val();
      $.ajax({

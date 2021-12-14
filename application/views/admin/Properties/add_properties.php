@@ -35,14 +35,7 @@
             <div class="mb-4">
                <label class="required">Construction Status</label>
                <div class="d-flex flex-wrap bdgchkrdo">
-                  <span class="chkrdobtn">
-                  <input id="pvrtm" type="radio" name="pvCONSTS" value="0">
-                  <label for="pvrtm">Ready to Move</label>
-                  </span>
-                  <span class="chkrdobtn">
-                  <input id="pvucont" type="radio" name="pvCONSTS" value="0">
-                  <label for="pvucont">Under Construction</label>
-                  </span>
+                  <?php echo _constructionStatus(''); ?>
                </div>
             </div>
             <div class="mb-4">
@@ -72,51 +65,13 @@
             <div class="mb-4">
                <label class="required">Open Parking</label>
                <div class="d-flex flex-wrap bdgchkrdo">
-                  <span class="chkrdobtn">
-                  <input id="pv0opnprk" type="radio" name="pvOPNPRK" value="0">
-                  <label for="pv0opnprk">0</label>
-                  </span>
-                  <span class="chkrdobtn">
-                  <input id="pv1opnprk" type="radio" name="pvOPNPRK" value="1">
-                  <label for="pv1opnprk">1</label>
-                  </span>
-                  <span class="chkrdobtn">
-                  <input id="pv2opnprk" type="radio" name="pvOPNPRK" value="2">
-                  <label for="pv2opnprk">2</label>
-                  </span>
-                  <span class="chkrdobtn">
-                  <input id="pv3opnprk" type="radio" name="pvOPNPRK" value="3">
-                  <label for="pv3opnprk">3</label>
-                  </span>
-                  <span class="chkrdobtn">
-                  <input id="pv3popnprk" type="radio" name="pvOPNPRK" value="4">
-                  <label for="pv3popnprk">3+</label>
-                  </span>
+			   <?php echo _openParkings(''); ?>
                </div>
             </div>
             <div class="mb-4">
                <label class="required">Covered Parking</label>
                <div class="d-flex flex-wrap bdgchkrdo">
-                  <span class="chkrdobtn">
-                  <input id="pv0cvrprk" type="radio" name="pvCVRPRK" value="0">
-                  <label for="pv0cvrprk">0</label>
-                  </span>
-                  <span class="chkrdobtn">
-                  <input id="pv1cvrprk" type="radio" name="pvCVRPRK" value="1">
-                  <label for="pv1cvrprk">1</label>
-                  </span>
-                  <span class="chkrdobtn">
-                  <input id="pv2cvrprk" type="radio" name="pvCVRPRK" value="2">
-                  <label for="pv2cvrprk">2</label>
-                  </span>
-                  <span class="chkrdobtn">
-                  <input id="pv3cvrprk" type="radio" name="pvCVRPRK" value="3">
-                  <label for="pv3cvrprk">3</label>
-                  </span>
-                  <span class="chkrdobtn">
-                  <input id="pv3pcvrprk" type="radio" name="pvCVRPRK" value="4">
-                  <label for="pv3pcvrprk">3+</label>
-                  </span>
+                  <?php echo _coverParkings(''); ?>
                </div>
             </div>
 			<div class="row">
@@ -259,7 +214,7 @@
 </form>
 <script src="<?= base_url(); ?>assets/js/moment.min.js"></script>
 <script src="<?= base_url(); ?>assets/plugins/datepicker/js/tempusdominus-bootstrap-4.min.js"></script>
-<script src="https://cdn.ckeditor.com/4.17.1/standard-all/ckeditor.js"></script>
+<script src="<?= base_url(); ?>assets/js/ckeditor.js"></script>
 <!--<script src="<?= base_url(); ?>assets/js/custom.js"></script>-->
 <script type="text/javascript">
    var dataURL = $('base').attr("href");
