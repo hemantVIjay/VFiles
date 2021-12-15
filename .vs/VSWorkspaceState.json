@@ -2,11 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\application",
+    "\\application\\views",
     "\\application\\views\\site",
-    "\\application\\views\\site\\pages",
-    "\\assets",
-    "\\assets\\plugins",
-    "\\assets\\scss"
+    "\\application\\views\\site\\pages"
   ],
   "SelectedNode": "\\application\\views",
   "PreviewInSolutionExplorer": false
