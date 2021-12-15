@@ -728,8 +728,10 @@ var baseUrl=$('base').attr("href");
 	$('#main_search').click(function(){
 	    var lc = $('#search').val();
 		if(lc==''){
-			alert('Please search a locality first!.');
-			return false;
+		 $('input[name="search"]').css('border','1px solid red');
+		 $('input[name="search"]').focus();
+		 //alert('Please search a locality first!.');
+		 return false;
 		}
 		search_properties();
 	});
