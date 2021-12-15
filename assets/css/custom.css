@@ -183,7 +183,7 @@ a{
 .tb-title{
 	font-weight:700;
   font-size: 2.25rem;
-  color:#fff;
+  color:#36312d;
 }
 .tab-list{
 	margin-bottom:.75rem;
@@ -213,14 +213,14 @@ a{
   top:50%;
   transform: translateY(-50%);
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: 500;
   color: #fff;
 }
 	.ct-title .xplpcnt {
 		color: #ffa506;
-		font-size: 1.5rem;
-		line-height: 1.7rem;
+		font-size: 2rem;
+		line-height: 2rem;
 		font-weight: 700;
 	}
 	.cmn-title {
@@ -1092,7 +1092,7 @@ right:0;
 	}
 
 	.frdo label {
-		font-size: .875rem;
+		font-size: .775rem;
 		color: #fff;
 		font-weight: 500;
 		margin-right: 0.75rem;

@@ -89,10 +89,7 @@
                </div>
             </div>
          </div>
-      </div>
-      <h2 class="cmn-title mb-3">Explore Commercial Properties in India</h2>
-      <div id="#cmmpropCarousel" class="owl-carousel owl-theme expcmprty">
-         <div class="item">
+		 <div class="item">
             <div class="card">
                <div class="card-img rounded">
                   <img src="<?= base_url(); ?>assets/images/explore-property/office-space.jpg" class="img-fluid rounded">
@@ -173,6 +170,7 @@
             </div>
          </div>
       </div>
+      
    </div>
 </section>
 <section class="section fndhm">
@@ -189,7 +187,7 @@
 </section>
 <section class="section prop-loc-bys">
    <div class="container">
-      <h2 class="cmn-title mb-3">Popular Residential Flats</h2>
+      <h2 class="cmn-title mb-3">Popular Residential Projects</h2>
       <div id="flatCarousel" class="owl-carousel owl-theme">
          <div class="item">
             <div class="card">
@@ -324,141 +322,25 @@
             </div>
          </div>
       </div>
-      <h2 class="cmn-title mb-3 mt-4">Popular Residential Plots</h2>
-      <div id="plotCarousel" class="owl-carousel owl-theme">
-         <div class="item">
-            <div class="card">
-               <div class="card-inner">
-                  <div class="card-img">
-                     <img src="<?= base_url(); ?>assets/images/cities/noida.jpg" class="img-fluid">
-                  </div>
-                  <div class="card-img-overlay">
-                     <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
-                     <div class="prop-snfc">Possession from Mar 2024</div>
-                  </div>
-               </div>
-               <div class="card-body">
-                  <h5 class="pvpr-name">6% Authority Residential Plots</h5>
-                  <div class="bldr-name mb-1">by Greater Noida Industrial Development Authority</div>
-                  <div class="pvpr-loc mb-2">Sector- 151, Noida</div>
-                  <div class="d-flex justify-content-between">
-                     <div class="pvpr-bhk">2,3,4 BHK Flats</div>
-                     <div class="pvpr-prc">₹ 1.88 - 5.08 Cr.</div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="item">
-            <div class="card">
-               <div class="card-inner">
-                  <div class="card-img">
-                     <img src="<?= base_url(); ?>assets/images/cities/greater-noida.jpg" class="img-fluid">
-                  </div>
-                  <div class="card-img-overlay">
-                     <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
-                     <div class="prop-snfc">Possession from Mar 2024</div>
-                  </div>
-               </div>
-               <div class="card-body">
-                  <h5 class="pvpr-name">Godrej Nurture Phase 1</h5>
-                  <div class="bldr-name mb-1">by Prateek Group</div>
-                  <div class="pvpr-loc mb-2">Sector- 151, Noida</div>
-                  <div class="d-flex justify-content-between">
-                     <div class="pvpr-bhk">2,3,4 BHK Flats</div>
-                     <div class="pvpr-prc">₹ 1.88 - 5.08 Cr.</div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="item">
-            <div class="card">
-               <div class="card-inner">
-                  <div class="card-img">
-                     <img src="<?= base_url(); ?>assets/images/cities/ghaziabad.jpg" class="img-fluid">
-                  </div>
-                  <div class="card-img-overlay">
-                     <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
-                     <div class="prop-snfc">Possession from Mar 2024</div>
-                  </div>
-               </div>
-               <div class="card-body">
-                  <h5 class="pvpr-name">Godrej Nurture Phase 1</h5>
-                  <div class="bldr-name mb-1">by Prateek Group</div>
-                  <div class="pvpr-loc mb-2">Sector- 151, Noida</div>
-                  <div class="d-flex justify-content-between">
-                     <div class="pvpr-bhk">2,3,4 BHK Flats</div>
-                     <div class="pvpr-prc">₹ 1.88 - 5.08 Cr.</div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="item">
-            <div class="card">
-               <div class="card-inner">
-                  <div class="card-img">
-                     <img src="<?= base_url(); ?>assets/images/cities/delhi.jpg" class="img-fluid">
-                  </div>
-                  <div class="card-img-overlay">
-                     <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
-                     <div class="prop-snfc">Possession from Mar 2024</div>
-                  </div>
-               </div>
-               <div class="card-body">
-                  <h5 class="pvpr-name">Godrej Nurture Phase 1</h5>
-                  <div class="bldr-name mb-1">by Prateek Group</div>
-                  <div class="pvpr-loc mb-2">Sector- 151, Noida</div>
-                  <div class="d-flex justify-content-between">
-                     <div class="pvpr-bhk">2,3,4 BHK Flats</div>
-                     <div class="pvpr-prc">₹ 1.88 - 5.08 Cr.</div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="item">
-            <div class="card">
-               <div class="card-inner">
-                  <div class="card-img">
-                     <img src="<?= base_url(); ?>assets/images/cities/gurgaon.jpg" class="img-fluid">
-                  </div>
-                  <div class="card-img-overlay">
-                     <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
-                     <div class="prop-snfc">Possession from Mar 2024</div>
-                  </div>
-               </div>
-               <div class="card-body">
-                  <h5 class="pvpr-name">Godrej Nurture Phase 1</h5>
-                  <div class="bldr-name mb-1">by Prateek Group</div>
-                  <div class="pvpr-loc mb-2">Sector- 151, Noida</div>
-                  <div class="d-flex justify-content-between">
-                     <div class="pvpr-bhk">2,3,4 BHK Flats</div>
-                     <div class="pvpr-prc">₹ 1.88 - 5.08 Cr.</div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="item">
-            <div class="card">
-               <div class="card-inner">
-                  <div class="card-img">
-                     <img src="<?= base_url(); ?>assets/images/cities/faridabad.jpg" class="img-fluid">
-                  </div>
-                  <div class="card-img-overlay">
-                     <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
-                     <div class="prop-snfc">Possession from Mar 2024</div>
-                  </div>
-               </div>
-               <div class="card-body">
-                  <h5 class="pvpr-name">Godrej Nurture Phase 1</h5>
-                  <div class="bldr-name mb-1">by Prateek Group</div>
-                  <div class="pvpr-loc mb-2">Sector- 151, Noida</div>
-                  <div class="d-flex justify-content-between">
-                     <div class="pvpr-bhk">2,3,4 BHK Flats</div>
-                     <div class="pvpr-prc">₹ 1.88 - 5.08 Cr.</div>
-                  </div>
-               </div>
-            </div>
+ 
+	  </div>
+	 </section>
+	  
+	  <section class="section fndhm">
+   <div class="container">
+      <div class="row justify-content-center mt-3 mb-3">
+         <div class="col-xl-6 col-lg-7 col-md-8 text-center">
+            <h2 class="pg-title-big">Find your home with <span class="text-primary">Propvenues!</span></h2>
+            <p class="text-hdln">Just regist to be our member, let us know your full information and then buy your
+               home to the most profitable budget!
+            </p>
          </div>
       </div>
+   </div>
+</section>
+	  
+	  <section class="section prop-loc-bys">
+   <div class="container">
       <h2 class="cmn-title mb-3 mt-4">Popular Commercial Properties</h2>
       <div id="commercialCarousel" class="owl-carousel owl-theme">
          <div class="item">

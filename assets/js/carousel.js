@@ -1,7 +1,7 @@
 //city carousel
 $('#cityCarousel, .expprty').owlCarousel({
   loop:true,
-  margin:8,
+  margin:16,
   autoplay: true,
   autoplayHoverPause: true,
   nav:true,
@@ -18,7 +18,7 @@ $('#cityCarousel, .expprty').owlCarousel({
       },
   
       1366: {
-        items: 6
+        items: 4
       }
   }
 });
@@ -95,7 +95,7 @@ $('#plotCarousel, .owl-carousel').owlCarousel({
   }
 });
 
-$('#commercialCarousel, .owl-carousel').owlCarousel({
+/*$('#commercialCarousel, .owl-carousel').owlCarousel({
   loop:true,
   margin:12,
   autoplay: true,
@@ -117,7 +117,7 @@ $('#commercialCarousel, .owl-carousel').owlCarousel({
         items: 4
       }
   }
-});
+});*/
 
 $('#newsCarousel.owl-carousel').owlCarousel({
   loop:true,
