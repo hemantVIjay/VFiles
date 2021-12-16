@@ -1,5 +1,18 @@
 <link href="<?= base_url(); ?>assets/plugins/jqueryui/css/jquery-ui.css" rel="stylesheet">
 <link href="<?= base_url(); ?>assets/plugins/owlcarousel/css/owl.carousel.min.css" rel="stylesheet">
+<style>
+.ui-menu .ui-menu-item-wrapper {
+    padding: 10px 5px;
+}
+.suggests{
+float: right;
+font-size: 12px;
+font-weight: 700;
+color: #b5aeae;
+position: relative;
+bottom: -5px;
+}
+</style>
 <section class="section top-area">
 <div class="container text-center">    
   <div class="row justify-content-center">
@@ -593,44 +606,58 @@ var baseUrl=$('base').attr("href");
 					response($.map(data, function (item) {
 						return {
 							label: item.name,
-							value: item.name,							
+							desc: item.desc,							
 							val: item.val						
 						};
 					}));
 				}
 			});
       },
-      minLength: 1,
+      minLength: 0,
       select: function( event, ui ) {
 		var content = btoa(ui.item.val);  
         $('#search').val('');
         $('#search').val(content);
       }
-    });	 
+    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
+      return $( "<li>" )
+        .append( "<div>" + item.label + "<span class='suggests'>" + item.desc + "</span></div>" )
+        .appendTo( ul );
+    }; 
 	$('#main_search').click(function(){
-	    var lc = $('#search').val();
+	    /*var lc = $('#search').val();
 		if(lc==''){
 		 $('input[name="search"]').css('border','1px solid red');
 		 $('input[name="search"]').focus();
 		 //alert('Please search a locality first!.');
 		 return false;
-		}
+		}*/
 		search_properties();
 	});
    });
    function search_properties(){
-	   var main = $('select[name="cities"]').val();
-	   var type = $('input[name="type"]:checked').val();
-	   var location = $('input[name="search"]').val();
-	   var content = $('input[name="content"]').val();
-	   if(type==undefined){
-		 type = '';
-	   }if(location==undefined){
-		 location = '';
-	   }if(content==undefined){
-		 content = '';
+	   var main     = $('select[name="cities"]').val();
+	   var type     = $('input[name="type"]:checked').val();
+	   var search = $('input[name="search"]').val();
+	   var content  = $('input[name="content"]').val();
+	   var str  = atob(content);
+	   var res = str.split('_');
+	   if(res[0]=='LOC'){
+	     var mainURL  = baseUrl + 'search/properties/';
+		 if(type==undefined){ type = ''; }
+		 if(search==undefined){ search = ''; }
+		 if(content==undefined){ content = ''; }
+		 window.location.href = mainURL+main+'?location='+search+'&type='+type+'&content='+content;   
+	   }if(res[0]=='PROJ'){
+		 var mainURL  = baseUrl + 'project/'+search;  
+		 window.location.href = mainURL;  
+	   }if(res[0]=='BLD'){
+		 var mainURL  = baseUrl + 'builders/'+search;  
+		 window.location.href = mainURL;  
+	   }if(content==''){
+		 var mainURL  = baseUrl + 'search/properties/'+main;
+		 window.location.href = mainURL;  
 	   }
-       window.location.href = baseUrl + 'search/properties/'+main+'?location='+location+'&type='+type+'&content='+content;
    }
    
 </script>

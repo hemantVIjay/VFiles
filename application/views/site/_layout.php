@@ -111,7 +111,7 @@
                   </li>
                   <li class="nav-item">
                      <?php if(isset($_SESSION['login']) && $_SESSION['login']['user_id']!=''){ ?>
-					 <a class="nav-link usrlgd dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="javascript:;" ><img src="<?= base_url(); ?>assets/images/user.jpg" class="userPhot" /><span class="activeStatus"></span> My Account</a>
+					 <a class="nav-link usrlgd dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="javascript:;" ><img src="<?= base_url(); ?>assets/images/user.jpg" class="userPhot" /><span class="activeStatus"></span> <?= $_SESSION['login']['full_name']; ?></a>
                      <div class="dropdown-menu dropdown-menu-end">
                         <div class="upbody d-flex align-items-center">
                            <div class="user-prof-photo">
@@ -464,6 +464,7 @@
       <div id="toasts"></div>
       <!-- Toast Code End -->
       <!--Main Footer-->
+      <!--<?php include_once('modals/offers.php'); ?>
       <!--<?php //include_once('_footer.php'); ?>-->
       <script>
          function alertToasts(type, message){		  
@@ -503,23 +504,18 @@
           var flag  = true;
           
           if(fname == ''){
-           showAlert('danger','Please enter Full Name');
            $('#e_full_name').html('Please enter Full Name');
            flag = false;
           }if(phone == ''){
-           showAlert('danger','Please enter Mobile number');
            $('#e_phone').html('Please enter Mobile number');
            flag = false;
           }if(password == ''){
-           showAlert('danger','Please enter Mobile number');
            $('#e_password').html('Please enter Mobile number');
            flag = false;
           }if(email == ''){
-           showAlert('danger','Please enter Email Address');
            $('#e_email').html('Please enter Email Address');
            flag = false;
           }if(terms.is(':checked')!=true){
-          showAlert('danger','Please select terms and conditions');
           $('#e_terms').html('Please select terms and conditions');
           flag = false;
           }/*else{

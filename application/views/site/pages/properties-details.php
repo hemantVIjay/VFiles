@@ -64,7 +64,7 @@
          <div class="spcr-bdd mb-4"></div>
          <div class="mb-4">
             <h5 class="pvlbtl">About this property</h5>
-            <div class="pvpd-desc"><?= $property_info->description; ?></p>
+            <div class="pvpd-desc"><?= htmlspecialchars_decode($property_info->description); ?></p>
             </div>
          </div>
          <div class="spcr-bds"></div>

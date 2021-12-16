@@ -108,7 +108,21 @@ class Pages extends MY_Controller {
         ); 
 		
 		$result = $this->home->create_enquiry($post_data);
+	}
+
+	public function post_offer_enquiry(){
+		$post_data = array(
+          'full_name' => $this->input->post('full_name'),
+          'phone' => $this->input->post('phone'),
+          'email_address' => $this->input->post('email'),
+          'terms_conditions' => $this->input->post('terms'),
+          'home_loans' => $this->input->post('loans'),
+          'listing_id' => $this->input->post('listing_id'),
+          'listing_type' => $this->input->post('listing_type'),
+          'status' => 2
+        ); 
 		
+		$result = $this->home->create_enquiry($post_data);
 	}	
 	
 	public function careers(){

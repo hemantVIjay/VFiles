@@ -121,7 +121,19 @@ class Home extends MY_Controller {
 	public function search_properties(){
 	  $cities = [];	  
       $cities = $this->home->_searchProperties($this->input->get("q"), $this->input->get("city"));
-	  echo json_encode($cities);
+	  $arr = array();
+	  foreach($cities as $row){
+		  $cont = '';	  
+		  $rr = explode('_', $row->val);
+		  if($rr[0]=='PROJ'){$cont = 'Project'; } 	  
+		  if($rr[0]=='LOC'){$cont = 'Locality'; } 	  
+		  if($rr[0]=='BLD'){$cont = 'Builder'; } 	  
+		  $data['name'] = $row->name;	
+		  $data['val'] = $row->val;	
+		  $data['desc'] = $cont;	
+		  $arr[] = $data;
+	  }	  
+	  echo json_encode($arr);
 	  exit;		
 	}
 

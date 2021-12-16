@@ -168,8 +168,8 @@
                </div>
                <div class="col-6 mb-4">
                   <div class="form-floating pfff">
-                     <input type="text" class="form-control" name="builtup_area" id="builtup_area" placeholder="Built Up Area">
-                     <label for="builtup_area" class="required" value="<?= $info->builtup_area;?>">Built Up Area</label>
+                     <input type="text" class="form-control" name="builtup_area" id="builtup_area" placeholder="Built Up Area" value="<?= $info->builtup_area;?>">
+                     <label for="builtup_area" class="required" >Built Up Area</label>
                   </div>
                </div>
                <div class="col-6 mb-4">

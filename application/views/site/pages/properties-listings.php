@@ -247,7 +247,7 @@
                         <div class="card-img rounded-top-right-0">
                            <img src="<?= base_url(); ?>assets/images/cities/ghaziabad.jpg" class="img-fluid">
                         </div>
-                        <a href="javascript:;" class="card-img-overlay">
+                        <a href="<?php echo base_url();?>properties-details/<?= $listing->slug; ?>---<?= $listing->id; ?>" class="card-img-overlay">
                         <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA Approved</span>
                         <span class="prop-snfc">Posted : 7 Sep. 2021</span>
                         </a>
@@ -255,7 +255,7 @@
                   </div>
                   <div class="col-md-8">
                      <div class="card-body">
-                        <h5 class="pv-ptttl mb-1"><a href="javascript:;"><?= $listing->property_name; ?></a></h5>
+                        <h5 class="pv-ptttl mb-1"><a href="<?php echo base_url();?>properties-details/<?= $listing->slug; ?>---<?= $listing->id; ?>"><?= $listing->property_name; ?></a></h5>
                         <?php if($listing->builder_id!=''&& $listing->builder_id!='0'){ $builder = _builderDetails($listing->builder_id); print_r($builder); ?>
 			            <h6 class="pvpd-py">By<span> <?=$builder->builder_name;?></span></h6><?php } ?>
                         <h6 class="pvpd-locate mb-3"><?= $listing->property_address; ?></h6>
@@ -298,7 +298,7 @@
                         <span class="pvrrrg"><i class="bi bi-check-circle-fill me-2"></i>RERA ID : UPRERAPRJ5112</span>
                      </div>
                      <div class="col-6 text-end">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pvGetCallback">Get Current Offers</button>
+                        <button type="button" class="btn btn-primary offers" data-bs-toggle="modal" data-id="<?= $listing->id; ?>" data-type="property" data-bs-target="#pvGetCallback">Get Current Offers</button>
                      </div>
                   </div>
                </div>
@@ -306,49 +306,6 @@
 			<?php } }else{ ?>
 			<h3 class="pvSrchTitle text-center"><span>No Properties in Greater Noida Extension</span></h3>
 			<?php } ?>
-         </div>
-      </div>
-   </div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="pvGetCallback" tabindex="-1" aria-labelledby="pvGetCallbackLabel" aria-hidden="true">
-   <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content">
-         <div class="row g-0">
-            <div class="col-md-7">
-               <img src="<?= base_url(); ?>assets/images/offer-banner.jpg" class="img-fluid rounded-start">
-            </div>
-            <div class="col-md-5">
-               <div class="p-4">
-                  <div class="d-flex justify-content-between">
-                     <h4 class="cmn-title mb-4">Contact with us</h4>
-                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="mb-3">
-                     <label class="required">Full Name</label>
-                     <input type="text" class="form-control" placeholder="Enter your name">
-                  </div>
-                  <div class="mb-3">
-                     <label class="required">Phone Number</label>
-                     <input type="text" class="form-control" placeholder="Enter your phone no.">
-                  </div>
-                  <div class="mb-3">
-                     <label class="required">Email ID</label>
-                     <input type="text" class="form-control" placeholder="Enter email id">
-                  </div>
-                  <div class="mb-3 d-flex">
-                     <input type="checkbox" class="cks" checked="">
-                     <span class="pvsml ms-2">I Agree to Propvenue's <a href="javascript:;">Terms of Use</a></span>
-                  </div>
-                  <div class="mb-3 d-flex">
-                     <input type="checkbox" class="cks">
-                     <span class="pvsml ms-2">I am interested in Home Loans</span>
-                  </div>
-                  <div class="d-grid gap-2">
-                     <button class="btn btn-primary" type="button">Get Call Back</button>
-                  </div>
-               </div>
-            </div>
          </div>
       </div>
    </div>
@@ -395,4 +352,65 @@ var baseUrl=$('base').attr("href");
 	   }
        window.location.href = baseUrl + 'search/properties/'+main+'?location='+location+'&type='+type+'&content='+content;
    }
+   
+   $('.offers').on('click', function() {
+		var $el = $(this);
+		var $id = $el.data('id');
+		var $type = $el.data('type');
+		$("#listing_id").val($id);
+		$("#listing_type").val($type);
+   });
+  
+  
+     function o_validate(ev){
+	   var fname = $(ev).find('#ofull_name').val();
+	   var phone = $(ev).find('#ophone').val();
+	   var email = $(ev).find('#oemail').val();
+	   var terms = $(ev).find('#oterms');
+	   var flag  = true;
+	   if(fname == ''){
+		   $(ev).find('#e_full_name').html('Please enter Full Name');
+		   flag = false;
+	   }if(phone == ''){
+		   $(ev).find('#e_phone').html('Please enter Phone number');
+		   flag = false;
+	   }if(email == ''){
+		   $(ev).find('#e_email').html('Please enter Email Address');
+		   flag = false;
+	   }if(terms.is(':checked')!=true){
+		   $(ev).find('#e_terms').html('Please select terms and conditions');
+		  flag = false;
+	   }/*else{
+		   
+	   }*/
+	   return flag;
+   }
+   
+   function save_enquiries(e){
+	 var baseUrl=$('base').attr("href");  
+	 var vd = o_validate(e);
+	 $('#page-loader').fadeIn();
+	 if(vd==true){
+		 $(e).find('#e_full_name').html('');
+		 $(e).find('#e_phone').html('');
+		 $(e).find('#e_email').html('');
+		 $(e).find('#e_terms').html('');
+		   
+		   $.ajax({
+			type: 'POST',
+			url:  baseUrl + "pages/post_offer_enquiry",
+			data: $('#call_back').serialize(),
+			success: function (response) {
+			  $('#page-loader').fadeOut();
+			  $('#call_back')[0].reset();
+			  $('#pvGetCallback').modal('hide');
+			}
+		  });	  
+	 }else{
+		$('#page-loader').fadeOut(); 
+	 }
+	 return false;
+   }
+   
+   
 </script>
