@@ -214,7 +214,8 @@
                   </ul>
                </div>-->
 			   <div class="col-xl-6">
-			   <button type="button" class="btn btn-primary" onclick="search_properties();">Search</button>
+			   <button type="button" class="btn btn-primary" onclick="search_properties();">Apply Filter</button>
+			   <button type="button" class="btn btn-secondary ms-1">Reset Filter</button>
 			   </div>
             </div>
          </div>
