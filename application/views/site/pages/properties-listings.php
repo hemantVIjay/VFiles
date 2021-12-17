@@ -1,19 +1,8 @@
 <link href="<?= base_url(); ?>assets/plugins/rangeSlider/ion.rangeSlider.min.css" rel="stylesheet">
-<div class="container">
-   <div class="row justify-content-center mt-4 mb-4">
-      <!--<div class="col-xl-3 col-md-4 col-sm-6">
-         <div class="card pveq-card border-0 shadow">
-         	<div class="p-4">
-         		<h4 class="cmn-title mb-3">Applied Filters</h4>
-         	</div>
-         </div>
-         </div>-->
-      <div class="col-xl-11 col-md-11 col-sm-12">
-         <div class="text-end mb-1">
-            <button class="btnReset"><i class="bi bi-arrow-counterclockwise me-1"></i>Reset</button>
-         </div>
-         <div class="pvFltrBar megamenu">
-            <div class="row bdra align-items-center">
+<div class="fltrsec ps-3 pe-3">
+		<div class="container-fluid">
+			<div class="pvFltrBar megamenu">
+            <div class="row g-2 align-items-center">
                <div class="col-xl-2 dropdown spdropdown">
                   <a href="javascript:;" class="pvfbxb d-flex justify-content-between dropdown-toggle" id="ptypeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <span class="pvfbx">
@@ -224,12 +213,25 @@
                      </li>
                   </ul>
                </div>-->
-			   <div class="col-xl-6" style="text-align:right;">
+			   <div class="col-xl-6">
 			   <button type="button" class="btn btn-primary" onclick="search_properties();">Search</button>
 			   </div>
             </div>
          </div>
-         <div class="pv-breadcrumb mt-3">
+		</div>
+	  </div>
+<div class="container">
+   <div class="row justify-content-center mb-4">
+      <!--<div class="col-xl-3 col-md-4 col-sm-6">
+         <div class="card pveq-card border-0 shadow">
+         	<div class="p-4">
+         		<h4 class="cmn-title mb-3">Applied Filters</h4>
+         	</div>
+         </div>
+         </div>-->
+      <div class="col-xl-11 col-md-11 col-sm-12">
+         
+         <div class="pv-breadcrumb">
             <a href="javascript:;">Home</a>
             <a href="javascript:;">Property in <?= ucfirst($city); ?></a>
             <?php if(isset($s_content['location'])){ ?>
