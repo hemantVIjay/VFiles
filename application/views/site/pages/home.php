@@ -28,7 +28,7 @@ bottom: -5px;
                      <?php echo _topCities(''); ?>
                   </select>
                   <input type="text" class="form-control form-control-lg autocomplete" placeholder="Search your property here..." name="search">
-                  <button class="btn btn-lg btn-primary" type="button" id="main_search">Search</button>
+                  <button class="btn btn-lg btn-primary" type="button" id="hmain_search">Search</button>
 				  <input type="hidden" id="search" name="content">
 	  
 				  </form>
@@ -619,13 +619,13 @@ var baseUrl=$('base').attr("href");
         $('#search').val('');
         $('#search').val(content);
       }
-    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
+    }).autocomplete("instance" )._renderItem = function( ul, item ) {
       return $( "<li>" )
         .append( "<div>" + item.label + "<span class='suggests'>" + item.desc + "</span></div>" )
         .appendTo( ul );
     }; 
-	$('#main_search').click(function(){
-	    /*var lc = $('#search').val();
+	$('#hmain_search').on('click', function(){
+       /*var lc = $('#search').val();
 		if(lc==''){
 		 $('input[name="search"]').css('border','1px solid red');
 		 $('input[name="search"]').focus();
@@ -636,19 +636,22 @@ var baseUrl=$('base').attr("href");
 	});
    });
    function search_properties(){
+	   
 	   var main     = $('select[name="cities"]').val();
 	   var type     = $('input[name="type"]:checked').val();
-	   var search = $('input[name="search"]').val();
+	   var search   = $('input[name="search"]').val();
 	   var content  = $('input[name="content"]').val();
+	   console.log(content);
 	   var str  = atob(content);
 	   var res = str.split('_');
 	   if(res[0]=='LOC'){
 	     var mainURL  = baseUrl + 'search/properties/';
 		 if(type==undefined){ type = ''; }
 		 if(search==undefined){ search = ''; }
-		 if(content==undefined){ content = ''; }
+	     if(content==undefined){ content = ''; }
 		 window.location.href = mainURL+main+'?location='+search+'&type='+type+'&content='+content;   
-	   }if(res[0]=='PROJ'){
+	   }
+	   if(res[0]=='PROJ'){
 		 var mainURL  = baseUrl + 'project/'+search;  
 		 window.location.href = mainURL;  
 	   }if(res[0]=='BLD'){

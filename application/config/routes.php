@@ -69,6 +69,7 @@ $route['home-loan'] = 'pages/home_loan';
 $route['cities'] = 'pages/cities';
 $route['localities'] = 'pages/localities';
 $route['(:any)/builder/(:any)'] = 'pages/builders';
+$route['projects/(:any)/(:any)'] = 'pages/projects';
 $route['price-trends'] = 'pages/price_trends';
 $route['offers'] = 'pages/offers';
 $route['emi-calculator'] = 'pages/emi_calculator';

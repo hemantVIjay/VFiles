@@ -53,6 +53,16 @@ class Projects_model extends MY_Model{
 		
 	}
 	
+		//get user by id
+	public function get_projectProperties($id){
+		$this->db->select('p.*');
+        $this->db->from('properties p');
+		$this->db->where('p.project', $id);
+		$query = $this->db->get();
+
+		return ($query->num_rows() > 0)?$query->result():FALSE;
+	}
+	
 	public function create_project($post_data, $specs, $floorPlans){
         $this->_table_name='projects';
         $this->_timestamps=TRUE;
