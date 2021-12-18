@@ -162,6 +162,17 @@ class Builder_model extends MY_Model{
 		$query = $this->db->get();
 		return ($query->num_rows() == 1)?$query->row_array():FALSE;
 	}
+	
+	
+	//get user by id
+	public function get_builderProjects($id){
+		$this->db->select('p.*');
+        $this->db->from('projects p');
+		$this->db->where('p.builder_id', $id);
+		$query = $this->db->get();
+
+		return ($query->num_rows() > 0)?$query->result():FALSE;
+	}
 
 	public function get_contacts($id){
 		$this->db->select('c.*');

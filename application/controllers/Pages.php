@@ -184,6 +184,12 @@ class Pages extends MY_Controller {
 	public function builders(){
 		$data['title']=$this->lang->line("text_search_result");
 		$data['keyword']='';
+		//$data['city'] = $city;
+		$id = explode('--',$this->uri->segment(3));
+		
+		$data['builder'] = $this->builder_model->get_builder($id[1]);
+		$builder_projects = $this->builder_model->get_builderProjects($id[1]);
+		$data['builder_projects'] = $builder_projects;
 		$data['sub_view'] = $this->load->view('site/pages/builders', $data, TRUE);
         $this->load->view('site/_layout', $data); 
 	}	

@@ -23,15 +23,17 @@
 		<div class="row align-items-center">
 			<div class="col-xl-3 col-lg-3 col-md-4">
 				<div class="bldrImg">
-					<img src="<?= base_url(); ?>assets/images/ska.png" class="img-fluid">
+					<img src="<?= base_url(); ?>uploads/builders/<?= $builder['builder_logo']; ?>" class="img-fluid">
 				</div>
 			</div>
 			<div class="col-xl-9 col-lg-9 col-md-8">
 			<div class="bdrDtls">
-				<h1 class="bldrName">SKA Developers & Builders</h1>
+				<h1 class="bldrName"><?= $builder['builder_name']; ?></h1>
 				<div class="d-flex prjDtl">
-					<span class="bdz">122 Years of Experience</span>
-					<span class="bdz">4 Total Projects</span>
+				    <?php $exp = 'N/A'; if(!$builder['builder_estabilished_year']!=''){ $curYear = date('Y'); 
+					$exp = (int)$curYear - (int)$builder['builder_estabilished_year']; } ?>
+					<span class="bdz"><?= $exp; ?> Years of Experience</span>
+					<span class="bdz"><?php if(!empty($builder_projects)){ echo count($builder_projects); }else{ echo'0'; } ?> Total Projects</span>
 					<span class="bdz">Ongoing Projects</span>
 				</div>
 				</div>
@@ -322,9 +324,10 @@
 			<a href="javascript:;">Property in Noida</a>
 			<a href="javascript:;" class="current">Property in Sector 150</a>
 		</div>
-		<h3 class="pvSrchTitle">Properties in Greater Noida Extension <span>(5 Projects)</span></h3>
+		<h3 class="pvSrchTitle">Projects by  <span>(<?php if(!empty($builder_projects)){ echo count($builder_projects); }else{ echo'0'; } ?> Projects)</span></h3>
 
 		<div class="pvpts-list">
+		    <?php if(!empty($builder_projects)){ foreach($builder_projects as $project){ ?>
 			<div class="card mb-3">
 			  <div class="row g-0">
 				<div class="col-md-4">
@@ -333,15 +336,15 @@
 												<img src="<?= base_url(); ?>assets/images/cities/ghaziabad.jpg" class="img-fluid">
 											</div>
 											<a href="javascript:;" class="card-img-overlay">
-											  <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA Approved</span>
+											  <?php if($project->rera_approved=='1'){ ?><span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA Approved</span><?php } ?>
 											  <span class="prop-snfc">Posted : 7 Sep. 2021</span>
 											</a>
 				</div>
 				</div>
 				<div class="col-md-8">
 				  <div class="card-body">
-					<h5 class="pv-ptttl mb-1"><a href="javascript:;">Godrej Serenity Noida</a></h5>
-					<h6 class="pvpd-py">By<span> Godrej Properties</span></h6>
+					<h5 class="pv-ptttl mb-1"><a href="javascript:;"><?= $project->project_name; ?></a></h5>
+					<h6 class="pvpd-py">By<span> <?= $builder['builder_name']; ?></span></h6>
 					<h6 class="pvpd-locate mb-3">Sector 16C, Greater Noida West</h6>
 					<div class="row mb-3">
 						<div class="col-xl-3 col-4">
@@ -377,7 +380,7 @@
 			  <div class="py-2 px-3">
 					<div class="row align-items-center">
 						<div class="col-6">
-							<span class="pvrrrg"><i class="bi bi-check-circle-fill me-2"></i>RERA ID : UPRERAPRJ5112</span>
+							<?php if($project->rera_approved=='1'){ ?><span class="pvrrrg"><i class="bi bi-check-circle-fill me-2"></i>RERA ID : <?= $project->rera_registrationNumber; ?></span><?php } ?>
 						</div>
 						<div class="col-6 text-end">
 							<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pvGetCallback">Get Current Offers</button>
@@ -386,69 +389,9 @@
 			  </div>
 
 			</div>
-
-			<div class="card mb-3">
-			  <div class="row g-0">
-				<div class="col-md-4">
-				<div class="card-inner">
-					  <div class="card-img rounded-top-right-0">
-												<img src="<?= base_url(); ?>assets/images/cities/greater-noida.jpg" class="img-fluid">
-											</div>
-											<a href="javascript:;" class="card-img-overlay">
-											  <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA Approved</span>
-											  <span class="prop-snfc">Posted : 7 Sep. 2021</span>
-											</a>
-				</div>
-				</div>
-				<div class="col-md-8">
-				  <div class="card-body">
-					<h5 class="pv-ptttl mb-1"><a href="javascript:;">Imperia Prideville Nurture Phase 1</a></h5>
-					<h6 class="pvpd-py">By<span> Imperia Structures Ltd.</span></h6>
-					<h6 class="pvpd-locate mb-3">Jaypee Greens, Sector 25 Yamuna Expressway, Greater Noida</h6>
-					<div class="row mb-3">
-						<div class="col-xl-3 col-4">
-							<h5 class="pv-lprc">₹ 36.92 L</h5>
-							<div class="pv-lprc-sml">₹ 5,830 per sq.ft.</div>
-						</div>
-						<div class="col-xl-3 col-4">
-							<h5 class="pv-lprc dropdown">780<span class="ms-1 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">sq.ft.</span>
-								<ul class="dropdown-menu dmbody shadow" aria-labelledby="navbarDropdown">
-								<li>72 Sq. Meters</li>
-								<li>90 Sq. Yards</li>
-								<li>0.06 Acres</li>
-								<li>0.09 Bigha</li>
-								<li>0.045 Hectares</li>
-							  </ul>
-							</h5>
-							<div class="pv-lprc-sml">Super built-up Area</div>
-						</div>
-						<div class="col-xl-3 col-4">
-							<h5 class="pv-lprc">1 BHK</h5>
-							<div class="pv-lprc-sml">1 Bath, 2 R Balcony</div>
-						</div>
-					</div>
-					<div class="mb-4">
-						<span class="badge badge-secondary">Ready to Move</span>
-						<span class="badge badge-secondary ms-1">Resale</span>
-					</div>
-					<a href="javascript:;" class="rmLink">Read More<i class="bi bi-arrow-right"></i></a>
-				  </div>
-				</div>
-			  </div>
-			  <div class="spcr-bds"></div>
-			  <div class="py-2 px-3">
-					<div class="row align-items-center">
-						<div class="col-6">
-							<span class="pvrrrg"><i class="bi bi-check-circle-fill me-2"></i>RERA ID : UPRERAPRJ5112</span>
-						</div>
-						<div class="col-6 text-end">
-							<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pvGetCallback">Get Current Offers</button>
-						</div>
-					</div>
-			  </div>
-
-			</div>
-
+            <?php } }else{ ?>
+            <h3 class="pvSrchTitle"><span>No Projects found.</span></h3>
+			<?php } ?>
 
 		</div>
 
