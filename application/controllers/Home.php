@@ -33,13 +33,29 @@ class Home extends MY_Controller {
 		}
 		
 		$data['title']=$this->lang->line("text_home");
-		if(isset($_GET['type'])&& $_GET['type']!=''){
-		 $pdata['property_type'] = _getSlugID('property_categories', $_GET['type']);
+		$alltypes = array();
+		if(isset($_GET['type']) && $_GET['type']!=''){
+		 $type = explode(',', $_GET['type']);
+         foreach($type as $cat){
+           $alltypes = _getSlugID('property_categories', $cat);
+		 }	 
 		}
-		//$pdata['locality'] = $_GET['location'];
-		//$pdata['content'] = 
+		if(isset($_GET['budget_min'], $_GET['budget_max'])){
+		  $budget_min = $_GET['budget_min'];
+		  $budget_max = $_GET['budget_max'];
+		}else{
+		  $budget_min = '';
+		  $budget_max = '';	
+		}
+
+		if(isset($_GET['bedrooms'])){
+		  $bedrooms = $_GET['bedrooms'];
+		}else{
+		  $bedrooms = '';
+		}
+		
 		$pdata['city_id'] = _getSlugID('cities', $city); 
-		$result = $this->home->search_properties($pdata);
+		$result = $this->home->search_properties($pdata, $alltypes, $bedrooms, $budget_max, $budget_min);
 		$data['listings'] = $result;
 		$data['s_content'] = $_GET;
 		$data['city'] = $city;

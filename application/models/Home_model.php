@@ -103,7 +103,7 @@ class Home_model extends MY_Model{
     }
 	
 	
-	public function search_properties($search){
+	public function search_properties($search, $alltypes, $bedrooms, $budget_max, $budget_min){
 		$this->db->select('a.*, ft.name as bd_name, bt.name as bt_name, cs.name as cs_name, lt.name as lt_name, bl.name as bl_name');
         $this->db->from('properties a');
 		$this->db->join('floor_types ft','a.bedrooms = ft.id','left');
@@ -112,6 +112,15 @@ class Home_model extends MY_Model{
         $this->db->join('listing_type lt','a.property_for = lt.id','left');
         $this->db->join('balconies bl','a.balcony = bl.id','left');
         $this->db->where($search);
+        if(!empty($alltypes)){
+		$this->db->where_in('a.property_type', $alltypes);
+        }
+		if(!empty($alltypes)){
+		 $this->db->where_in('a.bedrooms', $bedrooms);
+        }
+		if($budget_min!='' && $budget_max!=''){
+		 $this->db->where("a.cost BETWEEN '$budget_min' AND '$budget_max'");
+		}
 		$query = $this->db->get();
 		//echo$this->db->last_query();
 		//return fetched data

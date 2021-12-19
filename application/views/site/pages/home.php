@@ -652,7 +652,7 @@ var baseUrl=$('base').attr("href");
 		 window.location.href = mainURL+main+'?location='+search+'&type='+type+'&content='+content;   
 	   }
 	   if(res[0]=='PROJ'){
-		 var mainURL  = baseUrl + 'project/'+search;  
+		 var mainURL  = baseUrl +'projects/'+ main+'/'+search+'--'+res[1];  
 		 window.location.href = mainURL;  
 	   }if(res[0]=='BLD'){
 		 var mainURL  = baseUrl + main+'/'+'builder/'+search+'--'+res[1];  

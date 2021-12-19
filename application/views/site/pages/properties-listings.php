@@ -1,4 +1,5 @@
 <link href="<?= base_url(); ?>assets/plugins/rangeSlider/ion.rangeSlider.min.css" rel="stylesheet">
+<input type="hidden" name="city" id="city" value="<?= $city; ?>">
 <div class="fltrsec ps-3 pe-3">
 		<div class="container-fluid">
 			<div class="pvFltrBar megamenu">
@@ -20,39 +21,8 @@
                   </span>
                   </a>
                   <ul class="dropdown-menu ddm" aria-labelledby="bhkteDropdown">
-                     <li>
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="pv1BHK">
-                           <label class="form-check-label" for="pv1BHK">
-                           1 BHK
-                           </label>
-                        </div>
-                     </li>
-                     <li>
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="pv2BHK">
-                           <label class="form-check-label" for="pv2BHK">
-                           2 BHK
-                           </label>
-                        </div>
-                     </li>
-                     <li>
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="pv3BHK">
-                           <label class="form-check-label" for="pv3BHK">
-                           3 BHK
-                           </label>
-                        </div>
-                     </li>
-                     <li>
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="pv3plusBHK">
-                           <label class="form-check-label" for="pv3plusBHK">
-                           3+ BHK
-                           </label>
-                        </div>
-                     </li>
-                  </ul>
+                     <?php if(isset($_GET['bedrooms'])){ $fRooms = $_GET['bedrooms']; }else{ $fRooms = '';} echo _filterRooms($fRooms); ?>
+			      </ul>
                </div>
                <div class="col-xl-2 dropdown spdropdown">
                   <a href="javascript:;" class="pvfbxb d-flex justify-content-between dropdown-toggle" id="bhkteDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -215,7 +185,7 @@
                </div>-->
 			   <div class="col-xl-6">
 			   <button type="button" class="btn btn-primary" onclick="search_properties();">Apply Filter</button>
-			   <button type="button" class="btn btn-secondary ms-1">Reset Filter</button>
+			   <!--<button type="button" class="btn btn-secondary ms-1">Reset Filter</button>-->
 			   </div>
             </div>
          </div>
@@ -319,18 +289,18 @@ var baseUrl=$('base').attr("href");
    $('.dropdown.spdropdown .dropdown-menu').click(function(e) {
        e.stopPropagation();
    });   
-   	var custom_values = [1000, 10000, 100000, 1000000, 10000000];
+   	var ranges = [1000, 10000, 100000, 1000000, 10000000];
        
        // be careful! FROM and TO should be index of values array
-       var my_from = custom_values.indexOf(1000);
-       var my_to = custom_values.indexOf(1000000);
+       var my_from = ranges.indexOf(1000);
+       var my_to = ranges.indexOf(1000000);
        
        $("#example_id").ionRangeSlider({
            type: "double",
            grid: true,
            from: my_from,
            to: my_to,
-           values: custom_values,
+           values: ranges,
    		   prefix: "₹",
    		   step: 1000,
            prettify_enabled: true,
@@ -341,9 +311,21 @@ var baseUrl=$('base').attr("href");
 	   var slider = $("#example_id").data("ionRangeSlider");
 	   var from = slider.result.from;
 	   var to = slider.result.to;
-	   return false;
-	   var main = $('select[name="cities"]').val();
-	   var type = $('input[name="type"]:checked').val();
+	   var min_price = ranges[from];
+	   var max_price = ranges[to];
+	   var main = $('#city').val();
+	   var type = [];
+	   $('input[name="type"]').each(function(){
+		   if($(this).is(':checked')){
+            type.push($(this).val());
+		   }
+	   });
+	   var bedrooms = [];
+	   $('input[name="pvBHK"]').each(function(){
+		   if($(this).is(':checked')){
+            bedrooms.push($(this).val());
+		   }
+	   });
 	   var location = $('input[name="search"]').val();
 	   var content = $('input[name="content"]').val();
 	   if(type==undefined){
@@ -353,7 +335,7 @@ var baseUrl=$('base').attr("href");
 	   }if(content==undefined){
 		 content = '';
 	   }
-       window.location.href = baseUrl + 'search/properties/'+main+'?location='+location+'&type='+type+'&content='+content;
+       window.location.href = baseUrl + 'search/properties/'+main+'?location='+location+'&type='+type+'&content='+content+'&budget_min='+min_price+'&budget_max='+max_price+'&bedrooms='+bedrooms;
    }
    
    $('.offers').on('click', function() {

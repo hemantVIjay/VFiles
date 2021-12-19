@@ -899,6 +899,29 @@
       }
   }
 
+
+  if (!function_exists('_filterRooms')) {
+      function _filterRooms($mid)
+      {   $arr = array(); 
+	      if($mid!=''){
+           $arr = explode(',', $mid);			  
+		  }
+          $ci =& get_instance();
+          $banks = "";
+          $ci->db->where('status', 1);
+          $query = $ci->db->get('floor_types');
+          $Mq    = $query->result();
+          
+          foreach ($Mq as $row) {
+              $Sdata = (in_array($row->id, $arr)) ? 'checked' : '';
+              $banks .= '<li><div class="form-check"><input class="form-check-input" '.$Sdata.' id="pvBHK_'.$row->id.'" type="checkbox" name="pvBHK" value="'.$row->id.'"><label for="pvBHK_'.$row->id.'">';
+              $banks .= $row->name;
+              $banks .= "</label></div></li>";
+          }
+          return $banks;
+      }
+  }
+
   if (!function_exists('_bathrooms')) {
       function _bathrooms($mid)
       {
@@ -977,7 +1000,10 @@
 
   if (!function_exists('_checkCategories')) {
       function _checkCategories($mid)
-      {
+      {   $arr = array(); 
+	      if($mid!=''){
+           $arr = explode(',', $mid);			  
+		  } 
           $ci =& get_instance();
           $banks = "";
           $ci->db->where('status', 1);
@@ -985,8 +1011,8 @@
           $Mq    = $query->result();
           
           foreach ($Mq as $row) {
-			  $Sdata = ($row->slug == $mid) ? 'checked' : '';
-              $banks .= '<li><div class="form-check"><input class="form-check-input" type="checkbox" value="'.$row->slug.'" id="pv_'.$row->id.'" '.$Sdata.' ><label class="form-check-label" for="pv_'.$row->id.'">';
+			  $Sdata = (in_array($row->slug, $arr)) ? 'checked' : '';
+              $banks .= '<li><div class="form-check"><input class="form-check-input" name="type" type="checkbox" value="'.$row->slug.'" id="pv_'.$row->id.'" '.$Sdata.' ><label class="form-check-label" for="pv_'.$row->id.'">';
               $banks .= $row->name;
               $banks .= "</label></div></li>";
           }
@@ -1198,6 +1224,25 @@
           
       }
   }
+
+  if (!function_exists('listing_prices')) {
+      
+      function listing_prices($id)
+      {          
+          $ci =& get_instance();
+          $ci->db->select('MIN(floor_totalPrice) as min_price, MAX(floor_totalPrice) as max_price');
+		  $ci->db->from('floor_plans');
+          $ci->db->where('listing_id', $id);
+          $query  = $ci->db->get();
+          $result = $query->row();
+          if (!empty($result)) {
+              return $result;
+          } else {
+              return array();
+          }
+          
+      }
+  }
   
   
   if (!function_exists('sendEmail')) {
@@ -1291,17 +1336,17 @@
 				case 3:
 					$val = $no/100;
 					$val = round($val, 2);
-					$finalval =  $val ." hundred";
+					$finalval =  $val ." HD";
 					break;
 				case 4:
 					$val = $no/1000;
 					$val = round($val, 2);
-					$finalval =  $val ." thousand";
+					$finalval =  $val ." TH";
 					break;
 				case 5:
 					$val = $no/1000;
 					$val = round($val, 2);
-					$finalval =  $val ." thousand";
+					$finalval =  $val ." TH";
 					break;
 				case 6:
 					$val = $no/100000;

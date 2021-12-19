@@ -340,37 +340,35 @@
                   </div>
                   <div class="col-md-8">
                      <div class="card-body">
-                        <h5 class="pv-ptttl mb-1"><a href="javascript:;"><?= $project->project_name; ?></a></h5>
+                        <h5 class="pv-ptttl mb-1"><a href="<?php echo base_url();?>projects/<?= $builder['slug']; ?>/<?= $project->slug; ?>--<?= $project->id; ?>"><?= $project->project_name; ?></a></h5>
                         <h6 class="pvpd-py">By<span> <?= $builder['builder_name']; ?></span></h6>
-                        <h6 class="pvpd-locate mb-3">Sector 16C, Greater Noida West</h6>
+                        <h6 class="pvpd-locate mb-3"><?= $project->project_address; ?></h6>
                         <div class="row mb-3">
-                           <div class="col-xl-3 col-4">
-                              <h5 class="pv-lprc">₹ 36.92 L</h5>
+                           <div class="col-xl-5 col-4">
+                              <h5 class="pv-lprc">₹ <?php $lp = listing_prices($project->id); ?><?php echo no_to_words($lp->min_price).' - '.no_to_words($lp->max_price); ?></h5>
                               <div class="pv-lprc-sml">₹ 5,830 per sq.ft.</div>
                            </div>
-                           <div class="col-xl-3 col-4">
-                              <h5 class="pv-lprc dropdown">
-                                 780<span class="ms-1 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">sq.ft.</span>
-                                 <ul class="dropdown-menu dmbody shadow" aria-labelledby="navbarDropdown">
-                                    <li>72 Sq. Meters</li>
-                                    <li>90 Sq. Yards</li>
-                                    <li>0.06 Acres</li>
-                                    <li>0.09 Bigha</li>
-                                    <li>0.045 Hectares</li>
-                                 </ul>
-                              </h5>
-                              <div class="pv-lprc-sml">Super built-up Area</div>
-                           </div>
-                           <div class="col-xl-3 col-4">
-                              <h5 class="pv-lprc">1 BHK</h5>
-                              <div class="pv-lprc-sml">1 Bath, 2 R Balcony</div>
+						   <?php $p_listings = $this->project->get_projectPlans($project->id);?>
+                           <div class="col-xl-7 col-4">
+                              <table width="100%">
+							   <tbody>
+							    <?php foreach($p_listings as $row){ ?>
+								<tr>
+								  <td>
+								   <a href="/noida/ats-green-kingston-heath-sector-150-13456968/3bhk-5t-2350-sqft-apartment" target="_blank" data-type="cluster-link-property" class="no-ajaxy"><?= $row->floor_bedrooms;?>BHK&nbsp;+&nbsp;<?= $row->floor_bathrooms;?>T</a>
+								   </td>
+								   <td class="js-prop-size"><?= round($row->floor_totalRoomSizes);?> sqft</td><td class="js-prop-price"> ₹ <?= no_to_words($row->floor_totalPrice);?></td>
+							    </tr>
+								<?php } ?>
+							    </tbody>
+							  </table>
                            </div>
                         </div>
                         <div class="mb-4">
                            <span class="badge badge-secondary">Ready to Move</span>
                            <span class="badge badge-secondary ms-1">Resale</span>
                         </div>
-                        <a href="javascript:;" class="rmLink">Read More<i class="bi bi-arrow-right"></i></a>
+                        <a href="<?php echo base_url();?>projects/<?= $builder['slug']; ?>/<?= $project->slug; ?>--<?= $project->id; ?>" class="rmLink">Read More<i class="bi bi-arrow-right"></i></a>
                      </div>
                   </div>
                </div>
@@ -425,11 +423,10 @@
                   <div class="bdrDtls">
                      <h1 class="bldrName"><?= $project->project_name; ?></h1>
                      <div class="d-flex prjDtl">
-                        <?php $exp = 'N/A'; if(!$project->project_start_date!=''){ $curYear = date('Y'); 
-                           $exp = (int)$curYear - (int)$project->project_start_date; } ?>
-                        <span class="bdz"><?= $exp; ?> Years of Experience</span>
-                        <span class="bdz"><?php if(!empty($builder_projects)){ echo count($builder_projects); }else{ echo'0'; } ?> Total Projects</span>
-                        <span class="bdz">Ongoing Projects</span>
+                        <?php if($project->project_start_date!='' && $project->project_start_date!='0000-00-00'){ ?>
+                        <span class="bdz">Started from <?= date_format(date_create($project->project_start_date),'d/m/Y'); ?></span><?php } ?>
+                        <span class="bdz"><?php if(!empty($project_properties)){ echo count($project_properties); }else{ echo'0'; } ?> Total Properties</span>
+                        <!--<span class="bdz">Ongoing Projects</span>-->
                      </div>
                   </div>
                </div>
@@ -717,55 +714,57 @@
             <a href="javascript:;">Property in Noida</a>
             <a href="javascript:;" class="current">Property in Sector 150</a>
          </div>
-         <h3 class="pvSrchTitle">Projects by  <span>(<?php if(!empty($builder_projects)){ echo count($builder_projects); }else{ echo'0'; } ?> Projects)</span></h3>
+         <h3 class="pvSrchTitle">Properties in <?= $project->project_name; ?><span>(<?php if(!empty($project_properties)){ echo count($project_properties); }else{ echo'0'; } ?> Properties)</span></h3>
          <div class="pvpts-list">
-            <?php if(!empty($builder_projects)){ foreach($builder_projects as $project){ ?>
-            <div class="card mb-3">
+            <?php if(!empty($project_properties)){ foreach($project_properties as $listing){ ?>
+			<div class="card mb-3">
                <div class="row g-0">
                   <div class="col-md-4">
                      <div class="card-inner">
                         <div class="card-img rounded-top-right-0">
                            <img src="<?= base_url(); ?>assets/images/cities/ghaziabad.jpg" class="img-fluid">
                         </div>
-                        <a href="<?php echo base_url();?>projects/<?= $builder['slug']; ?>/<?= $project->slug; ?>--<?= $project->id; ?>" class="card-img-overlay">
-                        <?php if($project->rera_approved=='1'){ ?><span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA Approved</span><?php } ?>
+                        <a href="<?php echo base_url();?>properties-details/<?= $listing->slug; ?>---<?= $listing->id; ?>" class="card-img-overlay">
+                        <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA Approved</span>
                         <span class="prop-snfc">Posted : 7 Sep. 2021</span>
                         </a>
                      </div>
                   </div>
                   <div class="col-md-8">
                      <div class="card-body">
-                        <h5 class="pv-ptttl mb-1"><a href="javascript:;"><?= $project->project_name; ?></a></h5>
-                        <h6 class="pvpd-py">By<span> <?= $builder['builder_name']; ?></span></h6>
-                        <h6 class="pvpd-locate mb-3">Sector 16C, Greater Noida West</h6>
+                        <h5 class="pv-ptttl mb-1"><a href="<?php echo base_url();?>properties-details/<?= $listing->slug; ?>---<?= $listing->id; ?>"><?= $listing->property_name; ?></a></h5>
+                        <?php if($listing->builder_id!=''&& $listing->builder_id!='0'){ $builder = _builderDetails($listing->builder_id); print_r($builder); ?>
+			            <h6 class="pvpd-py">By<span> <?=$builder->builder_name;?></span></h6><?php } ?>
+                        <h6 class="pvpd-locate mb-3"><?= $listing->property_address; ?></h6>
                         <div class="row mb-3">
                            <div class="col-xl-3 col-4">
-                              <h5 class="pv-lprc">₹ 36.92 L</h5>
-                              <div class="pv-lprc-sml">₹ 5,830 per sq.ft.</div>
+                              <h5 class="pv-lprc">₹ <?= no_to_words($listing->cost); ?></h5>
+                              <?php $rate = ($listing->cost/$listing->builtup_area); ?>
+							  <div class="pv-lprc-sml">₹ <?php echo number_format($rate); ?> per sq.ft.</div>
                            </div>
                            <div class="col-xl-3 col-4">
                               <h5 class="pv-lprc dropdown">
-                                 780<span class="ms-1 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">sq.ft.</span>
+                                 <?= round($listing->builtup_area); ?><span class="ms-1 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">sq.ft.</span><!--
                                  <ul class="dropdown-menu dmbody shadow" aria-labelledby="navbarDropdown">
                                     <li>72 Sq. Meters</li>
                                     <li>90 Sq. Yards</li>
                                     <li>0.06 Acres</li>
                                     <li>0.09 Bigha</li>
                                     <li>0.045 Hectares</li>
-                                 </ul>
+                                 </ul>-->
                               </h5>
                               <div class="pv-lprc-sml">Super built-up Area</div>
                            </div>
                            <div class="col-xl-3 col-4">
-                              <h5 class="pv-lprc">1 BHK</h5>
-                              <div class="pv-lprc-sml">1 Bath, 2 R Balcony</div>
+                              <h5 class="pv-lprc"><?= $listing->bd_name; ?></h5>
+                              <div class="pv-lprc-sml"><?= $listing->bt_name; ?> Bath, <?= $listing->bl_name; ?> R Balcony</div>
                            </div>
                         </div>
                         <div class="mb-4">
-                           <span class="badge badge-secondary">Ready to Move</span>
-                           <span class="badge badge-secondary ms-1">Resale</span>
+                           <span class="badge badge-secondary"><?= $listing->cs_name; ?></span>
+                           <span class="badge badge-secondary ms-1"><?= $listing->lt_name; ?></span>
                         </div>
-                        <a href="javascript:;" class="rmLink">Read More<i class="bi bi-arrow-right"></i></a>
+                        <a href="<?php echo base_url();?>properties-details/<?= $listing->slug; ?>---<?= $listing->id; ?>" class="rmLink" target="_blank">Read More<i class="bi bi-arrow-right"></i></a>
                      </div>
                   </div>
                </div>
@@ -773,17 +772,17 @@
                <div class="py-2 px-3">
                   <div class="row align-items-center">
                      <div class="col-6">
-                        <?php if($project->rera_approved=='1'){ ?><span class="pvrrrg"><i class="bi bi-check-circle-fill me-2"></i>RERA ID : <?= $project->rera_registrationNumber; ?></span><?php } ?>
+                        <span class="pvrrrg"><i class="bi bi-check-circle-fill me-2"></i>RERA ID : UPRERAPRJ5112</span>
                      </div>
                      <div class="col-6 text-end">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pvGetCallback">Get Current Offers</button>
+                        <button type="button" class="btn btn-primary offers" data-bs-toggle="modal" data-id="<?= $listing->id; ?>" data-type="property" data-bs-target="#pvGetCallback">Get Current Offers</button>
                      </div>
                   </div>
                </div>
             </div>
-            <?php } }else{ ?>
-            <h3 class="pvSrchTitle"><span>No Projects found.</span></h3>
-            <?php } ?>
+			<?php } }else{ ?>
+			<h3 class="pvSrchTitle text-center"><span>No Properties in Greater Noida Extension</span></h3>
+			<?php } ?>
          </div>
 		 
       </div>
