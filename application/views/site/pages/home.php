@@ -29,10 +29,11 @@ bottom: -5px;
                   </select>
                   <input type="text" class="form-control form-control-lg autocomplete" placeholder="Search your property here..." name="search">
                   <button class="btn btn-lg btn-primary" type="button" id="hmain_search">Search</button>
+				  </div>
 				  <input type="hidden" id="search" name="content">
 	  
 				  </form>
-		</div>
+		
 	  </div>
     </div>
   </div>

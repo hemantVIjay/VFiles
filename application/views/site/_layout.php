@@ -69,6 +69,7 @@
             </div>
 			<!--<div class="input-group gblsrh">	
                   <input type="text" class="form-control form-control-lg autocomplete ui-autocomplete-input" placeholder="Search your property here..." name="m_search" autocomplete="off">
+                  <input type="text" class="form-control form-control-lg autocomplete ui-autocomplete-input" placeholder="Search your property here..." name="search" autocomplete="off">
                   <button class="btn btn-lg btn-primary" type="button" id="main_search"><i class="bi bi-search"></i></button>				  
 		</div>-->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
