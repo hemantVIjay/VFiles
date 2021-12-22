@@ -23,7 +23,7 @@ bottom: -5px;
 		<div class="d-flex flex-wrap fltrRDO">
            <?php echo _categories(''); ?>                      
 		</div>
-		<div class="input-group mb-2">
+		<div class="input-group input-group-lg mb-2">
 			<select class="form-select form-select-lg mx-wd-150" id="inputGroupSelect01" name="cities">
                      <?php echo _topCities(''); ?>
                   </select>

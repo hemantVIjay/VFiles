@@ -9,6 +9,11 @@ ul{
 	margin:0;
 	padding:0;
 }
+.input-group-lg>.btn, .input-group-lg>.form-control, .input-group-lg>.form-select, .input-group-lg>.input-group-text {
+    padding: 0.7rem 1rem;
+    font-size: .835rem;
+    border-radius: 0.3rem;
+}
 .usrpic{
 	height:32px;
 }
@@ -173,6 +178,22 @@ a{
     background-position: center center;
 	border-bottom:1px solid #ece9e3;
 }
+.city-area{
+	background:url(../images/cities/noida-banner.jpg) no-repeat;
+	    background-size: cover;
+    background-position: center bottom;
+	border-bottom:1px solid #ece9e3;
+	position:relative;
+}
+.city-area:before{
+	position:absolute;
+	content:'';
+	background:rgba(0,0,0,0.1);
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
+}
 .srch-box{
 	background:rgba(0,0,0,0.6);
 	padding:1rem 1.75rem;
@@ -188,6 +209,16 @@ a{
 .tab-list{
 	margin-bottom:.75rem;
 }
+.srhtitle{
+	font-weight:700;
+  font-size: 2.25rem;
+  color:#fff;
+  position:relative;
+}
+.srhtitle-sb{
+  color:#fff;
+  position:relative;
+}
 .tab-list .tab-link{
 	font-size:.875rem;
 	color:#fff;
@@ -202,6 +233,10 @@ a{
     color: #fff;
     background-color: #ffa506;
     border-color: #ffa506;
+}
+.btn-primary:hover, .btn-primary:focus{
+	 background-color: #f79400;
+    border-color: #f79400;
 }
 .card-img-overlay {
   background: rgba(0,0,0,0.45);
@@ -1325,6 +1360,52 @@ table.table tr td, table.table tr th{
 .fltrsec{
 	    background: #efefef;
 		    border-bottom: 1px solid rgba(0,0,0,.09);
+}
+.bxc{
+	padding:1.5rem;
+}
+.bg-lgrn{
+	background:#d0f7e9 !important;
+}
+.bg-lorng{
+	background:#fbf1df !important;	
+}
+.bg-lprpl{
+	background:#ebdcfd !important;	
+}
+.bg-lpnk{
+	background:#f9d8eb !important;	
+}
+.bg-logrn{
+	background:#f0f7d9 !important;	
+}
+.bg-lblue{
+	background:#e2eaf7 !important;	
+}
+
+.culst li{
+	margin-bottom:1rem;
+	padding-bottom:1rem;
+	border-bottom:1px solid rgba(0,0,0,.09);
+}
+.culst li:last-child{
+	margin-bottom:1.75rem;
+}
+.culst li a{
+	color: #000;
+    font-weight: 500;
+}
+.culst li:hover a{
+	color:#ffa506;
+}
+.culst.bldlst li a{
+	font-size:.875rem;
+	font-weight:bold;
+	margin-bottom:.25rem;
+	display:block;
+}
+.bldrdtl{
+	color:#777c60;
 }
 
 @media (min-width: 992px) {
