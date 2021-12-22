@@ -108,39 +108,79 @@
 				<div class="bxc bg-logrn">
 					<h2 class="cmn-title mb-3">Best Property Builders in <span class="text-primary">Noida</span></h2>
 					<ul class="culst bldlst">
-						<li><a href="javascript:;">Jaypee Greens Noida</a>
+						<li class="d-flex">
+							<div class="bpphoto">
+								<img src="<?= base_url(); ?>assets/images/builders/Jaypee-Group-Logo.png" />
+							</div>
+							<div>
+							<a href="javascript:;">Jaypee Greens Noida</a>
 							<div class="d-flex bldrdtl">
 								<span class="me-3">Exp: <strong>21 Years</strong></span>  |  <span class="me-3 ms-3">Total Projects: <strong>72</strong></span>  |   <span class="ms-3">Ongoing Projects: <strong>16</strong></span>
 							</div>
+							</div>
 						</li>
-						<li><a href="javascript:;">Eldeco Group Noida</a>
+						<li class="d-flex">
+						<div class="bpphoto">
+								<img src="<?= base_url(); ?>assets/images/builders/Jaypee-Group-Logo.png" />
+							</div>
+							<div>
+							<a href="javascript:;">Eldeco Group Noida</a>
 							<div class="d-flex bldrdtl">
 								<span class="me-3">Exp: <strong>14 Years</strong></span>  |  <span class="me-3 ms-3">Total Projects: <strong>75</strong></span>  |   <span class="ms-3">Ongoing Projects: <strong>4</strong></span>
 							</div>
+							</div>
 						</li>
-						<li><a href="javascript:;">Parsvnath Developers Noida</a>
+						<li class="d-flex">
+						<div class="bpphoto">
+								<img src="<?= base_url(); ?>assets/images/builders/Jaypee-Group-Logo.png" />
+							</div>
+							<div>
+						<a href="javascript:;">Parsvnath Developers Noida</a>
 							<div class="d-flex bldrdtl">
 								<span class="me-3">Exp: <strong>14 Years</strong></span>  |  <span class="me-3 ms-3">Total Projects: <strong>62</strong></span>  |   <span class="ms-3">Ongoing Projects: <strong>1</strong></span>
 							</div>
+							</div>
 						</li>
-						<li><a href="javascript:;">Amrapali Group Noida</a>
+						<li class="d-flex">
+						<div class="bpphoto">
+								<img src="<?= base_url(); ?>assets/images/builders/Jaypee-Group-Logo.png" />
+							</div>
+							<div>
+							<a href="javascript:;">Amrapali Group Noida</a>
 							<div class="d-flex bldrdtl">
 								<span class="me-3">Exp: <strong>20 Years</strong></span>  |  <span class="me-3 ms-3">Total Projects: <strong>58</strong></span>  |   <span class="ms-3">Ongoing Projects: <strong>2</strong></span>
 							</div>
+							</div>
 						</li>
-						<li><a href="javascript:;">Unitech Limited Noida</a>
+						<li class="d-flex">
+						<div class="bpphoto">
+								<img src="<?= base_url(); ?>assets/images/builders/Jaypee-Group-Logo.png" />
+							</div>
+							<div>
+							<a href="javascript:;">Unitech Limited Noida</a>
 							<div class="d-flex bldrdtl">
 								<span class="me-3">Exp: <strong>50 Years</strong></span>  |  <span class="me-3 ms-3">Total Projects: <strong>87</strong></span>  |   <span class="ms-3">Ongoing Projects: <strong>3</strong></span>
 							</div>
+							</div>
 						</li>
-						<li><a href="javascript:;">Godrej Properties Noida</a>
+						<li class="d-flex">
+						<div class="bpphoto">
+								<img src="<?= base_url(); ?>assets/images/builders/Jaypee-Group-Logo.png" />
+							</div>
+							<div><a href="javascript:;">Godrej Properties Noida</a>
 							<div class="d-flex bldrdtl">
 								<span class="me-3">Exp: <strong>151 Years</strong></span>  |  <span class="me-3 ms-3">Total Projects: <strong>93</strong></span>  |   <span class="ms-3">Ongoing Projects: <strong>4</strong></span>
 							</div>
+							</div>
 						</li>
-						<li><a href="javascript:;">Mahagun Group Noida</a>
+						<li class="d-flex">
+						<div class="bpphoto">
+								<img src="<?= base_url(); ?>assets/images/builders/Jaypee-Group-Logo.png" />
+							</div>
+							<div><a href="javascript:;">Mahagun Group Noida</a>
 							<div class="d-flex bldrdtl">
 								<span class="me-3">Exp: <strong>30 Years</strong></span>  |  <span class="me-3 ms-3">Total Projects: <strong>4</strong></span>  |   <span class="ms-3">Ongoing Projects: <strong>2</strong></span>
+							</div>
 							</div>
 						</li>
 					</ul>
