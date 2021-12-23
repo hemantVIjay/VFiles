@@ -44,62 +44,246 @@
 	<div class="container">
 		<div class="container">
 		  <div class="row">
-			<div class=" col-xl-4 col-md-6 mb-4">
+			<div class="col-md-6 mb-4">
 				<div class="bxc bg-lgrn">
 					<h2 class="cmn-title mb-3">New Launch Projects in <span class="text-primary">Noida</span></h2>
-					<ul class="culst">
-						<li><a href="javascript:;">Antara Senior Living Noida Phase1</a></li>
-						<li><a href="javascript:;">ATS Green Homekraft Pious Orchards</a></li>
-						<li><a href="javascript:;">ATS Green Kingston Heath</a></li>
-						<li><a href="javascript:;">Supertech Golf country Phase P2</a></li>
+					<ul class="culst bldlst">
+						<li class="d-flex">
+							<div class="bpphoto">
+								<img src="<?= base_url(); ?>assets/images/builders/ats-Logo.png" />
+							</div>
+							<div>
+							<a href="javascript:;">Antara Senior Living Noida Phase1</a>
+							<div class="d-flex bldrdtl">Project REAA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
+							</div>
+						</li>
+						<li class="d-flex">
+							<div class="bpphoto">
+								<img src="<?= base_url(); ?>assets/images/builders/ats-Logo.png" />
+							</div>
+							<div>
+							<a href="javascript:;">ATS Green Homekraft Pious Orchards</a>
+							<div class="d-flex bldrdtl">Project REAA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
+							</div>
+						</li>
+						<li class="d-flex">
+							<div class="bpphoto">
+								<img src="<?= base_url(); ?>assets/images/builders/ats-Logo.png" />
+							</div>
+							<div>
+							<a href="javascript:;">ATS Green Kingston Heath</a>
+							<div class="d-flex bldrdtl">Project REAA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
+							</div>
+						</li>
+						<li class="d-flex">
+							<div class="bpphoto">
+								<img src="<?= base_url(); ?>assets/images/builders/ats-Logo.png" />
+							</div>
+							<div>
+							<a href="javascript:;">Supertech Golf country Phase P2</a>
+							<div class="d-flex bldrdtl">Project REAA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
+							</div>
+						</li>
 					</ul>
 					<a class="rdmr-link" href="javascript:;">Explore All<i class="bi bi-arrow-right"></i></a>
 				</div>
 			</div>
 			
-			<div class=" col-xl-4 col-md-6 mb-4">
+			<div class="col-md-6 mb-4">
 				<div class="bxc bg-lorng">
 					<h2 class="cmn-title mb-3">Pre-Launch Projects in <span class="text-primary">Noida</span></h2>
-					<ul class="culst">
-						<li><a href="javascript:;">Godrej Properties Woods Phase II</a></li>
-						<li><a href="javascript:;">Godrej Properties Palm Retreat 2</a></li>
-						<li><a href="javascript:;">Star Landcraft Ace Starlit</a></li>
-						<li><a href="javascript:;">Supertech Golf country Phase P2</a></li>
+					<ul class="culst bldlst">
+						<li class="d-flex">
+							<div class="bpphoto">
+								<img src="<?= base_url(); ?>assets/images/builders/ats-Logo.png" />
+							</div>
+							<div>
+							<a href="javascript:;">Godrej Properties Woods Phase II</a>
+							<div class="d-flex bldrdtl">Project REAA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
+							</div>
+						</li>
+						<li class="d-flex">
+							<div class="bpphoto">
+								<img src="<?= base_url(); ?>assets/images/builders/ats-Logo.png" />
+							</div>
+							<div>
+							<a href="javascript:;">Godrej Properties Palm Retreat 2</a>
+							<div class="d-flex bldrdtl">Project REAA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
+							</div>
+						</li>
+						<li class="d-flex">
+							<div class="bpphoto">
+								<img src="<?= base_url(); ?>assets/images/builders/ats-Logo.png" />
+							</div>
+							<div>
+							<a href="javascript:;">Star Landcraft Ace Starlit</a>
+							<div class="d-flex bldrdtl">Project REAA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
+							</div>
+						</li>
+						<li class="d-flex">
+							<div class="bpphoto">
+								<img src="<?= base_url(); ?>assets/images/builders/ats-Logo.png" />
+							</div>
+							<div>
+							<a href="javascript:;">Supertech Golf country Phase P2</a>
+							<div class="d-flex bldrdtl">Project REAA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
+							</div>
+						</li>
+					</ul>
+					<a class="rdmr-link" href="javascript:;">Explore All<i class="bi bi-arrow-right"></i></a>
+				</div>
+			</div>
+			
+			<div class="col-md-6 mb-4">
+				<div class="bxc bg-lprpl">
+					<h2 class="cmn-title mb-3">Luxury Projects in <span class="text-primary">Noida</span></h2>
+					<ul class="culst bldlst">
+						<li class="d-flex">
+							<div class="bpphoto">
+								<img src="<?= base_url(); ?>assets/images/builders/ats-Logo.png" />
+							</div>
+							<div>
+							<a href="javascript:;">Godrej Properties Woods Phase II</a>
+							<div class="d-flex bldrdtl">Project REAA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
+							</div>
+						</li>
+						<li class="d-flex">
+							<div class="bpphoto">
+								<img src="<?= base_url(); ?>assets/images/builders/ats-Logo.png" />
+							</div>
+							<div>
+							<a href="javascript:;">Godrej Properties Palm Retreat 2</a>
+							<div class="d-flex bldrdtl">Project REAA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
+							</div>
+						</li>
+						<li class="d-flex">
+							<div class="bpphoto">
+								<img src="<?= base_url(); ?>assets/images/builders/ats-Logo.png" />
+							</div>
+							<div>
+							<a href="javascript:;">Star Landcraft Ace Starlit</a>
+							<div class="d-flex bldrdtl">Project REAA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
+							</div>
+						</li>
+						<li class="d-flex">
+							<div class="bpphoto">
+								<img src="<?= base_url(); ?>assets/images/builders/ats-Logo.png" />
+							</div>
+							<div>
+							<a href="javascript:;">Supertech Golf country Phase P2</a>
+							<div class="d-flex bldrdtl">Project REAA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
+							</div>
+						</li>
+					</ul>
+					<a class="rdmr-link" href="javascript:;">Explore All<i class="bi bi-arrow-right"></i></a>
+				</div>
+			</div>
+			
+			<div class="col-md-6 mb-4">
+				<div class="bxc bg-lpnk">
+					<h2 class="cmn-title mb-3">Popular Projects in <span class="text-primary">Noida</span></h2>
+					<ul class="culst bldlst">
+						<li class="d-flex">
+							<div class="bpphoto">
+								<img src="<?= base_url(); ?>assets/images/builders/ats-Logo.png" />
+							</div>
+							<div>
+							<a href="javascript:;">Godrej Properties Woods Phase II</a>
+							<div class="d-flex bldrdtl">Project REAA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
+							</div>
+						</li>
+						<li class="d-flex">
+							<div class="bpphoto">
+								<img src="<?= base_url(); ?>assets/images/builders/ats-Logo.png" />
+							</div>
+							<div>
+							<a href="javascript:;">Godrej Properties Palm Retreat 2</a>
+							<div class="d-flex bldrdtl">Project REAA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
+							</div>
+						</li>
+						<li class="d-flex">
+							<div class="bpphoto">
+								<img src="<?= base_url(); ?>assets/images/builders/ats-Logo.png" />
+							</div>
+							<div>
+							<a href="javascript:;">Star Landcraft Ace Starlit</a>
+							<div class="d-flex bldrdtl">Project REAA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
+							</div>
+						</li>
+						<li class="d-flex">
+							<div class="bpphoto">
+								<img src="<?= base_url(); ?>assets/images/builders/ats-Logo.png" />
+							</div>
+							<div>
+							<a href="javascript:;">Supertech Golf country Phase P2</a>
+							<div class="d-flex bldrdtl">Project REAA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
+							</div>
+						</li>
 					</ul>
 					<a class="rdmr-link" href="javascript:;">Explore All<i class="bi bi-arrow-right"></i></a>
 				</div>
 			</div>
 			
 			<div class=" col-xl-4 col-md-6 mb-4">
-				<div class="bxc bg-lprpl">
-					<h2 class="cmn-title mb-3">Luxury Projects in <span class="text-primary">Noida</span></h2>
-					<ul class="culst">
-						<li><a href="javascript:;">Godrej Properties Woods Phase II</a></li>
-						<li><a href="javascript:;">Godrej Properties Palm Retreat 2</a></li>
-						<li><a href="javascript:;">Star Landcraft Ace Starlit</a></li>
-						<li><a href="javascript:;">Supertech Golf country Phase P2</a></li>
-					</ul>
-					<a class="rdmr-link" href="javascript:;">Explore All<i class="bi bi-arrow-right"></i></a>
-				</div>
-			</div>
-			<div class=" col-xl-4 col-md-6 mb-4">
-				<div class="bxc bg-lpnk mb-4">
-					<h2 class="cmn-title mb-3">Popular Projects in <span class="text-primary">Noida</span></h2>
-					<ul class="culst">
-						<li><a href="javascript:;">Godrej Properties Woods Phase II</a></li>
-						<li><a href="javascript:;">Godrej Properties Palm Retreat 2</a></li>
-						<li><a href="javascript:;">Star Landcraft Ace Starlit</a></li>
-						<li><a href="javascript:;">Supertech Golf country Phase P2</a></li>
-					</ul>
-					<a class="rdmr-link" href="javascript:;">Explore All<i class="bi bi-arrow-right"></i></a>
-				</div>
 				<div class="bxc bg-lblue">
-					<h2 class="cmn-title mb-3">Popular Projects in <span class="text-primary">Noida</span></h2>
-					<ul class="culst">
-						<li><a href="javascript:;">Godrej Properties Woods Phase II</a></li>
-						<li><a href="javascript:;">Godrej Properties Palm Retreat 2</a></li>
-						<li><a href="javascript:;">Star Landcraft Ace Starlit</a></li>
-						<li><a href="javascript:;">Supertech Golf country Phase P2</a></li>
+					<h2 class="cmn-title mb-3">Property Location in <span class="text-primary">Noida</span></h2>
+					<ul class="culst loculst">
+						<li class="d-flex">
+							<i class="bi bi-geo-alt-fill me-2"></i>
+							<div>
+								<a href="javascript:;">Property in Sector 150</a>
+								<div class="d-flex bldrdtl">Avg. Rate: <strong class="ms-1">₹ 5,400 / sqft</strong></div>
+							</div>
+						</li>
+						<li class="d-flex">
+							<i class="bi bi-geo-alt-fill me-2"></i>
+							<div>
+								<a href="javascript:;">Property in Sector 99</a>
+								<div class="d-flex bldrdtl">Avg. Rate: <strong class="ms-1">₹ 5,500 / sqft</strong></div>
+							</div>
+						</li>
+						<li class="d-flex">
+							<i class="bi bi-geo-alt-fill me-2"></i>
+							<div>
+								<a href="javascript:;">Property in Sector 125</a>
+								<div class="d-flex bldrdtl">Avg. Rate: <strong class="ms-1">₹ 5,200 / sqft</strong></div>
+							</div>
+						</li>
+						<li class="d-flex">
+							<i class="bi bi-geo-alt-fill me-2"></i>
+							<div>
+								<a href="javascript:;">Property in Sector 143</a>
+								<div class="d-flex bldrdtl">Avg. Rate: <strong class="ms-1">₹ 5,100 / sqft</strong></div>
+							</div>
+						</li>
+						<li class="d-flex">
+							<i class="bi bi-geo-alt-fill me-2"></i>
+							<div>
+								<a href="javascript:;">Property in Sector 137</a>
+								<div class="d-flex bldrdtl">Avg. Rate: <strong class="ms-1">₹ 5,150 / sqft</strong></div>
+							</div>
+						</li>
+						<li class="d-flex">
+							<i class="bi bi-geo-alt-fill me-2"></i>
+							<div>
+								<a href="javascript:;">Property in Sector 58</a>
+								<div class="d-flex bldrdtl">Avg. Rate: <strong class="ms-1">₹ 5,900 / sqft</strong></div>
+							</div>
+						</li>
+						<li class="d-flex">
+							<i class="bi bi-geo-alt-fill me-2"></i>
+							<div>
+								<a href="javascript:;">Property in Sector 31</a>
+								<div class="d-flex bldrdtl">Avg. Rate: <strong class="ms-1">₹ 5,950 / sqft</strong></div>
+							</div>
+						</li>
+						<li class="d-flex">
+							<i class="bi bi-geo-alt-fill me-2"></i>
+							<div>
+								<a href="javascript:;">Property in Sector 123</a>
+								<div class="d-flex bldrdtl">Avg. Rate: <strong class="ms-1">₹ 5,200 / sqft</strong></div>
+							</div>
+						</li>
 					</ul>
 					<a class="rdmr-link" href="javascript:;">Explore All<i class="bi bi-arrow-right"></i></a>
 				</div>
