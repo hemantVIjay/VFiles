@@ -6,7 +6,7 @@
                <div class="col-md-8">
                   <div class="pv-breadcrumb twht mb-4">
                      <a href="javascript:;">Home</a>
-                     <a href="javascript:;" class="current">Project in Noida</a>
+                     <a href="javascript:;" class="current">Property in Noida</a>
                   </div>
                </div>
                <div class="col-md-4 text-end py-3">
