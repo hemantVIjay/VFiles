@@ -481,12 +481,7 @@
          alertToasts(type,msg); 
          $('.toast').toast('show');
          }
-               $(document).ready(function(){
-                 $("#ctDdwn").click(function(){
-                   $(".ddmCity").slideToggle();
-                 });
-               });
-               
+                             
                $("#crtAcnt").click(function () {
                    $("#sgnUp").show();
                    $("#sgnIn").hide();
@@ -573,4 +568,25 @@
            });	  
          return false;
          } 
+		 
+		  // $(document).ready(function(){
+                 // $("#ctDdwn").click(function(){
+                   // $(".ddmCity").slideToggle();
+                 // });
+               // });
+			   
+
+$("#ctDdwn").click(function(e){
+    $(".ddmCity").show();
+     e.stopPropagation();
+});
+
+$(".ddmCity").click(function(e){
+    e.stopPropagation();
+});
+
+$(document).click(function(){
+    $(".ddmCity").hide();
+});
+
       </script>
