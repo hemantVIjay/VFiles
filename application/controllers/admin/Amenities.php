@@ -10,19 +10,7 @@ class Amenities extends MY_Controller {
     }
     //list amenities
 	
-	public function list_amenities()
-	{
-        $data['title']=$this->lang->line("text_locations");
-		$id = $this->uri->segment(4);
-        if($this->permitted('list_articles')){
-			$amenities = $this->amenities_model->get_amenities($id);
-            $data['amenities']=$amenities;
-            $data['sub_view'] = $this->load->view('admin/amenities/add_amenities', $data, TRUE);
-        }else{
-            $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
-        }
-        $this->load->view('admin/_layout', $data); 
-    }
+
 
 	public function add_amenities()
 	{

@@ -20,8 +20,10 @@
       <link href="<?= base_url(); ?>assets/css/mulish.css" rel="stylesheet">
       <link href="<?= base_url(); ?>assets/css/bootstrap-icons.css" rel="stylesheet">
       <link href="<?= base_url(); ?>assets/css/custom.css" rel="stylesheet">
+	  <link href="<?= base_url(); ?>assets/css/select2.min.css" rel="stylesheet">
       <script src="<?= base_url(); ?>assets/js/jquery.min.js"></script>
       <script src="<?= base_url(); ?>assets/js/bootstrap.bundle.min.js"></script>
+	  <script src="<?= base_url(); ?>assets/js/select2.min.js"></script>
    </head>
    <style>
       body::-webkit-scrollbar {
@@ -105,22 +107,22 @@
                         <div class="collapse" id="master-collapse">
                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
                               <li>
-                                 <a class="nav-link" href="<?= base_url('admin/amenities/list_amenities');?>">Amenities</a>
+                                 <a class="nav-link" href="<?= base_url('admin/masters/list_amenities');?>">Amenities</a>
                               </li>
                               <li>
-                                 <a class="nav-link" href="<?= base_url('admin/localities/list_localities');?>">Localities</a>
+                                 <a class="nav-link" href="<?= base_url('admin/masters/list_localities');?>">Localities</a>
                               </li>
                               <li>
-                                 <a class="nav-link" href="<?= base_url('admin/cities/list_cities');?>">Cities</a>
+                                 <a class="nav-link" href="<?= base_url('admin/masters/list_cities');?>">Cities</a>
                               </li>
                               <li>
-                                 <a class="nav-link" href="<?= base_url('admin/districts/list_districts');?>">Districts</a>
+                                 <a class="nav-link" href="<?= base_url('admin/masters/list_districts');?>">Districts</a>
                               </li>
                               <li>
-                                 <a class="nav-link" href="<?= base_url('admin/states/list_states');?>">States</a>
+                                 <a class="nav-link" href="<?= base_url('admin/masters/list_states');?>">States</a>
                               </li>
                               <li>
-                                 <a class="nav-link" href="<?= base_url('admin/countries/list_countries');?>">Countries</a>
+                                 <a class="nav-link" href="<?= base_url('admin/masters/list_countries');?>">Countries</a>
                               </li>
                               <li>
                                  <a class="nav-link" href="<?= base_url('admin/masters/list_banks');?>">Banks</a>
@@ -129,22 +131,22 @@
                                  <a class="nav-link" href="<?= base_url('admin/masters/list_propertiesType');?>">Property Type</a>
                               </li>
 							  <li>
-                                 <a class="nav-link" href="<?= base_url('admin/masters/list_propertiesType');?>">Categories</a>
+                                 <a class="nav-link" href="<?= base_url('admin/masters/list_categories');?>">Categories</a>
                               </li>
 							  <li>
-                                 <a class="nav-link" href="<?= base_url('admin/masters/list_floorType');?>">Bedrooms</a>
+                                 <a class="nav-link" href="<?= base_url('admin/masters/list_bedrooms');?>">Bedrooms</a>
                               </li>
 							  <li>
-                                 <a class="nav-link" href="<?= base_url('admin/masters/list_floorType');?>">Bathrooms</a>
+                                 <a class="nav-link" href="<?= base_url('admin/masters/list_bathrooms');?>">Bathrooms</a>
                               </li>
 							  <li>
-                                 <a class="nav-link" href="<?= base_url('admin/masters/list_floorType');?>">Construction Status</a>
+                                 <a class="nav-link" href="<?= base_url('admin/masters/list_construction_status');?>">Construction Status</a>
                               </li>
 							  <li>
-                                 <a class="nav-link" href="<?= base_url('admin/masters/list_floorType');?>">Furnish Type</a>
+                                 <a class="nav-link" href="<?= base_url('admin/masters/list_furnishType');?>">Furnish Type</a>
                               </li>
 							  <li>
-                                 <a class="nav-link" href="<?= base_url('admin/masters/list_floorType');?>">Parkings</a>
+                                 <a class="nav-link" href="<?= base_url('admin/masters/list_parkings');?>">Parkings</a>
                               </li>
                            </ul>
                         </div>

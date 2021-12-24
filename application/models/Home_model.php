@@ -79,13 +79,13 @@ class Home_model extends MY_Model{
 		//SELECT b.builder_name as name, b.id as val
 		//FROM builders b where b.builder_name LIKE '%$search%'";
 		
-		$sql = "SELECT pr.project_name as name, CONCAT('PROJ','_', pr.id) as val
+		$sql = "SELECT pr.project_name as name, CONCAT('PROJ','_', pr.id) as val, pr.slug
 		FROM projects pr where pr.project_name LIKE '%$search%' AND city_id = (SELECT id FROM cities where slug = '".$city."') 
 		UNION	
-		SELECT l.name as name, CONCAT('LOC','_', l.id) as val 
+		SELECT l.name as name, CONCAT('LOC','_', l.id) as val, l.slug
 		FROM locations l where l.name LIKE '%$search%' AND city_id = (SELECT id FROM cities where slug = '".$city."')
 		UNION	
-		SELECT b.builder_name as name, CONCAT('BLD','_', b.id) as val
+		SELECT b.builder_name as name, CONCAT('BLD','_', b.id) as val, b.slug
 		FROM builders b where b.builder_name LIKE '%$search%'";
         $query = $this->db->query($sql);
 		//return fetched data

@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Location_model extends MY_Model{
+class Localities_model extends MY_Model{
     //get all tickets
 	public function get_tickets($params = array()){
 		$this->db->select('t.*,c.category_name,c.slug,u.full_name,u.email,u.profile_image,a.full_name as assigned_user,a.profile_image assigned_user_image');
@@ -498,6 +498,36 @@ class Location_model extends MY_Model{
 			return $return_data;
         }
     }
+	
+	public function _cities($qr){
+		$this->db->select('r.name, r.id');
+		$this->db->from('cities r');
+		$this->db->where("r.status", '1');
+		$this->db->like("r.name", $qr);
+		$this->db->order_by("r.name", 'asc');
+		$query = $this->db->get();
+        return ($query->num_rows() > 0)?$query->result():FALSE;
+	}
+
+	public function _allLocalities($city){
+		$this->db->select('r.name, r.id');
+		$this->db->from('locations r');
+		$this->db->where("r.status", '1');
+		$this->db->where("r.city_id", $city);
+		$this->db->order_by("r.name", 'asc');
+		$query = $this->db->get();
+        return ($query->num_rows() > 0)?$query->result():FALSE;
+	}
+	
+	public function _cityDetails($id){
+		$this->db->select('s.name as state, s.id as state_id, s.country_id, c.id, cn.name as country');
+		$this->db->from('cities c');
+		$this->db->join('states s','c.state_id = s.id','left');
+		$this->db->join('countries cn','s.country_id = cn.id','left');
+		$this->db->where("c.id", $id);
+		$query = $this->db->get();
+        return ($query->num_rows() > 0)?$query->row():FALSE;
+	}
 
 }
 

@@ -99,6 +99,13 @@ class Builder_model extends MY_Model{
 			$insert_id=$this->save($data=$post_data, $id = NULL);
 			if($insert_id){
 				//if inserted
+				//create slug
+				$slug=$this->create_slug($id=$insert_id, $title=$post_data['builder_name']);
+				$update_data=array(
+					'slug'=>$slug
+				);
+				//update faq caregory
+				$update_id=$this->save($data=$update_data, $id = $insert_id);
 				$return_data=array(
 					'status'=>TRUE,
 					'label'=>'SUCCESS',

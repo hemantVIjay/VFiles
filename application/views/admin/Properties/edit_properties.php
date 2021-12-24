@@ -274,7 +274,7 @@
      
         
    // CKEditor
-   CKEDITOR.replace('description', {
+    CKEDITOR.replace('description', {
       fullPage: true,
       extraPlugins: 'docprops',
       // Disable content filtering because if you use full page mode, you probably

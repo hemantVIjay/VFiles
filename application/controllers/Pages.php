@@ -203,12 +203,25 @@ class Pages extends MY_Controller {
 		$data['is_project']=true;
 		$data['is_builder']=false;
 		//$data['city'] = $city;
-		$id = explode('--',$this->uri->segment(3));
-		$data['project'] = $this->project->projectDetails($id[1]);
-		$project_properties = $this->project->get_projectProperties($id[1]);
-		$data['project_properties'] = $project_properties;
-		$data['sub_view'] = $this->load->view('site/pages/builders-or-projects', $data, TRUE);
+		$id = explode('--',$this->uri->segment(1));
+		$project_info = $this->project->projectDetails($id[1]);
+		if(!empty($project_info)){
+		  $p_images = $this->home->property_images($id[1]);
+		  $i_arr = array();
+		  if(!empty($p_images)){
+			 foreach ($p_images as $key => $image) {
+				   $i_arr[$image->image_type][$key] = $image;
+			 }	
+		  }
+		//$project_properties = $this->project->get_projectProperties($id[1]);
+		$data['project_info'] = $project_info;
+		$data['floor_plans'] = $project_info;
+		$data['properties_images'] = $i_arr;
+		$data['sub_view'] = $this->load->view('site/pages/project-details', $data, TRUE);
         $this->load->view('site/_layout', $data); 
+		}else{
+			show_404();
+		}
 	}	
 	
 	
