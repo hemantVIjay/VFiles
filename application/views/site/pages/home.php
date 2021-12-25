@@ -370,7 +370,7 @@ bottom: -5px;
 					<div class="card bldc">
 						<div class="card-body d-flex">
 							<div class="bldpic">
-								<img src="<?= base_url(); ?>assets/images/builders/Jaypee-Group-Logo.png" />
+								<img src="<?= base_url(); ?>assets/images/builders/ats-Logo.png" />
 							</div>
 							<div>
 								<a class="bldnme" href="javascript:;">ATS Group</a>
@@ -385,7 +385,7 @@ bottom: -5px;
 					<div class="card bldc mb-3">
 						<div class="card-body d-flex">
 							<div class="bldpic">
-								<img src="<?= base_url(); ?>assets/images/builders/Jaypee-Group-Logo.png" />
+								<img src="<?= base_url(); ?>assets/images/builders/prateek-logo.png" />
 							</div>
 							<div>
 								<a class="bldnme" href="javascript:;">Prateek Group</a>
@@ -398,10 +398,10 @@ bottom: -5px;
 					<div class="card bldc">
 						<div class="card-body d-flex">
 							<div class="bldpic">
-								<img src="<?= base_url(); ?>assets/images/builders/Jaypee-Group-Logo.png" />
+								<img src="<?= base_url(); ?>assets/images/builders/ajnara.png" />
 							</div>
 							<div>
-								<a class="bldnme" href="javascript:;">Eldeco Group</a>
+								<a class="bldnme" href="javascript:;">Ajnara India</a>
 								<div class="d-flex blddth">
 									<span class="me-3">Exp: <strong>21 Years</strong></span>  |  <span class="me-3 ms-3">Total Projects: <strong>72</strong></span>
 								</div>
@@ -414,7 +414,7 @@ bottom: -5px;
 					<div class="card bldc mb-3">
 						<div class="card-body d-flex">
 							<div class="bldpic">
-								<img src="<?= base_url(); ?>assets/images/builders/Jaypee-Group-Logo.png" />
+								<img src="<?= base_url(); ?>assets/images/builders/mahagun-logo.png" />
 							</div>
 							<div>
 								<a class="bldnme" href="javascript:;">Mahagun Group</a>
@@ -427,10 +427,10 @@ bottom: -5px;
 					<div class="card bldc">
 						<div class="card-body d-flex">
 							<div class="bldpic">
-								<img src="<?= base_url(); ?>assets/images/builders/Jaypee-Group-Logo.png" />
+								<img src="<?= base_url(); ?>assets/images/builders/gulshan-homz-logo.png" />
 							</div>
 							<div>
-								<a class="bldnme" href="javascript:;">Gulshan Homez</a>
+								<a class="bldnme" href="javascript:;">Gulshan Homz</a>
 								<div class="d-flex blddth">
 									<span class="me-3">Exp: <strong>21 Years</strong></span>  |  <span class="me-3 ms-3">Total Projects: <strong>72</strong></span>
 								</div>
