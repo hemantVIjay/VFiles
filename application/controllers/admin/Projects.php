@@ -93,6 +93,8 @@ class Projects extends MY_Controller {
 
 	public function create_project()
 	{
+		//print_r($_REQUEST);exit;
+		
 		$pcode = _autoCode('Project');
 		
 		$amenities = ''; $banks = '';
@@ -102,16 +104,16 @@ class Projects extends MY_Controller {
 		if(!empty($this->input->post('banks'))){
 		  $banks = implode(',', $this->input->post('banks'));
 		}
-		
+		$city = _cityDetails($this->input->post('city'));
 		$post_data = array(
           'code' => $pcode,
           'builder_id' => $this->input->post('builder'),
           'project_name' => $this->input->post('project_name'),
           'locality_id' => $this->input->post('location'),
           'city_id' => $this->input->post('city'),
-          'district_id' => $this->input->post('district'),
-          'state_id' => $this->input->post('state'),
-          'country_id' => $this->input->post('country'),
+          'district_id' => $city->district,
+          'state_id' => $city->state,
+          'country_id' => $city->country,
           'project_address' => $this->input->post('address'),
           'project_type' => $this->input->post('p_type'),
           'no_of_towers' => $this->input->post('no_of_towers'),
@@ -121,7 +123,7 @@ class Projects extends MY_Controller {
           'project_start_date' => date('Y-m-d', strtotime($this->input->post('project_start_date'))),
           'architect_name' => $this->input->post('architect_name'),
           'project_start_date' => $this->input->post('project_start_date'),
-          'project_overview' => $this->input->post('project_overview'),
+          'project_overview' => htmlentities($this->input->post('project_overview')),
           'project_amenities' => $amenities,
           'banks_available' => $banks,
           'rera_approved' => $this->input->post('rera_approved'),

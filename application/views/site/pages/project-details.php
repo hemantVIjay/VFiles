@@ -16,20 +16,20 @@
             <div class="pvpds mb-4">
                <div class="row">
 			      <div class="col-md-8">
-                     <h2 class="pvpd-title"><?= $property_info->property_name; ?></h2>
+                     <h2 class="pvpd-title"><?= $project_info->project_name; ?></h2>
                      <h6 class="pvpd-py">By<span> Imperia Structures Ltd.</span></h6>
-                     <h6 class="pvpd-locate"><?= $property_info->property_address; ?></h6>
+                     <h6 class="pvpd-locate"><?= $project_info->project_address; ?></h6>
                   </div>
                   <div class="col-md-4 text-end">
-                     <h1 class="pvpd-prc mb-3">₹ 36.92 L - 54.6 L<span class="pv-sb">₹ 5,200/ sq.ft</span></h1>
+                     <h1 class="pvpd-prc mb-3">₹ <?php $lp = listing_prices($project_info->id); ?><?php echo no_to_words($lp->min_price).' - '.no_to_words($lp->max_price); ?><span class="pv-sb">₹ 5,200/ sq.ft</span></h1>
                      <h5 class="pvpd-pemi">EMI starts at ₹ 19,550</h5>
                   </div>
                </div>
-               <?php $rera = $property_info->rera_approved; 
+               <?php $rera = $project_info->rera_approved; 
 			    if($rera=='1'){ ?>
 			   <div class="pv-reras d-inline-block">
                   <span class="bdg"><i class="bi bi-check-circle-fill me-2"></i>RERA Registered</span>
-                  <span class="bdgrn">Registration No: <?= $property_info->rera_registrationNumber; ?></span>
+                  <span class="bdgrn">Registration No: <?= $project_info->rera_registrationNumber; ?></span>
                </div>
 			   <?php } ?>
             </div>
@@ -59,11 +59,11 @@
          <div class="row">
             <div class="col-md-4 col-6 mb-4">
                <div class="lblpvfd mb-1">Possession Start Date</div>
-               <div class="valuepvfd"><?= $property_info->project_phase; ?></div>
+               <div class="valuepvfd"><?= $project_info->project_start_date; ?></div>
             </div>
             <div class="col-md-4 col-6 mb-4">
                <div class="lblpvfd mb-1">Status</div>
-               <div class="valuepvfd"><?= $property_info->project_phase; ?></div>
+               <div class="valuepvfd"><?= $project_info->project_phase; ?></div>
             </div>
             <div class="col-md-4 col-6 mb-4">
                <div class="lblpvfd mb-1">Project Area</div>
@@ -71,7 +71,7 @@
             </div>
             <div class="col-md-4 col-6 mb-4">
                <div class="lblpvfd mb-1">Project Size</div>
-               <div class="valuepvfd"><?= $property_info->no_of_towers; ?> Buildings - <?= $property_info->no_of_flats; ?> units</div>
+               <div class="valuepvfd"><?= $project_info->no_of_towers; ?> Buildings - <?= $project_info->no_of_flats; ?> units</div>
             </div>
             <div class="col-md-4 col-6 mb-4">
                <div class="lblpvfd mb-1">Total Launched apartments</div>
@@ -93,7 +93,7 @@
          <div class="spcr-bdd mb-4"></div>
          <div class="mb-4">
             <h5 class="pvlbtl">About this property</h5>
-            <div class="pvpd-desc"><?= $property_info->project_overview; ?></p>
+            <div class="pvpd-desc"><?= $project_info->project_overview; ?></p>
             </div>
          </div>
          <div class="spcr-bds"></div>
@@ -241,7 +241,7 @@
          <div class="page-section" id="3">
             <h4 class="cmn-title mb-4">Amenities</h4>
             <div class="row gx-3">
-               <?php $amenities  = $this->home->_amenities($property_info->property_amenities); 
+               <?php $amenities  = $this->home->_amenities($project_info->project_amenities); 
      			   foreach($amenities as $am){ ?>
 			   <div class="col-xl-2 col-lg-3 col-md-4 col-6 text-center mb-3">
                   <div class="pv-amenit">
@@ -287,15 +287,15 @@
          </div>
          <div class="page-section" id="7">
             <h4 class="cmn-title mb-4">About Developer</h4>
-            <div class="pvpd-desc"><?php $builder = _builderDetails($property_info->builder_id);
-               echo $builder->builder_information; ?>
+            <div class="pvpd-desc"><?php $builder = _builderDetails($project_info->builder_id);
+               echo htmlspecialchars_decode($builder->builder_information); ?>
                <p></p>
             </div>
          </div>
          <div class="bnksec">
             <h4 class="cmn-title mb-4">Approved by Banks</h4>
             <div class="row">
-               <?php $banks  = $this->home->_banks($property_info->banks_available); 
+               <?php $banks  = $this->home->_banks($project_info->banks_available); 
      			   foreach($banks as $bb){ ?>
 			   <div class="col-xl-2 col-md-3 col-sm-4 mb-3">
                   <div class="bnkcrd">

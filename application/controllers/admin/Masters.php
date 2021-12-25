@@ -1,284 +1,959 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+   defined('BASEPATH') OR exit('No direct script access allowed');
+  
+   class Masters extends MY_Controller
+   {
+       function __construct()
+       {
+           parent::__construct();
+           //check if backend login
+           $this->is_admin_login();
+          
+       }
+      
+       public function list_states()
+       {
+           $data['title'] = $this->lang->line("text_locations");
+           $id            = $this->uri->segment(4);
+           if ($this->permitted('list_articles')) {
+               $states         = $this->masters->get_record('states');
+               $record            = $this->masters->get_record_id('states', $id);
+               $data['states'] = $states;
+               $data['record']    = $record;
+               $data['sub_view']  = $this->load->view('admin/masters/_states', $data, TRUE);
+           } else {
+               $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
+           }
+           $this->load->view('admin/_layout', $data);
+       }
+      
+       public function add_states()
+       {
+           $post_data               = array(
+               'name' => $this->input->post('name'),
+               'created_by' => $this->get_user_id()
+           );
+           $id                      = $this->input->post('id');
+           //upload config
+           $config['upload_path']   = 'uploads/states/';
+           $config['allowed_types'] = '*';
+           $config['encrypt_name']  = TRUE;
+           $config['overwrite']     = TRUE;
+           $config['max_size']      = '1024'; //1 MB
+           //Upload Icon
+           if (isset($_FILES['icon']['name']) && $_FILES['icon']['name'] != '') {
+               $this->load->library('upload', $config);
+               if (!$this->upload->do_upload('icon')) {
+                   $success    = FALSE;
+                   $message    = $this->upload->display_errors();
+                   $json_array = array(
+                       'success' => $success,
+                       'message' => $message
+                   );
+                   echo json_encode($json_array);
+                   exit();
+               } else {
+                   $upload_data       = $this->upload->data();
+                   $post_data['icon'] = $upload_data['file_name'];
+               }
+           }
+           //XXS Clean
+           $post_data = $this->security->xss_clean($post_data);
+           if ($id == '') {
+               $result = $this->masters->save_record($post_data, 'states');
+           } else {
+               $result = $this->masters->update_record($id, $post_data, 'states');
+           }
+           redirect('admin/masters/list_states', 'refresh');
+       }
+      
+       public function delete_states()
+       {
+           $id = $this->uri->segment(4);
+           if (isset($id)) {
+               //check permission
+               if ($this->permitted('delete_article')) {
+                   $data['title'] = $this->lang->line("text_delete_article");
+                   $post_data     = array(
+                       'status' => 0,
+                       'updated_by' => $this->get_user_id()
+                   );
+                   $res           = $this->masters->delete_record($id, $post_data, 'states');
+                   redirect('admin/masters/list_states', 'refresh');
+               } else {
+                   $data['title'] = $this->lang->line("alert_access_denied");
+                   $success       = TRUE;
+                   $message       = '';
+                   $content       = $this->load->view('errors/permission/denied', $data, TRUE);
+               }
+               $json_array = array(
+                   'success' => $success,
+                   'message' => $message,
+                   'content' => $content
+               );
+               echo json_encode($json_array);
+               exit();
+           }
+       }
+	   
+	   public function list_cities()
+       {
+           $data['title'] = $this->lang->line("text_locations");
+           $id            = $this->uri->segment(4);
+           if ($this->permitted('list_articles')) {
+               $cities         = $this->masters->get_record('cities');
+               $record            = $this->masters->get_record_id('cities', $id);
+               $data['cities'] = $cities;
+               $data['record']    = $record;
+               $data['sub_view']  = $this->load->view('admin/masters/_cities', $data, TRUE);
+           } else {
+               $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
+           }
+           $this->load->view('admin/_layout', $data);
+       }
+      
+       public function add_cities()
+       {
+           $post_data               = array(
+               'name' => $this->input->post('name'),
+               'created_by' => $this->get_user_id()
+           );
+           $id                      = $this->input->post('id');
+           //upload config
+           $config['upload_path']   = 'uploads/cities/';
+           $config['allowed_types'] = '*';
+           $config['encrypt_name']  = TRUE;
+           $config['overwrite']     = TRUE;
+           $config['max_size']      = '1024'; //1 MB
+           //Upload Icon
+           if (isset($_FILES['icon']['name']) && $_FILES['icon']['name'] != '') {
+               $this->load->library('upload', $config);
+               if (!$this->upload->do_upload('icon')) {
+                   $success    = FALSE;
+                   $message    = $this->upload->display_errors();
+                   $json_array = array(
+                       'success' => $success,
+                       'message' => $message
+                   );
+                   echo json_encode($json_array);
+                   exit();
+               } else {
+                   $upload_data       = $this->upload->data();
+                   $post_data['icon'] = $upload_data['file_name'];
+               }
+           }
+           //XXS Clean
+           $post_data = $this->security->xss_clean($post_data);
+           if ($id == '') {
+               $result = $this->masters->save_record($post_data, 'cities');
+           } else {
+               $result = $this->masters->update_record($id, $post_data, 'cities');
+           }
+           redirect('admin/masters/list_cities', 'refresh');
+       }
+      
+       public function delete_cities()
+       {
+           $id = $this->uri->segment(4);
+           if (isset($id)) {
+               //check permission
+               if ($this->permitted('delete_article')) {
+                   $data['title'] = $this->lang->line("text_delete_article");
+                   $post_data     = array(
+                       'status' => 0,
+                       'updated_by' => $this->get_user_id()
+                   );
+                   $res           = $this->masters->delete_record($id, $post_data, 'cities');
+                   redirect('admin/masters/list_cities', 'refresh');
+               } else {
+                   $data['title'] = $this->lang->line("alert_access_denied");
+                   $success       = TRUE;
+                   $message       = '';
+                   $content       = $this->load->view('errors/permission/denied', $data, TRUE);
+               }
+               $json_array = array(
+                   'success' => $success,
+                   'message' => $message,
+                   'content' => $content
+               );
+               echo json_encode($json_array);
+               exit();
+           }
+       }
+	   
+	   
+	   public function list_localities()
+       {
+           $data['title'] = $this->lang->line("text_locations");
+           $id            = $this->uri->segment(4);
+           if ($this->permitted('list_articles')) {
+               $localities         = $this->masters->get_record('locations');
+               $record            = $this->masters->get_record_id('locations', $id);
+               $data['localities'] = $localities;
+               $data['record']    = $record;
+               $data['sub_view']  = $this->load->view('admin/masters/_localities', $data, TRUE);
+           } else {
+               $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
+           }
+           $this->load->view('admin/_layout', $data);
+       }
+      
+       public function add_localities()
+       {
+           $post_data               = array(
+               'name' => $this->input->post('name'),
+               'created_by' => $this->get_user_id()
+           );
+           $id                      = $this->input->post('id');
+           //upload config
+           $config['upload_path']   = 'uploads/localities/';
+           $config['allowed_types'] = '*';
+           $config['encrypt_name']  = TRUE;
+           $config['overwrite']     = TRUE;
+           $config['max_size']      = '1024'; //1 MB
+           //Upload Icon
+           if (isset($_FILES['icon']['name']) && $_FILES['icon']['name'] != '') {
+               $this->load->library('upload', $config);
+               if (!$this->upload->do_upload('icon')) {
+                   $success    = FALSE;
+                   $message    = $this->upload->display_errors();
+                   $json_array = array(
+                       'success' => $success,
+                       'message' => $message
+                   );
+                   echo json_encode($json_array);
+                   exit();
+               } else {
+                   $upload_data       = $this->upload->data();
+                   $post_data['icon'] = $upload_data['file_name'];
+               }
+           }
+           //XXS Clean
+           $post_data = $this->security->xss_clean($post_data);
+           if ($id == '') {
+               $result = $this->masters->save_record($post_data, 'locations');
+           } else {
+               $result = $this->masters->update_record($id, $post_data, 'locations');
+           }
+           redirect('admin/masters/list_localities', 'refresh');
+       }
+      
+       public function delete_localities()
+       {
+           $id = $this->uri->segment(4);
+           if (isset($id)) {
+               //check permission
+               if ($this->permitted('delete_article')) {
+                   $data['title'] = $this->lang->line("text_delete_article");
+                   $post_data     = array(
+                       'status' => 0,
+                       'updated_by' => $this->get_user_id()
+                   );
+                   $res           = $this->masters->delete_record($id, $post_data, 'locations');
+                   redirect('admin/masters/list_localities', 'refresh');
+               } else {
+                   $data['title'] = $this->lang->line("alert_access_denied");
+                   $success       = TRUE;
+                   $message       = '';
+                   $content       = $this->load->view('errors/permission/denied', $data, TRUE);
+               }
+               $json_array = array(
+                   'success' => $success,
+                   'message' => $message,
+                   'content' => $content
+               );
+               echo json_encode($json_array);
+               exit();
+           }
+       }
+	   
+	   /******** Amenities **************/
+	   public function list_amenities()
+       {
+           $data['title'] = $this->lang->line("text_locations");
+           $id            = $this->uri->segment(4);
+           if ($this->permitted('list_articles')) {
+               $amenities         = $this->masters->get_record('amenities');
+               $record            = $this->masters->get_record_id('amenities', $id);
+               $data['amenities'] = $amenities;
+               $data['record']    = $record;
+               $data['sub_view']  = $this->load->view('admin/amenities/add_amenities', $data, TRUE);
+           } else {
+               $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
+           }
+           $this->load->view('admin/_layout', $data);
+       }
+      
+       public function add_amenities()
+       {
+           $post_data               = array(
+               'name' => $this->input->post('amenity_name'),
+               'created_by' => $this->get_user_id()
+           );
+           $id                      = $this->input->post('id');
+           //upload config
+           $config['upload_path']   = 'uploads/amenities/';
+           $config['allowed_types'] = '*';
+           $config['encrypt_name']  = TRUE;
+           $config['overwrite']     = TRUE;
+           $config['max_size']      = '1024'; //1 MB
+           //Upload Icon
+           if (isset($_FILES['icon']['name']) && $_FILES['icon']['name'] != '') {
+               $this->load->library('upload', $config);
+               if (!$this->upload->do_upload('icon')) {
+                   $success    = FALSE;
+                   $message    = $this->upload->display_errors();
+                   $json_array = array(
+                       'success' => $success,
+                       'message' => $message
+                   );
+                   echo json_encode($json_array);
+                   exit();
+               } else {
+                   $upload_data       = $this->upload->data();
+                   $post_data['icon'] = $upload_data['file_name'];
+               }
+           }
+           //XXS Clean
+           $post_data = $this->security->xss_clean($post_data);
+           if ($id == '') {
+               $result = $this->masters->save_record($post_data, 'amenities');
+           } else {
+               $result = $this->masters->update_record($id, $post_data, 'amenities');
+           }
+           redirect('admin/masters/list_amenities', 'refresh');
+       }
+      
+       public function delete_amenities()
+       {
+           $id = $this->uri->segment(4);
+           if (isset($id)) {
+               //check permission
+               if ($this->permitted('delete_article')) {
+                   $data['title'] = $this->lang->line("text_delete_article");
+                   $post_data     = array(
+                       'status' => 0,
+                       'updated_by' => $this->get_user_id()
+                   );
+                   $res           = $this->masters->delete_record($id, $post_data, 'amenities');
+                   redirect('admin/masters/list_amenities', 'refresh');
+               } else {
+                   $data['title'] = $this->lang->line("alert_access_denied");
+                   $success       = TRUE;
+                   $message       = '';
+                   $content       = $this->load->view('errors/permission/denied', $data, TRUE);
+               }
+               $json_array = array(
+                   'success' => $success,
+                   'message' => $message,
+                   'content' => $content
+               );
+               echo json_encode($json_array);
+               exit();
+           }
+       }
+	   
+	   /*********** Banks ********/
+	   public function list_banks()
+       {
+           $data['title'] = $this->lang->line("text_locations");
+           $id            = $this->uri->segment(4);
+           if ($this->permitted('list_articles')) {
+               $banks         = $this->masters->get_record('banks');
+               $record            = $this->masters->get_record_id('banks', $id);
+               $data['banks'] = $banks;
+               $data['record']    = $record;
+               $data['sub_view']  = $this->load->view('admin/masters/_banks', $data, TRUE);
+           } else {
+               $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
+           }
+           $this->load->view('admin/_layout', $data);
+       }
+      
+       public function add_banks()
+       {
+           $post_data               = array(
+               'name' => $this->input->post('name'),
+               'created_by' => $this->get_user_id()
+           );
+           $id                      = $this->input->post('id');
+           //upload config
+           $config['upload_path']   = 'uploads/banks/';
+           $config['allowed_types'] = '*';
+           $config['encrypt_name']  = TRUE;
+           $config['overwrite']     = TRUE;
+           $config['max_size']      = '1024'; //1 MB
+           //Upload Icon
+           if (isset($_FILES['icon']['name']) && $_FILES['icon']['name'] != '') {
+               $this->load->library('upload', $config);
+               if (!$this->upload->do_upload('icon')) {
+                   $success    = FALSE;
+                   $message    = $this->upload->display_errors();
+                   $json_array = array(
+                       'success' => $success,
+                       'message' => $message
+                   );
+                   echo json_encode($json_array);
+                   exit();
+               } else {
+                   $upload_data       = $this->upload->data();
+                   $post_data['icon'] = $upload_data['file_name'];
+               }
+           }
+           //XXS Clean
+           $post_data = $this->security->xss_clean($post_data);
+           if ($id == '') {
+               $result = $this->masters->save_record($post_data, 'banks');
+           } else {
+               $result = $this->masters->update_record($id, $post_data, 'banks');
+           }
+           redirect('admin/masters/list_banks', 'refresh');
+       }
+      
+       public function delete_banks()
+       {
+           $id = $this->uri->segment(4);
+           if (isset($id)) {
+               //check permission
+               if ($this->permitted('delete_article')) {
+                   $data['title'] = $this->lang->line("text_delete_article");
+                   $post_data     = array(
+                       'status' => 0,
+                       'updated_by' => $this->get_user_id()
+                   );
+                   $res           = $this->masters->delete_record($id, $post_data, 'banks');
+                   redirect('admin/masters/list_banks', 'refresh');
+               } else {
+                   $data['title'] = $this->lang->line("alert_access_denied");
+                   $success       = TRUE;
+                   $message       = '';
+                   $content       = $this->load->view('errors/permission/denied', $data, TRUE);
+               }
+               $json_array = array(
+                   'success' => $success,
+                   'message' => $message,
+                   'content' => $content
+               );
+               echo json_encode($json_array);
+               exit();
+           }
+       }
+	   
+	   
+	   /*********** Property Type ********/
+	   public function list_propertiesType()
+       {
+           $data['title'] = $this->lang->line("text_locations");
+           $id            = $this->uri->segment(4);
+           if ($this->permitted('list_articles')) {
+               $property_types         = $this->masters->get_record('property_types');
+               $record            = $this->masters->get_record_id('property_types', $id);
+               $data['property_types'] = $property_types;
+               $data['record']    = $record;
+               $data['sub_view']  = $this->load->view('admin/masters/_propertiesType', $data, TRUE);
+           } else {
+               $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
+           }
+           $this->load->view('admin/_layout', $data);
+       }
+      
+       public function add_propertiesType()
+       {
+           $post_data               = array(
+               'name' => $this->input->post('name'),
+               'created_by' => $this->get_user_id()
+           );
+           $id                      = $this->input->post('id');
+           //upload config
+           $config['upload_path']   = 'uploads/property_types/';
+           $config['allowed_types'] = '*';
+           $config['encrypt_name']  = TRUE;
+           $config['overwrite']     = TRUE;
+           $config['max_size']      = '1024'; //1 MB
+           //Upload Icon
+           if (isset($_FILES['icon']['name']) && $_FILES['icon']['name'] != '') {
+               $this->load->library('upload', $config);
+               if (!$this->upload->do_upload('icon')) {
+                   $success    = FALSE;
+                   $message    = $this->upload->display_errors();
+                   $json_array = array(
+                       'success' => $success,
+                       'message' => $message
+                   );
+                   echo json_encode($json_array);
+                   exit();
+               } else {
+                   $upload_data       = $this->upload->data();
+                   $post_data['icon'] = $upload_data['file_name'];
+               }
+           }
+           //XXS Clean
+           $post_data = $this->security->xss_clean($post_data);
+           if ($id == '') {
+               $result = $this->masters->save_record($post_data, 'property_types');
+           } else {
+               $result = $this->masters->update_record($id, $post_data, 'property_types');
+           }
+           redirect('admin/masters/list_propertiesType', 'refresh');
+       }
+      
+       public function delete_propertiesType()
+       {
+           $id = $this->uri->segment(4);
+           if (isset($id)) {
+               //check permission
+               if ($this->permitted('delete_article')) {
+                   $data['title'] = $this->lang->line("text_delete_article");
+                   $post_data     = array(
+                       'status' => 0,
+                       'updated_by' => $this->get_user_id()
+                   );
+                   $res           = $this->masters->delete_record($id, $post_data, 'property_types');
+                   redirect('admin/masters/list_propertiesType', 'refresh');
+               } else {
+                   $data['title'] = $this->lang->line("alert_access_denied");
+                   $success       = TRUE;
+                   $message       = '';
+                   $content       = $this->load->view('errors/permission/denied', $data, TRUE);
+               }
+               $json_array = array(
+                   'success' => $success,
+                   'message' => $message,
+                   'content' => $content
+               );
+               echo json_encode($json_array);
+               exit();
+           }
+       }
+	   
+	   
+	   /*********** Property Categories ********/
+	   public function list_categories()
+       {
+           $data['title'] = $this->lang->line("text_locations");
+           $id            = $this->uri->segment(4);
+           if ($this->permitted('list_articles')) {
+               $categories         = $this->masters->get_record('property_categories');
+               $record            = $this->masters->get_record_id('property_categories', $id);
+               $data['categories'] = $categories;
+               $data['record']    = $record;
+               $data['sub_view']  = $this->load->view('admin/masters/_categories', $data, TRUE);
+           } else {
+               $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
+           }
+           $this->load->view('admin/_layout', $data);
+       }
+      
+       public function add_category()
+       {
+           $post_data               = array(
+               'name' => $this->input->post('name'),
+               'created_by' => $this->get_user_id()
+           );
+           $id                      = $this->input->post('id');
+           //upload config
+           $config['upload_path']   = 'uploads/categories/';
+           $config['allowed_types'] = '*';
+           $config['encrypt_name']  = TRUE;
+           $config['overwrite']     = TRUE;
+           $config['max_size']      = '1024'; //1 MB
+           //Upload Icon
+           if (isset($_FILES['icon']['name']) && $_FILES['icon']['name'] != '') {
+               $this->load->library('upload', $config);
+               if (!$this->upload->do_upload('icon')) {
+                   $success    = FALSE;
+                   $message    = $this->upload->display_errors();
+                   $json_array = array(
+                       'success' => $success,
+                       'message' => $message
+                   );
+                   echo json_encode($json_array);
+                   exit();
+               } else {
+                   $upload_data       = $this->upload->data();
+                   $post_data['icon'] = $upload_data['file_name'];
+               }
+           }
+           //XXS Clean
+           $post_data = $this->security->xss_clean($post_data);
+           if ($id == '') {
+               $result = $this->masters->save_record($post_data, 'property_categories');
+           } else {
+               $result = $this->masters->update_record($id, $post_data, 'property_categories');
+           }
+           redirect('admin/masters/list_categories', 'refresh');
+       }
+      
+       public function delete_category()
+       {
+           $id = $this->uri->segment(4);
+           if (isset($id)) {
+               //check permission
+               if ($this->permitted('delete_article')) {
+                   $data['title'] = $this->lang->line("text_delete_article");
+                   $post_data     = array(
+                       'status' => 0,
+                       'updated_by' => $this->get_user_id()
+                   );
+                   $res           = $this->masters->delete_record($id, $post_data, 'property_categories');
+                   redirect('admin/masters/list_categories', 'refresh');
+               } else {
+                   $data['title'] = $this->lang->line("alert_access_denied");
+                   $success       = TRUE;
+                   $message       = '';
+                   $content       = $this->load->view('errors/permission/denied', $data, TRUE);
+               }
+               $json_array = array(
+                   'success' => $success,
+                   'message' => $message,
+                   'content' => $content
+               );
+               echo json_encode($json_array);
+               exit();
+           }
+       }
 
-class Masters extends MY_Controller {
-    function __construct(){
-        parent::__construct();
-        //check if backend login
-        $this->is_admin_login();
-        
-    }
-    //list banks
-	
-	public function list_banks()
-	{
-        $data['title']=$this->lang->line("text_locations");
-		$id = $this->uri->segment(4);
-        if($this->permitted('list_articles')){
-			$banks = $this->masters->get_banks($id);
-            $data['banks']=$banks;
-            $data['sub_view'] = $this->load->view('admin/Masters/_banks', $data, TRUE);
-        }else{
-            $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
-        }
-        $this->load->view('admin/_layout', $data); 
-    }
+	   /*********** Property Categories ********/
+	   public function list_bedrooms()
+       {
+           $data['title'] = $this->lang->line("text_locations");
+           $id            = $this->uri->segment(4);
+           if ($this->permitted('list_articles')) {
+               $bedrooms         = $this->masters->get_record('floor_types');
+               $record            = $this->masters->get_record_id('floor_types', $id);
+               $data['bedrooms'] = $bedrooms;
+               $data['record']    = $record;
+               $data['sub_view']  = $this->load->view('admin/masters/_bedrooms', $data, TRUE);
+           } else {
+               $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
+           }
+           $this->load->view('admin/_layout', $data);
+       }
+      
+       public function add_bedroom()
+       {
+           $post_data               = array(
+               'name' => $this->input->post('name'),
+               'created_by' => $this->get_user_id()
+           );
+           $id                      = $this->input->post('id');
+           //upload config
+           $config['upload_path']   = 'uploads/bedrooms/';
+           $config['allowed_types'] = '*';
+           $config['encrypt_name']  = TRUE;
+           $config['overwrite']     = TRUE;
+           $config['max_size']      = '1024'; //1 MB
+           //Upload Icon
+           if (isset($_FILES['icon']['name']) && $_FILES['icon']['name'] != '') {
+               $this->load->library('upload', $config);
+               if (!$this->upload->do_upload('icon')) {
+                   $success    = FALSE;
+                   $message    = $this->upload->display_errors();
+                   $json_array = array(
+                       'success' => $success,
+                       'message' => $message
+                   );
+                   echo json_encode($json_array);
+                   exit();
+               } else {
+                   $upload_data       = $this->upload->data();
+                   $post_data['icon'] = $upload_data['file_name'];
+               }
+           }
+           //XXS Clean
+           $post_data = $this->security->xss_clean($post_data);
+           if ($id == '') {
+               $result = $this->masters->save_record($post_data, 'floor_types');
+           } else {
+               $result = $this->masters->update_record($id, $post_data, 'floor_types');
+           }
+           redirect('admin/masters/list_categories', 'refresh');
+       }
+      
+       public function delete_bedroom()
+       {
+           $id = $this->uri->segment(4);
+           if (isset($id)) {
+               //check permission
+               if ($this->permitted('delete_article')) {
+                   $data['title'] = $this->lang->line("text_delete_article");
+                   $post_data     = array(
+                       'status' => 0,
+                       'updated_by' => $this->get_user_id()
+                   );
+                   $res           = $this->masters->delete_record($id, $post_data, 'floor_types');
+                   redirect('admin/masters/list_bedrooms', 'refresh');
+               } else {
+                   $data['title'] = $this->lang->line("alert_access_denied");
+                   $success       = TRUE;
+                   $message       = '';
+                   $content       = $this->load->view('errors/permission/denied', $data, TRUE);
+               }
+               $json_array = array(
+                   'success' => $success,
+                   'message' => $message,
+                   'content' => $content
+               );
+               echo json_encode($json_array);
+               exit();
+           }
+       }
 
-	public function list_propertiesType()
-	{
-        $data['title']=$this->lang->line("text_locations");
-		$id = $this->uri->segment(4);
-        if($this->permitted('list_articles')){
-			$propertyTypes = $this->masters->get_propertyTypes($id);
-            $data['propertyTypes']=$propertyTypes;
-            $data['sub_view'] = $this->load->view('admin/Masters/_propertiesType', $data, TRUE);
-        }else{
-            $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
-        }
-        $this->load->view('admin/_layout', $data); 
-    }
+	   /*********** Bathrooms ********/
+	   public function list_bathrooms()
+       {
+           $data['title'] = $this->lang->line("text_locations");
+           $id            = $this->uri->segment(4);
+           if ($this->permitted('list_articles')) {
+               $bathrooms         = $this->masters->get_record('bathrooms');
+               $record            = $this->masters->get_record_id('bathrooms', $id);
+               $data['bathrooms'] = $bathrooms;
+               $data['record']    = $record;
+               $data['sub_view']  = $this->load->view('admin/masters/_bathrooms', $data, TRUE);
+           } else {
+               $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
+           }
+           $this->load->view('admin/_layout', $data);
+       }
+      
+       public function add_bathroom()
+       {
+           $post_data               = array(
+               'name' => $this->input->post('name'),
+               'created_by' => $this->get_user_id()
+           );
+           $id                      = $this->input->post('id');
+           //upload config
+           $config['upload_path']   = 'uploads/bathrooms/';
+           $config['allowed_types'] = '*';
+           $config['encrypt_name']  = TRUE;
+           $config['overwrite']     = TRUE;
+           $config['max_size']      = '1024'; //1 MB
+           //Upload Icon
+           if (isset($_FILES['icon']['name']) && $_FILES['icon']['name'] != '') {
+               $this->load->library('upload', $config);
+               if (!$this->upload->do_upload('icon')) {
+                   $success    = FALSE;
+                   $message    = $this->upload->display_errors();
+                   $json_array = array(
+                       'success' => $success,
+                       'message' => $message
+                   );
+                   echo json_encode($json_array);
+                   exit();
+               } else {
+                   $upload_data       = $this->upload->data();
+                   $post_data['icon'] = $upload_data['file_name'];
+               }
+           }
+           //XXS Clean
+           $post_data = $this->security->xss_clean($post_data);
+           if ($id == '') {
+               $result = $this->masters->save_record($post_data, 'bathrooms');
+           } else {
+               $result = $this->masters->update_record($id, $post_data, 'bathrooms');
+           }
+           redirect('admin/masters/list_bathroomss', 'refresh');
+       }
+      
+       public function delete_bathroom()
+       {
+           $id = $this->uri->segment(4);
+           if (isset($id)) {
+               //check permission
+               if ($this->permitted('delete_article')) {
+                   $data['title'] = $this->lang->line("text_delete_article");
+                   $post_data     = array(
+                       'status' => 0,
+                       'updated_by' => $this->get_user_id()
+                   );
+                   $res           = $this->masters->delete_record($id, $post_data, 'bathrooms');
+                   redirect('admin/masters/list_bathrooms', 'refresh');
+               } else {
+                   $data['title'] = $this->lang->line("alert_access_denied");
+                   $success       = TRUE;
+                   $message       = '';
+                   $content       = $this->load->view('errors/permission/denied', $data, TRUE);
+               }
+               $json_array = array(
+                   'success' => $success,
+                   'message' => $message,
+                   'content' => $content
+               );
+               echo json_encode($json_array);
+               exit();
+           }
+       }
 
-	public function list_floorType()
-	{
-        $data['title']=$this->lang->line("text_locations");
-		$id = $this->uri->segment(4);
-        if($this->permitted('list_articles')){
-			$floorTypes = $this->masters->get_floorTypes($id);
-            $data['floorTypes']=$floorTypes;
-            $data['sub_view'] = $this->load->view('admin/Masters/_floorType', $data, TRUE);
-        }else{
-            $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
-        }
-        $this->load->view('admin/_layout', $data); 
-    }
-	
-	public function list_bedrooms()
-	{
-        $data['title']=$this->lang->line("text_locations");
-		$id = $this->uri->segment(4);
-        if($this->permitted('list_articles')){
-			$floorTypes = $this->masters->get_floorTypes($id);
-            $data['floorTypes']=$floorTypes;
-            $data['sub_view'] = $this->load->view('admin/Masters/_bedrooms', $data, TRUE);
-        }else{
-            $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
-        }
-        $this->load->view('admin/_layout', $data); 
-    }
-	
-	public function list_bathrooms()
-	{
-        $data['title']=$this->lang->line("text_locations");
-		$id = $this->uri->segment(4);
-        if($this->permitted('list_articles')){
-			$floorTypes = $this->masters->get_floorTypes($id);
-            $data['floorTypes']=$floorTypes;
-            $data['sub_view'] = $this->load->view('admin/Masters/_bathrooms', $data, TRUE);
-        }else{
-            $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
-        }
-        $this->load->view('admin/_layout', $data); 
-    }
+	   /*********** Construction Status ********/
+	   public function list_construction_status()
+       {
+           $data['title'] = $this->lang->line("text_locations");
+           $id            = $this->uri->segment(4);
+           if ($this->permitted('list_articles')) {
+               $construction_status         = $this->masters->get_record('construction_status');
+               $record            = $this->masters->get_record_id('construction_status', $id);
+               $data['construction_status'] = $construction_status;
+               $data['record']    = $record;
+               $data['sub_view']  = $this->load->view('admin/masters/_constructionStatus', $data, TRUE);
+           } else {
+               $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
+           }
+           $this->load->view('admin/_layout', $data);
+       }
+      
+       public function add_construction_status()
+       {
+           $post_data               = array(
+               'name' => $this->input->post('name'),
+               'created_by' => $this->get_user_id()
+           );
+           $id                      = $this->input->post('id');
+           //upload config
+           $config['upload_path']   = 'uploads/bathrooms/';
+           $config['allowed_types'] = '*';
+           $config['encrypt_name']  = TRUE;
+           $config['overwrite']     = TRUE;
+           $config['max_size']      = '1024'; //1 MB
+           //Upload Icon
+           if (isset($_FILES['icon']['name']) && $_FILES['icon']['name'] != '') {
+               $this->load->library('upload', $config);
+               if (!$this->upload->do_upload('icon')) {
+                   $success    = FALSE;
+                   $message    = $this->upload->display_errors();
+                   $json_array = array(
+                       'success' => $success,
+                       'message' => $message
+                   );
+                   echo json_encode($json_array);
+                   exit();
+               } else {
+                   $upload_data       = $this->upload->data();
+                   $post_data['icon'] = $upload_data['file_name'];
+               }
+           }
+           //XXS Clean
+           $post_data = $this->security->xss_clean($post_data);
+           if ($id == '') {
+               $result = $this->masters->save_record($post_data, 'construction_status');
+           } else {
+               $result = $this->masters->update_record($id, $post_data, 'construction_status');
+           }
+           redirect('admin/masters/list_construction_status', 'refresh');
+       }
+      
+       public function delete_construction_status()
+       {
+           $id = $this->uri->segment(4);
+           if (isset($id)) {
+               //check permission
+               if ($this->permitted('delete_article')) {
+                   $data['title'] = $this->lang->line("text_delete_article");
+                   $post_data     = array(
+                       'status' => 0,
+                       'updated_by' => $this->get_user_id()
+                   );
+                   $res           = $this->masters->delete_record($id, $post_data, 'construction_status');
+                   redirect('admin/masters/list_construction_status', 'refresh');
+               } else {
+                   $data['title'] = $this->lang->line("alert_access_denied");
+                   $success       = TRUE;
+                   $message       = '';
+                   $content       = $this->load->view('errors/permission/denied', $data, TRUE);
+               }
+               $json_array = array(
+                   'success' => $success,
+                   'message' => $message,
+                   'content' => $content
+               );
+               echo json_encode($json_array);
+               exit();
+           }
+       }
 
-	public function list_categories()
-	{
-        $data['title']=$this->lang->line("text_locations");
-		$id = $this->uri->segment(4);
-        if($this->permitted('list_articles')){
-			$floorTypes = $this->masters->get_floorTypes($id);
-            $data['floorTypes']=$floorTypes;
-            $data['sub_view'] = $this->load->view('admin/Masters/_categories', $data, TRUE);
-        }else{
-            $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
-        }
-        $this->load->view('admin/_layout', $data); 
-    }
-
-	public function create_bank()
-	{
-		$post_data = array(
-          'name' => $this->input->post('bank_name'),
-          'created_by' => $this->get_user_id()
-        );
-                    //upload config
-                    $config['upload_path'] = 'uploads/banks/';
-                    $config['allowed_types'] = '*';
-                    $config['encrypt_name'] = TRUE;
-                    $config['overwrite'] = TRUE;
-                    $config['max_size'] = '1024'; //1 MB
-                    //Upload Category Icon
-                    if(isset($_FILES['bank_icon']['name'])){
-                        $this->load->library('upload', $config);
-                        if (!$this->upload->do_upload('bank_icon')) {
-                            $success = FALSE;
-                            $message = $this->upload->display_errors();
-                            $json_array = array('success' => $success, 'message' => $message);
-                            echo json_encode($json_array);
-                            exit();
-                        } else {
-                            $upload_data=$this->upload->data();
-                            $post_data['icon']=$upload_data['file_name'];
-                        }
-                    }
-                    //XXS Clean
-                    $post_data = $this->security->xss_clean($post_data);
-                    $result = $this->masters->create_bank($post_data);
-        redirect('admin/masters/list_banks','refresh');
-    }
-
-	public function create_floorType()
-	{
-		$post_data = array(
-          'name' => $this->input->post('type_name'),
-          'created_by' => $this->get_user_id()
-        );
-                    //upload config
-                    $config['upload_path'] = 'uploads/propertyType/';
-                    $config['allowed_types'] = '*';
-                    $config['encrypt_name'] = TRUE;
-                    $config['overwrite'] = TRUE;
-                    $config['max_size'] = '1024'; //1 MB
-                    //Upload Category Icon
-                    if(isset($_FILES['type_icon']['name'])){
-                        $this->load->library('upload', $config);
-                        if (!$this->upload->do_upload('type_icon')) {
-                            $success = FALSE;
-                            $message = $this->upload->display_errors();
-                            $json_array = array('success' => $success, 'message' => $message);
-                            echo json_encode($json_array);
-                            exit();
-                        } else {
-                            $upload_data=$this->upload->data();
-                            $post_data['icon']=$upload_data['file_name'];
-                        }
-                    }
-                    //XXS Clean
-                    $post_data = $this->security->xss_clean($post_data);
-                    $result = $this->masters->create_floorType($post_data);
-        redirect('admin/masters/list_floorType','refresh');
-    }
-	
-	
-	public function create_propertyType()
-	{
-		$post_data = array(
-          'name' => $this->input->post('type_name'),
-          'created_by' => $this->get_user_id()
-        );
-                    //upload config
-                    $config['upload_path'] = 'uploads/propertyType/';
-                    $config['allowed_types'] = '*';
-                    $config['encrypt_name'] = TRUE;
-                    $config['overwrite'] = TRUE;
-                    $config['max_size'] = '1024'; //1 MB
-                    //Upload Category Icon
-                    if(isset($_FILES['type_icon']['name'])){
-                        $this->load->library('upload', $config);
-                        if (!$this->upload->do_upload('type_icon')) {
-                            $success = FALSE;
-                            $message = $this->upload->display_errors();
-                            $json_array = array('success' => $success, 'message' => $message);
-                            echo json_encode($json_array);
-                            exit();
-                        } else {
-                            $upload_data=$this->upload->data();
-                            $post_data['icon']=$upload_data['file_name'];
-                        }
-                    }
-                    //XXS Clean
-                    $post_data = $this->security->xss_clean($post_data);
-                    $result = $this->masters->create_propertyType($post_data);
-        redirect('admin/masters/list_propertiesType','refresh');
-    }
-
-	public function add_amenities()
-	{
-		$post_data = array(
-          'name' => $this->input->post('amenity_name'),
-          'created_by' => $this->get_user_id()
-        );
-                    //upload config
-                    $config['upload_path'] = 'uploads/amenities/';
-                    $config['allowed_types'] = '*';
-                    $config['encrypt_name'] = TRUE;
-                    $config['overwrite'] = TRUE;
-                    $config['max_size'] = '1024'; //1 MB
-                    //Upload Category Icon
-                    if(isset($_FILES['amenity_icon']['name'])){
-                        $this->load->library('upload', $config);
-                        if (!$this->upload->do_upload('amenity_icon')) {
-                            $success = FALSE;
-                            $message = $this->upload->display_errors();
-                            $json_array = array('success' => $success, 'message' => $message);
-                            echo json_encode($json_array);
-                            exit();
-                        } else {
-                            $upload_data=$this->upload->data();
-                            $post_data['icon']=$upload_data['file_name'];
-                        }
-                    }
-                    //XXS Clean
-                    $post_data = $this->security->xss_clean($post_data);
-                    $result = $this->amenities_model->create_amenity($post_data);
-        redirect('admin/amenities/list_amenities','refresh');
-    }
-	
-	public function edit_amenities()
-	{
-		$post_data = array(
-          'name' => $this->input->post('amenity_name'),
-          'updated_by' => $this->get_user_id()
-        );
-                    //upload config
-                    $config['upload_path'] = 'uploads/amenities/';
-                    $config['allowed_types'] = '*';
-                    $config['encrypt_name'] = TRUE;
-                    $config['overwrite'] = TRUE;
-                    $config['max_size'] = '1024'; //1 MB
-                    //Upload Category Icon
-                    if(isset($_FILES['amenity_icon']['name'])){
-                        $this->load->library('upload', $config);
-                        if (!$this->upload->do_upload('amenity_icon')) {
-                            $success = FALSE;
-                            $message = $this->upload->display_errors();
-                            $json_array = array('success' => $success, 'message' => $message);
-                            echo json_encode($json_array);
-                            exit();
-                        } else {
-                            $upload_data=$this->upload->data();
-                            $post_data['icon']=$upload_data['file_name'];
-                        }
-                    }
-                    //XXS Clean
-                    $post_data = $this->security->xss_clean($post_data);
-                    $result = $this->amenities_model->create_amenity($post_data);
-        redirect('admin/amenities/list_amenities','refresh');
-    }
-	
-	
-	public function delete_amenities()
-	{
-        $id = $this->uri->segment(4);
-		if(isset($id)){
-            //check permission
-            if($this->permitted('delete_article')){
-                $data['title']=$this->lang->line("text_delete_article");
-                $post_data = array(
-				  'status' => 0,
-				  'updated_by' => $this->get_user_id()
-				);
-				$res = $this->amenities_model->delete_amenities($id, $post_data);
-				redirect('admin/amenities/list_amenities','refresh');
-            }else{
-                $data['title']=$this->lang->line("alert_access_denied");
-                $success = TRUE;
-                $message = '';
-                $content = $this->load->view('errors/permission/denied',$data,TRUE);
-            }
-            $json_array = array('success' => $success, 'message' => $message,'content'=>$content);
-            echo json_encode($json_array);
-            exit();
-        }
-    }
-	
-}
+	   /*********** Furnish Type ********/
+	   public function list_furnishType()
+       {
+           $data['title'] = $this->lang->line("text_locations");
+           $id            = $this->uri->segment(4);
+           if ($this->permitted('list_articles')) {
+               $furnish_types         = $this->masters->get_record('furnish_types');
+               $record            = $this->masters->get_record_id('furnish_types', $id);
+               $data['furnish_types'] = $furnish_types;
+               $data['record']    = $record;
+               $data['sub_view']  = $this->load->view('admin/masters/_furnishType', $data, TRUE);
+           } else {
+               $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
+           }
+           $this->load->view('admin/_layout', $data);
+       }
+      
+       public function add_furnishType()
+       {
+           $post_data               = array(
+               'name' => $this->input->post('name'),
+               'created_by' => $this->get_user_id()
+           );
+           $id                      = $this->input->post('id');
+           //upload config
+           $config['upload_path']   = 'uploads/bathrooms/';
+           $config['allowed_types'] = '*';
+           $config['encrypt_name']  = TRUE;
+           $config['overwrite']     = TRUE;
+           $config['max_size']      = '1024'; //1 MB
+           //Upload Icon
+           if (isset($_FILES['icon']['name']) && $_FILES['icon']['name'] != '') {
+               $this->load->library('upload', $config);
+               if (!$this->upload->do_upload('icon')) {
+                   $success    = FALSE;
+                   $message    = $this->upload->display_errors();
+                   $json_array = array(
+                       'success' => $success,
+                       'message' => $message
+                   );
+                   echo json_encode($json_array);
+                   exit();
+               } else {
+                   $upload_data       = $this->upload->data();
+                   $post_data['icon'] = $upload_data['file_name'];
+               }
+           }
+           //XXS Clean
+           $post_data = $this->security->xss_clean($post_data);
+           if ($id == '') {
+               $result = $this->masters->save_record($post_data, 'furnish_types');
+           } else {
+               $result = $this->masters->update_record($id, $post_data, 'furnish_types');
+           }
+           redirect('admin/masters/list_furnishType', 'refresh');
+       }
+      
+       public function delete_furnishType()
+       {
+           $id = $this->uri->segment(4);
+           if (isset($id)) {
+               //check permission
+               if ($this->permitted('delete_article')) {
+                   $data['title'] = $this->lang->line("text_delete_article");
+                   $post_data     = array(
+                       'status' => 0,
+                       'updated_by' => $this->get_user_id()
+                   );
+                   $res           = $this->masters->delete_record($id, $post_data, 'furnish_types');
+                   redirect('admin/masters/list_furnishType', 'refresh');
+               } else {
+                   $data['title'] = $this->lang->line("alert_access_denied");
+                   $success       = TRUE;
+                   $message       = '';
+                   $content       = $this->load->view('errors/permission/denied', $data, TRUE);
+               }
+               $json_array = array(
+                   'success' => $success,
+                   'message' => $message,
+                   'content' => $content
+               );
+               echo json_encode($json_array);
+               exit();
+           }
+       }
+   }

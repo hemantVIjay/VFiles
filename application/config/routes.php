@@ -53,7 +53,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = TRUE;
-
 $route['properties-details/(:any)'] = 'home/properties_details';
 $route['post-property'] = 'pages/post_property';
 $route['locations/(:any)'] = 'home/locations_info';

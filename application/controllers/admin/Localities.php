@@ -29,10 +29,10 @@ class Localities extends MY_Controller {
 		$post_data = array(
           'name' => $this->input->post('name'),
           'city_id' => $this->input->post('city'),
-          'district_id' => $this->input->post('district'),
+          //'district_id' => $this->input->post('district'),
           'landmark' => $this->input->post('landmark'),
-          'state_id' => $this->input->post('state_id'),
-          'country_id' => $this->input->post('country_id'),
+          'state_id' => $this->input->post('state'),
+          'country_id' => $this->input->post('country'),
           'status' => 1,
           'created_by' => $this->get_user_id()
         );
@@ -70,7 +70,7 @@ class Localities extends MY_Controller {
                     }
                     //XXS Clean
                     $post_data = $this->security->xss_clean($post_data);
-                    $result = $this->localities_model->create_amenity($post_data);
+                    $result = $this->localities->create_amenity($post_data);
         redirect('admin/localities/list_localities','refresh');
     }
 	
@@ -86,7 +86,7 @@ class Localities extends MY_Controller {
 				  'status' => 0,
 				  'updated_by' => $this->get_user_id()
 				);
-				$res = $this->localities_model->delete_localities($id, $post_data);
+				$res = $this->localities->delete_localities($id, $post_data);
 				redirect('admin/localities/list_localities','refresh');
             }else{
                 $data['title']=$this->lang->line("alert_access_denied");
@@ -100,4 +100,37 @@ class Localities extends MY_Controller {
         }
     }
 	
+		    //Cities Details
+	public function search_cities()
+	{
+      $cities = [];	  
+      $cities = $this->localities->_cities($this->input->get("q"));
+      echo json_encode($cities);
+	  exit;
+    }
+	
+	public function fetch_locations()
+	{
+      $data  = '';	  
+      $data1 = '<option value="">--Select--</option>';	  
+      $cities = $this->localities->_allLocalities($_REQUEST['cid']);
+	  if(!empty($cities)){
+	    foreach($cities as $location){
+			$data1 .= '<option value="'.$location->id.'">'.$location->name.'</option>';
+		}
+      }
+	  echo $data = base64_encode($data1);
+	  exit; 
+    }
+	public function fetchCity_Details()
+	{
+      $data  = '';	  
+      $data1 = '';	  
+      $data2 = '';	  
+      $cities = $this->localities->_cityDetails($_REQUEST['cid']);
+      $data1 = '<option value="'.$cities->state_id.'">'.$cities->state.'</option>';
+      $data2 = '<option value="'.$cities->country_id.'">'.$cities->country.'</option>';
+      echo $data  = base64_encode($data1.'@@'.$data2);
+	  exit; 
+    }
 }

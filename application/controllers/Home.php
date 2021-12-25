@@ -146,6 +146,7 @@ class Home extends MY_Controller {
 		  if($rr[0]=='BLD'){$cont = 'Builder'; } 	  
 		  $data['name'] = $row->name;	
 		  $data['val'] = $row->val;	
+		  $data['slug'] = $row->slug;	
 		  $data['desc'] = $cont;	
 		  $arr[] = $data;
 	  }	  

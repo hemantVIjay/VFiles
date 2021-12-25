@@ -608,7 +608,8 @@ var baseUrl=$('base').attr("href");
 						return {
 							label: item.name,
 							desc: item.desc,							
-							val: item.val						
+							val: item.val,						
+							slug: item.slug						
 						};
 					}));
 				}
@@ -617,8 +618,11 @@ var baseUrl=$('base').attr("href");
       minLength: 0,
       select: function( event, ui ) {
 		var content = btoa(ui.item.val);  
+		var slug = ui.item.slug;  
+        $('#search').attr('data-slug','');
         $('#search').val('');
         $('#search').val(content);
+        $('#search').attr('data-slug',slug);
       }
     }).autocomplete("instance" )._renderItem = function( ul, item ) {
       return $( "<li>" )
@@ -640,7 +644,8 @@ var baseUrl=$('base').attr("href");
 	   
 	   var main     = $('select[name="cities"]').val();
 	   var type     = $('input[name="type"]:checked').val();
-	   var search   = $('input[name="search"]').val();
+	   //var search   = $('input[name="search"]').val();
+	   var search   = $('input[name="content"]').data('slug');
 	   var content  = $('input[name="content"]').val();
 	   console.log(content);
 	   var str  = atob(content);
@@ -653,7 +658,7 @@ var baseUrl=$('base').attr("href");
 		 window.location.href = mainURL+main+'?location='+search+'&type='+type+'&content='+content;   
 	   }
 	   if(res[0]=='PROJ'){
-		 var mainURL  = baseUrl +'projects/'+ main+'/'+search+'--'+res[1];  
+		 var mainURL  = baseUrl +search+'--'+res[1];  
 		 window.location.href = mainURL;  
 	   }if(res[0]=='BLD'){
 		 var mainURL  = baseUrl + main+'/'+'builder/'+search+'--'+res[1];  

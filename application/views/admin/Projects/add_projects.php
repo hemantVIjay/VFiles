@@ -25,33 +25,18 @@
                      <input type="text" class="form-control" name="project_name" autocomplete="Off"/>
                   </div>
                   <div class="col-md-3 mb-3">
-                     <label class="required">Locality</label>
-                     <select class="form-select" name="location" onchange="location_details(this);">
-                        <option value="">--Select--</option>
-                        <?= _localities(''); ?>
-                     </select>
-                  </div>
-                  <div class="col-md-3 mb-3">
                      <label class="required">City</label>
                      <select class="form-select" name="city" id="city">
                         <option value="">--Select--</option>
                         <?= _cities(''); ?>
                      </select>
                   </div>
-                  <div class="col-md-3 mb-3">
-                     <label class="required">District</label>
-                     <select class="form-select" name="district" id="district">
+				  <div class="col-md-3 mb-3">
+                     <label class="required">Locality</label>
+                     <select class="form-select" name="location" id="location">
                         <option value="">--Select--</option>
-                        <?= _districts(''); ?>
+                        <?= _localities(''); ?>
                      </select>
-                  </div>
-                  <div class="col-md-3 mb-3">
-                     <label class="required">State</label>
-                     <select class="form-select" name="state"  id="state">
-                        <option value="">--Select--</option>
-                        <?= _states(''); ?>
-                     </select>
-                     <input type="hidden" name="country" id="country">
                   </div>
                   <div class="col-md-12 mb-3">
                      <label class="required">Address</label>
@@ -102,7 +87,7 @@
                      </div>
                      <div class="col-md-12 mb-3">
                         <label class="required">Project Overview</label>
-                        <textarea class="form-control" rows="4" name="project_overview" autocomplete="Off"></textarea>
+                        <textarea class="form-control" rows="4" name="project_overview" id="description" autocomplete="Off"></textarea>
                      </div>
                   </div>
                   <hr />
@@ -265,7 +250,7 @@
                   </div>
                   <div class="col-md-12 mb-3">
                      <label class="required">Project Overview</label>
-                     <textarea class="form-control" rows="4" name="project_overview" autocomplete="Off"></textarea>
+                     <textarea class="form-control" rows="4" name="project_overview" id="description1" autocomplete="Off"></textarea>
                   </div>
                </div>
                <hr />
@@ -363,9 +348,81 @@
 
 <script src="<?= base_url(); ?>assets/js/moment.min.js"></script>
 <script src="<?= base_url(); ?>assets/plugins/datepicker/js/tempusdominus-bootstrap-4.min.js"></script>
-<!--<script src="<?= base_url(); ?>assets/js/custom.js"></script>-->
+<script src="https://cdn.ckeditor.com/4.17.1/standard-all/ckeditor.js"></script>
 <script type="text/javascript">
+
  var dataURL = $('base').attr("href");
+    // CKEditor
+ CKEDITOR.replace('description', {
+      fullPage: true,
+      extraPlugins: 'docprops',
+      // Disable content filtering because if you use full page mode, you probably
+      // want to  freely enter any HTML content in source mode without any limitations.
+      allowedContent: true,
+      height: 120,
+      removeButtons: 'PasteFromWord'
+ });
+ CKEDITOR.replace('description1', {
+      fullPage: true,
+      extraPlugins: 'docprops',
+      // Disable content filtering because if you use full page mode, you probably
+      // want to  freely enter any HTML content in source mode without any limitations.
+      allowedContent: true,
+      height: 120,
+      removeButtons: 'PasteFromWord'
+ });
+	
+ $(function ($) {
+	     'use strict';
+		  initCities('city');
+		  $('#location').select2();
+		 });
+		 function initCities(cid){			
+			 $('#'+cid).select2({
+					 placeholder: 'Select City',
+					 ajax: {
+						 url: dataURL+'admin/localities/search_cities',
+						 dataType: 'json',
+						 delay: 220,
+						 processResults: function (data) {
+						 return {
+						  results: $.map(data, function (data) {
+						   return {
+							text: data.name,
+							id: data.id
+								  }
+							 })
+						   };
+						 },
+					 cache: true
+				 }
+			 }).on("select2:select", function (e) {
+				var s_element = $(e.currentTarget);
+				var s_val = s_element.val();
+				fetchData(s_val);
+			});			 
+		 }  
+		 
+	   function fetchData(s_val){
+	    var mData, lData;
+		var localities = $('#location');
+		$.ajax({
+			type: 'POST',
+			url: dataURL + 'admin/localities/fetch_locations',
+			data: {cid:s_val},
+			async: false,
+			success: function (res) {
+				if(res!=''){
+				 mData = atob(res).split("@@");
+				 localities.html(mData[0]);	
+				 localities.select2();
+				}
+			},
+			error: function () {
+				
+			}
+		}); 
+	}
    $(function () {
        $('#dtpicker').datetimepicker({
            format: 'DD-MMM-YYYY'
@@ -524,13 +581,13 @@
    
    function changeDetails(ev){
 	   var pType = $(ev).val();
-	   if(pType == '1'){
+	   if(pType == '2'){
 		$('#pty_flat').css('display','none');   
 		$('#pty_plot').css('display','block');
         $('#pty_flat').find('input, textarea, button, select').attr('disabled','disabled');		
         $('#pty_plot').find('input, textarea, button, select').attr('disabled',false);		
 	   }
-	   if(pType == '2' || pType == '3'){
+	   if(pType == '1' || pType == '3'){
 		$('#pty_flat').css('display','block');   
 		$('#pty_plot').css('display','none');
 		$('#pty_plot').find('input, textarea, button, select').attr('disabled','disabled');

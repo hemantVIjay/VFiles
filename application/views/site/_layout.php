@@ -115,7 +115,7 @@
                      </a>
                   </li>
                   <li class="nav-item">
-                     <?php if(isset($_SESSION['login']) && $_SESSION['login']['user_id']!=''){ ?>
+                     <?php if(isset($_SESSION['login']) && $_SESSION['login']['is_site_login']=='1'){ ?>
 					 <a class="nav-link usrlgd dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="javascript:;" ><img src="<?= base_url(); ?>assets/images/user.jpg" class="userPhot" /><span class="activeStatus"></span> <?= $_SESSION['login']['full_name']; ?></a>
                      <div class="dropdown-menu dropdown-menu-end">
                         <div class="upbody d-flex align-items-center">
@@ -405,12 +405,14 @@
                         <div id="sgnIn">
                            <form name="login" id="login" method="POST">
                               <div class="form-floating mb-4">
-                                 <input type="email" class="form-control" name="email" id="email" placeholder="Username">
+                                 <input type="email" class="form-control" name="email" id="l_email" placeholder="Username">
                                  <label for="email">Username</label>
+								 <span class="errors" id="el_email"></span>
                               </div>
                               <div class="form-floating mb-4">
-                                 <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password">
+                                 <input type="password" class="form-control" name="password" id="l_password" placeholder="Password">
                                  <label for="floatingPassword">Password</label>
+								 <span class="errors" id="el_password"></span>
                               </div>
                               <!--<div class="mb-4 d-flex">
                                  <input type="checkbox" class="cks" checked="">
@@ -523,6 +525,21 @@
            
           }*/
           return flag;
+         }
+
+         function validates(){
+          var email = $('#l_email').val();
+          var password = $('#l_password').val();
+          var flag  = true;
+          if(email == ''){
+           $('#el_email').html('Please enter Email Address');
+           flag = false;
+          }
+          if(password == ''){
+           $('#el_password').html('Please enter password');
+           flag = false;
+          }
+          return flag;
          }		 
          
          function register_user(e){
@@ -553,19 +570,23 @@
          
          function login_user(e){
          var baseUrl=$('base').attr("href");  
-         var vd = validate();
-         $('#page-loader').fadeIn();			   
+         var vd = validates();
+         if(vd==true){
+          $('#el_email').html('');
+          $('#el_password').html('');
+		  $('#page-loader').fadeIn();			   
             $.ajax({
          	type: 'POST',
          	url:  baseUrl + "auth/login",
          	data: $('#login').serialize(),
          	success: function (response) {
-         	  var res = JSON.parse(response);
-         	  showAlert('success',res.message);
          	  $('#page-loader').fadeOut();
          	  window.location.reload();
          	}
-           });	  
+           });
+		 }else{
+         $('#page-loader').fadeOut(); 
+         } 	
          return false;
          } 
 		 
