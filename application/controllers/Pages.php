@@ -14,46 +14,164 @@ class Pages extends MY_Controller {
 	}
 
 	//Home Page
-	public function index()
-	{
-		$data['title']=$this->lang->line("text_home");
-		$article_data=array();
-		//get all categories
-		$categories = $this->article_model->get_categories($params = array());
-		if(isset($categories)&&$categories!=NULL){
-			$i=0;
-			foreach($categories as $category){
-				$article_data[$i]['category_id']=$category['id'];
-				$article_data[$i]['category_name']=$category['category_name'];
-				$article_data[$i]['category_slug']=$category['slug'];
-				$article_data[$i]['category_description']=$category['category_description'];
-				$article_data[$i]['category_icon']=$category['category_icon'];
-				$article_data[$i]['category_ordering']=$category['ordering'];
-				$article_data[$i]['num_articles']=$category['num_articles'];
-
-				$keyword=NULL;
-				$category=$category['id'];
-				$status='PUBLISHED';
-				if(!empty($keyword)){
-					$conditions['search']['keyword'] = $keyword;
-				}
-				if(!empty($category)){
-					$conditions['search']['category'] = $category;
-				}
-				if(!empty($status)){
-					$conditions['search']['status'] = $status;
-				}
-				//set start and limit
-				$conditions['start'] = 0;
-				$conditions['limit'] = 5;
-				$conditions['keep_order'] = TRUE;
-				$article_data[$i]['articles']=$this->article_model->get_articles($conditions);;
-				$i++;
-			}
+	public function index($slug, $slug1=null, $slug2=null, $slug3=null)
+	{   $data = array();
+	    if($slug2!=''){
+		 $details = $this->home->get_slugDetails($slug2);
+		 if(empty($details)){
+			$this->error404();
+		 }		 
+		}else if($slug1!=''&&$slug2==''){
+		 $details = $this->home->get_slugDetails($slug1);
+		 if(empty($details)){
+			$this->error404();
+		 }		 
+		}else if($slug!=''&&$slug1==''&&$slug2==''){
+		 $details = $this->home->get_slugDetails($slug);
+		 if(empty($details)){
+			$this->error404();
+		 }		 
+		}else{
+		 $this->error404();	
+		}		
+		if($details->name=='city'){
+			$this->cities($details);
+		}if($details->name=='locality'){
+			$this->localities($details);
+		}if($details->name=='builder'){
+			$this->builders($details);
+		}if($details->name=='page'){
+			$this->page($details);
 		}
-		$data['article_data']=$article_data;
-		$data['sub_view'] = $this->load->view('site/pages/home', $data, TRUE);
-        $this->load->view('site/_layout', $data); 
+	}
+	
+	
+	/**
+     * All Page
+     */
+    private function page($page)
+    {
+        $data['page'] = $page;
+        
+        if (empty($data['page']) || $data['page'] == null) {
+            $this->error404();
+        } else if ($data['page']->is_active == 0 || $data['page']->url == '') {
+            $this->error404();
+        } else {
+            $data['title'] = '';//$data['page']->title;
+            $data['description'] = '';//$data['page']->page_description;
+            $data['keywords'] = '';//$data['page']->page_keywords;
+
+            $data['sub_view'] = $this->load->view('site/pages/'.$page->file, $data, TRUE);
+            $this->load->view('site/_layout', $data); 
+        }
+    }
+
+
+	/**
+     * Project Page
+     */
+    private function project($page)
+    {
+        $data['page'] = $page;
+        
+        if (empty($data['page']) || $data['page'] == null) {
+            $this->error404();
+        } else if ($data['page']->is_active == 0 || $data['page']->url == '') {
+            $this->error404();
+        } else {
+            $data['title'] = '';//$data['page']->title;
+            $data['description'] = '';//$data['page']->page_description;
+            $data['keywords'] = '';//$data['page']->page_keywords;
+
+            $data['sub_view'] = $this->load->view('site/pages/cities', $data, TRUE);
+            $this->load->view('site/_layout', $data); 
+        }
+    }
+	
+	
+	/**
+     * Project Page
+     */
+    private function cities($page)
+    {
+        $data['page'] = $page;
+        
+        if (empty($data['page']) || $data['page'] == null) {
+            $this->error404();
+        } else if ($data['page']->is_active == 0 || $data['page']->url == '') {
+            $this->error404();
+        } else {
+			$data['city'] = $page->parent_id;
+			$data['title'] = '';//$data['page']->title;
+            $data['description'] = '';//$data['page']->page_description;
+            $data['keywords'] = '';//$data['page']->page_keywords;
+            $data['cities_locations'] = $this->home->cities_locations($page->parent_id);//$data['page']->page_keywords;
+
+            $data['sub_view'] = $this->load->view('site/pages/cities', $data, TRUE);
+            $this->load->view('site/_layout', $data); 
+        }
+    }
+
+	/**
+     * Localities Page
+     */
+    private function localities($page)
+    {
+        $data['page'] = $page;
+        
+        if (empty($data['page']) || $data['page'] == null) {
+            $this->error404();
+        } else if ($data['page']->is_active == 0 || $data['page']->url == '') {
+            $this->error404();
+        } else {
+			$data['city'] = $page->parent_id;
+			$data['title'] = '';//$data['page']->title;
+            $data['description'] = '';//$data['page']->page_description;
+            $data['keywords'] = '';//$data['page']->page_keywords;
+            $data['popular_projects'] = $this->home->popular_projects($page->parent_id);//$data['page']->page_keywords;
+            $data['best_builders'] = $this->home->_builders($page->parent_id);//$data['page']->page_keywords;
+            $data['sub_view'] = $this->load->view('site/pages/'.$page->file, $data, TRUE);
+            $this->load->view('site/_layout', $data); 
+        }
+    }
+
+
+	/**
+     * Builder Page
+     */
+    private function builders($page)
+    {
+        $data['page'] = $page;
+        
+        if (empty($data['page']) || $data['page'] == null) {
+            $this->error404();
+        } else if ($data['page']->is_active == 0 || $data['page']->url == '') {
+            $this->error404();
+        } else {
+            $data['title'] = '';//$data['page']->title;
+            $data['description'] = '';//$data['page']->page_description;
+            $data['keywords'] = '';//$data['page']->page_keywords;
+			
+			$id = $page->parent_id;		
+			$data['builder'] = $this->builder_model->get_builder($id);
+			$builder_projects = $this->builder_model->get_builderProjects($id);
+			$data['builder_projects'] = $builder_projects;
+			$data['is_builder'] = TRUE;
+			$data['is_project'] = FALSE;
+            $data['sub_view'] = $this->load->view('site/pages/builders-or-projects', $data, TRUE);
+            $this->load->view('site/_layout', $data); 
+        }
+    }
+	
+	/**
+     * Property Page
+     */
+    private function post($slug)
+    {
+		
+		
+		
 	}
 
 	//Get Search Suggestions AJAX
@@ -167,36 +285,6 @@ class Pages extends MY_Controller {
         $this->load->view('site/_layout', $data); 
 	}	
 	
-	public function cities(){
-		$data['title']=$this->lang->line("text_search_result");
-		$data['keyword']='';
-		$data['sub_view'] = $this->load->view('site/pages/cities', $data, TRUE);
-        $this->load->view('site/_layout', $data); 
-	}	
-	
-	public function localities(){
-		$data['title']=$this->lang->line("text_search_result");
-		$data['keyword']='';
-		$data['sub_view'] = $this->load->view('site/pages/localities', $data, TRUE);
-        $this->load->view('site/_layout', $data); 
-	}	
-	
-	public function builders(){
-		$data['title']=$this->lang->line("text_search_result");
-		$data['keyword']='';
-		$data['is_builder']=true;
-		$data['is_project']=false;
-		//$data['city'] = $city;
-		$id = explode('--',$this->uri->segment(3));
-		
-		$data['builder'] = $this->builder_model->get_builder($id[1]);
-		$builder_projects = $this->builder_model->get_builderProjects($id[1]);
-		$data['builder_projects'] = $builder_projects;
-		$data['sub_view'] = $this->load->view('site/pages/builders-or-projects', $data, TRUE);
-        $this->load->view('site/_layout', $data); 
-	}	
-
-
 	public function projects(){
 		$data['title']=$this->lang->line("text_search_result");
 		$data['keyword']='';
@@ -628,6 +716,15 @@ class Pages extends MY_Controller {
         $json_array = array('languages' => $all_lang_array);
         echo json_encode($json_array);
         exit();
+    }
+	
+	    /*
+     * Error 404
+     */
+    public function error404()
+    {   $data = array();
+        echo $this->load->view('errors/error_404', $data, TRUE);
+		exit;
     }
 
 }

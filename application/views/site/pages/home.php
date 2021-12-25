@@ -30,8 +30,7 @@ bottom: -5px;
                   <input type="text" class="form-control form-control-lg autocomplete" placeholder="Search your property here..." name="search">
                   <button class="btn btn-lg btn-primary" type="button" id="hmain_search">Search</button>
 				  </div>
-				  <input type="hidden" id="search" name="content">
-	  
+				  <input type="hidden" id="search" name="content">	  
 				  </form>
 		
 	  </div>
@@ -651,22 +650,21 @@ var baseUrl=$('base').attr("href");
 	   var str  = atob(content);
 	   var res = str.split('_');
 	   if(res[0]=='LOC'){
-	     var mainURL  = baseUrl + 'search/properties/';
+	     var mainURL  = baseUrl + 'property/';
 		 if(type==undefined){ type = ''; }
 		 if(search==undefined){ search = ''; }
 	     if(content==undefined){ content = ''; }
 		 window.location.href = mainURL+main+'?location='+search+'&type='+type+'&content='+content;   
 	   }
 	   if(res[0]=='PROJ'){
-		 var mainURL  = baseUrl +search+'--'+res[1];  
+		 var mainURL  = baseUrl + 'property/' + search + '--' + res[1];  
 		 window.location.href = mainURL;  
 	   }if(res[0]=='BLD'){
-		 var mainURL  = baseUrl + main+'/'+'builder/'+search+'--'+res[1];  
+		 var mainURL  = baseUrl + 'property/' + main + '/' + search + '--' + res[1];  
 		 window.location.href = mainURL;  
 	   }if(content==''){
-		 var mainURL  = baseUrl + 'search/properties/'+main;
+		 var mainURL  = baseUrl + 'property/' + main;
 		 window.location.href = mainURL;  
 	   }
-   }
-   
+   }   
 </script>

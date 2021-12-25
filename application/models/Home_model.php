@@ -167,8 +167,46 @@ class Home_model extends MY_Model{
             return $return_data;
         }
     }
-
 	
+	
+	
+	public function get_slugDetails($slug){		
+		$this->db->select('list.*');
+        $this->db->from('listings list');
+		$this->db->where('list.url',$slug);
+		$query = $this->db->get();
+		//return fetched data
+        return ($query->num_rows() > 0)?$query->row():array();
+	}
+
+
+	public function cities_locations($id){		
+		$this->db->select('lc.*');
+        $this->db->from('locations lc');
+		$this->db->where('lc.city_id',$id);
+		$query = $this->db->get();
+		//return fetched data
+        return ($query->num_rows() > 0)?$query->result():FALSE;
+	}
+
+	public function popular_projects($id){		
+		$this->db->select('p.*');
+        $this->db->from('projects p');
+		$this->db->where('p.locality_id',$id);
+		$query = $this->db->get();
+		//return fetched data
+        return ($query->num_rows() > 0)?$query->result():FALSE;
+	}
+
+	public function _builders($id){		
+		$this->db->select('b.*');
+        $this->db->from('builders b');
+        $this->db->join('projects p','b.id = p.builder_id','LEFT');
+		$this->db->where('p.locality_id',$id);
+		$query = $this->db->get();
+		//return fetched data
+        return ($query->num_rows() > 0)?$query->result():FALSE;
+	}	
 
 }
 
