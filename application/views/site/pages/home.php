@@ -340,16 +340,110 @@ bottom: -5px;
 	  </div>
 	 </section>
 	  
-	  <section class="section fndhm">
+	  <section class="section bdrsec">
    <div class="container">
-      <div class="row justify-content-center mt-3 mb-3">
+      <div class="row justify-content-center mt-3 mb-4">
          <div class="col-xl-6 col-lg-7 col-md-8 text-center">
-            <h2 class="pg-title-big">Find your home with <span class="text-primary">Propvenues!</span></h2>
-            <p class="text-hdln">Just regist to be our member, let us know your full information and then buy your
-               home to the most profitable budget!
-            </p>
+            <h2 class="pg-title-big">Popular  <span class="text-primary">builders!</span></h2>
          </div>
       </div>
+	  
+	  <div class="row justify-content-center">
+         <div class="col-xl-10 col-lg-11 col-md-12">
+			
+			<div id="#builderCarausel" class="owl-carousel owl-theme bldrc mb-4">
+				 
+				 <div class="item">
+					<div class="card bldc mb-3">
+						<div class="card-body d-flex">
+							<div class="bldpic">
+								<img src="<?= base_url(); ?>assets/images/builders/Jaypee-Group-Logo.png" />
+							</div>
+							<div>
+								<a class="bldnme" href="javascript:;">Jaypee Greens</a>
+								<div class="d-flex blddth">
+									<span class="me-3">Exp: <strong>21 Years</strong></span>  |  <span class="me-3 ms-3">Total Projects: <strong>72</strong></span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card bldc">
+						<div class="card-body d-flex">
+							<div class="bldpic">
+								<img src="<?= base_url(); ?>assets/images/builders/Jaypee-Group-Logo.png" />
+							</div>
+							<div>
+								<a class="bldnme" href="javascript:;">ATS Group</a>
+								<div class="d-flex blddth">
+									<span class="me-3">Exp: <strong>21 Years</strong></span>  |  <span class="me-3 ms-3">Total Projects: <strong>72</strong></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				 </div>
+				 <div class="item">
+					<div class="card bldc mb-3">
+						<div class="card-body d-flex">
+							<div class="bldpic">
+								<img src="<?= base_url(); ?>assets/images/builders/Jaypee-Group-Logo.png" />
+							</div>
+							<div>
+								<a class="bldnme" href="javascript:;">Prateek Group</a>
+								<div class="d-flex blddth">
+									<span class="me-3">Exp: <strong>21 Years</strong></span>  |  <span class="me-3 ms-3">Total Projects: <strong>72</strong></span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card bldc">
+						<div class="card-body d-flex">
+							<div class="bldpic">
+								<img src="<?= base_url(); ?>assets/images/builders/Jaypee-Group-Logo.png" />
+							</div>
+							<div>
+								<a class="bldnme" href="javascript:;">Eldeco Group</a>
+								<div class="d-flex blddth">
+									<span class="me-3">Exp: <strong>21 Years</strong></span>  |  <span class="me-3 ms-3">Total Projects: <strong>72</strong></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				 </div>
+				 
+				 <div class="item">
+					<div class="card bldc mb-3">
+						<div class="card-body d-flex">
+							<div class="bldpic">
+								<img src="<?= base_url(); ?>assets/images/builders/Jaypee-Group-Logo.png" />
+							</div>
+							<div>
+								<a class="bldnme" href="javascript:;">Mahagun Group</a>
+								<div class="d-flex blddth">
+									<span class="me-3">Exp: <strong>21 Years</strong></span>  |  <span class="me-3 ms-3">Total Projects: <strong>72</strong></span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card bldc">
+						<div class="card-body d-flex">
+							<div class="bldpic">
+								<img src="<?= base_url(); ?>assets/images/builders/Jaypee-Group-Logo.png" />
+							</div>
+							<div>
+								<a class="bldnme" href="javascript:;">Gulshan Homez</a>
+								<div class="d-flex blddth">
+									<span class="me-3">Exp: <strong>21 Years</strong></span>  |  <span class="me-3 ms-3">Total Projects: <strong>72</strong></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				 </div>
+		 
+			</div>
+
+         </div>
+      </div>
+	  
    </div>
 </section>
 	  

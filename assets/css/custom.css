@@ -284,6 +284,11 @@ a{
 	background-size: cover;
 	background-position: top center;
 }
+.bdrsec {
+	background: #efefef url(../images/shape-3.png) no-repeat;
+	background-size: cover;
+	background-position: top left;
+}
 .pg-title{font-size: 1.5rem;
   font-weight: 700;}
 .pg-title-big {
@@ -1422,6 +1427,25 @@ table.table tr td, table.table tr th{
 	    max-width: calc(100% - 4px);
     max-height: calc(100% - 4px);
 }
+.bldpic{
+	width: 60px;
+    height: 60px;
+    max-width: 60px;
+	min-width:60px;
+	background:#fff;
+	border-radius:.35rem;
+	position:relative;
+	margin-right:1rem;
+	    border: 1px solid rgba(0,0,0,.05);
+}
+.bldpic img{
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%, -50%);
+	    max-width: calc(100% - 4px);
+    max-height: calc(100% - 4px);
+}
 .bldrdtl{
 	color:#777c60;
 }
@@ -1437,6 +1461,21 @@ table.table tr td, table.table tr th{
 	line-height:1.2rem;
 	color:rgba(0,0,0,.4);
 }
+.bldnme{
+	font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.65rem;
+    display: block;
+	color:#000;
+}
+.blddth{
+	color: #7f7f7f;
+	font-size: .775rem;
+}
+.card.bldc{
+	border-radius:.75rem;
+}
+
 .ui-widget.ui-widget-content .ui-menu-item .ui-menu-item-wrapper {
     padding: 10px 16px;
 }
