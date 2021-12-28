@@ -12,6 +12,7 @@ position: relative;
 bottom: -5px;
 }
 </style>
+<?php $title = $info->name; ?>
 <section class="section city-area pt-0">
    <div class="container-fluid">
       <div class="row justify-content-center">
@@ -21,7 +22,7 @@ bottom: -5px;
                   <div class="pv-breadcrumb twht mb-4">
                      <a href="javascript:;">Home</a>
                      <a href="javascript:;">Property in Noida</a>
-                     <a href="javascript:;" class="current">Property in Noida 44</a>
+                     <a href="javascript:;" class="current">Property in <?= $title; ?></a>
                   </div>
                </div>
                <div class="col-md-4 text-end py-3">
@@ -34,7 +35,7 @@ bottom: -5px;
    <div class="container">
       <div class="row justify-content-center text-center">
          <div class="col-xl-8 col-lg-9 col-md-10 col-sm-11">
-            <h1 class="srhtitle">Noida 44</h1>
+            <h1 class="srhtitle"><?= $title; ?></h1>
             <h5 class="srhtitle-sb">Search from 431 properties</h5>
             <form name="search_properties" method="POST" action="">
                <div class="srch-box mt-5 mb-5">
@@ -58,7 +59,7 @@ bottom: -5px;
          <div class="row">
             <div class="col-md-6 mb-4">
                <div class="bxc bg-lgrn">
-                  <h2 class="cmn-title mb-3">New Launch Projects in <span class="text-primary">Noida 44</span></h2>
+                  <h2 class="cmn-title mb-3">New Launch Projects in <span class="text-primary"><?= $title; ?></span></h2>
                   <ul class="culst bldlst">
                      <li class="d-flex">
                         <div class="bpphoto">
@@ -66,43 +67,16 @@ bottom: -5px;
                         </div>
                         <div>
                            <a href="javascript:;">Antara Senior Living Noida Phase1</a>
-                           <div class="d-flex bldrdtl">Project REAA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
-                        </div>
-                     </li>
-                     <li class="d-flex">
-                        <div class="bpphoto">
-                           <img src="<?= base_url(); ?>assets/images/builders/ats-Logo.png" />
-                        </div>
-                        <div>
-                           <a href="javascript:;">ATS Green Homekraft Pious Orchards</a>
-                           <div class="d-flex bldrdtl">Project REAA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
-                        </div>
-                     </li>
-                     <li class="d-flex">
-                        <div class="bpphoto">
-                           <img src="<?= base_url(); ?>assets/images/builders/ats-Logo.png" />
-                        </div>
-                        <div>
-                           <a href="javascript:;">ATS Green Kingston Heath</a>
-                           <div class="d-flex bldrdtl">Project REAA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
-                        </div>
-                     </li>
-                     <li class="d-flex">
-                        <div class="bpphoto">
-                           <img src="<?= base_url(); ?>assets/images/builders/ats-Logo.png" />
-                        </div>
-                        <div>
-                           <a href="javascript:;">Supertech Golf country Phase P2</a>
-                           <div class="d-flex bldrdtl">Project REAA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
+                           <div class="d-flex bldrdtl">Project RERA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
                         </div>
                      </li>
                   </ul>
-                  <a class="rdmr-link" href="javascript:;">Explore All<i class="bi bi-arrow-right"></i></a>
+                  
                </div>
             </div>
             <div class="col-md-6 mb-4">
                <div class="bxc bg-lorng">
-                  <h2 class="cmn-title mb-3">Pre-Launch Projects in <span class="text-primary">Noida 44</span></h2>
+                  <h2 class="cmn-title mb-3">Pre-Launch Projects in <span class="text-primary"><?= $title; ?></span></h2>
                   <ul class="culst bldlst">
                      <li class="d-flex">
                         <div class="bpphoto">
@@ -110,43 +84,16 @@ bottom: -5px;
                         </div>
                         <div>
                            <a href="javascript:;">Godrej Properties Woods Phase II</a>
-                           <div class="d-flex bldrdtl">Project REAA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
-                        </div>
-                     </li>
-                     <li class="d-flex">
-                        <div class="bpphoto">
-                           <img src="<?= base_url(); ?>assets/images/builders/ats-Logo.png" />
-                        </div>
-                        <div>
-                           <a href="javascript:;">Godrej Properties Palm Retreat 2</a>
-                           <div class="d-flex bldrdtl">Project REAA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
-                        </div>
-                     </li>
-                     <li class="d-flex">
-                        <div class="bpphoto">
-                           <img src="<?= base_url(); ?>assets/images/builders/ats-Logo.png" />
-                        </div>
-                        <div>
-                           <a href="javascript:;">Star Landcraft Ace Starlit</a>
-                           <div class="d-flex bldrdtl">Project REAA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
-                        </div>
-                     </li>
-                     <li class="d-flex">
-                        <div class="bpphoto">
-                           <img src="<?= base_url(); ?>assets/images/builders/ats-Logo.png" />
-                        </div>
-                        <div>
-                           <a href="javascript:;">Supertech Golf country Phase P2</a>
-                           <div class="d-flex bldrdtl">Project REAA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
+                           <div class="d-flex bldrdtl">Project RERA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
                         </div>
                      </li>
                   </ul>
-                  <a class="rdmr-link" href="javascript:;">Explore All<i class="bi bi-arrow-right"></i></a>
+                  
                </div>
             </div>
             <div class="col-md-6 mb-4">
                <div class="bxc bg-lprpl">
-                  <h2 class="cmn-title mb-3">Luxury Projects in <span class="text-primary">Noida 44</span></h2>
+                  <h2 class="cmn-title mb-3">Luxury Projects in <span class="text-primary"><?= $title; ?></span></h2>
                   <ul class="culst bldlst">
                      <li class="d-flex">
                         <div class="bpphoto">
@@ -154,78 +101,51 @@ bottom: -5px;
                         </div>
                         <div>
                            <a href="javascript:;">Godrej Properties Woods Phase II</a>
-                           <div class="d-flex bldrdtl">Project REAA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
-                        </div>
-                     </li>
-                     <li class="d-flex">
-                        <div class="bpphoto">
-                           <img src="<?= base_url(); ?>assets/images/builders/ats-Logo.png" />
-                        </div>
-                        <div>
-                           <a href="javascript:;">Godrej Properties Palm Retreat 2</a>
-                           <div class="d-flex bldrdtl">Project REAA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
-                        </div>
-                     </li>
-                     <li class="d-flex">
-                        <div class="bpphoto">
-                           <img src="<?= base_url(); ?>assets/images/builders/ats-Logo.png" />
-                        </div>
-                        <div>
-                           <a href="javascript:;">Star Landcraft Ace Starlit</a>
-                           <div class="d-flex bldrdtl">Project REAA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
-                        </div>
-                     </li>
-                     <li class="d-flex">
-                        <div class="bpphoto">
-                           <img src="<?= base_url(); ?>assets/images/builders/ats-Logo.png" />
-                        </div>
-                        <div>
-                           <a href="javascript:;">Supertech Golf country Phase P2</a>
-                           <div class="d-flex bldrdtl">Project REAA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
+                           <div class="d-flex bldrdtl">Project RERA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
                         </div>
                      </li>
                   </ul>
-                  <a class="rdmr-link" href="javascript:;">Explore All<i class="bi bi-arrow-right"></i></a>
+                  
                </div>
             </div>
             <div class="col-md-6 mb-4">
                <div class="bxc bg-lpnk">
-                  <h2 class="cmn-title mb-3">Popular Projects in <span class="text-primary">Noida 44</span></h2>
+                  <h2 class="cmn-title mb-3">Popular Projects in <span class="text-primary"><?= $title; ?></span></h2>
                   <ul class="culst bldlst">
-                     <?php foreach($popular_projects as $project){ ?>
+                     <?php if(!empty($popular_projects)){ foreach($popular_projects as $project){ ?>
 					 <li class="d-flex">
                         <div class="bpphoto">
-                           <img src="<?= base_url(); ?>assets/images/builders/ats-Logo.png" />
+                           <img src="<?= base_url(); ?>uploads/builders/<?= $project->site_layout; ?>" />
                         </div>
                         <div>
                            <a href="javascript:;"><?= $project->project_name; ?></a>
-                           <div class="d-flex bldrdtl">Project REAA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
+                           <?php if($project->rera_registrationNumber!=''){ ?><div class="d-flex bldrdtl">Project RERA ID:<strong class="ms-1"><?= $project->rera_registrationNumber; ?></strong></div><?php } ?>
                         </div>
                      </li>
-					 <?php } ?>
+					 <?php } } ?>
                   </ul>
-                  <a class="rdmr-link" href="javascript:;">Explore All<i class="bi bi-arrow-right"></i></a>
+                  
                </div>
             </div>
             <div class=" col-xl-8 col-md-6 mb-4">
                <div class="bxc bg-logrn">
-                  <h2 class="cmn-title mb-3">Best Property Builders in <span class="text-primary">Noida 44</span></h2>
+                  <h2 class="cmn-title mb-3">Best Property Builders in <span class="text-primary"><?= $title; ?></span></h2>
                   <ul class="culst bldlst">
-                     <?php foreach($best_builders as $builder){ ?>
+                    <?php if(!empty($best_builders)){ foreach($best_builders as $builder){ ?>
 					 <li class="d-flex">
                         <div class="bpphoto">
-                           <img src="<?= base_url(); ?>assets/images/builders/Jaypee-Group-Logo.png" />
+                           <img src="<?= base_url(); ?>uploads/builders/<?= $builder->builder_logo; ?>" />
                         </div>
                         <div>
-                           <a href="javascript:;">Jaypee Greens Noida</a>
+                           <a href="<?= base_url(); ?><?= $builder->slug; ?>"><?= $builder->builder_name; ?></a>
                            <div class="d-flex bldrdtl">
                               <span class="me-3">Exp: <strong>21 Years</strong></span>  |  <span class="me-3 ms-3">Total Projects: <strong>72</strong></span>  |   <span class="ms-3">Ongoing Projects: <strong>16</strong></span>
                            </div>
                         </div>
                      </li>
-					 <?php } ?>
+					<?php } } ?>
                   </ul>
-                  <a class="rdmr-link" href="javascript:;">Explore All<i class="bi bi-arrow-right"></i></a>
+                  
                </div>
             </div>
          </div>

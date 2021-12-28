@@ -49,15 +49,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:    my-controller/index    -> my_controller/index
 |        my-controller/my-method    -> my_controller/my_method
 */
-//$route['default_controller'] = 'pages';
+
+include_once "route_slugs.php";
+//routes
+$r_admin = $custom_slug_array["admin"];
+
 $route['default_controller']         = 'home';
 $route['404_override']               = 'c_404';
-$route['translate_uri_dashes']       = TRUE;
-$route['property/(:any)']                    = 'pages/index/$1';
-$route['property/(:any)/(:any)']             = 'pages/index/$1/$2';
-$route['property/(:any)/(:any)/(:any)']      = 'pages/index/$1/$2/$3';
-//$route['post-property']             = 'pages/post_property';
-/*$route['properties-details/(:any)']  = 'home/properties_details';
+$route['translate_uri_dashes']       = FALSE;
+$route['properties-details/(:any)']  = 'home/properties_details';
 
 $route['locations/(:any)']           = 'home/locations_info';
 $route['properties-listings']        = 'home/properties_listings';
@@ -71,8 +71,8 @@ $route['advertise-with-us']          = 'pages/advertise_with_us';
 $route['home-loan']                  = 'pages/home_loan';
 $route['cities']                     = 'pages/cities';
 $route['localities']                 = 'pages/localities';
-$route['(:any)/builder/(:any)']      = 'pages/builders';
-$route['projects/(:any)/(:any)']     = 'pages/projects';
+//$route['(:any)/builder/(:any)']      = 'pages/builders';
+//$route['projects/(:any)/(:any)']     = 'pages/projects';
 $route['price-trends']               = 'pages/price_trends';
 $route['offers']                     = 'pages/offers';
 $route['emi-calculator']             = 'pages/emi_calculator';
@@ -83,35 +83,44 @@ $route['privacy-policy']             = 'pages/privacy_policy';
 $route['terms-of-uses']              = 'pages/terms_of_uses';
 $route['refund-policy']              = 'pages/refund_policy';
 $route['disclaimer']                 = 'pages/disclaimer';
-$route['profile']                    = 'pages/profile';*/
+$route['profile']                    = 'pages/profile';
 
 //Admin Authentication
-$route['admin/login']                    = 'admin/auth/login';
-$route['admin/logout']                   = 'admin/auth/logout';
-$route['admin/forgot-password']          = 'admin/auth/forgot_password';
-$route['admin/reset-password/(:any)']    = 'admin/auth/reset_password/$1';
+$route[$r_admin . '/login']                    = 'admin/auth/login';
+$route[$r_admin . '/logout']                   = 'admin/auth/logout';
+$route[$r_admin . '/forgot-password']          = 'admin/auth/forgot_password';
+$route[$r_admin . '/reset-password/(:any)']    = 'admin/auth/reset_password/$1';
 //Admin Profile
-$route['admin']                          = 'admin/profile/dashboard';
-$route['admin/profile']                  = 'admin/profile/index';
-$route['admin/change-password']          = 'admin/profile/change_password';
-$route['admin/switch/(:any)']            = 'admin/profile/switch_language/$1';
+$route[$r_admin]                               = 'admin/profile/dashboard';
+$route[$r_admin . '/profile']                  = 'admin/profile/index';
+$route[$r_admin . '/change-password']          = 'admin/profile/change_password';
+$route[$r_admin . '/switch/(:any)']            = 'admin/profile/switch_language/$1';
 //Admin Users
-$route['admin/users']                    = 'admin/users/list_users';
-$route['admin/user/view']                = 'admin/users/view_user';
-$route['admin/user/add']                 = 'admin/users/add_user';
-$route['admin/user/create']              = 'admin/users/create_user';
-$route['admin/user/edit']                = 'admin/users/edit_user';
-$route['admin/user/update']              = 'admin/users/update_user';
-$route['admin/user/block']               = 'admin/users/block_user';
-$route['admin/user/unblock']             = 'admin/users/unblock_user';
-$route['admin/user/delete']              = 'admin/users/delete_user';
+$route[$r_admin . '/users']                    = 'admin/users/list_users';
+$route[$r_admin . '/user/view']                = 'admin/users/view_user';
+$route[$r_admin . '/user/add']                 = 'admin/users/add_user';
+$route[$r_admin . '/user/create']              = 'admin/users/create_user';
+$route[$r_admin . '/user/edit']                = 'admin/users/edit_user';
+$route[$r_admin . '/user/update']              = 'admin/users/update_user';
+$route[$r_admin . '/user/block']               = 'admin/users/block_user';
+$route[$r_admin . '/user/unblock']             = 'admin/users/unblock_user';
+$route[$r_admin . '/user/delete']              = 'admin/users/delete_user';
 //Admin Settings
-$route['admin/settings/site']            = 'admin/settings/site_settings';
-$route['admin/settings/social-media']    = 'admin/settings/social_media_settings';
-$route['admin/settings/seo']             = 'admin/settings/seo_settings';
-$route['admin/settings/permissions']     = 'admin/settings/permissions';
-$route['admin/settings/app']             = 'admin/settings/app_settings';
-$route['admin/settings/email']           = 'admin/settings/email_settings';
-$route['admin/settings/email-templates'] = 'admin/settings/email_templates';
+$route[$r_admin . '/settings/site']            = 'admin/settings/site_settings';
+$route[$r_admin . '/settings/social-media']    = 'admin/settings/social_media_settings';
+$route[$r_admin . '/settings/seo']             = 'admin/settings/seo_settings';
+$route[$r_admin . '/settings/permissions']     = 'admin/settings/permissions';
+$route[$r_admin . '/settings/app']             = 'admin/settings/app_settings';
+$route[$r_admin . '/settings/email']           = 'admin/settings/email_settings';
+$route[$r_admin . '/settings/email-templates'] = 'admin/settings/email_templates';
+$route[$r_admin . '/masters/(:any)'] = 'admin/masters/$1';
+$route[$r_admin . '/builders/(:any)'] = 'admin/builders/$1';
+$route[$r_admin . '/projects/(:any)'] = 'admin/projects/$1';
+$route[$r_admin . '/properties/(:any)'] = 'admin/properties/$1';
 
 /* New Methods */
+
+$route['(:any)']['GET']              = 'pages/any/$1';
+$route['(:any)/(:any)']['GET']       = 'pages/any/$1/$2';
+$route['(:any)/(:any)/(:any)']['GET']  = 'pages/any/$1/$2/$3';
+//$route['post-property']             = 'pages/post_property';

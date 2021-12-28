@@ -49,8 +49,23 @@ class Projects_model extends MY_Model{
             return $details;
         }else{
             return FALSE;
-        }	
-		
+        }
+	}
+
+	public function project_Info($id){
+	 $this->db->select("CONCAT(b.builder_name,' ',p.project_name,' ',l.name,' ',c.name) as project_name, p.id");
+     $this->db->from('projects p');
+     $this->db->join('builders b','p.builder_id = b.id','LEFT');
+     $this->db->join('locations l','p.locality_id = l.id','LEFT');
+     $this->db->join('cities c','p.city_id = c.id','LEFT');
+     $this->db->where('p.id',$id);
+	 $query = $this->db->get();
+        if($query->num_rows() > 0){
+            $details=$query->row();
+            return $details;
+        }else{
+            return FALSE;
+        }
 	}
 	
 		//get user by id
@@ -99,6 +114,7 @@ class Projects_model extends MY_Model{
             if($update_id){
                 //if updated
                 $return_data=array(
+                    'id'=>$insert_id,
                     'status'=>TRUE,
                     'label'=>'SUCCESS',
                 );
@@ -106,6 +122,7 @@ class Projects_model extends MY_Model{
             }else{
                 //if not updated
                 $return_data=array(
+                    'id'=>'',
                     'status'=>FALSE,
                     'label'=>'ERROR',
                 );
@@ -114,6 +131,7 @@ class Projects_model extends MY_Model{
         }else{
             //if not inseted
             $return_data=array(
+                'id'=>'',
                 'status'=>FALSE,
                 'label'=>'ERROR',
             );

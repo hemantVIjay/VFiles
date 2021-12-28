@@ -203,6 +203,7 @@ class Home_model extends MY_Model{
         $this->db->from('builders b');
         $this->db->join('projects p','b.id = p.builder_id','LEFT');
 		$this->db->where('p.locality_id',$id);
+		$this->db->limit(10, 0);
 		$query = $this->db->get();
 		//return fetched data
         return ($query->num_rows() > 0)?$query->result():FALSE;

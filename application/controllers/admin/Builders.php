@@ -142,7 +142,8 @@ class Builders extends MY_Controller {
 
     //create user
     public function create_builder(){
-        if($this->input->post()){
+        $arr = array();
+		if($this->input->post()){
             //check permission
             if($this->permitted('add_user')){
                 $this->form_validation->set_rules('builder_name','Full Name','trim|required');
@@ -199,7 +200,15 @@ class Builders extends MY_Controller {
                     //XXS Clean
                     $post_data = $this->security->xss_clean($post_data);
                     $result = $this->builder_model->create_builder($post_data, $mdata);
-                    if ($result['status']==TRUE &&$result['label']=='SUCCESS') {
+					  $builder = $this->builder_model->get_builder($result['id']);
+						$arr['name'] = 'builder';
+						$arr['url']  = $builder['slug'];
+						$arr['parent_id'] = $builder['id'];
+						$arr['status'] = 1;
+						$arr['file'] = '';
+						$arr['is_active'] = 1;
+					  $lr = _listRecord($arr);
+				    if ($result['status']==TRUE &&$result['label']=='SUCCESS') {
                         $success = TRUE;
                         $message = $this->lang->line("alert_user_created");
                     }elseif($result['status']==FALSE &&$result['label']=='EXIST'){

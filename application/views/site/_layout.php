@@ -67,16 +67,14 @@
                   Buy in Noida
                </a>
             </div>
-			<!--<div class="input-group gblsrh">	
-                  <input type="text" class="form-control form-control-lg autocomplete ui-autocomplete-input" placeholder="Search your property here..." name="m_search" autocomplete="off">
-                  <input type="text" class="form-control form-control-lg autocomplete ui-autocomplete-input" placeholder="Search your property here..." name="search" autocomplete="off">
-                  <button class="btn btn-lg btn-primary" type="button" id="main_search"><i class="bi bi-search"></i></button>				  
-		</div>-->
+            <!--<div class="input-group gblsrh">	
+               <input type="text" class="form-control form-control-lg autocomplete ui-autocomplete-input" placeholder="Search your property here..." name="i_search" autocomplete="off">
+               <button class="btn btn-lg btn-primary" type="button" id="imain_search"><i class="bi bi-search"></i></button>   </div>-->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-               <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">					
+               <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
                   <li class="nav-item">
                      <a class="btn btn-first" <?php if(isset($_SESSION['login']) && $_SESSION['login']['user_id']!=''){ ?>href="<?= base_url('post-property');?>" <?php }else{ ?>href="javascript:;" data-bs-toggle="modal" data-bs-target="#pvMdlLogin" <?php } ?> >
                         <span class="pvh-icon">
@@ -116,7 +114,7 @@
                   </li>
                   <li class="nav-item">
                      <?php if(isset($_SESSION['login']) && $_SESSION['login']['is_site_login']=='1'){ ?>
-					 <a class="nav-link usrlgd dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="javascript:;" ><img src="<?= base_url(); ?>assets/images/user.jpg" class="userPhot" /><span class="activeStatus"></span> <?= $_SESSION['login']['full_name']; ?></a>
+                     <a class="nav-link usrlgd dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="javascript:;" ><img src="<?= base_url(); ?>assets/images/user.jpg" class="userPhot" /><span class="activeStatus"></span> <?= $_SESSION['login']['full_name']; ?></a>
                      <div class="dropdown-menu dropdown-menu-end">
                         <div class="upbody d-flex align-items-center">
                            <div class="user-prof-photo">
@@ -167,8 +165,8 @@
                               <path fill-rule="evenodd" clip-rule="evenodd" d="M7 6C7 3.23858 9.23858 1 12 1C14.7614 1 17 3.23858 17 6V10C17 10.5523 16.5523 11 16 11C15.4477 11 15 10.5523 15 10V6C15 4.34315 13.6569 3 12 3C10.3431 3 9 4.34315 9 6V10C9 10.5523 8.55228 11 8 11C7.44772 11 7 10.5523 7 10V6Z" fill="#12131A"></path>
                            </svg>
                         </span>
-                       
-                     </a>-->
+                        
+                        </a>-->
                      <?php }else{ ?>					 
                      <a class="nav-link" href="javascript:;" data-bs-toggle="modal" data-bs-target="#pvMdlLogin">
                         <span class="pvh-icon">
@@ -183,7 +181,6 @@
                      <?php } ?>
                   </li>
                   <li class="nav-item">
-                     
                   </li>
                </ul>
             </div>
@@ -265,7 +262,6 @@
             </div>
          </div>
       </div>
-
       <!-- *****CONTENT***** -->
       <main class="main-content">
          <?= $sub_view; ?>
@@ -407,12 +403,15 @@
                               <div class="form-floating mb-4">
                                  <input type="email" class="form-control" name="email" id="l_email" placeholder="Username">
                                  <label for="email">Username</label>
-								 <span class="errors" id="el_email"></span>
+                                 <span class="errors" id="el_email"></span>
                               </div>
                               <div class="form-floating mb-4">
                                  <input type="password" class="form-control" name="password" id="l_password" placeholder="Password">
                                  <label for="floatingPassword">Password</label>
-								 <span class="errors" id="el_password"></span>
+                                 <span class="errors" id="el_password"></span>
+                              </div>
+                              <div class="mb-4 d-flex">
+                                 <span class="errors" id="l_response"></span>
                               </div>
                               <!--<div class="mb-4 d-flex">
                                  <input type="checkbox" class="cks" checked="">
@@ -473,141 +472,162 @@
       <!-- Toast Code End -->
       <!--Main Footer-->
       <!--<?php include_once('modals/offers.php'); ?>
-      <!--<?php //include_once('_footer.php'); ?>-->
-      <script>
-         function alertToasts(type, message){		  
-          var content = '<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11"><div class="toast align-items-center text-white bg-'+type+' border-0" role="alert" aria-live="assertive" aria-atomic="true"><div class="d-flex"><div class="toast-body">'+message+'</div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button></div></div>';
-          $('#toasts').append(content);
-         }
-          function showAlert(type, msg){
-         alertToasts(type,msg); 
-         $('.toast').toast('show');
-         }
-                             
-               $("#crtAcnt").click(function () {
-                   $("#sgnUp").show();
-                   $("#sgnIn").hide();
-               	$("#snI").hide();
-               	$("#snU").show();
-               });
-               
-               $("#lgnAcnt").click(function () {
-                   $("#sgnUp").hide();
-                   $("#sgnIn").show();
-               	$("#snU").hide();
-               	$("#snI").show();
-               });
-         
-         function validate(){
-          var fname = $('#full_name').val();
-          var phone = $('#mobile').val();
-          var password = $('#password').val();
-          var email = $('#email').val();
-          var terms = $('#terms');
-          var flag  = true;
-          
-          if(fname == ''){
-           $('#e_full_name').html('Please enter Full Name');
-           flag = false;
-          }if(phone == ''){
-           $('#e_phone').html('Please enter Mobile number');
-           flag = false;
-          }if(password == ''){
-           $('#e_password').html('Please enter Mobile number');
-           flag = false;
-          }if(email == ''){
-           $('#e_email').html('Please enter Email Address');
-           flag = false;
-          }if(terms.is(':checked')!=true){
-          $('#e_terms').html('Please select terms and conditions');
-          flag = false;
-          }/*else{
-           
-          }*/
-          return flag;
-         }
+         <!--<?php //include_once('_footer.php'); ?>-->
+<script>
+         function alertToasts(type, message) {
+			var content = '<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11"><div class="toast align-items-center text-white bg-' + type + ' border-0" role="alert" aria-live="assertive" aria-atomic="true"><div class="d-flex"><div class="toast-body">' + message + '</div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button></div></div>';
+			$('#toasts').append(content);
+		}
 
-         function validates(){
-          var email = $('#l_email').val();
-          var password = $('#l_password').val();
-          var flag  = true;
-          if(email == ''){
-           $('#el_email').html('Please enter Email Address');
-           flag = false;
-          }
-          if(password == ''){
-           $('#el_password').html('Please enter password');
-           flag = false;
-          }
-          return flag;
-         }		 
-         
-         function register_user(e){
-         var baseUrl=$('base').attr("href");  
-         var vd = validate();
-         $('#page-loader').fadeIn();
-         if(vd==true){
-          $('#e_full_name').html('');
-          $('#e_phone').html('');
-          $('#e_email').html('');
-          $('#e_terms').html('');			   
-            $.ajax({
-         	type: 'POST',
-         	url:  baseUrl + "auth/register",
-         	data: $('#register').serialize(),
-         	success: function (response) {
-         	  var res = JSON.parse(response);
-         	  $('#page-loader').fadeOut();
-         	  $('#register')[0].reset();
-         	  $('#response').html(res.message);
-         	}
-           });	  
-         }else{
-         $('#page-loader').fadeOut(); 
-         }
-         return false;
-         } 
-         
-         function login_user(e){
-         var baseUrl=$('base').attr("href");  
-         var vd = validates();
-         if(vd==true){
-          $('#el_email').html('');
-          $('#el_password').html('');
-		  $('#page-loader').fadeIn();			   
-            $.ajax({
-         	type: 'POST',
-         	url:  baseUrl + "auth/login",
-         	data: $('#login').serialize(),
-         	success: function (response) {
-         	  $('#page-loader').fadeOut();
-         	  window.location.reload();
-         	}
-           });
-		 }else{
-         $('#page-loader').fadeOut(); 
-         } 	
-         return false;
-         } 
-		 
-		  // $(document).ready(function(){
-                 // $("#ctDdwn").click(function(){
-                   // $(".ddmCity").slideToggle();
-                 // });
-               // });
-			   
+		function showAlert(type, msg) {
+			alertToasts(type, msg);
+			$('.toast').toast('show');
+		}
 
-$("#ctDdwn").click(function(e){
-    $(".ddmCity").show();
-     e.stopPropagation();
-});
+		$("#crtAcnt").click(function () {
+			$("#sgnUp").show();
+			$("#sgnIn").hide();
+			$("#snI").hide();
+			$("#snU").show();
+		});
 
-$(".ddmCity").click(function(e){
-    e.stopPropagation();
-});
+		$("#lgnAcnt").click(function () {
+			$("#sgnUp").hide();
+			$("#sgnIn").show();
+			$("#snU").hide();
+			$("#snI").show();
+		});
 
-$(document).click(function(){
-    $(".ddmCity").hide();
-});
+		function validate() {
+			var fname = $('#full_name').val();
+			var phone = $('#mobile').val();
+			var password = $('#password').val();
+			var email = $('#email').val();
+			var terms = $('#terms');
+			var flag = true;
 
+			if (fname == '') {
+				$('#e_full_name').html('Please enter Full Name');
+				flag = false;
+			}
+			if (phone == '') {
+				$('#e_phone').html('Please enter Mobile number');
+				flag = false;
+			}
+			if (password == '') {
+				$('#e_password').html('Please enter Mobile number');
+				flag = false;
+			}
+			if (email == '') {
+				$('#e_email').html('Please enter Email Address');
+				flag = false;
+			}
+			if (terms.is(':checked') != true) {
+				$('#e_terms').html('Please select terms and conditions');
+				flag = false;
+			}
+			/*else{
+					   
+					  }*/
+			return flag;
+		}
+
+		function validates() {
+			var email = $('#l_email').val();
+			var password = $('#l_password').val();
+			var flag = true;
+			if (email == '') {
+				$('#el_email').html('Please enter Email Address');
+				flag = false;
+			}
+			if (password == '') {
+				$('#el_password').html('Please enter password');
+				flag = false;
+			}
+			/*if(email!=''&&password!=''){
+			$.ajax({
+				type: 'POST',
+				url:  baseUrl + "auth/verify_Details",
+				data: {email:email,pass:password},
+				success: function (response) {
+				  var res = JSON.parse(response);
+				  $('#response').html(res.message);
+				}
+			  });  
+			}*/
+
+			return flag;
+		}
+
+		function register_user(e) {
+			var baseUrl = $('base').attr("href");
+			var vd = validate();
+			$('#page-loader').fadeIn();
+			if (vd == true) {
+				$('#e_full_name').html('');
+				$('#e_phone').html('');
+				$('#e_email').html('');
+				$('#e_terms').html('');
+				$.ajax({
+					type: 'POST',
+					url: baseUrl + "auth/register",
+					data: $('#register').serialize(),
+					success: function (response) {
+						var res = JSON.parse(response);
+						$('#page-loader').fadeOut();
+						$('#register')[0].reset();
+						$('#response').html(res.message);
+					}
+				});
+			} else {
+				$('#page-loader').fadeOut();
+			}
+			return false;
+		}
+
+		function login_user(e) {
+			$('#l_response').html('');
+			var baseUrl = $('base').attr("href");
+			var vd = validates();
+			if (vd == true) {
+				$('#el_email').html('');
+				$('#el_password').html('');
+				$.ajax({
+					type: 'POST',
+					url: baseUrl + "auth/login",
+					data: $('#login').serialize(),
+					success: function (response) {
+						var res = JSON.parse(response);
+						if (res.success == false) {
+							$('#l_response').html(res.message);
+						} else {
+							window.location.reload();
+						}
+					}
+				});
+			} else {
+				$('#page-loader').fadeOut();
+			}
+			return false;
+		}
+
+		// $(document).ready(function(){
+		// $("#ctDdwn").click(function(){
+		// $(".ddmCity").slideToggle();
+		// });
+		// });
+
+
+		$("#ctDdwn").click(function (e) {
+			$(".ddmCity").show();
+			e.stopPropagation();
+		});
+
+		$(".ddmCity").click(function (e) {
+			e.stopPropagation();
+		});
+
+		$(document).click(function () {
+			$(".ddmCity").hide();
+		});
       </script>

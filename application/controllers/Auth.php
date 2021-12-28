@@ -85,7 +85,7 @@ class Auth extends MY_Controller {
 		}
 		
 	}
-
+    
 	// Logout
 	public function logout() {
 		// Destroy session data

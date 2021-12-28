@@ -744,20 +744,22 @@ var baseUrl=$('base').attr("href");
 	   var str  = atob(content);
 	   var res = str.split('_');
 	   if(res[0]=='LOC'){
-	     var mainURL  = baseUrl + 'property/';
+	     var mainURL  = baseUrl + 'search/properties/';
 		 if(type==undefined){ type = ''; }
 		 if(search==undefined){ search = ''; }
 	     if(content==undefined){ content = ''; }
-		 window.location.href = mainURL+main+'?location='+search+'&type='+type+'&content='+content;   
+		 window.location.href = mainURL + main + '?location='+search+'&type='+type+'&content='+content;   
 	   }
 	   if(res[0]=='PROJ'){
-		 var mainURL  = baseUrl + 'property/' + search + '--' + res[1];  
+		 //var mainURL  = baseUrl + 'property/' + search + '--' + res[1];  
+		 var mainURL  = baseUrl + search;  
 		 window.location.href = mainURL;  
 	   }if(res[0]=='BLD'){
-		 var mainURL  = baseUrl + 'property/' + main + '/' + search + '--' + res[1];  
+		 //var mainURL  = baseUrl + 'property/' + main + '/' + search + '--' + res[1];  
+		 var mainURL  = baseUrl + main + '/' + search;  
 		 window.location.href = mainURL;  
 	   }if(content==''){
-		 var mainURL  = baseUrl + 'property/' + main;
+		 var mainURL  = baseUrl + main;
 		 window.location.href = mainURL;  
 	   }
    }   

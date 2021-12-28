@@ -14,9 +14,9 @@ class Pages extends MY_Controller {
 	}
 
 	//Home Page
-	public function index($slug, $slug1=null, $slug2=null, $slug3=null)
+	public function any($slug, $slug1=null, $slug2=null, $slug3=null)
 	{   $data = array();
-	    if($slug2!=''){
+		if($slug2!=''){
 		 $details = $this->home->get_slugDetails($slug2);
 		 if(empty($details)){
 			$this->error404();
@@ -106,6 +106,8 @@ class Pages extends MY_Controller {
 			$data['title'] = '';//$data['page']->title;
             $data['description'] = '';//$data['page']->page_description;
             $data['keywords'] = '';//$data['page']->page_keywords;
+			$data['popular_projects'] = $this->home->popular_projects($page->parent_id);
+			$data['best_builders'] = $this->home->_builders($page->parent_id);
             $data['cities_locations'] = $this->home->cities_locations($page->parent_id);//$data['page']->page_keywords;
 
             $data['sub_view'] = $this->load->view('site/pages/cities', $data, TRUE);
@@ -125,10 +127,11 @@ class Pages extends MY_Controller {
         } else if ($data['page']->is_active == 0 || $data['page']->url == '') {
             $this->error404();
         } else {
-			$data['city'] = $page->parent_id;
+			$data['locality'] = $page->parent_id;
 			$data['title'] = '';//$data['page']->title;
             $data['description'] = '';//$data['page']->page_description;
             $data['keywords'] = '';//$data['page']->page_keywords;
+            $data['info'] = $this->masters->get_record_id('locations', $page->parent_id);//$data['page']->page_keywords;
             $data['popular_projects'] = $this->home->popular_projects($page->parent_id);//$data['page']->page_keywords;
             $data['best_builders'] = $this->home->_builders($page->parent_id);//$data['page']->page_keywords;
             $data['sub_view'] = $this->load->view('site/pages/'.$page->file, $data, TRUE);

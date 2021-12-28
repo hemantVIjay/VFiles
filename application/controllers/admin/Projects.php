@@ -55,7 +55,7 @@ class Projects extends MY_Controller {
 			$data['page']=$page;
 			
 			$data['Projects']=$Projects;
-            $data['sub_view'] = $this->load->view('admin/projects/list_Projects', $data, TRUE);
+            $data['sub_view'] = $this->load->view('admin/Projects/list_projects', $data, TRUE);
         }else{
             $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
         }
@@ -67,7 +67,7 @@ class Projects extends MY_Controller {
         $data['title']=$this->lang->line("text_orders");
         if($this->permitted('list_users')){
             //get all user types
-            $data['sub_view'] = $this->load->view('admin/projects/add_projects', $data, TRUE);
+            $data['sub_view'] = $this->load->view('admin/Projects/add_projects', $data, TRUE);
         }else{
             $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
         }
@@ -111,7 +111,7 @@ class Projects extends MY_Controller {
           'project_name' => $this->input->post('project_name'),
           'locality_id' => $this->input->post('location'),
           'city_id' => $this->input->post('city'),
-          'district_id' => $city->district,
+          //'district_id' => $city->district,
           'state_id' => $city->state,
           'country_id' => $city->country,
           'project_address' => $this->input->post('address'),
@@ -173,6 +173,14 @@ class Projects extends MY_Controller {
         $post_data = $this->security->xss_clean($post_data);
 		
 		$result = $this->project->create_project($post_data, $specifications, $floorPlans);
+		$rec = $this->project->project_Info($result['id']);
+		  $arr['name'] = 'project';
+		  $arr['url']  = $rec->project_name;
+		  $arr['parent_id'] = $rec->id;
+		  $arr['status'] = 1;
+		  $arr['file'] = '';
+		  $arr['is_active'] = 1;
+		  $lr = _listRecord($arr);
 		redirect('admin/projects/list_projects','refresh');
     }
 	

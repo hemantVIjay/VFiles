@@ -5,7 +5,7 @@
             <h5 class="card-title">Add Locations</h5>
          </div>
          <div class="card-body">
-            <form method="POST" action="<?= base_url('admin/masters/create_localities'); ?>" enctype="multipart/form-data" accept-charset="utf-8">
+            <form method="POST" action="<?= base_url('admin/masters/add_localities'); ?>" enctype="multipart/form-data" accept-charset="utf-8">
 			   <input type="hidden" name="id" value="<?php echo $record->id ?? '';?>">
                <div class="mb-3">
                   <label class="form-label">Location Name</label>
