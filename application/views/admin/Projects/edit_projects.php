@@ -7,7 +7,6 @@
 	   display:none;
    }
 </style>
-<?php print_r($info);?>
 <form method="POST" action="<?= base_url('admin/projects/update_project'); ?>" id="img-upload-form" enctype="multipart/form-data" accept-charset="utf-8">
    <div class="pg-content mb-4">
       <div class="row">
@@ -26,37 +25,22 @@
                      <input type="text" class="form-control" name="project_name" autocomplete="Off" value="<?= $info->project_name; ?>" />
                   </div>
                   <div class="col-md-3 mb-3">
-                     <label class="required">Locality</label>
-                     <select class="form-select" name="location" onchange="location_details(this);">
-                        <option value="">--Select--</option>
-                        <?= _localities(''); ?>
-                     </select>
-                  </div>
-                  <div class="col-md-3 mb-3">
                      <label class="required">City</label>
                      <select class="form-select" name="city" id="city">
                         <option value="">--Select--</option>
-                        <?= _cities(''); ?>
+                        <?= _cities($info->city_id); ?>
                      </select>
                   </div>
-                  <div class="col-md-3 mb-3">
-                     <label class="required">District</label>
-                     <select class="form-select" name="district" id="district">
+				  <div class="col-md-3 mb-3">
+                     <label class="required">Locality</label>
+                     <select class="form-select" name="location" id="location">
                         <option value="">--Select--</option>
-                        <?= _districts(''); ?>
+                        <?= _localities($info->locality_id); ?>
                      </select>
-                  </div>
-                  <div class="col-md-3 mb-3">
-                     <label class="required">State</label>
-                     <select class="form-select" name="state"  id="state">
-                        <option value="">--Select--</option>
-                        <?= _states(''); ?>
-                     </select>
-                     <input type="hidden" name="country" id="country">
                   </div>
                   <div class="col-md-12 mb-3">
                      <label class="required">Address</label>
-                     <input type="text" class="form-control" name="address" autocomplete="Off"/>
+                     <input type="text" class="form-control" name="address" autocomplete="Off" value="<?= $info->project_address; ?>"/>
                   </div>
                </div>
                <hr />
@@ -266,7 +250,7 @@
                   </div>
                   <div class="col-md-12 mb-3">
                      <label class="required">Project Overview</label>
-                     <textarea class="form-control" rows="4" name="project_overview" id="project_overview1" autocomplete="Off"></textarea>
+                     <textarea class="form-control" rows="4" name="project_overview" id="project_overview1" autocomplete="Off"><?= $info->project_overview; ?></textarea>
                   </div>
                </div>
                <hr />

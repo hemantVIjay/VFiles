@@ -53,7 +53,7 @@
       </div>
       <nav class="navbar navbar-expand-lg navbar-light pv-header ps-3 pe-3">
          <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="<?= base_url(); ?>">
             <img class="ws-logo" src="<?= base_url(); ?>assets/images/logo.svg" />
             </a>
             <div class="CitLink dropdown">
@@ -67,9 +67,13 @@
                   Buy in Noida
                </a>
             </div>
-            <!--<div class="input-group gblsrh">	
+            <?php $cls = $this->router->fetch_class(); $mthd = $this->router->fetch_method();
+			if($cls!='home' && $mthd!='index' && $is_search == true){
+			?>
+			<div class="input-group gblsrh">	
                <input type="text" class="form-control form-control-lg autocomplete ui-autocomplete-input" placeholder="Search your property here..." name="i_search" autocomplete="off">
-               <button class="btn btn-lg btn-primary" type="button" id="imain_search"><i class="bi bi-search"></i></button>   </div>-->
+               <button class="btn btn-lg btn-primary" type="button" id="imain_search"><i class="bi bi-search"></i></button>   </div>
+			<?php } ?>   
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -188,78 +192,7 @@
       </nav>
       <div class="ddmCity">
          <div class="row gx-3">
-            <div class="col-xl-1 col-md-2 col-sm-3">
-               <a href="javascript:;" class="ctyLink">
-               <img src="<?= base_url(); ?>assets/images/cities/icons/india-gate.svg" class="img-fluid">
-               <span class="ctyName">Delhi</span>
-               </a>
-            </div>
-            <div class="col-xl-1 col-md-2 col-sm-3">
-               <a href="javascript:;" class="ctyLink">
-               <img src="<?= base_url(); ?>assets/images/cities/icons/vidhana-soudha.svg" class="img-fluid">
-               <span class="ctyName">Noida</span>
-               </a>
-            </div>
-            <div class="col-xl-1 col-md-2 col-sm-3">
-               <a href="javascript:;" class="ctyLink">
-               <img src="<?= base_url(); ?>assets/images/cities/icons/victoria-memorial.svg" class="img-fluid">
-               <span class="ctyName">Gurgaon</span>
-               </a>
-            </div>
-            <div class="col-xl-1 col-md-2 col-sm-3">
-               <a href="javascript:;" class="ctyLink">
-               <img src="<?= base_url(); ?>assets/images/cities/icons/gateway-of-india.svg" class="img-fluid">
-               <span class="ctyName">Mumbai</span>
-               </a>
-            </div>
-            <div class="col-xl-1 col-md-2 col-sm-3">
-               <a href="javascript:;" class="ctyLink">
-               <img src="<?= base_url(); ?>assets/images/cities/icons/surat-municipal-corporation.svg" class="img-fluid">
-               <span class="ctyName">Pune</span>
-               </a>
-            </div>
-            <div class="col-xl-1 col-md-2 col-sm-3">
-               <a href="javascript:;" class="ctyLink">
-               <img src="<?= base_url(); ?>assets/images/cities/icons/tajmahal.svg" class="img-fluid">
-               <span class="ctyName">Agra</span>
-               </a>
-            </div>
-            <div class="col-xl-1 col-md-2 col-sm-3">
-               <a href="javascript:;" class="ctyLink">
-               <img src="<?= base_url(); ?>assets/images/cities/icons/charminar.svg" class="img-fluid">
-               <span class="ctyName">Hyderabad</span>
-               </a>
-            </div>
-            <div class="col-xl-1 col-md-2 col-sm-3">
-               <a href="javascript:;" class="ctyLink">
-               <img src="<?= base_url(); ?>assets/images/cities/icons/victoria-memorial.svg" class="img-fluid">
-               <span class="ctyName">Ghaziabad</span>
-               </a>
-            </div>
-            <div class="col-xl-1 col-md-2 col-sm-3">
-               <a href="javascript:;" class="ctyLink">
-               <img src="<?= base_url(); ?>assets/images/cities/icons/bara-imambara.svg" class="img-fluid">
-               <span class="ctyName">Faridabad</span>
-               </a>
-            </div>
-            <div class="col-xl-1 col-md-2 col-sm-3">
-               <a href="javascript:;" class="ctyLink">
-               <img src="<?= base_url(); ?>assets/images/cities/icons/jhulta-minar.svg" class="img-fluid">
-               <span class="ctyName">Bengaluru</span>
-               </a>
-            </div>
-            <div class="col-xl-1 col-md-2 col-sm-3">
-               <a href="javascript:;" class="ctyLink">
-               <img src="<?= base_url(); ?>assets/images/cities/icons/chennai-central-railway-station.svg" class="img-fluid">
-               <span class="ctyName">Chennai</span>
-               </a>
-            </div>
-            <div class="col-xl-1 col-md-2 col-sm-3">
-               <a href="javascript:;" class="ctyLink">
-               <img src="<?= base_url(); ?>assets/images/cities/icons/bara-imambara.svg" class="img-fluid">
-               <span class="ctyName">Lucknow</span>
-               </a>
-            </div>
+            <?php echo _mainCities(''); ?>
          </div>
       </div>
       <!-- *****CONTENT***** -->

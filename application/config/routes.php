@@ -58,6 +58,7 @@ $route['default_controller']         = 'home';
 $route['404_override']               = 'c_404';
 $route['translate_uri_dashes']       = FALSE;
 $route['properties-details/(:any)']  = 'home/properties_details';
+$route['home/search_properties']  = 'home/search_properties';
 
 $route['locations/(:any)']           = 'home/locations_info';
 $route['properties-listings']        = 'home/properties_listings';
@@ -117,6 +118,7 @@ $route[$r_admin . '/masters/(:any)'] = 'admin/masters/$1';
 $route[$r_admin . '/builders/(:any)'] = 'admin/builders/$1';
 $route[$r_admin . '/projects/(:any)'] = 'admin/projects/$1';
 $route[$r_admin . '/properties/(:any)'] = 'admin/properties/$1';
+$route[$r_admin . '/localities/search_cities']['GET'] = 'admin/localities/search_cities';
 
 /* New Methods */
 

@@ -40,6 +40,8 @@ class Pages extends MY_Controller {
 			$this->localities($details);
 		}if($details->name=='builder'){
 			$this->builders($details);
+		}if($details->name=='project'){
+			$this->projects($details);
 		}if($details->name=='page'){
 			$this->page($details);
 		}
@@ -61,7 +63,7 @@ class Pages extends MY_Controller {
             $data['title'] = '';//$data['page']->title;
             $data['description'] = '';//$data['page']->page_description;
             $data['keywords'] = '';//$data['page']->page_keywords;
-
+            $data['is_search'] = TRUE;
             $data['sub_view'] = $this->load->view('site/pages/'.$page->file, $data, TRUE);
             $this->load->view('site/_layout', $data); 
         }
@@ -83,7 +85,7 @@ class Pages extends MY_Controller {
             $data['title'] = '';//$data['page']->title;
             $data['description'] = '';//$data['page']->page_description;
             $data['keywords'] = '';//$data['page']->page_keywords;
-
+            $data['is_search'] = TRUE;
             $data['sub_view'] = $this->load->view('site/pages/cities', $data, TRUE);
             $this->load->view('site/_layout', $data); 
         }
@@ -106,10 +108,11 @@ class Pages extends MY_Controller {
 			$data['title'] = '';//$data['page']->title;
             $data['description'] = '';//$data['page']->page_description;
             $data['keywords'] = '';//$data['page']->page_keywords;
+			$data['info'] = $this->masters->get_record_id('cities', $page->parent_id);//$data['page']->page_keywords;
 			$data['popular_projects'] = $this->home->popular_projects($page->parent_id);
 			$data['best_builders'] = $this->home->_builders($page->parent_id);
             $data['cities_locations'] = $this->home->cities_locations($page->parent_id);//$data['page']->page_keywords;
-
+            $data['is_search'] = FALSE;
             $data['sub_view'] = $this->load->view('site/pages/cities', $data, TRUE);
             $this->load->view('site/_layout', $data); 
         }
@@ -134,7 +137,8 @@ class Pages extends MY_Controller {
             $data['info'] = $this->masters->get_record_id('locations', $page->parent_id);//$data['page']->page_keywords;
             $data['popular_projects'] = $this->home->popular_projects($page->parent_id);//$data['page']->page_keywords;
             $data['best_builders'] = $this->home->_builders($page->parent_id);//$data['page']->page_keywords;
-            $data['sub_view'] = $this->load->view('site/pages/'.$page->file, $data, TRUE);
+            $data['is_search'] = FALSE;
+			$data['sub_view'] = $this->load->view('site/pages/'.$page->file, $data, TRUE);
             $this->load->view('site/_layout', $data); 
         }
     }
@@ -162,6 +166,7 @@ class Pages extends MY_Controller {
 			$data['builder_projects'] = $builder_projects;
 			$data['is_builder'] = TRUE;
 			$data['is_project'] = FALSE;
+			$data['is_search'] = TRUE;
             $data['sub_view'] = $this->load->view('site/pages/builders-or-projects', $data, TRUE);
             $this->load->view('site/_layout', $data); 
         }
@@ -288,16 +293,22 @@ class Pages extends MY_Controller {
         $this->load->view('site/_layout', $data); 
 	}	
 	
-	public function projects(){
-		$data['title']=$this->lang->line("text_search_result");
-		$data['keyword']='';
-		$data['is_project']=true;
-		$data['is_builder']=false;
-		//$data['city'] = $city;
-		$id = explode('--',$this->uri->segment(1));
-		$project_info = $this->project->projectDetails($id[1]);
+	private function projects($page){
+		$data['page'] = $page;
+        
+        if (empty($data['page']) || $data['page'] == null) {
+            $this->error404();
+        } else if ($data['page']->is_active == 0 || $data['page']->url == '') {
+            $this->error404();
+        } else {
+            $data['title'] = '';//$data['page']->title;
+            $data['description'] = '';//$data['page']->page_description;
+            $data['keywords'] = '';//$data['page']->page_keywords;
+			
+	    $id = $page->parent_id;	
+		$project_info = $this->project->projectDetails($id);
 		if(!empty($project_info)){
-		  $p_images = $this->home->property_images($id[1]);
+		  $p_images = $this->home->property_images($id);
 		  $i_arr = array();
 		  if(!empty($p_images)){
 			 foreach ($p_images as $key => $image) {
@@ -308,13 +319,13 @@ class Pages extends MY_Controller {
 		$data['project_info'] = $project_info;
 		$data['floor_plans'] = $project_info;
 		$data['properties_images'] = $i_arr;
+		$data['is_search'] = TRUE;
 		$data['sub_view'] = $this->load->view('site/pages/project-details', $data, TRUE);
         $this->load->view('site/_layout', $data); 
-		}else{
-			show_404();
 		}
-	}	
-	
+		
+	  }
+	}
 	
 	public function price_trends(){
 		$data['title']=$this->lang->line("text_search_result");

@@ -61,15 +61,17 @@ bottom: -5px;
                <div class="bxc bg-lgrn">
                   <h2 class="cmn-title mb-3">New Launch Projects in <span class="text-primary"><?= $title; ?></span></h2>
                   <ul class="culst bldlst">
-                     <li class="d-flex">
+                    <?php if(!empty($popular_projects)){ foreach($popular_projects as $project){ ?>
+					 <li class="d-flex">
                         <div class="bpphoto">
-                           <img src="<?= base_url(); ?>assets/images/builders/ats-Logo.png" />
+                           <img src="<?= base_url(); ?>uploads/builders/<?= $project->site_layout; ?>" />
                         </div>
                         <div>
-                           <a href="javascript:;">Antara Senior Living Noida Phase1</a>
-                           <div class="d-flex bldrdtl">Project RERA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
+                           <a href="<?= base_url(); ?><?= $project->slug; ?>"><?= $project->project_name; ?></a>
+                           <?php if($project->rera_registrationNumber!=''){ ?><div class="d-flex bldrdtl">Project RERA ID:<strong class="ms-1"><?= $project->rera_registrationNumber; ?></strong></div><?php } ?>
                         </div>
                      </li>
+					 <?php } } ?>
                   </ul>
                   
                </div>
@@ -78,15 +80,17 @@ bottom: -5px;
                <div class="bxc bg-lorng">
                   <h2 class="cmn-title mb-3">Pre-Launch Projects in <span class="text-primary"><?= $title; ?></span></h2>
                   <ul class="culst bldlst">
-                     <li class="d-flex">
+                    <?php if(!empty($popular_projects)){ foreach($popular_projects as $project){ ?>
+					 <li class="d-flex">
                         <div class="bpphoto">
-                           <img src="<?= base_url(); ?>assets/images/builders/ats-Logo.png" />
+                           <img src="<?= base_url(); ?>uploads/builders/<?= $project->site_layout; ?>" />
                         </div>
                         <div>
-                           <a href="javascript:;">Godrej Properties Woods Phase II</a>
-                           <div class="d-flex bldrdtl">Project RERA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
+                           <a href="<?= base_url(); ?><?= $project->slug; ?>"><?= $project->project_name; ?></a>
+                           <?php if($project->rera_registrationNumber!=''){ ?><div class="d-flex bldrdtl">Project RERA ID:<strong class="ms-1"><?= $project->rera_registrationNumber; ?></strong></div><?php } ?>
                         </div>
                      </li>
+					 <?php } } ?>
                   </ul>
                   
                </div>
@@ -95,30 +99,31 @@ bottom: -5px;
                <div class="bxc bg-lprpl">
                   <h2 class="cmn-title mb-3">Luxury Projects in <span class="text-primary"><?= $title; ?></span></h2>
                   <ul class="culst bldlst">
-                     <li class="d-flex">
+                    <?php if(!empty($popular_projects)){ foreach($popular_projects as $project){ ?>
+					 <li class="d-flex">
                         <div class="bpphoto">
-                           <img src="<?= base_url(); ?>assets/images/builders/ats-Logo.png" />
+                           <img src="<?= base_url(); ?>uploads/builders/<?= $project->site_layout; ?>" />
                         </div>
                         <div>
-                           <a href="javascript:;">Godrej Properties Woods Phase II</a>
-                           <div class="d-flex bldrdtl">Project RERA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
+                           <a href="<?= base_url(); ?><?= $project->slug; ?>"><?= $project->project_name; ?></a>
+                           <?php if($project->rera_registrationNumber!=''){ ?><div class="d-flex bldrdtl">Project RERA ID:<strong class="ms-1"><?= $project->rera_registrationNumber; ?></strong></div><?php } ?>
                         </div>
                      </li>
-                  </ul>
-                  
+					 <?php } } ?>
+                  </ul>                  
                </div>
             </div>
             <div class="col-md-6 mb-4">
                <div class="bxc bg-lpnk">
                   <h2 class="cmn-title mb-3">Popular Projects in <span class="text-primary"><?= $title; ?></span></h2>
                   <ul class="culst bldlst">
-                     <?php if(!empty($popular_projects)){ foreach($popular_projects as $project){ ?>
+                    <?php if(!empty($popular_projects)){ foreach($popular_projects as $project){ ?>
 					 <li class="d-flex">
                         <div class="bpphoto">
                            <img src="<?= base_url(); ?>uploads/builders/<?= $project->site_layout; ?>" />
                         </div>
                         <div>
-                           <a href="javascript:;"><?= $project->project_name; ?></a>
+                           <a href="<?= base_url(); ?><?= $project->slug; ?>"><?= $project->project_name; ?></a>
                            <?php if($project->rera_registrationNumber!=''){ ?><div class="d-flex bldrdtl">Project RERA ID:<strong class="ms-1"><?= $project->rera_registrationNumber; ?></strong></div><?php } ?>
                         </div>
                      </li>
@@ -214,21 +219,21 @@ var baseUrl=$('base').attr("href");
 	   var str  = atob(content);
 	   var res = str.split('_');
 	   if(res[0]=='LOC'){
-	     var mainURL  = baseUrl + 'property/';
+	     var mainURL  = baseUrl + 'search/properties/';
 		 if(type==undefined){ type = ''; }
 		 if(search==undefined){ search = ''; }
 	     if(content==undefined){ content = ''; }
 		 window.location.href = mainURL+main+'?location='+search+'&type='+type+'&content='+content;   
 	   }
 	   if(res[0]=='PROJ'){
-		 var mainURL  = baseUrl + 'property/' + search + '--' + res[1];  
+		 var mainURL  = baseUrl + search;  
 		 window.location.href = mainURL;  
 	   }if(res[0]=='BLD'){
-		 var mainURL  = baseUrl + 'property/' + main + '/' + search + '--' + res[1];  
+		 var mainURL  = baseUrl + search;  
 		 window.location.href = mainURL;  
 	   }if(content==''){
-		 var mainURL  = baseUrl + 'property/' + main;
+		 var mainURL  = baseUrl + main;
 		 window.location.href = mainURL;  
 	   }
-   }   
+   }    
 </script>

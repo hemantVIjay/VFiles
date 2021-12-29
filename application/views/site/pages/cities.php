@@ -12,7 +12,7 @@ position: relative;
 bottom: -5px;
 }
 </style>
-
+<?php $title = $info->name; ?>
 <section class="section city-area pt-0">
    <div class="container-fluid">
       <div class="row justify-content-center">
@@ -21,11 +21,11 @@ bottom: -5px;
                <div class="col-md-8">
                   <div class="pv-breadcrumb twht mb-4">
                      <a href="javascript:;">Home</a>
-                     <a href="javascript:;" class="current">Property in Noida</a>
+                     <a href="javascript:;" class="current">Property in <?= $title; ?></a>
                   </div>
                </div>
                <div class="col-md-4 text-end py-3">
-                  <span class="ludt">Last updated: 12-Nov-2021</span>
+                  <span class="ludt">Last updated: <?= date_format('d-M-Y',strtotime($info->updated_on); ?> 12-Nov-2021</span>
                </div>
             </div>
          </div>
@@ -34,7 +34,7 @@ bottom: -5px;
    <div class="container">
       <div class="row justify-content-center text-center">
          <div class="col-xl-8 col-lg-9 col-md-10 col-sm-11">
-            <h1 class="srhtitle">Noida</h1>
+            <h1 class="srhtitle"><?= $title; ?></h1>
             <h5 class="srhtitle-sb">Search from 1,431 properties</h5>
             <form name="search_properties" method="POST" action="">
                <div class="srch-box mt-5 mb-5"><?= $city; ?>
@@ -58,7 +58,7 @@ bottom: -5px;
          <div class="row">
             <div class="col-md-6 mb-4">
                <div class="bxc bg-lgrn">
-                  <h2 class="cmn-title mb-3">New Launch Projects in <span class="text-primary">Noida</span></h2>
+                  <h2 class="cmn-title mb-3">New Launch Projects in <span class="text-primary"><?= $title; ?></span></h2>
                   <ul class="culst bldlst">
                      <?php if(!empty($popular_projects)){ foreach($popular_projects as $project){ ?>
 					 <li class="d-flex">
@@ -66,7 +66,7 @@ bottom: -5px;
                            <img src="<?= base_url(); ?>assets/images/builders/ats-Logo.png" />
                         </div>
                         <div>
-                           <a href="javascript:;">Antara Senior Living Noida Phase1</a>
+                           <a href="javascript:;">Antara Senior Living <?= $title; ?> Phase1</a>
                            <div class="d-flex bldrdtl">Project REAA ID:<strong class="ms-1">UPRERAPRJ745377</strong></div>
                         </div>
                      </li>
@@ -77,7 +77,7 @@ bottom: -5px;
             </div>
             <div class="col-md-6 mb-4">
                <div class="bxc bg-lorng">
-                  <h2 class="cmn-title mb-3">Pre-Launch Projects in <span class="text-primary">Noida</span></h2>
+                  <h2 class="cmn-title mb-3">Pre-Launch Projects in <span class="text-primary"><?= $title; ?></span></h2>
                   <ul class="culst bldlst">
                      <?php if(!empty($popular_projects)){ foreach($popular_projects as $project){ ?>
 					 <li class="d-flex">
@@ -96,7 +96,7 @@ bottom: -5px;
             </div>
             <div class="col-md-6 mb-4">
                <div class="bxc bg-lprpl">
-                  <h2 class="cmn-title mb-3">Luxury Projects in <span class="text-primary">Noida</span></h2>
+                  <h2 class="cmn-title mb-3">Luxury Projects in <span class="text-primary"><?= $title; ?></span></h2>
                   <ul class="culst bldlst">
                      <?php if(!empty($popular_projects)){ foreach($popular_projects as $project){ ?>
 					 <li class="d-flex">
@@ -115,7 +115,7 @@ bottom: -5px;
             </div>
             <div class="col-md-6 mb-4">
                <div class="bxc bg-lpnk">
-                  <h2 class="cmn-title mb-3">Popular Projects in <span class="text-primary">Noida</span></h2>
+                  <h2 class="cmn-title mb-3">Popular Projects in <span class="text-primary"><?= $title; ?></span></h2>
                   <ul class="culst bldlst">
                      <?php if(!empty($popular_projects)){ foreach($popular_projects as $project){ ?>
 					 <li class="d-flex">
@@ -134,9 +134,9 @@ bottom: -5px;
             </div>
             <div class=" col-xl-4 col-md-6 mb-4">
                <div class="bxc bg-lblue">
-                  <h2 class="cmn-title mb-3">Property Location in <span class="text-primary">Noida</span></h2>
+                  <h2 class="cmn-title mb-3">Property Location in <span class="text-primary"><?= $title; ?></span></h2>
                   <ul class="culst loculst">
-                     <?php foreach($cities_locations as $lc){ ?>
+                     <?php if(!empty($cities_locations)){ foreach($cities_locations as $lc){ ?>
 					 <li class="d-flex">
                         <i class="bi bi-geo-alt-fill me-2"></i>
                         <div>
@@ -144,14 +144,14 @@ bottom: -5px;
                            <div class="d-flex bldrdtl">Avg. Rate: <strong class="ms-1">₹ 5,400 / sqft</strong></div>
                         </div>
                      </li>
-					 <?php } ?>
+					 <?php } } ?>
                   </ul>
                   
                </div>
             </div>
             <div class=" col-xl-8 col-md-6 mb-4">
                <div class="bxc bg-logrn">
-                  <h2 class="cmn-title mb-3">Best Property Builders in <span class="text-primary">Noida</span></h2>
+                  <h2 class="cmn-title mb-3">Best Property Builders in <span class="text-primary"><?= $title; ?></span></h2>
                   <ul class="culst bldlst">
                      <?php if(!empty($best_builders)){ foreach($best_builders as $builder){ ?>
 					 <li class="d-flex">
@@ -159,7 +159,7 @@ bottom: -5px;
                            <img src="<?= base_url(); ?>assets/images/builders/Jaypee-Group-Logo.png" />
                         </div>
                         <div>
-                           <a href="javascript:;">Jaypee Greens Noida</a>
+                           <a href="javascript:;">Jaypee Greens <?= $title; ?></a>
                            <div class="d-flex bldrdtl">
                               <span class="me-3">Exp: <strong>21 Years</strong></span>  |  <span class="me-3 ms-3">Total Projects: <strong>72</strong></span>  |   <span class="ms-3">Ongoing Projects: <strong>16</strong></span>
                            </div>
@@ -236,20 +236,20 @@ var baseUrl=$('base').attr("href");
 	   var str  = atob(content);
 	   var res = str.split('_');
 	   if(res[0]=='LOC'){
-	     var mainURL  = baseUrl + 'property/';
+	     var mainURL  = baseUrl + 'search/properties/';
 		 if(type==undefined){ type = ''; }
 		 if(search==undefined){ search = ''; }
 	     if(content==undefined){ content = ''; }
 		 window.location.href = mainURL+main+'?location='+search+'&type='+type+'&content='+content;   
 	   }
 	   if(res[0]=='PROJ'){
-		 var mainURL  = baseUrl + 'property/' + search + '--' + res[1];  
+		 var mainURL  = baseUrl + search;  
 		 window.location.href = mainURL;  
 	   }if(res[0]=='BLD'){
-		 var mainURL  = baseUrl + 'property/' + main + '/' + search + '--' + res[1];  
+		 var mainURL  = baseUrl + search;  
 		 window.location.href = mainURL;  
 	   }if(content==''){
-		 var mainURL  = baseUrl + 'property/' + main;
+		 var mainURL  = baseUrl + main;
 		 window.location.href = mainURL;  
 	   }
    }   

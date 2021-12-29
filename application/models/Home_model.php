@@ -80,10 +80,10 @@ class Home_model extends MY_Model{
 		//FROM builders b where b.builder_name LIKE '%$search%'";
 		
 		$sql = "SELECT pr.project_name as name, CONCAT('PROJ','_', pr.id) as val, pr.slug
-		FROM projects pr where pr.project_name LIKE '%$search%' AND city_id = (SELECT id FROM cities where slug = '".$city."') 
+		FROM projects pr where pr.project_name LIKE '%$search%' AND city_id IN(SELECT id FROM cities where slug = '".$city."') 
 		UNION	
 		SELECT l.name as name, CONCAT('LOC','_', l.id) as val, l.slug
-		FROM locations l where l.name LIKE '%$search%' AND city_id = (SELECT id FROM cities where slug = '".$city."')
+		FROM locations l where l.name LIKE '%$search%' AND city_id IN(SELECT id FROM cities where slug = '".$city."')
 		UNION	
 		SELECT b.builder_name as name, CONCAT('BLD','_', b.id) as val, b.slug
 		FROM builders b where b.builder_name LIKE '%$search%'";

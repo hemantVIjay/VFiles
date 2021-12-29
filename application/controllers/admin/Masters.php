@@ -157,7 +157,7 @@
            } else {
                $result = $this->masters->update_record($id, $post_data, 'cities');
            }
-           redirect('admin/Masters/list_cities', 'refresh');
+           redirect('admin/masters/list_cities', 'refresh');
        }
       
        public function delete_cities()

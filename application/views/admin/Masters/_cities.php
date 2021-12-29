@@ -25,6 +25,15 @@
 				   <?php  echo _states($record->state_id); ?>
 			    </select>
                </div>
+			   <div class="mb-3">
+                  <label class="form-label w-100">Icon</label>
+                  <input type="file" name="icon" accept=".svg" class="form-control">
+                  <small class="form-text text-muted">Please choose only .svg files here.</small>
+                  <br>
+                  <?php if(isset($record->icon)){ ?>
+                  <img src="<?= base_url('uploads/cities/');?><?= $record->icon ?? ''; ?>" style="10px 0px;">
+                  <?php } ?>
+               </div>
 			   <button type="submit" class="btn btn-primary">Save</button>
             </form>
          </div>

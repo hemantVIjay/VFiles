@@ -334,7 +334,7 @@
                         <div class="card-img rounded-top-right-0">
                            <img src="<?= base_url(); ?>assets/images/cities/ghaziabad.jpg" class="img-fluid">
                         </div>
-                        <a href="<?php echo base_url();?><?= $linfo->url; ?>" class="card-img-overlay">
+                        <a href="<?php echo base_url();?><?= (isset($linfo->url))? $linfo->url : ''; ?>" class="card-img-overlay">
                         <?php if($project->rera_approved=='1'){ ?><span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA Approved</span><?php } ?>
                         <span class="prop-snfc">Posted : 7 Sep. 2021</span>
                         </a>
@@ -342,7 +342,7 @@
                   </div>
                   <div class="col-md-8">
                      <div class="card-body">
-                        <h5 class="pv-ptttl mb-1"><a href="<?php echo base_url();?><?= $linfo->url; ?>"><?= $project->project_name; ?></a></h5>
+                        <h5 class="pv-ptttl mb-1"><a href="<?php echo base_url();?><?= (isset($linfo->url))? $linfo->url : ''; ?>"><?= $project->project_name; ?></a></h5>
                         <h6 class="pvpd-py">By<span> <?= $builder['builder_name']; ?></span></h6>
                         <h6 class="pvpd-locate mb-3"><?= $project->project_address; ?></h6>
                         <div class="row mb-3">
@@ -370,7 +370,7 @@
                            <span class="badge badge-secondary">Ready to Move</span>
                            <span class="badge badge-secondary ms-1">Resale</span>
                         </div>
-                        <a href="<?php echo base_url();?><?= $linfo->url; ?>" class="rmLink">Read More<i class="bi bi-arrow-right"></i></a>
+                        <a href="<?php echo base_url();?><?= (isset($linfo->url))? $linfo->url : ''; ?>" class="rmLink">Read More<i class="bi bi-arrow-right"></i></a>
                      </div>
                   </div>
                </div>

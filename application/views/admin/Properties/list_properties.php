@@ -17,7 +17,7 @@
          </thead>
          <tbody>
             <?php $i=0;
-               foreach($Properties as $key=>$row){ ?>
+               if(!empty($Properties)){ foreach($Properties as $key=>$row){ ?>
             <tr>
                <td><?= $i+1;?></td>
                <td><?= $row->code;?></td>
@@ -40,7 +40,11 @@
                   </a>
                </td>
             </tr>
-            <?php $i++; } ?>
+			   <?php $i++; } }else{ ?>
+            <tr>
+               <td colspan="10" class="text-center">NO RECORDS</td>
+            </tr>
+            <?php } ?>
          </tbody>
       </table>
       <div id="pagination" class="mt10"><?= $pagination; ?></div>

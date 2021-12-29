@@ -1063,6 +1063,30 @@
    }
   
   
+   if (!function_exists('_mainCities')) {
+       function _mainCities($mid)
+       {
+           $ci =& get_instance();
+           $banks = "";
+           $ids   = array(706,1119,1126,1558,2707,2763,3659,4460,4536,4759,4933,5022);
+           $ci->db->where('status', 1);
+           $ci->db->where_in('id', $ids);
+           $ci->db->order_by('name', 'ASC');
+           $query = $ci->db->get('cities');
+           $Mq    = $query->result();
+          
+           foreach ($Mq as $row) {
+               $Sdata = ($row->slug == $mid) ? 'active' : '';
+               $banks .= '<div class="col-xl-1 col-md-2 col-sm-3"><a href="'.base_url().$row->slug.'" class="ctyLink '.$Sdata.'">';
+			   $banks .= '<img src="'.base_url().'uploads/cities/'.$row->icon.'" class="img-fluid">';
+			   $banks .= '<span class="ctyName '.$row->id.'">';
+               $banks .= $row->name;
+               $banks .= "</span></a></div>";
+           }
+           return $banks;
+       }
+   }
+
    if (!function_exists('_topCities')) {
        function _topCities($mid)
        {
@@ -1070,7 +1094,7 @@
            $banks = "";
            $ids   = array(4776,5022,4759,706,707);
            $ci->db->where('status', 1);
-           $ci->db->where_in('id', $ids);
+           //$ci->db->where_in('id', $ids);
            $query = $ci->db->get('cities');
            $Mq    = $query->result();
           
@@ -1175,8 +1199,7 @@
            $ci->db->where('parent_id', $id);
            $ci->db->where('name', $nm);
            $res = $ci->db->get('listings')->row();
-		   echo$ci->db->last_query();
-           return $res;
+		   return $res;
        }
    }
   

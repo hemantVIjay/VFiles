@@ -756,7 +756,7 @@ var baseUrl=$('base').attr("href");
 		 window.location.href = mainURL;  
 	   }if(res[0]=='BLD'){
 		 //var mainURL  = baseUrl + 'property/' + main + '/' + search + '--' + res[1];  
-		 var mainURL  = baseUrl + main + '/' + search;  
+		 var mainURL  = baseUrl + search;  
 		 window.location.href = mainURL;  
 	   }if(content==''){
 		 var mainURL  = baseUrl + main;
