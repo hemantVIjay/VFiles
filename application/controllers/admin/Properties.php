@@ -130,6 +130,7 @@
               'cost' => $this->input->post('cost'),
               'maintenance_charges' => $this->input->post('maintenance_charges'),
               'locality' => $this->input->post('location'),
+              'builder_id' => $this->input->post('builder'),
               'project' => $this->input->post('project'),
               'city_id' => $this->input->post('city'),             
               'builtup_area' => $this->input->post('builtup_area'),

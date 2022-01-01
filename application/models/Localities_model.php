@@ -518,6 +518,16 @@ class Localities_model extends MY_Model{
 		$query = $this->db->get();
         return ($query->num_rows() > 0)?$query->result():FALSE;
 	}
+
+	public function _allProjects($loc){
+		$this->db->select('r.project_name as name, r.id');
+		$this->db->from('projects r');
+		//$this->db->where("r.status", '1');
+		$this->db->where("r.locality_id", $loc);
+		$this->db->order_by("r.project_name", 'asc');
+		$query = $this->db->get();
+        return ($query->num_rows() > 0)?$query->result():FALSE;
+	}
 	
 	public function _cityDetails($id){
 		$this->db->select('s.name as state, s.id as state_id, s.country_id, c.id, cn.name as country');

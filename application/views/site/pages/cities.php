@@ -25,7 +25,7 @@ bottom: -5px;
                   </div>
                </div>
                <div class="col-md-4 text-end py-3">
-                  <span class="ludt">Last updated: <?= date_format('d-M-Y',strtotime($info->updated_on); ?> 12-Nov-2021</span>
+                  <span class="ludt">Last updated: <?= get_nice_time($info->updated_on); ?></span>
                </div>
             </div>
          </div>

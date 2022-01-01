@@ -1,5 +1,6 @@
 <!--Main Header-->
 <!--<?php //include_once('_header.php'); ?>-->
+<?php $class_name=$this->router->fetch_class(); ?>
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -18,6 +19,7 @@
       <link href="<?= base_url(); ?>assets/css/custom.css" rel="stylesheet">
       <script src="<?= base_url(); ?>assets/js/jquery.min.js"></script>
       <script src="<?= base_url(); ?>assets/js/bootstrap.bundle.min.js"></script>
+	  <script src="<?= base_url(); ?>assets/js/site/<?= $class_name ?>.js"></script>
    </head>
    <style>
       .page-loader {

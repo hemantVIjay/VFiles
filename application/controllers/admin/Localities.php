@@ -122,6 +122,22 @@ class Localities extends MY_Controller {
 	  echo $data = base64_encode($data1);
 	  exit; 
     }
+
+
+	public function fetch_projects()
+	{
+      $data  = '';	  
+      $data1 = '<option value="">--Select--</option>';	  
+      $cities = $this->localities->_allProjects($_REQUEST['cid']);
+	  if(!empty($cities)){
+	    foreach($cities as $location){
+			$data1 .= '<option value="'.$location->id.'">'.$location->name.'</option>';
+		}
+      }
+	  echo $data = base64_encode($data1);
+	  exit; 
+    }
+	
 	public function fetchCity_Details()
 	{
       $data  = '';	  

@@ -58,7 +58,7 @@ $route['default_controller']         = 'home';
 $route['404_override']               = 'c_404';
 $route['translate_uri_dashes']       = FALSE;
 $route['properties-details/(:any)']  = 'home/properties_details';
-$route['home/search_properties']  = 'home/search_properties';
+$route['home/search_properties']     = 'home/search_properties';
 
 $route['locations/(:any)']           = 'home/locations_info';
 $route['properties-listings']        = 'home/properties_listings';

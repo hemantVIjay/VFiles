@@ -7,13 +7,12 @@
             <div class="row">
                <div class="col-md-8">
                   <div class="pv-breadcrumb twht mb-4">
-                     <a href="javascript:;">Home</a>
-                     <a href="javascript:;">SKA Developers & Builders</a>
-                     <a href="javascript:;" class="current">Residential Projects by SKA Builders</a>
+                     <a href="<?php echo base_url();?>">Home</a>
+                     <a href="<?php echo base_url($builder['slug']);?>"><?= $builder['builder_name']; ?></a>
                   </div>
                </div>
                <div class="col-md-4 text-end py-3">
-                  <span class="ludt">Last updated: 12-Nov-2021</span>
+                  <span class="ludt">Last updated: <?= get_nice_time('12-Nov-2021')?></span>
                </div>
             </div>
          </div>
@@ -318,9 +317,9 @@
             </div>
          </div>
 		 <div class="pv-breadcrumb mt-3">
-            <a href="javascript:;">Home</a>
+            <!--<a href="javascript:;">Home</a>
             <a href="javascript:;">Property in Noida</a>
-            <a href="javascript:;" class="current">Property in Sector 150</a>
+            <a href="javascript:;" class="current">Property in Sector 150</a>-->
          </div>
          <h3 class="pvSrchTitle">Projects by  <span>(<?php if(!empty($builder_projects)){ echo count($builder_projects); }else{ echo'0'; } ?> Projects)</span></h3>
          <div class="pvpts-list">
@@ -336,7 +335,7 @@
                         </div>
                         <a href="<?php echo base_url();?><?= (isset($linfo->url))? $linfo->url : ''; ?>" class="card-img-overlay">
                         <?php if($project->rera_approved=='1'){ ?><span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA Approved</span><?php } ?>
-                        <span class="prop-snfc">Posted : 7 Sep. 2021</span>
+                        <span class="prop-snfc">Posted : <?= get_nice_time($project->updated_on); ?></span>
                         </a>
                      </div>
                   </div>
@@ -840,24 +839,20 @@
        e.stopPropagation();
    });
    
-   
    	var custom_values = [1000, 10000, 100000, 1000000, 10000000];
+    // be careful! FROM and TO should be index of values array
+    var my_from = custom_values.indexOf(1000);
+    var my_to = custom_values.indexOf(1000000);
        
-       // be careful! FROM and TO should be index of values array
-       var my_from = custom_values.indexOf(1000);
-       var my_to = custom_values.indexOf(1000000);
-       
-       $("#example_id").ionRangeSlider({
-           type: "double",
-           grid: true,
-           from: my_from,
-           to: my_to,
-           values: custom_values,
+    $("#example_id").ionRangeSlider({
+         type: "double",
+         grid: true,
+         from: my_from,
+         to: my_to,
+         values: custom_values,
    		 prefix: "₹",
    		 step: 1000,
-           prettify_enabled: true,
-           prettify_separator: ","
+         prettify_enabled: true,
+         prettify_separator: ","
        });
-       
-   
 </script>

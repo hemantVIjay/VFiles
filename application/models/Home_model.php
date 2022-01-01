@@ -115,14 +115,14 @@ class Home_model extends MY_Model{
         if(!empty($alltypes)){
 		$this->db->where_in('a.property_type', $alltypes);
         }
-		if(!empty($alltypes)){
+		if(!empty($bedrooms)){
 		 $this->db->where_in('a.bedrooms', $bedrooms);
         }
 		if($budget_min!='' && $budget_max!=''){
 		 $this->db->where("a.cost BETWEEN '$budget_min' AND '$budget_max'");
 		}
 		$query = $this->db->get();
-		//echo$this->db->last_query();
+		//echo$this->db->last_query();exit;
 		//return fetched data
         return ($query->num_rows() > 0)?$query->result():FALSE;
     }

@@ -15,7 +15,7 @@
             </div>
             <div class="pvpds mb-4">
                <div class="row">
-			      <div class="col-md-8">
+                  <div class="col-md-8">
                      <h2 class="pvpd-title"><?= $project_info->project_name; ?></h2>
                      <h6 class="pvpd-py">By<span> Imperia Structures Ltd.</span></h6>
                      <h6 class="pvpd-locate"><?= $project_info->project_address; ?></h6>
@@ -26,12 +26,12 @@
                   </div>
                </div>
                <?php $rera = $project_info->rera_approved; 
-			    if($rera=='1'){ ?>
-			   <div class="pv-reras d-inline-block">
+                  if($rera=='1'){ ?>
+               <div class="pv-reras d-inline-block">
                   <span class="bdg"><i class="bi bi-check-circle-fill me-2"></i>RERA Registered</span>
                   <span class="bdgrn">Registration No: <?= $project_info->rera_registrationNumber; ?></span>
                </div>
-			   <?php } ?>
+               <?php } ?>
             </div>
          </div>
          <div class="col-md-3">
@@ -93,7 +93,7 @@
          <div class="spcr-bdd mb-4"></div>
          <div class="mb-4">
             <h5 class="pvlbtl">About this property</h5>
-            <div class="pvpd-desc"><?= $project_info->project_overview; ?></p>
+            <div class="pvpd-desc"><?= htmlspecialchars_decode($project_info->project_overview); ?></p>
             </div>
          </div>
          <div class="spcr-bds"></div>
@@ -242,14 +242,14 @@
             <h4 class="cmn-title mb-4">Amenities</h4>
             <div class="row gx-3">
                <?php $amenities  = $this->home->_amenities($project_info->project_amenities); 
-     			   foreach($amenities as $am){ ?>
-			   <div class="col-xl-2 col-lg-3 col-md-4 col-6 text-center mb-3">
+                  if(!empty($amenities)){ foreach($amenities as $am){ ?>
+               <div class="col-xl-2 col-lg-3 col-md-4 col-6 text-center mb-3">
                   <div class="pv-amenit">
                      <img src="<?= base_url(); ?>uploads/amenities/<?= $am->icon; ?>" class="img-fluid">
                      <div class="pv-amenit-name"><?= $am->name; ?></div>
                   </div>
                </div>
-			   <?php } ?>
+               <?php } } ?>
             </div>
          </div>
          <div class="spcr-bds"></div>
@@ -258,25 +258,25 @@
             <div class="pvfp-tab gllry-tabs">
                <ul class="nav nav-tabs" id="myTab" role="tablist">
                   <?php foreach($properties_images as $ik=>$im){ $tab = str_replace(' ', '_', strtolower($ik));?>
-				  <li class="nav-item" role="presentation">
+                  <li class="nav-item" role="presentation">
                      <button class="nav-link" id="<?= $tab; ?>-tab" data-bs-toggle="tab" data-bs-target="#<?= $tab; ?>" type="button" role="tab" aria-controls="<?= $tab; ?>" aria-selected="true"><?= $ik; ?></button>
                   </li>
-				  <?php } ?>
+                  <?php } ?>
                </ul>
                <div class="tab-content py-4" id="myTabContent">
-			      <?php foreach($properties_images as $kk=>$images){  $ftab = str_replace(' ','_',strtolower($kk)); ?>
+                  <?php foreach($properties_images as $kk=>$images){  $ftab = str_replace(' ','_',strtolower($kk)); ?>
                   <div class="tab-pane fade" id="<?= $ftab; ?>" role="tabpanel" aria-labelledby="<?= $ftab; ?>-tab">
                      <div class="row">
                         <?php foreach($images as $sk=>$p_image){ ?>
-						<div class="col-xl-3 col-md-4 col-sm-6 mt-2">
+                        <div class="col-xl-3 col-md-4 col-sm-6 mt-2">
                            <a data-fancybox="gallery" href="<?= base_url(); ?>uploads/properties/<?= $kk; ?>/<?= $p_image->image_name; ?>" data-caption="<?= $p_image->image_desc; ?>">
                            <img src="<?= base_url(); ?>uploads/properties/<?= $kk; ?>/<?= $p_image->image_name; ?>" class="img-fluid" />
                            </a>
                         </div>
-						<?php } ?>
+                        <?php } ?>
                      </div>
                   </div>
-				  <?php } ?>
+                  <?php } ?>
                   <div class="tab-pane fade" id="cnstgt" role="tabpanel" aria-labelledby="cnstgt-tab">...</div>
                   <div class="tab-pane fade" id="nbhdgt" role="tabpanel" aria-labelledby="nbhdgt-tab">...</div>
                </div>
@@ -287,8 +287,9 @@
          </div>
          <div class="page-section" id="7">
             <h4 class="cmn-title mb-4">About Developer</h4>
-            <div class="pvpd-desc"><?php $builder = _builderDetails($project_info->builder_id);
-               echo htmlspecialchars_decode($builder->builder_information); ?>
+            <div class="pvpd-desc">
+               <?php $builder = _builderDetails($project_info->builder_id);
+                  echo htmlspecialchars_decode($builder->builder_information); ?>
                <p></p>
             </div>
          </div>
@@ -296,13 +297,13 @@
             <h4 class="cmn-title mb-4">Approved by Banks</h4>
             <div class="row">
                <?php $banks  = $this->home->_banks($project_info->banks_available); 
-     			   foreach($banks as $bb){ ?>
-			   <div class="col-xl-2 col-md-3 col-sm-4 mb-3">
+                  if(!empty($banks)){ foreach($banks as $bb){ ?>
+               <div class="col-xl-2 col-md-3 col-sm-4 mb-3">
                   <div class="bnkcrd">
                      <img src="<?= base_url(); ?>uploads/banks/<?= $bb->icon; ?>" class="img-fluid">
                   </div>
                </div>
-			   <?php } ?>
+               <?php } } ?>
             </div>
          </div>
          <div class="page-section" id="6">
@@ -314,191 +315,89 @@
 </div>
 <script src="<?= base_url(); ?>assets/plugins/gallery/jquery.fancybox.min.js"></script>
 <script>
+  $(document).ready(function () {
+	$('.fancybox').fancybox({
+		beforeShow: function () {
+			this.title = $(this.element).data("caption");
+		}
+	});
+});
 
-   $(document).ready(function() {
-    $('.fancybox').fancybox({
-     beforeShow : function(){
-      this.title =  $(this.element).data("caption");
-     }
-    });
-   });
-   
-   $(document).ready(function(){
-   
-   $("input[type='radio']").click(function(){
-   var sim = $("input[type='radio']:checked").val();
-   //alert(sim);
-   if (sim<3) { $('.myratings').css('color','red'); $(".myratings").text(sim); }else{ $('.myratings').css('color','green'); $(".myratings").text(sim); } }); });
-   
-   
-   
-   $(window).scroll(function () {
-     if ($(window).scrollTop() > 63) {
-       $('#mainNav').addClass('navigation-fixed');
-     }
-     if ($(window).scrollTop() < 64) {
-       $('#mainNav').removeClass('navigation-fixed');
-     }
-   
-      if ($(window).scrollTop() > 63) {
-       $('#eqbx').addClass('eqbx-fixed');
-     }
-     if ($(window).scrollTop() < 64) {
-       $('#eqbx').removeClass('eqbx-fixed');
-     }
-   });
-   
-   $(document).ready(function() {
-   		$('a[href*=\\#]').bind('click', function(e) {
-   				e.preventDefault(); // prevent hard jump, the default behavior
-   
-   				var target = $(this).attr("href"); // Set the target as variable
-   
-   				// perform animated scrolling by getting top-position of target-element and set it as scroll target
-   				$('html, body').stop().animate({
-   						scrollTop: $(target).offset().top
-   				}, 600, function() {
-   						location.hash = target; //attach the hash (#jumptarget) to the pageurl
-   				});
-   
-   				return false;
-   		});
-   });
-   
-   $(window).scroll(function() {
-   		var scrollDistance = $(window).scrollTop();
-   
-   		// Show/hide menu on scroll
-   		//if (scrollDistance >= 850) {
-   		//		$('nav').fadeIn("fast");
-   		//} else {
-   		//		$('nav').fadeOut("fast");
-   		//}
-   	
-   		// Assign active class to nav links while scolling
-   		$('.page-section').each(function(i) {
-   				if ($(this).position().top <= scrollDistance) {
-   						$('.navigation a.active').removeClass('active');
-   						$('.navigation a').eq(i).addClass('active');
-   				}
-   		});
-   }).scroll();
+$(window).scroll(function () {
+	if ($(window).scrollTop() > 63) {
+		$('#mainNav').addClass('navigation-fixed');
+	}
+	if ($(window).scrollTop() < 64) {
+		$('#mainNav').removeClass('navigation-fixed');
+	}
 
-$(document).ready(function(){
+	if ($(window).scrollTop() > 63) {
+		$('#eqbx').addClass('eqbx-fixed');
+	}
+	if ($(window).scrollTop() < 64) {
+		$('#eqbx').removeClass('eqbx-fixed');
+	}
+});
 
-$("input[type='radio']").click(function(){
-var sim = $("input[type='radio']:checked").val();
-//alert(sim);
-if (sim<3) { $('.myratings').css('color','red'); $(".myratings").text(sim); }else{ $('.myratings').css('color','green'); $(".myratings").text(sim); } }); });
+$(document).ready(function () {
+	$('a[href*=\\#]').bind('click', function (e) {
+		e.preventDefault(); // prevent hard jump, the default behavior
 
-$(window).scroll(function() {
-		var scrollDistance = $(window).scrollTop();
+		var target = $(this).attr("href"); // Set the target as variable
 
-		// Show/hide menu on scroll
-		//if (scrollDistance >= 850) {
-		//		$('nav').fadeIn("fast");
-		//} else {
-		//		$('nav').fadeOut("fast");
-		//}
-	
-		// Assign active class to nav links while scolling
-		$('.page-section').each(function(i) {
-				if ($(this).position().top <= scrollDistance) {
-						$('.navigation a.active').removeClass('active');
-						$('.navigation a').eq(i).addClass('active');
-				}
+		// perform animated scrolling by getting top-position of target-element and set it as scroll target
+		$('html, body').stop().animate({
+			scrollTop: $(target).offset().top
+		}, 600, function () {
+			location.hash = target; //attach the hash (#jumptarget) to the pageurl
 		});
+
+		return false;
+	});
+});
+
+$(window).scroll(function () {
+	var scrollDistance = $(window).scrollTop();
+	$('.page-section').each(function (i) {
+		if ($(this).position().top <= scrollDistance) {
+			$('.navigation a.active').removeClass('active');
+			$('.navigation a').eq(i).addClass('active');
+		}
+	});
 }).scroll();
 
-$(document).ready(function(){
-$(window).scroll(function () {   
-   
- if($(window).scrollTop() > 112) {
-    $('#eqbx').css('position','fixed');
-    $('#eqbx').css('top','0'); 
- }
-
- else if ($(window).scrollTop() <= 112) {
-    $('#eqbx').css('position','');
-    $('#eqbx').css('top','');
- }  
-    if ($('#eqbx').offset().top + $("#eqbx").height() > $("#footer").offset().top) {
-        $('#eqbx').css('top',-($("#eqbx").offset().top + $("#eqbx").height() - $("#footer").offset().top));
-    }
-});
+$(document).ready(function () {
+	$("input[type='radio']").click(function () {
+		var sim = $("input[type='radio']:checked").val();
+		//alert(sim);
+		if (sim < 3) {
+			$('.myratings').css('color', 'red');
+			$(".myratings").text(sim);
+		} else {
+			$('.myratings').css('color', 'green');
+			$(".myratings").text(sim);
+		}
+	});
 });
 
-   
-   function validate(){
-	   var fname = $('#full_name').val();
-	   var phone = $('#phone').val();
-	   var email = $('#email').val();
-	   var terms = $('#terms');
-	   var flag  = true;
-	   if(fname == ''){
-		   $('#e_full_name').html('Please enter Full Name');
-		   flag = false;
-	   }if(phone == ''){
-		   $('#e_phone').html('Please enter Phone number');
-		   flag = false;
-	   }if(email == ''){
-		   $('#e_email').html('Please enter Email Address');
-		   flag = false;
-	   }if(terms.is(':checked')!=true){
-		   $('#e_terms').html('Please select terms and conditions');
-		  flag = false;
-	   }/*else{
-		   
-	   }*/
-	   return flag;
-   }
-   
-   function save_enquiries(e){
-	 var baseUrl=$('base').attr("href");  
-	 var vd = validate();
-	 $('#page-loader').fadeIn();
-	 if(vd==true){
-		 $('#e_full_name').html('');
-		 $('#e_phone').html('');
-		 $('#e_email').html('');
-		 $('#e_terms').html('');
-		   
-		   $.ajax({
-			type: 'POST',
-			url:  baseUrl + "pages/post_enquiry",
-			data: $('#call_back').serialize(),
-			success: function (response) {
-			  $('#page-loader').fadeOut();
-			  $('#call_back')[0].reset();
-			}
-		  });	  
-	 }else{
-		$('#page-loader').fadeOut(); 
-	 }
-	 return false;
-   }
-   
-   	function saveReview(e){
-		 var baseUrl=$('base').attr("href");  
-		 if($('input[name="rating"]:checked').length == 0){
-			showAlert('warning','Please add your rating Stars.');
-			return false;
-		 }
-		 //$('#page-loader').fadeIn();			   
-			   $.ajax({
-				type: 'POST',
-				url:  baseUrl + "home/save_review",
-				data: $('#reviews').serialize(),
-				dataType: 'json',
-                //async: false,
-				success: function (response) {
-			  	 var newData = JSON.stringify(response)
-				 var res = JSON.parse(newData);
-			     showAlert('success',res.message);
-				 //window.location.reload();
-				}
-			  });	  
-		 return false;
-	}
-  
+$(document).ready(function () {
+	$(window).scroll(function () {
+
+		if ($(window).scrollTop() > 112) {
+			$('#eqbx').css('position', 'fixed');
+			$('#eqbx').css('top', '0');
+		} else if ($(window).scrollTop() <= 112) {
+			$('#eqbx').css('position', '');
+			$('#eqbx').css('top', '');
+		}
+		if ($('#eqbx').offset().top + $("#eqbx").height() > $("#footer").offset().top) {
+			$('#eqbx').css('top', -($("#eqbx").offset().top + $("#eqbx").height() - $("#footer").offset().top));
+		}
+	});
+});
+
+
+
+
+
 </script>

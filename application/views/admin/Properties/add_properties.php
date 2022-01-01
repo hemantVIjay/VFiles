@@ -86,31 +86,27 @@
             </div>
             <div class="row">
                <div class="col-md-3 mb-3">
-                  <label class="required">City</label>
-                  <select class="form-select" name="city" id="city">
-                     <option value="">--Select--</option>
-                     <?= _cities(''); ?>
-                  </select>
-               </div>
+                     <label class="required">City</label>
+                     <select class="form-select" name="city" id="city">
+                        <option value="">--Select--</option>
+                     </select>
+                  </div>
 			   <div class="col-md-3 mb-3">
-                  <label class="required">Location</label>
-                  <select class="form-select" name="location" onchange="location_details(this);">
-                     <option value="">--Select--</option>
-                     <?= _localities(''); ?>
-                  </select>
+                     <label class="required">Locality</label>
+                     <select class="form-select" name="location" id="location">
+                        <option value="">--Select--</option>
+                     </select>
                </div>               
                <div class="col-md-3 mb-3">
                   <label class="required">Builder</label>
-                  <select class="form-select" name="district" id="district">
+                  <select class="form-select" name="builder" id="builder_id">
                      <option value="">--Select--</option>
-                     <?= _districts(''); ?>
                   </select>
                </div>
                <div class="col-md-3 mb-3">
                   <label class="required">Project</label>
-                  <select class="form-select" name="state"  id="state">
+                  <select class="form-select" name="project"  id="project_id">
                      <option value="">--Select--</option>
-                     <?= _states(''); ?>
                   </select>
                </div>
             </div>
@@ -238,48 +234,84 @@
       height: 120,
       removeButtons: 'PasteFromWord'
     });
-	 
-	 
-     function city_locations(ct) {
-     var baseUrl=$('base').attr("href");
-     var id = $(ct).val();
-     $.ajax({
-     type: "POST",
-     url: baseUrl + "admin/properties/_cityLocations",
-     data:{id:id},
-     async: false,
-     success: function (data) {
-       var mdata = JSON.parse(data);
-       $('#location').val(mdata['city']);
-     },
-     error: function () {
-     
-     }
-     });
-     }
-	 
-	 function location_details(loc) {
-     var baseUrl=$('base').attr("href");
-     var id = $(loc).val();
-     $.ajax({
-     type: "POST",
-     url: baseUrl + "admin/properties/location_details",
-     data:{id:id},
-     async: false,
-     success: function (data) {
-       var mdata = JSON.parse(data);
-       $('#city').val(mdata['city']);
-       $('#district').val(mdata['district']);
-       $('#state').val(mdata['state']);
-       $('#country').val(mdata['country']);
-     },
-     error: function () {
-     
-     }
-     });
-     }
-     
-     function isNumberKey(txt, evt) {
+	 	
+ $(function ($) {
+	     'use strict';
+		  initCities('city');
+		  $('#location').select2();
+		 });
+		 function initCities(cid){			
+			 $('#'+cid).select2({
+					 placeholder: 'Select City',
+					 ajax: {
+						 url: dataURL+'admin/localities/search_cities',
+						 dataType: 'json',
+						 delay: 220,
+						 processResults: function (data) {
+						 return {
+						  results: $.map(data, function (data) {
+						   return {
+							text: data.name,
+							id: data.id
+								  }
+							 })
+						   };
+						 },
+					 cache: true
+				 }
+			 }).on("select2:select", function (e) {
+				var s_element = $(e.currentTarget);
+				var s_val = s_element.val();
+				fetchData(s_val);
+			});			 
+		 }  
+		 
+	   function fetchData(s_val){
+	    var mData, lData;
+		var localities = $('#location');
+		$.ajax({
+			type: 'POST',
+			url: dataURL + 'admin/localities/fetch_locations',
+			data: {cid:s_val},
+			async: false,
+			success: function (res) {
+				if(res!=''){
+				 mData = atob(res).split("@@");
+				 localities.html(mData[0]);	
+				 localities.select2().on("select2:select", function (e) {
+						var s_element = $(e.currentTarget);
+						var s_val = s_element.val();
+						fetch_Projects(s_val);
+					});
+				}
+			},
+			error: function () {
+				
+			}
+		}); 
+	}
+	
+   function fetch_Projects(s_val){
+	    var mData;
+		var project_id = $('#project_id');
+		$.ajax({
+			type: 'POST',
+			url: dataURL + 'admin/localities/fetch_projects',
+			data: {cid:s_val},
+			async: false,
+			success: function (res) {
+				if(res!=''){
+				 mData = atob(res).split("@@");
+				 project_id.html(mData[0]);	
+				 project_id.select2();
+				}
+			},
+			error: function () {
+				
+			}
+		}); 
+	}
+	 function isNumberKey(txt, evt) {
         var charCode = (evt.which) ? evt.which : evt.keyCode;
         if (charCode == 46) {
           //Check if the text already contains the . character
