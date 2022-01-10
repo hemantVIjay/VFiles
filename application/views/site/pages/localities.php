@@ -67,7 +67,7 @@ bottom: -5px;
                            <img src="<?= base_url(); ?>uploads/builders/<?= $project->site_layout; ?>" />
                         </div>
                         <div>
-                           <a href="<?= base_url(); ?><?= $project->slug; ?>"><?= $project->project_name; ?></a>
+                           <a href="<?=base_url();?><?=_listingUrl($project->id,'project');?>"><?= $project->project_name; ?></a>
                            <?php if($project->rera_registrationNumber!=''){ ?><div class="d-flex bldrdtl">Project RERA ID:<strong class="ms-1"><?= $project->rera_registrationNumber; ?></strong></div><?php } ?>
                         </div>
                      </li>
@@ -86,7 +86,7 @@ bottom: -5px;
                            <img src="<?= base_url(); ?>uploads/builders/<?= $project->site_layout; ?>" />
                         </div>
                         <div>
-                           <a href="<?= base_url(); ?><?= $project->slug; ?>"><?= $project->project_name; ?></a>
+                           <a href="<?=base_url();?><?=_listingUrl($project->id,'project');?>"><?= $project->project_name; ?></a>
                            <?php if($project->rera_registrationNumber!=''){ ?><div class="d-flex bldrdtl">Project RERA ID:<strong class="ms-1"><?= $project->rera_registrationNumber; ?></strong></div><?php } ?>
                         </div>
                      </li>
@@ -105,7 +105,7 @@ bottom: -5px;
                            <img src="<?= base_url(); ?>uploads/builders/<?= $project->site_layout; ?>" />
                         </div>
                         <div>
-                           <a href="<?= base_url(); ?><?= $project->slug; ?>"><?= $project->project_name; ?></a>
+                           <a href="<?=base_url();?><?=_listingUrl($project->id,'project');?>"><?= $project->project_name; ?></a>
                            <?php if($project->rera_registrationNumber!=''){ ?><div class="d-flex bldrdtl">Project RERA ID:<strong class="ms-1"><?= $project->rera_registrationNumber; ?></strong></div><?php } ?>
                         </div>
                      </li>
@@ -123,7 +123,7 @@ bottom: -5px;
                            <img src="<?= base_url(); ?>uploads/builders/<?= $project->site_layout; ?>" />
                         </div>
                         <div>
-                           <a href="<?= base_url(); ?><?= $project->slug; ?>"><?= $project->project_name; ?></a>
+                           <a href="<?=base_url();?><?=_listingUrl($project->id,'project');?>"><?= $project->project_name; ?></a>
                            <?php if($project->rera_registrationNumber!=''){ ?><div class="d-flex bldrdtl">Project RERA ID:<strong class="ms-1"><?= $project->rera_registrationNumber; ?></strong></div><?php } ?>
                         </div>
                      </li>
@@ -142,7 +142,7 @@ bottom: -5px;
                            <img src="<?= base_url(); ?>uploads/builders/<?= $builder->builder_logo; ?>" />
                         </div>
                         <div>
-                           <a href="<?= base_url(); ?><?= $builder->slug; ?>"><?= $builder->builder_name; ?></a>
+                           <a href="<?=base_url();?><?=_listingUrl($builder->id,'builder');?>"><?= $builder->builder_name; ?></a>
                            <div class="d-flex bldrdtl">
                               <span class="me-3">Exp: <strong>21 Years</strong></span>  |  <span class="me-3 ms-3">Total Projects: <strong>72</strong></span>  |   <span class="ms-3">Ongoing Projects: <strong>16</strong></span>
                            </div>

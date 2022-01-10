@@ -330,9 +330,10 @@ class Builders extends MY_Controller {
                 $success = FALSE;
                 $message = $this->lang->line("alert_access_denied");
             }
-            $json_array = array('success' => $success, 'message' => $message);
-            echo json_encode($json_array);
-            exit();
+            redirect('admin/builders/list_builders','refresh');
+			//$json_array = array('success' => $success, 'message' => $message);
+            //echo json_encode($json_array);
+            //exit();
         }
     }
 

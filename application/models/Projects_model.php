@@ -68,6 +68,34 @@ class Projects_model extends MY_Model{
         }
 	}
 	
+	public function get_plots($id){
+	 $this->db->select("pp.*");
+     $this->db->from('plot_plans pp');
+     $this->db->where('pp.listing_id',$id);
+	 $query = $this->db->get();
+     return ($query->num_rows() > 0)?$query->result():FALSE;	
+	}
+
+	public function get_floorPlans($id){
+	 $this->db->select("fp.*");
+     $this->db->from('floor_plans fp');
+     $this->db->where('fp.listing_id',$id);
+	 $query = $this->db->get();
+
+     return ($query->num_rows() > 0)?$query->result():FALSE;
+	 
+	}
+
+	public function get_specifications($id){
+	 $this->db->select("fp.*");
+     $this->db->from('flat_specifications fp');
+     $this->db->where('fp.listing_id',$id);
+	 $query = $this->db->get();
+
+     return ($query->num_rows() > 0)?$query->row():FALSE;
+	 
+	}
+	
 		//get user by id
 	public function get_projectProperties($id){
 		$this->db->select('a.*, ft.name as bd_name, bt.name as bt_name, cs.name as cs_name, lt.name as lt_name, bl.name as bl_name');
@@ -93,7 +121,8 @@ class Projects_model extends MY_Model{
 	}
 	
 	public function create_project($post_data, $specs, $floorPlans){
-        $this->_table_name='projects';
+
+		$this->_table_name='projects';
         $this->_timestamps=TRUE;
         $insert_id=$this->save($data=$post_data, $id = NULL);
 		$specs['listing_id'] = $insert_id;
@@ -138,6 +167,54 @@ class Projects_model extends MY_Model{
             return $return_data;
         }
     }
+
+
+	public function update_project($project_id, $updated_data, $specs, $floorPlans){
+		$this->_table_name='projects';
+        $this->_timestamps=TRUE;
+        $updated_id=$this->save($data=$updated_data, $id = $project_id);
+		$specs['listing_id'] = $project_id;
+		if($updated_id){
+            //create slug
+            $slug=$this->create_slug($id=$project_id, $title=$updated_data['project_name']);
+            $update_data=array(
+                'slug'=>$slug
+            );
+            //update project
+            $update_id=$this->save($data=$update_data, $id = $project_id);
+			if(!empty($specs)){
+			  $this->update_specifications($specs, $project_id);
+			}
+			if(!empty($floorPlans)){
+			  $this->update_FloorPlans($floorPlans, $project_id);
+			}			
+            if($update_id){
+                //if updated
+                $return_data=array(
+                    'id'=>$project_id,
+                    'status'=>TRUE,
+                    'label'=>'SUCCESS',
+                );
+                return $return_data;
+            }else{
+                //if not updated
+                $return_data=array(
+                    'id'=>'',
+                    'status'=>FALSE,
+                    'label'=>'ERROR',
+                );
+                return $return_data;
+            }
+        }else{
+            //if not inseted
+            $return_data=array(
+                'id'=>'',
+                'status'=>FALSE,
+                'label'=>'ERROR',
+            );
+            return $return_data;
+        }
+    }
 	
 	public function create_specifications($post_data){
 		$this->_table_name='flat_specifications';
@@ -146,20 +223,82 @@ class Projects_model extends MY_Model{
         return true;		
 	}
 
+	public function update_specifications($post_data, $project_id){
+		
+		$this->db->trans_start();
+		$this->db->where('listing_id', $project_id);
+		$this->db->delete('flat_specifications');
+		$this->db->trans_complete();
+        if ($this->db->trans_status() === FALSE) {
+		    $this->db->trans_rollback();
+		}else{
+			$this->db->trans_commit();
+		}
+		
+		$this->_table_name='flat_specifications';
+        $this->_timestamps=TRUE;
+        $insert_id=$this->save($data=$post_data, $id = NULL);
+        return true;		
+	}
+
 
 	public function save_FloorPlans($post_data, $id){
+		/*$this->db->trans_start();
+		$this->db->where('listing_id', $id);
+		$this->db->delete('floor_plans');
+		$this->db->trans_complete();
+        if ($this->db->trans_status() === FALSE) {
+		    $this->db->trans_rollback();
+		}else{
+			$this->db->trans_commit();
+		}*/
 		$mData = array();
 		foreach($post_data as $key=>$data){
-			$sdata['floor_type'] = $data[$key]['floor_type'];
+			$sdata['floor_totalRoomSizes'] = $data[$key]['floor_totalRoomSizes'];
 			$sdata['floor_size'] = $data[$key]['floor_size'];
+			$sdata['floor_roomDesc'] = $data[$key]['floor_roomDesc'];
+			$sdata['floor_bedrooms'] = $data[$key]['floor_bedrooms'];
+			$sdata['floor_bathrooms'] = $data[$key]['floor_bathrooms'];
+			$sdata['floor_unit'] = $data[$key]['floor_unit'];
+			$sdata['floor_size'] = $data[$key]['floor_size'];
+			$sdata['floor_builtupArea'] = $data[$key]['floor_builtupArea'];
 			$sdata['floor_basePrice'] = $data[$key]['floor_basePrice'];
-			$sdata['floor_planImage'] = $data[$key]['floor_planImage'];
 			$sdata['floor_totalPrice'] = $data[$key]['floor_totalPrice'];
-			$sdata['floor_toilets'] = $data[$key]['floor_toilets'];
 			$sdata['listing_id'] = $id;
-            $mData[$key] = $sdata;
+            $mData[] = $sdata;
 		}
         $this->db->insert_batch('floor_plans', $mData);
+        $this->db->insert_batch('floor_plan_revisions', $mData);
+        return true;		
+	}
+
+	public function update_FloorPlans($post_data, $id){
+		$this->db->trans_start();
+		$this->db->where('listing_id', $id);
+		$this->db->delete('floor_plans');
+		$this->db->trans_complete();
+        if ($this->db->trans_status() === FALSE) {
+		    $this->db->trans_rollback();
+		}else{
+			$this->db->trans_commit();
+		}
+		$mData = array();
+		foreach($post_data as $key=>$data){
+			$sdata['floor_totalRoomSizes'] = $data[$key]['floor_totalRoomSizes'];
+			$sdata['floor_size'] = $data[$key]['floor_size'];
+			$sdata['floor_roomDesc'] = $data[$key]['floor_roomDesc'];
+			$sdata['floor_bedrooms'] = $data[$key]['floor_bedrooms'];
+			$sdata['floor_bathrooms'] = $data[$key]['floor_bathrooms'];
+			$sdata['floor_unit'] = $data[$key]['floor_unit'];
+			$sdata['floor_size'] = $data[$key]['floor_size'];
+			$sdata['floor_builtupArea'] = $data[$key]['floor_builtupArea'];
+			$sdata['floor_basePrice'] = $data[$key]['floor_basePrice'];
+			$sdata['floor_totalPrice'] = $data[$key]['floor_totalPrice'];
+			$sdata['listing_id'] = $id;
+            $mData[] = $sdata;
+		}
+        $this->db->insert_batch('floor_plans', $mData);
+        $this->db->insert_batch('floor_plan_revisions', $mData);
         return true;		
 	}
 	

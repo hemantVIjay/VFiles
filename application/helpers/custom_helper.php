@@ -160,11 +160,36 @@
    }
    if (!function_exists('mD_format')) {
        function mD_format($date)
-       {
-          
+       {          
            if ($date != '') {
                $date2    = date_create($date);
                $date_new = date_format($date2, "M d, Y");
+               return $date_new;
+           } else {
+               return '';
+           }
+       }
+   }
+
+   if (!function_exists('_calDate')) {
+       function _calDate($date)
+       {          
+           if ($date != '') {
+               $date2    = date_create($date);
+               $date_new = date_format($date2, "d-M-Y");
+               return $date_new;
+           } else {
+               return '';
+           }
+       }
+   }
+
+   if (!function_exists('_sqlDate')) {
+       function _sqlDate($date)
+       {          
+           if ($date != '') {
+               $date2    = date_create($date);
+               $date_new = date_format($date2, "Y-m-d");
                return $date_new;
            } else {
                return '';
@@ -1382,6 +1407,47 @@
        }
    }
 
+   if (!function_exists('_getlisting')) {
+      
+       function _getlisting($arr)
+       {          
+		  $ci =& get_instance();
+		  $ci->db->select('id');
+		  $ci->db->from('listings');
+		  $ci->db->where('name', $arr['name']);
+          $ci->db->where('parent_id', $arr['parent_id']);
+         
+		 $query = $ci->db->get();
+		 if($query->num_rows() > 0){
+            $details=$query->row();
+            return $details;
+         }else{
+            return array();
+         }
+       }
+   }
+
+   if (!function_exists('_updatelistRecord')) {
+      
+       function _updatelistRecord($arr)
+       {          
+		  $ci =& get_instance();
+		  $listing = _getlisting($arr);
+		  if(!empty($listing)){
+			$slug= create_url($id=$listing->id, $title=$arr['url']);
+			$update_data=array('url'=>$slug);
+			$now = date('Y-m-d H:i:s');
+			$update_data['updated_on'] = $now;
+			$ci->db->set($update_data);
+			$ci->db->where('id', $listing->id);
+			//$ci->db->where('name', $arr['name']);
+			//$ci->db->where('parent_id', $arr['parent_id']);
+			$ci->db->update('listings');
+		  }
+		  return true;
+       }
+   }
+
    if (!function_exists('create_url')) {
 		function create_url($id,$title)
 		{   
@@ -1399,6 +1465,24 @@
 				$url_title = $title . '-' . (++$count);
 			}
 			return strtolower($url_title);
+		}
+   }
+
+   if (!function_exists('_listingUrl')) {
+		function _listingUrl($id,$type)
+		{   
+		    $ci =& get_instance();
+			$ci->db->select('url');
+			$ci->db->where('parent_id', $id);
+			$ci->db->where('name', $type);
+			$query = $ci->db->get('listings');
+			$details = $query->row();
+			if(!empty($details)){
+              return $details->url;
+			}else{
+			  $str = ''; 	
+			  return $str;	
+			}
 		}
    }
   

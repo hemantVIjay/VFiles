@@ -11,7 +11,7 @@
       <div class="row">
          <div class="col-md-9">
             <div class="pvd-banner mb-3">
-               <img src="<?= base_url(); ?>assets/images/home-banner.jpg" class="img-fluid">
+               <img src="<?= base_url(); ?><?= ($project_info->main_image!='')? 'uploads/projects/Main Image/'.$project_info->main_image : 'assets/images/home-banner.jpg' ?>" class="img-fluid">
             </div>
             <div class="pvpds mb-4">
                <div class="row">
@@ -59,7 +59,7 @@
          <div class="row">
             <div class="col-md-4 col-6 mb-4">
                <div class="lblpvfd mb-1">Possession Start Date</div>
-               <div class="valuepvfd"><?= $project_info->project_start_date; ?></div>
+               <div class="valuepvfd"><?= my_date_show($project_info->project_start_date); ?></div>
             </div>
             <div class="col-md-4 col-6 mb-4">
                <div class="lblpvfd mb-1">Status</div>
@@ -67,7 +67,7 @@
             </div>
             <div class="col-md-4 col-6 mb-4">
                <div class="lblpvfd mb-1">Project Area</div>
-               <div class="valuepvfd">9 Acres</div>
+               <div class="valuepvfd"><?= number_format($project_info->total_area); ?> Acres</div>
             </div>
             <div class="col-md-4 col-6 mb-4">
                <div class="lblpvfd mb-1">Project Size</div>
@@ -79,7 +79,7 @@
             </div>
             <div class="col-md-4 col-6 mb-4">
                <div class="lblpvfd mb-1">Launch Date</div>
-               <div class="valuepvfd">January, 2022</div>
+               <div class="valuepvfd"><?= my_date_show($project_info->project_start_date); ?></div>
             </div>
             <div class="col-md-4 col-6 mb-4">
                <div class="lblpvfd mb-1">Availability</div>
@@ -87,7 +87,9 @@
             </div>
             <div class="col-md-4 col-6 mb-4">
                <div class="lblpvfd mb-1">Configuration</div>
-               <div class="valuepvfd">1, 2 BHK Apartments</div>
+			   <?php $c_units = $this->home->configurationUnits($project_info->id); $all_conf = array(); 
+			      foreach($c_units as $c_row){ $all_con[] = $c_row->units; } ?>
+               <div class="valuepvfd"><?= (!empty($all_con))? implode(', ', $all_con).' BHK Apartments' : 'N/A'?></div>
             </div>
          </div>
          <div class="spcr-bdd mb-4"></div>
@@ -101,30 +103,25 @@
             <h4 class="cmn-title mb-4">Floor Plan & Units</h4>
             <div class="pvfp-tab">
                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                  <li class="nav-item" role="presentation">
-                     <button class="nav-link active" id="bhka1-tab" data-bs-toggle="tab" data-bs-target="#bhka1" type="button" role="tab" aria-controls="bhka1" aria-selected="true">1BHK<br />Apartment</button>
+                  <?php $floors = $this->home->project_Floors($project_info->id); if(isset($floors)&& !empty($floors)){ foreach($floors as $key=>$floor){ ?>
+				  <li class="nav-item" role="presentation">
+                     <button class="nav-link <?php if($key==0){echo'active'; }?>" id="bhka1-tab" data-bs-toggle="tab" data-bs-target="#bhka_<?=$key;?>" type="button" role="tab" aria-controls="bhka1" aria-selected="true"><?= $floor->floor_bedrooms; ?>BHK<br />Apartment</button>
                   </li>
-                  <li class="nav-item" role="presentation">
-                     <button class="nav-link" id="bhka2-tab" data-bs-toggle="tab" data-bs-target="#bhka2" type="button" role="tab" aria-controls="bhka2" aria-selected="false">2BHK<br />Apartment</button>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                     <button class="nav-link" id="bhka3-tab" data-bs-toggle="tab" data-bs-target="#bhka3" type="button" role="tab" aria-controls="bhka3" aria-selected="false">3BHK<br />Apartment</button>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                     <button class="nav-link" id="bhka4-tab" data-bs-toggle="tab" data-bs-target="#bhka4" type="button" role="tab" aria-controls="bhka4" aria-selected="false">4BHK<br />Apartment</button>
-                  </li>
+				  <?php } } ?>
                </ul>
                <div class="tab-content py-4" id="myTabContent">
-                  <div class="tab-pane fade show active" id="bhka1" role="tabpanel" aria-labelledby="bhka1-tab">
+                  <?php if(isset($floors)&& !empty($floors)){ foreach($floors as $key=>$floor){ ?>
+				  <div class="tab-pane fade <?php if($key==0){echo'show active'; }?>" id="bhka_<?=$key;?>" role="tabpanel" aria-labelledby="bhka1-tab">
+				     <?php $floorPlans = $this->home->project_Floorplans($project_info->id, $floor->floor_bedrooms); ?>
                      <div class="vpvtab d-flex align-items-start">
                         <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                           <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">520.00 SQ. FT</button>
-                           <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">580.00 SQ. FT</button>
-                           <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">650.00 SQ. FT</button>
-                           <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">710.00 SQ. FT</button>
+                           <?php if(isset($floorPlans)&& !empty($floorPlans)){ foreach($floorPlans as $key=>$floorPlan){ ?>
+						   <button class="nav-link <?php if($key==0){echo'active'; }?>" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true"><?= number_format($floorPlan->floor_size, 2); ?> SQ. FT</button>
+						   <?php } } ?>
                         </div>
                         <div class="tab-content" id="v-pills-tabContent">
-                           <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                           <?php if(isset($floorPlans)&& !empty($floorPlans)){ foreach($floorPlans as $key=>$floorPlan){ ?>
+						   <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                               <div class="fppv-tblwrp">
                                  <table class="table table-fppv">
                                     <tr>
@@ -135,105 +132,26 @@
                                     </tr>
                                     <tr>
                                        <td><img src="<?= base_url(); ?>assets/images/plan1.jpg" class="img-fluid fp-img"></td>
-                                       <td class="pvtlst">3 bedrooms<br>1 kitchens<br>2 bathroom<br>4 balcony<br>1 living</td>
+                                       <td class="pvtlst"><?= $floorPlan->floor_bedrooms; ?> bedrooms<br>1 kitchens<br><?= $floorPlan->floor_bathrooms; ?> bathroom<br>3 balcony<br>1 living</td>
                                        <td>
                                           <div class="clbl">Super Built-up Area</div>
-                                          <div class="pvlv mb-2">1495 sq.ft.<span class="sbpv">138.89 sq.m.</span></div>
+                                          <div class="pvlv mb-2"><?= number_format($floorPlan->floor_size,2); ?> sq.ft.<span class="sbpv"><?= number_format(($floorPlan->floor_size*0.305),2); ?> sq.m.</span></div>
                                           <div class="clbl">Builtup Area</div>
-                                          <div class="pvlv">1201 sq.ft.<span class="sbpv">111.58 sq.m.</span></div>
+                                          <div class="pvlv"><?= number_format($floorPlan->floor_builtupArea,2); ?> sq.ft.<span class="sbpv"><?= number_format(($floorPlan->floor_builtupArea*0.305),2); ?> sq.m.</span></div>
                                        </td>
                                        <td>
                                           <div class="clbl">Base Price</div>
-                                          <div class="pvpclv">₹ 88.0 Lacs</div>
+                                          <div class="pvpclv">₹ <?= no_to_words($floorPlan->floor_totalPrice); ?></div>
                                        </td>
                                     </tr>
                                  </table>
                               </div>
                            </div>
-                           <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                              <div class="fppv-tblwrp">
-                                 <table class="table table-fppv">
-                                    <tr>
-                                       <th>Floor Plan</th>
-                                       <th>Inclusions</th>
-                                       <th>Area Details</th>
-                                       <th>Price Details</th>
-                                    </tr>
-                                    <tr>
-                                       <td><img src="<?= base_url(); ?>assets/images/plan1.jpg" class="img-fluid fp-img"></td>
-                                       <td class="pvtlst">3 bedrooms<br>1 kitchens<br>2 bathroom<br>4 balcony<br>1 living</td>
-                                       <td>
-                                          <div class="clbl">Super Built-up Area</div>
-                                          <div class="pvlv mb-2">1495 sq.ft.<span class="sbpv">138.89 sq.m.</span></div>
-                                          <div class="clbl">Builtup Area</div>
-                                          <div class="pvlv">1201 sq.ft.<span class="sbpv">111.58 sq.m.</span></div>
-                                       </td>
-                                       <td>
-                                          <div class="clbl">Base Price</div>
-                                          <div class="pvpclv">₹ 88.0 Lacs</div>
-                                       </td>
-                                    </tr>
-                                 </table>
-                              </div>
-                           </div>
-                           <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                              <div class="fppv-tblwrp">
-                                 <table class="table table-fppv">
-                                    <tr>
-                                       <th>Floor Plan</th>
-                                       <th>Inclusions</th>
-                                       <th>Area Details</th>
-                                       <th>Price Details</th>
-                                    </tr>
-                                    <tr>
-                                       <td><img src="<?= base_url(); ?>assets/images/plan1.jpg" class="img-fluid fp-img"></td>
-                                       <td class="pvtlst">3 bedrooms<br>1 kitchens<br>2 bathroom<br>4 balcony<br>1 living</td>
-                                       <td>
-                                          <div class="clbl">Super Built-up Area</div>
-                                          <div class="pvlv mb-2">1495 sq.ft.<span class="sbpv">138.89 sq.m.</span></div>
-                                          <div class="clbl">Builtup Area</div>
-                                          <div class="pvlv">1201 sq.ft.<span class="sbpv">111.58 sq.m.</span></div>
-                                       </td>
-                                       <td>
-                                          <div class="clbl">Base Price</div>
-                                          <div class="pvpclv">₹ 88.0 Lacs</div>
-                                       </td>
-                                    </tr>
-                                 </table>
-                              </div>
-                           </div>
-                           <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                              <div class="fppv-tblwrp">
-                                 <table class="table table-fppv">
-                                    <tr>
-                                       <th>Floor Plan</th>
-                                       <th>Inclusions</th>
-                                       <th>Area Details</th>
-                                       <th>Price Details</th>
-                                    </tr>
-                                    <tr>
-                                       <td><img src="<?= base_url(); ?>assets/images/plan1.jpg" class="img-fluid fp-img"></td>
-                                       <td class="pvtlst">3 bedrooms<br>1 kitchens<br>2 bathroom<br>4 balcony<br>1 living</td>
-                                       <td>
-                                          <div class="clbl">Super Built-up Area</div>
-                                          <div class="pvlv mb-2">1495 sq.ft.<span class="sbpv">138.89 sq.m.</span></div>
-                                          <div class="clbl">Builtup Area</div>
-                                          <div class="pvlv">1201 sq.ft.<span class="sbpv">111.58 sq.m.</span></div>
-                                       </td>
-                                       <td>
-                                          <div class="clbl">Base Price</div>
-                                          <div class="pvpclv">₹ 88.0 Lacs</div>
-                                       </td>
-                                    </tr>
-                                 </table>
-                              </div>
-                           </div>
+						   <?php } } ?>
                         </div>
                      </div>
                   </div>
-                  <div class="tab-pane fade" id="bhka2" role="tabpanel" aria-labelledby="bhka2-tab">...</div>
-                  <div class="tab-pane fade" id="bhka3" role="tabpanel" aria-labelledby="bhka3-tab">...</div>
-                  <div class="tab-pane fade" id="bhka4" role="tabpanel" aria-labelledby="bhka4-tab">...</div>
+				  <?php } } ?>
                </div>
             </div>
          </div>
@@ -257,15 +175,15 @@
             <h4 class="cmn-title mb-4">Gallery</h4>
             <div class="pvfp-tab gllry-tabs">
                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                  <?php foreach($properties_images as $ik=>$im){ $tab = str_replace(' ', '_', strtolower($ik));?>
+                  <?php $i=0; foreach($properties_images as $ik=>$im){ $tab = str_replace(' ', '_', strtolower($ik));?>
                   <li class="nav-item" role="presentation">
-                     <button class="nav-link" id="<?= $tab; ?>-tab" data-bs-toggle="tab" data-bs-target="#<?= $tab; ?>" type="button" role="tab" aria-controls="<?= $tab; ?>" aria-selected="true"><?= $ik; ?></button>
+                     <button class="nav-link <?php if($i==0){echo'active'; }?>" id="<?= $tab; ?>-tab" data-bs-toggle="tab" data-bs-target="#<?= $tab; ?>" type="button" role="tab" aria-controls="<?= $tab; ?>" aria-selected="true"><?= $ik; ?></button>
                   </li>
-                  <?php } ?>
+                  <?php $i++; } ?>
                </ul>
                <div class="tab-content py-4" id="myTabContent">
-                  <?php foreach($properties_images as $kk=>$images){  $ftab = str_replace(' ','_',strtolower($kk)); ?>
-                  <div class="tab-pane fade" id="<?= $ftab; ?>" role="tabpanel" aria-labelledby="<?= $ftab; ?>-tab">
+                  <?php $j=0;foreach($properties_images as $kk=>$images){  $ftab = str_replace(' ','_',strtolower($kk)); ?>
+                  <div class="tab-pane fade<?php if($j==0){echo'show active'; }?>" id="<?= $ftab; ?>" role="tabpanel" aria-labelledby="<?= $ftab; ?>-tab">
                      <div class="row">
                         <?php foreach($images as $sk=>$p_image){ ?>
                         <div class="col-xl-3 col-md-4 col-sm-6 mt-2">
@@ -276,7 +194,7 @@
                         <?php } ?>
                      </div>
                   </div>
-                  <?php } ?>
+                  <?php $j++; } ?>
                   <div class="tab-pane fade" id="cnstgt" role="tabpanel" aria-labelledby="cnstgt-tab">...</div>
                   <div class="tab-pane fade" id="nbhdgt" role="tabpanel" aria-labelledby="nbhdgt-tab">...</div>
                </div>

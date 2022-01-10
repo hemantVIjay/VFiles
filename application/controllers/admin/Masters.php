@@ -64,7 +64,7 @@
            } else {
                $result = $this->masters->update_record($id, $post_data, 'states');
            }
-           redirect('admin/Masters/list_states', 'refresh');
+           redirect('admin/masters/list_states', 'refresh');
        }
       
        public function delete_states()
@@ -79,7 +79,7 @@
                        'updated_by' => $this->get_user_id()
                    );
                    $res           = $this->masters->delete_record($id, $post_data, 'states');
-                   redirect('admin/Masters/list_states', 'refresh');
+                   redirect('admin/masters/list_states', 'refresh');
                } else {
                    $data['title'] = $this->lang->line("alert_access_denied");
                    $success       = TRUE;
@@ -172,7 +172,7 @@
                        'updated_by' => $this->get_user_id()
                    );
                    $res           = $this->masters->delete_record($id, $post_data, 'cities');
-                   redirect('admin/Masters/list_cities', 'refresh');
+                   redirect('admin/masters/list_cities', 'refresh');
                } else {
                    $data['title'] = $this->lang->line("alert_access_denied");
                    $success       = TRUE;
@@ -254,7 +254,7 @@
            } else {
                $result = $this->masters->update_record($id, $post_data, 'locations');
            }
-           redirect('admin/Masters/list_localities', 'refresh');
+           redirect('admin/masters/list_localities', 'refresh');
        }
       
        public function delete_localities()
@@ -269,7 +269,7 @@
                        'updated_by' => $this->get_user_id()
                    );
                    $res           = $this->masters->delete_record($id, $post_data, 'locations');
-                   redirect('admin/Masters/list_localities', 'refresh');
+                   redirect('admin/masters/list_localities', 'refresh');
                } else {
                    $data['title'] = $this->lang->line("alert_access_denied");
                    $success       = TRUE;
@@ -340,7 +340,7 @@
            } else {
                $result = $this->masters->update_record($id, $post_data, 'amenities');
            }
-           redirect('admin/Masters/list_amenities', 'refresh');
+           redirect('admin/masters/list_amenities', 'refresh');
        }
       
        public function delete_amenities()
@@ -355,7 +355,7 @@
                        'updated_by' => $this->get_user_id()
                    );
                    $res           = $this->masters->delete_record($id, $post_data, 'amenities');
-                   redirect('admin/Masters/list_amenities', 'refresh');
+                   redirect('admin/masters/list_amenities', 'refresh');
                } else {
                    $data['title'] = $this->lang->line("alert_access_denied");
                    $success       = TRUE;
@@ -426,7 +426,7 @@
            } else {
                $result = $this->masters->update_record($id, $post_data, 'banks');
            }
-           redirect('admin/Masters/list_banks', 'refresh');
+           redirect('admin/masters/list_banks', 'refresh');
        }
       
        public function delete_banks()
@@ -441,7 +441,7 @@
                        'updated_by' => $this->get_user_id()
                    );
                    $res           = $this->masters->delete_record($id, $post_data, 'banks');
-                   redirect('admin/Masters/list_banks', 'refresh');
+                   redirect('admin/masters/list_banks', 'refresh');
                } else {
                    $data['title'] = $this->lang->line("alert_access_denied");
                    $success       = TRUE;
@@ -513,7 +513,7 @@
            } else {
                $result = $this->masters->update_record($id, $post_data, 'property_types');
            }
-           redirect('admin/Masters/list_propertiesType', 'refresh');
+           redirect('admin/masters/list_propertiesType', 'refresh');
        }
       
        public function delete_propertiesType()
@@ -528,7 +528,7 @@
                        'updated_by' => $this->get_user_id()
                    );
                    $res           = $this->masters->delete_record($id, $post_data, 'property_types');
-                   redirect('admin/Masters/list_propertiesType', 'refresh');
+                   redirect('admin/masters/list_propertiesType', 'refresh');
                } else {
                    $data['title'] = $this->lang->line("alert_access_denied");
                    $success       = TRUE;
@@ -600,7 +600,7 @@
            } else {
                $result = $this->masters->update_record($id, $post_data, 'property_categories');
            }
-           redirect('admin/Masters/list_categories', 'refresh');
+           redirect('admin/masters/list_categories', 'refresh');
        }
       
        public function delete_category()
@@ -615,7 +615,7 @@
                        'updated_by' => $this->get_user_id()
                    );
                    $res           = $this->masters->delete_record($id, $post_data, 'property_categories');
-                   redirect('admin/Masters/list_categories', 'refresh');
+                   redirect('admin/masters/list_categories', 'refresh');
                } else {
                    $data['title'] = $this->lang->line("alert_access_denied");
                    $success       = TRUE;
@@ -686,7 +686,7 @@
            } else {
                $result = $this->masters->update_record($id, $post_data, 'floor_types');
            }
-           redirect('admin/Masters/list_categories', 'refresh');
+           redirect('admin/masters/list_categories', 'refresh');
        }
       
        public function delete_bedroom()
@@ -701,7 +701,7 @@
                        'updated_by' => $this->get_user_id()
                    );
                    $res           = $this->masters->delete_record($id, $post_data, 'floor_types');
-                   redirect('admin/Masters/list_bedrooms', 'refresh');
+                   redirect('admin/masters/list_bedrooms', 'refresh');
                } else {
                    $data['title'] = $this->lang->line("alert_access_denied");
                    $success       = TRUE;
@@ -772,7 +772,7 @@
            } else {
                $result = $this->masters->update_record($id, $post_data, 'bathrooms');
            }
-           redirect('admin/Masters/list_bathroomss', 'refresh');
+           redirect('admin/masters/list_bathrooms', 'refresh');
        }
       
        public function delete_bathroom()
@@ -787,7 +787,7 @@
                        'updated_by' => $this->get_user_id()
                    );
                    $res           = $this->masters->delete_record($id, $post_data, 'bathrooms');
-                   redirect('admin/Masters/list_bathrooms', 'refresh');
+                   redirect('admin/masters/list_bathrooms', 'refresh');
                } else {
                    $data['title'] = $this->lang->line("alert_access_denied");
                    $success       = TRUE;
@@ -858,7 +858,7 @@
            } else {
                $result = $this->masters->update_record($id, $post_data, 'construction_status');
            }
-           redirect('admin/Masters/list_construction_status', 'refresh');
+           redirect('admin/masters/list_construction_status', 'refresh');
        }
       
        public function delete_construction_status()
@@ -873,7 +873,7 @@
                        'updated_by' => $this->get_user_id()
                    );
                    $res           = $this->masters->delete_record($id, $post_data, 'construction_status');
-                   redirect('admin/Masters/list_construction_status', 'refresh');
+                   redirect('admin/masters/list_construction_status', 'refresh');
                } else {
                    $data['title'] = $this->lang->line("alert_access_denied");
                    $success       = TRUE;
@@ -944,7 +944,7 @@
            } else {
                $result = $this->masters->update_record($id, $post_data, 'furnish_types');
            }
-           redirect('admin/Masters/list_furnishType', 'refresh');
+           redirect('admin/masters/list_furnishType', 'refresh');
        }
       
        public function delete_furnishType()
@@ -959,7 +959,7 @@
                        'updated_by' => $this->get_user_id()
                    );
                    $res           = $this->masters->delete_record($id, $post_data, 'furnish_types');
-                   redirect('admin/Masters/list_furnishType', 'refresh');
+                   redirect('admin/masters/list_furnishType', 'refresh');
                } else {
                    $data['title'] = $this->lang->line("alert_access_denied");
                    $success       = TRUE;

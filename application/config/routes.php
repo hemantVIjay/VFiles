@@ -59,6 +59,7 @@ $route['404_override']               = 'c_404';
 $route['translate_uri_dashes']       = FALSE;
 $route['properties-details/(:any)']  = 'home/properties_details';
 $route['home/search_properties']     = 'home/search_properties';
+$route['home/search_All']            = 'home/search_All';
 
 $route['locations/(:any)']           = 'home/locations_info';
 $route['properties-listings']        = 'home/properties_listings';
@@ -114,6 +115,9 @@ $route[$r_admin . '/settings/permissions']     = 'admin/settings/permissions';
 $route[$r_admin . '/settings/app']             = 'admin/settings/app_settings';
 $route[$r_admin . '/settings/email']           = 'admin/settings/email_settings';
 $route[$r_admin . '/settings/email-templates'] = 'admin/settings/email_templates';
+$route[$r_admin . '/modals/getRoom_Data']      = 'admin/modals/getRoom_Data';
+$route[$r_admin . '/modals/getDesc_Data']      = 'admin/modals/getDesc_Data';
+$route[$r_admin . '/reviews/list_reviews']      = 'admin/reviews/list_reviews';
 $route[$r_admin . '/masters/(:any)'] = 'admin/masters/$1';
 $route[$r_admin . '/builders/(:any)'] = 'admin/builders/$1';
 $route[$r_admin . '/projects/(:any)'] = 'admin/projects/$1';

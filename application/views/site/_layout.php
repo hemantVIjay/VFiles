@@ -46,6 +46,10 @@
       font-style: italic;
       font-size: 10px;
       }
+	  .ui-autocomplete{
+		    max-height: 260px;
+    overflow-y: scroll;  
+	  }
    </style>
    <body data-spy="scroll" data-target=".navbar" data-offset="400">
       <div class="page-loader" id="page-loader" style="display:none;">
@@ -72,9 +76,7 @@
             <?php $cls = $this->router->fetch_class(); $mthd = $this->router->fetch_method();
 			if($cls!='home' && $mthd!='index' && $is_search == true){
 			?>
-			<div class="input-group gblsrh">	
-               <input type="text" class="form-control form-control-lg autocomplete ui-autocomplete-input" placeholder="Search your property here..." name="i_search" autocomplete="off">
-               <button class="btn btn-lg btn-primary" type="button" id="imain_search"><i class="bi bi-search"></i></button>   </div>
+            <?php include_once('_topSearch.php'); ?> 
 			<?php } ?>   
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -565,4 +567,82 @@
 		$(document).click(function () {
 			$(".ddmCity").hide();
 		});
+		    
+
+    //SHOW ALERT
+    function showAlert(type,head,message){
+        $.toast({heading: head ,text: message,loader: false,position : 'bottom-right',showHideTransition: 'fade', icon: type });
+    }
+	
+	function saveReview(e) {
+		if ($('input[name="rating"]:checked').length == 0) {
+			showAlert('warning', 'Please add your rating Stars.');
+			return false;
+		}
+		//$('#page-loader').fadeIn();			   
+		$.ajax({
+			type: 'POST',
+			url: baseUrl + "home/save_review",
+			data: $('#reviews').serialize(),
+			dataType: 'json',
+			async: false,
+			success: function (response) {
+				var newData = JSON.stringify(response)
+				var res = JSON.parse(newData);
+				showAlert('success', res.message);
+				//window.location.reload();
+			}
+		});
+		return false;
+	}
+	
+function validate() {
+	var fname = $('#full_name').val();
+	var phone = $('#phone').val();
+	var email = $('#email').val();
+	var terms = $('#terms');
+	var flag = true;
+	if (fname == '') {
+		$('#e_full_name').html('Please enter Full Name');
+		flag = false;
+	}
+	if (phone == '') {
+		$('#e_phone').html('Please enter Phone number');
+		flag = false;
+	}
+	if (email == '') {
+		$('#e_email').html('Please enter Email Address');
+		flag = false;
+	}
+	if (terms.is(':checked') != true) {
+		$('#e_terms').html('Please select terms and conditions');
+		flag = false;
+	}
+	return flag;
+}
+
+function save_enquiries(e) {
+	var vd = validate();
+	$('#page-loader').fadeIn();
+	if (vd == true) {
+		$('#e_full_name').html('');
+		$('#e_phone').html('');
+		$('#e_email').html('');
+		$('#e_terms').html('');
+
+		$.ajax({
+			type: 'POST',
+			url: baseUrl + "pages/post_enquiry",
+			data: $('#call_back').serialize(),
+			success: function (response) {
+				$('#page-loader').fadeOut();
+				$('#call_back')[0].reset();
+			}
+		});
+	} else {
+		$('#page-loader').fadeOut();
+	}
+	return false;
+}
+
       </script>

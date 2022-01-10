@@ -67,31 +67,72 @@ class Home_model extends MY_Model{
 
 
 	public function _searchProperties($search, $city){
-		//$sql = "SELECT a.property_name as name, CONCAT('PROP','_', a.id) as val 
-		//FROM properties a where a.property_name LIKE '%$search%'
-	    //UNION
-		//SELECT pr.project_name as name, CONCAT('PROJ','_', pr.id) as val
-		//FROM projects pr where pr.project_name LIKE '%$search%'
-		//UNION	
-		//SELECT l.name as name,  CONCAT('BLD','_', l.id) as val 
-		//FROM locations l where l.name LIKE '%$search%'
-		//UNION	
-		//SELECT b.builder_name as name, b.id as val
-		//FROM builders b where b.builder_name LIKE '%$search%'";
 		
-		$sql = "SELECT pr.project_name as name, CONCAT('PROJ','_', pr.id) as val, pr.slug
-		FROM projects pr where pr.project_name LIKE '%$search%' AND city_id IN(SELECT id FROM cities where slug = '".$city."') 
+		$sql = "SELECT pr.project_name as name, CONCAT('PROJ','_', pr.id) as val, lt.url as slug
+		FROM projects pr JOIN listings lt ON pr.id = lt.parent_id AND lt.name = 'project' where pr.project_name LIKE '%$search%' AND city_id IN(SELECT id FROM cities where slug = '".$city."') 
 		UNION	
-		SELECT l.name as name, CONCAT('LOC','_', l.id) as val, l.slug
-		FROM locations l where l.name LIKE '%$search%' AND city_id IN(SELECT id FROM cities where slug = '".$city."')
+		SELECT l.name as name, CONCAT('LOC','_', l.id) as val, lt.url as slug
+		FROM locations l JOIN listings lt ON l.id = lt.parent_id AND lt.name = 'locality' where l.name LIKE '%$search%' AND city_id IN(SELECT id FROM cities where slug = '".$city."')
 		UNION	
-		SELECT b.builder_name as name, CONCAT('BLD','_', b.id) as val, b.slug
-		FROM builders b where b.builder_name LIKE '%$search%'";
+		SELECT b.builder_name as name, CONCAT('BLD','_', b.id) as val, lt.url as slug
+		FROM builders b JOIN listings lt ON b.id = lt.parent_id AND lt.name = 'builder' where b.builder_name LIKE '%$search%'";
         $query = $this->db->query($sql);
 		//return fetched data
         return ($query->num_rows() > 0)?$query->result():FALSE;
     }
 
+	public function _searchAll($search){
+		
+		$sql = "SELECT pr.project_name as name, CONCAT('PROJ','_', pr.id) as val, lt.url as slug
+		FROM projects pr JOIN listings lt ON pr.id = lt.parent_id AND lt.name = 'project' where pr.project_name LIKE '%$search%' 
+		UNION	
+		SELECT l.name as name, CONCAT('LOC','_', l.id) as val, lt.url as slug
+		FROM locations l JOIN listings lt ON l.id = lt.parent_id AND lt.name = 'locality' where l.name LIKE '%$search%'
+		UNION	
+		SELECT c.name as name, CONCAT('CITY','_', c.id) as val, lt.url as slug
+		FROM cities c JOIN listings lt ON c.id = lt.parent_id AND lt.name = 'city' where c.name LIKE '%$search%'
+		UNION	
+		SELECT b.builder_name as name, CONCAT('BLD','_', b.id) as val, lt.url as slug
+		FROM builders b JOIN listings lt ON b.id = lt.parent_id AND lt.name = 'builder' where b.builder_name LIKE '%$search%'";
+        $query = $this->db->query($sql);
+		//return fetched data
+        return ($query->num_rows() > 0)?$query->result():FALSE;
+    }
+	
+	
+    
+	public function project_Floors($id){
+	 
+	 $this->db->select("fp.id, fp.floor_bedrooms");
+     $this->db->from('floor_plans fp');
+     $this->db->where('fp.listing_id',$id);
+     $this->db->group_by('fp.floor_bedrooms');
+	 $query = $this->db->get();
+
+     return ($query->num_rows() > 0)?$query->result():FALSE;
+	}
+
+	public function project_Floorplans($id, $bedrooms){
+	 
+	 $this->db->select("fp.*");
+     $this->db->from('floor_plans fp');
+     $this->db->where('fp.listing_id',$id);
+     $this->db->where('fp.floor_bedrooms', $bedrooms);
+	 $query = $this->db->get();
+
+     return ($query->num_rows() > 0)?$query->result():FALSE;
+	}
+
+	public function configurationUnits($id){
+	 
+	 $this->db->select("fp.floor_bedrooms as units");
+     $this->db->from('floor_plans fp');
+     $this->db->where('fp.listing_id',$id);
+	 $this->db->group_by('fp.floor_bedrooms');
+	 $query = $this->db->get();
+
+     return ($query->num_rows() > 0)?$query->result():FALSE;
+	}
 
 	public function _searchListing($search){
 		$this->db->select('a.*');

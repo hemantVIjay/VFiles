@@ -8,6 +8,7 @@
    }
 </style>
 <form method="POST" action="<?= base_url('admin/projects/update_project'); ?>" id="img-upload-form" enctype="multipart/form-data" accept-charset="utf-8">
+<input type="hidden" name="id" id="id" value="<?= $id; ?>">
    <div class="pg-content mb-4">
       <div class="row">
          <div class="col-xl-12 col-md-12">
@@ -79,11 +80,11 @@
                      </div>
                      <div class="col-md-4 mb-3">
                         <label class="required">Architech Name</label>
-                        <input type="text" class="form-control" name="architect_name" autocomplete="Off"/>
+                        <input type="text" class="form-control" name="architect_name" autocomplete="Off" value="<?= $info->architect_name; ?>"/>
                      </div>
                      <div class="col-md-4 mb-3">
                         <label class="required">Project Launch Date</label>
-                        <input type="text" class="form-control calicon" id="dtpicker" data-toggle="datetimepicker" data-target="#dtpicker" name="project_start_date" autocomplete="Off"/>
+                        <input type="text" class="form-control calicon" id="dtpicker" data-toggle="datetimepicker" data-target="#dtpicker" name="project_start_date" autocomplete="Off" value="<?= _calDate($info->project_start_date); ?>"/>
                      </div>
                      <div class="col-md-12 mb-3">
                         <label class="required">Project Overview</label>
@@ -92,17 +93,18 @@
                   </div>
                   <hr />
                   <div class="cmnttl position-relative">Add Specifications</div>
+				  <?php $specifications = $this->project->get_specifications($id); ?>
                   <div class="row">
                      <div class="col-md-3 mb-3"><strong>Doors</strong></div>
                      <div class="col-md-9">
                         <div class="row">
                            <div class="col-md-6 mb-3">
                               <label class="required">Internal</label>
-                              <input type="text" class="form-control" name="specifications[doors_internal]" autocomplete="Off"/>
+                              <input type="text" class="form-control" name="specifications[doors_internal]" autocomplete="Off" value="<?= $specifications->doors_internal; ?>"/>
                            </div>
                            <div class="col-md-6 mb-3">
                               <label class="required">External</label>
-                              <input type="text" class="form-control" name="specifications[doors_external]" autocomplete="Off"/>
+                              <input type="text" class="form-control" name="specifications[doors_external]" autocomplete="Off"value="<?= $specifications->doors_external; ?>"/>
                            </div>
                         </div>
                      </div>
@@ -114,27 +116,27 @@
                         <div class="row">
                            <div class="col-md-6 mb-3">
                               <label class="required">Balcony</label>
-                              <input type="text" class="form-control" name="specifications[flooring_balcony]" autocomplete="Off"/>
+                              <input type="text" class="form-control" name="specifications[flooring_balcony]" autocomplete="Off" value="<?= $specifications->flooring_balcony; ?>"/>
                            </div>
                            <div class="col-md-6 mb-3">
                               <label class="required">Kitchen</label>
-                              <input type="text" class="form-control" name="specifications[flooring_kitchen]" autocomplete="Off"/>
+                              <input type="text" class="form-control" name="specifications[flooring_kitchen]" autocomplete="Off" value="<?= $specifications->flooring_kitchen; ?>"/>
                            </div>
                            <div class="col-md-6 mb-3">
                               <label class="required">Living/Dining</label>
-                              <input type="text" class="form-control" name="specifications[flooring_living_dining]" autocomplete="Off"/>
+                              <input type="text" class="form-control" name="specifications[flooring_living_dining]" autocomplete="Off" value="<?= $specifications->flooring_living_dining; ?>"/>
                            </div>
                            <div class="col-md-6 mb-3">
                               <label class="required">Master Bedroom</label>
-                              <input type="text" class="form-control" name="specifications[flooring_masterbedroom]" autocomplete="Off"/>
+                              <input type="text" class="form-control" name="specifications[flooring_masterbedroom]" autocomplete="Off" value="<?= $specifications->flooring_masterbedroom; ?>"/>
                            </div>
                            <div class="col-md-6 mb-3">
                               <label class="required">Other Bedroom</label>
-                              <input type="text" class="form-control" name="specifications[flooring_otherbedroom]" autocomplete="Off"/>
+                              <input type="text" class="form-control" name="specifications[flooring_otherbedroom]" autocomplete="Off" value="<?= $specifications->flooring_otherbedroom; ?>"/>
                            </div>
                            <div class="col-md-6 mb-3">
                               <label class="required">Toilet</label>
-                              <input type="text" class="form-control" name="specifications[flooring_toilet]" autocomplete="Off"/>
+                              <input type="text" class="form-control" name="specifications[flooring_toilet]" autocomplete="Off" value="<?= $specifications->flooring_toilet; ?>"/>
                            </div>
                         </div>
                      </div>
@@ -146,15 +148,15 @@
                         <div class="row">
                            <div class="col-md-6 mb-3">
                               <label class="required">Interior</label>
-                              <input type="text" class="form-control" name="specifications[walls_interior]" autocomplete="Off"/>
+                              <input type="text" class="form-control" name="specifications[walls_interior]" autocomplete="Off" value="<?= $specifications->walls_interior; ?>"/>
                            </div>
                            <div class="col-md-6 mb-3">
                               <label class="required">Kitchen</label>
-                              <input type="text" class="form-control" name="specifications[walls_kitchen]" autocomplete="Off"/>
+                              <input type="text" class="form-control" name="specifications[walls_kitchen]" autocomplete="Off" value="<?= $specifications->walls_kitchen; ?>"/>
                            </div>
                            <div class="col-md-6 mb-3">
                               <label class="required">Toilet</label>
-                              <input type="text" class="form-control" name="specifications[walls_toilet]" autocomplete="Off"/>
+                              <input type="text" class="form-control" name="specifications[walls_toilet]" autocomplete="Off" value="<?= $specifications->walls_toilet; ?>"/>
                            </div>
                         </div>
                      </div>
@@ -166,11 +168,11 @@
                         <div class="row">
                            <div class="col-md-6 mb-3">
                               <label class="required">Kitchen</label>
-                              <input type="text" class="form-control" name="specifications[fittings_kitchen]" autocomplete="Off"/>
+                              <input type="text" class="form-control" name="specifications[fittings_kitchen]" autocomplete="Off" value="<?= $specifications->fittings_kitchen; ?>"/>
                            </div>
                            <div class="col-md-6 mb-3">
                               <label class="required">Toilet</label>
-                              <input type="text" class="form-control" name="specifications[fittings_toilet]" autocomplete="Off"/>
+                              <input type="text" class="form-control" name="specifications[fittings_toilet]" autocomplete="Off" value="<?= $specifications->fittings_toilet; ?>"/>
                            </div>
                         </div>
                      </div>
@@ -182,11 +184,11 @@
                         <div class="row">
                            <div class="col-md-6 mb-3">
                               <label class="required">Windows</label>
-                              <input type="text" class="form-control" name="specifications[others_windows]" autocomplete="Off"/>
+                              <input type="text" class="form-control" name="specifications[others_windows]" autocomplete="Off" value="<?= $specifications->others_windows; ?>"/>
                            </div>
                            <div class="col-md-6 mb-3">
                               <label class="required">Frame Structure</label>
-                              <input type="text" class="form-control" name="specifications[others_frame_structure]" autocomplete="Off"/>
+                              <input type="text" class="form-control" name="specifications[others_frame_structure]" autocomplete="Off" value="<?= $specifications->others_frame_structure; ?>"/>
                            </div>
                         </div>
                      </div>
@@ -211,7 +213,25 @@
                         </tr>
                      </thead>
                      <tbody id="floor_plans">
-                        <tr>
+                        <?php $floorPlans = $this->project->get_floorPlans($id); 
+						if(!empty($floorPlans)){ foreach($floorPlans as $key=>$floorPlan){ ?>
+						<tr>
+                           <td><input type="hidden" name="floor_totalRoomSizes[]" id="allRooms_<?= $key+1; ?>">
+						   <input type="checkbox" id="check_1" value="<?= $floorPlan->floor_totalRoomSizes; ?>" ></td>
+                           <td><input type="hidden" name="floor_allRoomSizes[]" id="roomSizes_<?= $key+1; ?>" value="<?= $floorPlan->floor_allRoomSizes; ?>">
+						   <a href="javascript:void(0);" onclick="addRoom_Sizes(this);" style="text-decoration:underline;font-weight:900;">ADD SIZES</a></td>
+						   <td><input type="hidden" name="floor_roomDesc[]" id="roomDesc_<?= $key+1; ?>" value="<?= $floorPlan->floor_roomDesc; ?>">
+						   <a href="javascript:void(0);" onclick="addDescription(this);" style="text-decoration:underline;font-weight:900;">ADD DESC.</a></td>
+						   <td><select class="form-select" id="bedrooms_<?= $key+1; ?>" name="floor_bedrooms[]" onchange="generateUnitName(this);" onclick="generateUnitName(this);"><?= _Numbers($floorPlan->floor_bedrooms, 10); ?></select></td>
+						   <td><select class="form-select" id="bathrooms_<?= $key+1; ?>" name="floor_bathrooms[]" onchange="generateUnitName(this);" onclick="generateUnitName(this);"><?= _Numbers($floorPlan->floor_bathrooms, 10); ?></select></td>
+						   <td><input type="text" class="form-control" id="unitName_<?= $key+1; ?>" name="floor_unit[]" autocomplete="Off" value="<?= $floorPlan->floor_unit; ?>" /></td>
+						   <td><input type="text" class="form-control text-right" id="size_<?= $key+1; ?>" name="floor_size[]" onkeypress="return isNumberKey(this, event);" autocomplete="Off" value="<?= $floorPlan->floor_size; ?>" /></td>
+                           <td><input type="text" class="form-control text-right" id="builtupArea_<?= $key+1; ?>" name="floor_builtupArea[]" onkeyup="totalPrice(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off" value="<?= $floorPlan->floor_builtupArea; ?>" /></td>
+                           <td><input type="text" class="form-control text-right" id="basePrice_<?= $key+1; ?>" name="floor_basePrice[]" onkeyup="totalPrice(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off" value="<?= $floorPlan->floor_basePrice; ?>" /></td>
+                           <td><input type="text" class="form-control text-right" id="tPrice_<?= $key+1; ?>" name="floor_totalPrice[]" autocomplete="Off" value="<?= $floorPlan->floor_totalPrice; ?>" /></td>
+                        </tr>
+						<?php } }else{ ?>
+						<tr>
                            <td><input type="hidden" name="floor_totalRoomSizes[]" id="allRooms_1">
 						   <input type="checkbox" id="check_1"></td>
                            <td><input type="hidden" name="floor_allRoomSizes[]" id="roomSizes_1">
@@ -226,6 +246,7 @@
                            <td><input type="text" class="form-control text-right" id="basePrice_1" name="floor_basePrice[]" onkeyup="totalPrice(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
                            <td><input type="text" class="form-control text-right" id="tPrice_1" name="floor_totalPrice[]" autocomplete="Off"/></td>
                         </tr>
+						<?php } ?>
                      </tbody>
                   </table>
                </div>
@@ -267,13 +288,23 @@
                         </tr>
                      </thead>
                      <tbody id="configuration">
-                        <tr>
+                        <?php $plots = $this->project->get_plots($id); if(!empty($plots)){ foreach($plots as $key=>$plot){ ?>
+						<tr>
+                           <td><input type="checkbox"></td>
+                           <td><input type="text" class="form-control" name="plot_size[]" id="plotSize_<?= ($key+1); ?>" onkeyup="total_Price(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
+                           <td><input type="text" class="form-control" name="plot_basePrice[]" id="plotBasicPrice_<?= ($key+1); ?>" onkeyup="total_Price(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
+                           <td><input type="text" class="form-control" name="plot_totalPrice[]" id="plotTotalPrice_<?= ($key+1); ?>"  onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
+                           <td><input type="file" class="form-control" name="plot_Image[]" id="plotImage_<?= ($key+1); ?>"/></td>
+                        </tr>
+						<?php } }else{ ?>
+						<tr>
                            <td><input type="checkbox"></td>
                            <td><input type="text" class="form-control" name="plot_size[]" id="plotSize_1" onkeyup="total_Price(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
                            <td><input type="text" class="form-control" name="plot_basePrice[]" id="plotBasicPrice_1" onkeyup="total_Price(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
                            <td><input type="text" class="form-control" name="plot_totalPrice[]" id="plotTotalPrice_1"  onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
                            <td><input type="file" class="form-control" name="plot_Image[]" id="plotImage_1"/></td>
                         </tr>
+						<?php } ?>
                      </tbody>
                   </table>
                </div>
@@ -295,6 +326,14 @@
                <?php } ?>
             </div>
             <hr />
+            <div class="cmnttl position-relative">Main Image</div>
+            <div class="row">
+               <div class="col-md-12 mb-3">
+                  <label class="required">Upload Image</label>
+                  <input type="file" class="form-control" name="main_image"/>
+               </div>
+            </div>
+			<hr />
             <div class="cmnttl position-relative">Site Layout</div>
             <div class="row">
                <div class="col-md-12 mb-3">
@@ -312,10 +351,10 @@
             <hr />
             <div class="cmnttl position-relative">Bank Available</div>
             <div class="row">
-               <?php $banks = _banks(); foreach($banks as $key=>$bank){ ?>
+               <?php $banks = _banks(); $c_banks = explode(',', $info->banks_available); foreach($banks as $key=>$bank){ $checked=''; if(in_array($bank->id, $c_banks)){ $checked='checked'; } ?>
                <div class="col-xl-3 col-md-4">
                   <span class="form-check">
-                  <input class="form-check-input" name="banks[]" type="checkbox" id="bank_<?= $key+1;?>" value="<?= $bank->id;?>">
+                  <input class="form-check-input" name="banks[]" type="checkbox" id="bank_<?= $key+1;?>" value="<?= $bank->id;?>" <?= $checked; ?> >
                   <span class="form-check-label"><?= $bank->name; ?></span>
                   </span>
                </div>
@@ -535,13 +574,13 @@
    
    function changeDetails(ev){
 	   var pType = $(ev).val();
-	   if(pType == '1'){
+	   if(pType == '2'){
 		$('#pty_flat').css('display','none');   
 		$('#pty_plot').css('display','block');
         $('#pty_flat').find('input, textarea, button, select').attr('disabled','disabled');		
         $('#pty_plot').find('input, textarea, button, select').attr('disabled',false);		
 	   }
-	   if(pType == '2' || pType == '3'){
+	   if(pType == '1' || pType == '3'){
 		$('#pty_flat').css('display','block');   
 		$('#pty_plot').css('display','none');
 		$('#pty_plot').find('input, textarea, button, select').attr('disabled','disabled');

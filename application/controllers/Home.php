@@ -154,6 +154,27 @@ class Home extends MY_Controller {
 	  exit;		
 	}
 
+	public function search_All(){
+	  $cities = [];	  
+      $cities = $this->home->_searchAll($this->input->get("q"));
+	  $arr = array();
+	  foreach($cities as $row){
+		  $cont = '';	  
+		  $rr = explode('_', $row->val);
+		  if($rr[0]=='PROJ'){$cont = 'Project'; } 	  
+		  if($rr[0]=='LOC'){$cont = 'Locality'; } 	  
+		  if($rr[0]=='BLD'){$cont = 'Builder'; } 	  
+		  if($rr[0]=='CITY'){$cont = 'City'; } 	  
+		  $data['name'] = $row->name;	
+		  $data['val'] = $row->val;	
+		  $data['slug'] = $row->slug;	
+		  $data['desc'] = $cont;	
+		  $arr[] = $data;
+	  }	  
+	  echo json_encode($arr);
+	  exit;		
+	}
+
 	public function find_listings(){
 	  $cities = [];	  
       $cities = $this->home->_searchListing($this->input->get("q"));

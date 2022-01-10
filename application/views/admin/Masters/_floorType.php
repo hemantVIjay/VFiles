@@ -25,7 +25,7 @@
          <div class="card-header">
             <h5 class="card-title">Floor Types Lists</h5>
          </div>
-         <div style="overflow:auto;height:485px;">
+         <div style="overflow:auto;max-height:525px;">
 		 <table class="table" style="width:100%;height:100%;">
             <thead>
                <tr>
@@ -44,15 +44,10 @@
                   <td><img src="<?= base_url('uploads/propertyType/');?><?= $row->icon; ?>"/></td>
                   <td class="table-action">
                      <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 align-middle">
-                           <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
-                        </svg>
+                        <i class="bi bi-pencil"></i>
                      </a>
-                     <a href="<?= base_url('admin/masters/delete_banks/').$row->id; ?>">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash align-middle">
-                           <polyline points="3 6 5 6 21 6"></polyline>
-                           <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                        </svg>
+                     <a class="ms-2" href="<?= base_url('admin/masters/delete_banks/').$row->id; ?>">
+                        <i class="bi bi-trash"></i>
                      </a>
                   </td>
                </tr>
