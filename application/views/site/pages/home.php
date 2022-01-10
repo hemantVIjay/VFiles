@@ -350,7 +350,7 @@ bottom: -5px;
 	  <div class="row justify-content-center">
          <div class="col-xl-10 col-lg-11 col-md-12">
 			
-			<div id="#builderCarausel" class="owl-carousel owl-theme bldrc mb-4">
+			<div id="builderCarausel" class="owl-carousel owl-theme bldrc mb-4">
 				 
 				 <div class="item">
 					<div class="card bldc mb-3">
