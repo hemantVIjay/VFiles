@@ -647,4 +647,59 @@
 	   content = bhk+'BHK '+' + '+toilets+'T ('+totalSizes+' SqFt.)';
 	   unit.val(content);
    }
+   $(function ($) {
+        'use strict';
+        initCities('city');
+        $('#location').select2();
+       });
+       function initCities(cid){       
+          $('#'+cid).select2({
+                placeholder: 'Select City',
+                ajax: {
+                   url: dataURL+'admin/localities/search_cities',
+                   dataType: 'json',
+                   delay: 220,
+                   processResults: function (data) {
+                   return {
+                    results: $.map(data, function (data) {
+                     return {
+                     text: data.name,
+                     id: data.id
+                          }
+                      })
+                     };
+                   },
+                cache: true
+             }
+          }).on("select2:select", function (e) {
+            var s_element = $(e.currentTarget);
+            var s_val = s_element.val();
+            fetchData(s_val);
+         });          
+       }  
+       
+      function fetchData(s_val){
+       var mData, lData;
+      var localities = $('#location');
+      $.ajax({
+         type: 'POST',
+         url: dataURL + 'admin/localities/fetch_locations',
+         data: {cid:s_val},
+         async: false,
+         success: function (res) {
+            if(res!=''){
+             mData = atob(res).split("@@");
+             localities.html(mData[0]);   
+             localities.select2().on("select2:select", function (e) {
+                  var s_element = $(e.currentTarget);
+                  var s_val = s_element.val();
+                  fetch_Projects(s_val);
+               });
+            }
+         },
+         error: function () {
+            
+         }
+      }); 
+   }
 </SCRIPT>

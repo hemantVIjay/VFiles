@@ -1412,7 +1412,7 @@
        function _getlisting($arr)
        {          
 		  $ci =& get_instance();
-		  $ci->db->select('id');
+		  $ci->db->select('id, url');
 		  $ci->db->from('listings');
 		  $ci->db->where('name', $arr['name']);
           $ci->db->where('parent_id', $arr['parent_id']);

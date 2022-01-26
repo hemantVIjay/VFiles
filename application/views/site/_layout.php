@@ -570,16 +570,29 @@
 		    
 
     //SHOW ALERT
-    function showAlert(type,head,message){
+    function showAlerts(type,head,message){
         $.toast({heading: head ,text: message,loader: false,position : 'bottom-right',showHideTransition: 'fade', icon: type });
     }
 	
 	function saveReview(e) {
-		if ($('input[name="rating"]:checked').length == 0) {
+		var _user = "<?php if(isset($_SESSION['login']) && $_SESSION['login']['user_id']!=''){ echo'1'; }else{ echo'0'; } ?>";
+      if ($('input[name="rating"]:checked').length == 0) {
 			showAlert('warning', 'Please add your rating Stars.');
 			return false;
 		}
-		//$('#page-loader').fadeIn();			   
+      if($('#review_name').val() == '') {
+         showAlert('warning', 'Please enter full name first.');
+         return false;
+      }
+      if($('#review_phone').val() == '') {
+         showAlert('warning', 'Please enter Phone/Mobile no.');
+         return false;
+      }
+      if($('#review_email').val() == '') {
+         showAlert('warning', 'Please enter email Address.');
+         return false;
+      }
+      //$('#page-loader').fadeIn();			   
 		$.ajax({
 			type: 'POST',
 			url: baseUrl + "home/save_review",

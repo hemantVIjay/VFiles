@@ -3,10 +3,30 @@
 <div class="pv-dtl">
    <div class="container">
       <div class="pv-breadcrumb">
-         <a href="javascript:;">India Property</a>
-         <a href="javascript:;">Property in Noida</a>
-         <a href="javascript:;">Property in Sector 150</a>
-         <a class="current" href="javascript:;">Godrej Nurture Phase 1</a>
+         <a href="<?= base_url(); ?>">Home</a>
+         <?php 
+         $c_arr = array('name'=>'city','parent_id'=>$project_info->city_id);
+         $ct = $this->masters->get_record_id('cities', $project_info->city_id);
+         $city = _getlisting($c_arr);
+         ?>
+         <a href="<?= base_url($city->url); ?>">Property in <?= $ct->name; ?></a>
+         <?php 
+         $l_arr = array('name'=>'locality','parent_id'=>$project_info->locality_id);
+         $lt = $this->masters->get_record_id('locations', $project_info->locality_id);
+         $lc = _getlisting($l_arr);
+         ?>
+         <a href="<?= base_url($lc->url); ?>">Property in <?= $lt->name; ?></a>
+         <?php 
+         $b_arr = array('name'=>'builder','parent_id'=>$project_info->builder_id);
+         $bd = $this->masters->get_record_id('builders', $project_info->builder_id);
+         $bld = _getlisting($b_arr);
+         ?>
+         <a href="<?= base_url($bld->url); ?>"><?= $bd->builder_name; ?></a>
+         <?php 
+         $o_arr = array('name'=>'project','parent_id'=>$project_info->id);
+         $own = _getlisting($o_arr);
+         ?>
+         <a class="current" href="javascript:;"><?= $project_info->project_name; ?></a>
       </div>
       <div class="row">
          <div class="col-md-9">
@@ -17,7 +37,7 @@
                <div class="row">
                   <div class="col-md-8">
                      <h2 class="pvpd-title"><?= $project_info->project_name; ?></h2>
-                     <h6 class="pvpd-py">By<span> Imperia Structures Ltd.</span></h6>
+                     <h6 class="pvpd-py">By<span> <?= $bd->builder_name; ?></span></h6>
                      <h6 class="pvpd-locate"><?= $project_info->project_address; ?></h6>
                   </div>
                   <div class="col-md-4 text-end">
