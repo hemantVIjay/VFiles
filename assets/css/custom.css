@@ -1487,6 +1487,17 @@ table.table tr td, table.table tr th{
     position: relative;
     bottom: 0;
 }
+#builderCarausel.owl-carousel{
+	padding-left: 35px;
+    padding-right: 35px;
+}
+#builderCarausel.owl-carousel .owl-stage-outer {
+    margin-left: 35px;
+    margin-right: -35px;
+}
+#builderCarausel.owl-carousel .owl-nav .owl-prev i, #builderCarausel.owl-carousel .owl-nav .owl-next i{
+	color: rgba(0,0,0,0.35);
+}
 
 @media (min-width: 992px) {
 	.modal-lgn {
