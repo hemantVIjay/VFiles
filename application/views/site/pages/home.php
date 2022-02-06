@@ -1,46 +1,45 @@
 <link href="<?= base_url(); ?>assets/plugins/jqueryui/css/jquery-ui.css" rel="stylesheet">
 <link href="<?= base_url(); ?>assets/plugins/owlcarousel/css/owl.carousel.min.css" rel="stylesheet">
 <style>
-.ui-menu .ui-menu-item-wrapper {
-    padding: 10px 5px;
-}
-.suggests{
-float: right;
-font-size: 12px;
-font-weight: 700;
-color: #b5aeae;
-position: relative;
-bottom: -5px;
-}
+   .ui-menu .ui-menu-item-wrapper {
+   padding: 10px 5px;
+   }
+   .suggests{
+   float: right;
+   font-size: 12px;
+   font-weight: 700;
+   color: #b5aeae;
+   position: relative;
+   bottom: -5px;
+   }
 </style>
 <section class="section top-area">
-<div class="container text-center">    
-  <div class="row justify-content-center">
-    <div class="col-xl-8 col-lg-9 col-md-10 col-sm-11">
-      <h1 class="tb-title">Beautiful spaces in the best places</h1>
-	  <form name="search_properties" id="search_properties" method="POST" action="">
-	  <div class="srch-box mt-5 mb-5">
-		<div class="d-flex flex-wrap fltrRDO">
-           <?php echo _categories(''); ?>                      
-		</div>
-		<div class="input-group input-group-lg mb-2">
-			<select class="form-select form-select-lg mx-wd-150" id="inputGroupSelect01" name="cities">
+   <div class="container text-center">
+      <div class="row justify-content-center">
+         <div class="col-xl-8 col-lg-9 col-md-10 col-sm-11">
+            <h1 class="tb-title">Beautiful spaces in the best places</h1>
+            <form name="search_properties" id="search_properties" method="POST" action="">
+               <div class="srch-box mt-5 mb-5">
+                  <div class="d-flex flex-wrap fltrRDO">
+                     <?php echo _categories(''); ?>                      
+                  </div>
+                  <div class="input-group input-group-lg mb-2">
+                     <select class="form-select form-select-lg mx-wd-150" id="inputGroupSelect01" name="cities">
                      <?php echo _topCities(''); ?>
-                  </select>
-                  <input type="text" class="form-control form-control-lg autocomplete" placeholder="Search your property here..." name="search">
-                  <button class="btn btn-lg btn-primary" type="button" id="hmain_search">Search</button>
-				  </div>
-				  <input type="hidden" id="search" name="content">	  
-				  </form>
-		
-	  </div>
-    </div>
-  </div>
-</div>
+                     </select>
+                     <input type="text" class="form-control form-control-lg autocomplete" placeholder="Search your property here..." name="search">
+                     <button class="btn btn-lg btn-primary" type="button" id="hmain_search">Search</button>
+                  </div>
+                  <input type="hidden" id="search" name="content">	  
+            </form>
+            </div>
+         </div>
+      </div>
+   </div>
 </section>
 <section class="section prop-loc-bys">
    <div class="container">
-      <h2 class="cmn-title mb-3">Explore Property in India</h2>
+      <h2 class="cmn-title mb-3">Explore Projects in India</h2>
       <div id="#cityCarousel" class="owl-carousel owl-theme expprty mb-4">
          <div class="item">
             <div class="card">
@@ -50,7 +49,7 @@ bottom: -5px;
                <a href="javascript:;" class="card-img-overlay"><span class="ct-title"><span class="xplpcnt">2750</span><br />Flats</span></a>
             </div>
          </div>
-         <div class="item">
+         <!--<div class="item">
             <div class="card">
                <div class="card-img rounded">
                   <img src="<?= base_url(); ?>assets/images/explore-property/plots.jpg" class="img-fluid rounded">
@@ -102,7 +101,7 @@ bottom: -5px;
                </div>
             </div>
          </div>
-		 <div class="item">
+         <div class="item">
             <div class="card">
                <div class="card-img rounded">
                   <img src="<?= base_url(); ?>assets/images/explore-property/office-space.jpg" class="img-fluid rounded">
@@ -181,9 +180,8 @@ bottom: -5px;
                   <div class="ct-title"><span class="xplpcnt">10</span><br />Warehouse</div>
                </div>
             </div>
-         </div>
+         </div>-->
       </div>
-      
    </div>
 </section>
 <section class="section fndhm">
@@ -335,118 +333,108 @@ bottom: -5px;
             </div>
          </div>
       </div>
- 
-	  </div>
-	 </section>
-	  
-	  <section class="section bdrsec">
+   </div>
+</section>
+<section class="section bdrsec">
    <div class="container">
       <div class="row justify-content-center mt-3 mb-4">
          <div class="col-xl-6 col-lg-7 col-md-8 text-center">
             <h2 class="pg-title-big">Popular  <span class="text-primary">builders!</span></h2>
          </div>
       </div>
-	  
-	  <div class="row justify-content-center">
+      <div class="row justify-content-center">
          <div class="col-xl-10 col-lg-11 col-md-12">
-			
-			<div id="builderCarausel" class="owl-carousel owl-theme bldrc mb-4">
-				 
-				 <div class="item">
-					<div class="card bldc mb-3">
-						<div class="card-body d-flex">
-							<div class="bldpic">
-								<img src="<?= base_url(); ?>assets/images/builders/Jaypee-Group-Logo.png" />
-							</div>
-							<div>
-								<a class="bldnme" href="javascript:;">Jaypee Greens</a>
-								<div class="d-flex blddth">
-									<span class="me-3">Exp: <strong>21 Years</strong></span>  |  <span class="me-3 ms-3">Total Projects: <strong>72</strong></span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="card bldc">
-						<div class="card-body d-flex">
-							<div class="bldpic">
-								<img src="<?= base_url(); ?>assets/images/builders/ats-Logo.png" />
-							</div>
-							<div>
-								<a class="bldnme" href="javascript:;">ATS Group</a>
-								<div class="d-flex blddth">
-									<span class="me-3">Exp: <strong>21 Years</strong></span>  |  <span class="me-3 ms-3">Total Projects: <strong>72</strong></span>
-								</div>
-							</div>
-						</div>
-					</div>
-				 </div>
-				 <div class="item">
-					<div class="card bldc mb-3">
-						<div class="card-body d-flex">
-							<div class="bldpic">
-								<img src="<?= base_url(); ?>assets/images/builders/prateek-logo.png" />
-							</div>
-							<div>
-								<a class="bldnme" href="javascript:;">Prateek Group</a>
-								<div class="d-flex blddth">
-									<span class="me-3">Exp: <strong>21 Years</strong></span>  |  <span class="me-3 ms-3">Total Projects: <strong>72</strong></span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="card bldc">
-						<div class="card-body d-flex">
-							<div class="bldpic">
-								<img src="<?= base_url(); ?>assets/images/builders/ajnara.png" />
-							</div>
-							<div>
-								<a class="bldnme" href="javascript:;">Ajnara India</a>
-								<div class="d-flex blddth">
-									<span class="me-3">Exp: <strong>21 Years</strong></span>  |  <span class="me-3 ms-3">Total Projects: <strong>72</strong></span>
-								</div>
-							</div>
-						</div>
-					</div>
-				 </div>
-				 
-				 <div class="item">
-					<div class="card bldc mb-3">
-						<div class="card-body d-flex">
-							<div class="bldpic">
-								<img src="<?= base_url(); ?>assets/images/builders/mahagun-logo.png" />
-							</div>
-							<div>
-								<a class="bldnme" href="javascript:;">Mahagun Group</a>
-								<div class="d-flex blddth">
-									<span class="me-3">Exp: <strong>21 Years</strong></span>  |  <span class="me-3 ms-3">Total Projects: <strong>72</strong></span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="card bldc">
-						<div class="card-body d-flex">
-							<div class="bldpic">
-								<img src="<?= base_url(); ?>assets/images/builders/gulshan-homz-logo.png" />
-							</div>
-							<div>
-								<a class="bldnme" href="javascript:;">Gulshan Homz</a>
-								<div class="d-flex blddth">
-									<span class="me-3">Exp: <strong>21 Years</strong></span>  |  <span class="me-3 ms-3">Total Projects: <strong>72</strong></span>
-								</div>
-							</div>
-						</div>
-					</div>
-				 </div>
-		 
-			</div>
-
+            <div id="builderCarausel" class="owl-carousel owl-theme bldrc mb-4">
+               <div class="item">
+                  <div class="card bldc mb-3">
+                     <div class="card-body d-flex">
+                        <div class="bldpic">
+                           <img src="<?= base_url(); ?>assets/images/builders/Jaypee-Group-Logo.png" />
+                        </div>
+                        <div>
+                           <a class="bldnme" href="javascript:;">Jaypee Greens</a>
+                           <div class="d-flex blddth">
+                              <span class="me-3">Exp: <strong>21 Years</strong></span>  |  <span class="me-3 ms-3">Total Projects: <strong>72</strong></span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="card bldc">
+                     <div class="card-body d-flex">
+                        <div class="bldpic">
+                           <img src="<?= base_url(); ?>assets/images/builders/ats-Logo.png" />
+                        </div>
+                        <div>
+                           <a class="bldnme" href="javascript:;">ATS Group</a>
+                           <div class="d-flex blddth">
+                              <span class="me-3">Exp: <strong>21 Years</strong></span>  |  <span class="me-3 ms-3">Total Projects: <strong>72</strong></span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="item">
+                  <div class="card bldc mb-3">
+                     <div class="card-body d-flex">
+                        <div class="bldpic">
+                           <img src="<?= base_url(); ?>assets/images/builders/prateek-logo.png" />
+                        </div>
+                        <div>
+                           <a class="bldnme" href="javascript:;">Prateek Group</a>
+                           <div class="d-flex blddth">
+                              <span class="me-3">Exp: <strong>21 Years</strong></span>  |  <span class="me-3 ms-3">Total Projects: <strong>72</strong></span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="card bldc">
+                     <div class="card-body d-flex">
+                        <div class="bldpic">
+                           <img src="<?= base_url(); ?>assets/images/builders/ajnara.png" />
+                        </div>
+                        <div>
+                           <a class="bldnme" href="javascript:;">Ajnara India</a>
+                           <div class="d-flex blddth">
+                              <span class="me-3">Exp: <strong>21 Years</strong></span>  |  <span class="me-3 ms-3">Total Projects: <strong>72</strong></span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="item">
+                  <div class="card bldc mb-3">
+                     <div class="card-body d-flex">
+                        <div class="bldpic">
+                           <img src="<?= base_url(); ?>assets/images/builders/mahagun-logo.png" />
+                        </div>
+                        <div>
+                           <a class="bldnme" href="javascript:;">Mahagun Group</a>
+                           <div class="d-flex blddth">
+                              <span class="me-3">Exp: <strong>21 Years</strong></span>  |  <span class="me-3 ms-3">Total Projects: <strong>72</strong></span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="card bldc">
+                     <div class="card-body d-flex">
+                        <div class="bldpic">
+                           <img src="<?= base_url(); ?>assets/images/builders/gulshan-homz-logo.png" />
+                        </div>
+                        <div>
+                           <a class="bldnme" href="javascript:;">Gulshan Homz</a>
+                           <div class="d-flex blddth">
+                              <span class="me-3">Exp: <strong>21 Years</strong></span>  |  <span class="me-3 ms-3">Total Projects: <strong>72</strong></span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
          </div>
       </div>
-	  
    </div>
 </section>
-	  
-	  <section class="section prop-loc-bys">
+<section class="section prop-loc-bys">
    <div class="container">
       <h2 class="cmn-title mb-3 mt-4">Popular Commercial Properties</h2>
       <div id="commercialCarousel" class="owl-carousel owl-theme">
@@ -684,83 +672,83 @@ bottom: -5px;
 <script src="<?= base_url(); ?>assets/plugins/owlcarousel/js/owl.carousel.min.js"></script>
 <script src="<?= base_url(); ?>assets/js/carousel.js"></script>
 <script>
-var baseUrl=$('base').attr("href");
-   $(function() {
-	 $(".autocomplete" ).autocomplete({
-      source: function( request, response ) {
-     	var city = $('select[name="cities"]').val();
-        $.ajax({
-				url: baseUrl + 'home/search_properties',
-				dataType: "json",
-				data: {
-					q: request.term,
-					city: city	  
-				},
-				success: function (data) {
-					response($.map(data, function (item) {
-						return {
-							label: item.name,
-							desc: item.desc,							
-							val: item.val,						
-							slug: item.slug						
-						};
-					}));
-				}
-			});
-      },
-      minLength: 0,
-      select: function( event, ui ) {
-		var content = btoa(ui.item.val);  
-		var slug = ui.item.slug;  
-        $('#search').attr('data-slug','');
-        $('#search').val('');
-        $('#search').val(content);
-        $('#search').attr('data-slug',slug);
-      }
-    }).autocomplete("instance" )._renderItem = function( ul, item ) {
-      return $( "<li>" )
-        .append( "<div>" + item.label + "<span class='suggests'>" + item.desc + "</span></div>" )
-        .appendTo( ul );
-    }; 
-	$('#hmain_search').on('click', function(){
-       /*var lc = $('#search').val();
-		if(lc==''){
-		 $('input[name="search"]').css('border','1px solid red');
-		 $('input[name="search"]').focus();
-		 //alert('Please search a locality first!.');
-		 return false;
-		}*/
-		search_properties();
-	});
-   });
-   function search_properties(){
-	   
-	   var main     = $('select[name="cities"]').val();
-	   var type     = $('input[name="type"]:checked').val();
-	   //var search   = $('input[name="search"]').val();
-	   var search   = $('input[name="content"]').data('slug');
-	   var content  = $('input[name="content"]').val();
-	   console.log(content);
-	   var str  = atob(content);
-	   var res = str.split('_');
-	   if(res[0]=='LOC'){
-	     var mainURL  = baseUrl + 'search/properties/';
-		 if(type==undefined){ type = ''; }
-		 if(search==undefined){ search = ''; }
-	     if(content==undefined){ content = ''; }
-		 window.location.href = mainURL + main + '?location='+search+'&type='+type+'&content='+content;   
-	   }
-	   if(res[0]=='PROJ'){
-		 //var mainURL  = baseUrl + 'property/' + search + '--' + res[1];  
-		 var mainURL  = baseUrl + search;  
-		 window.location.href = mainURL;  
-	   }if(res[0]=='BLD'){
-		 //var mainURL  = baseUrl + 'property/' + main + '/' + search + '--' + res[1];  
-		 var mainURL  = baseUrl + search;  
-		 window.location.href = mainURL;  
-	   }if(content==''){
-		 var mainURL  = baseUrl + main;
-		 window.location.href = mainURL;  
-	   }
-   }   
+   var baseUrl=$('base').attr("href");
+      $(function() {
+   	 $(".autocomplete" ).autocomplete({
+         source: function( request, response ) {
+        	var city = $('select[name="cities"]').val();
+           $.ajax({
+   				url: baseUrl + 'home/search_properties',
+   				dataType: "json",
+   				data: {
+   					q: request.term,
+   					city: city	  
+   				},
+   				success: function (data) {
+   					response($.map(data, function (item) {
+   						return {
+   							label: item.name,
+   							desc: item.desc,							
+   							val: item.val,						
+   							slug: item.slug						
+   						};
+   					}));
+   				}
+   			});
+         },
+         minLength: 0,
+         select: function( event, ui ) {
+   		var content = btoa(ui.item.val);  
+   		var slug = ui.item.slug;  
+           $('#search').attr('data-slug','');
+           $('#search').val('');
+           $('#search').val(content);
+           $('#search').attr('data-slug',slug);
+         }
+       }).autocomplete("instance" )._renderItem = function( ul, item ) {
+         return $( "<li>" )
+           .append( "<div>" + item.label + "<span class='suggests'>" + item.desc + "</span></div>" )
+           .appendTo( ul );
+       }; 
+   	$('#hmain_search').on('click', function(){
+          /*var lc = $('#search').val();
+   		if(lc==''){
+   		 $('input[name="search"]').css('border','1px solid red');
+   		 $('input[name="search"]').focus();
+   		 //alert('Please search a locality first!.');
+   		 return false;
+   		}*/
+   		search_properties();
+   	});
+      });
+      function search_properties(){
+   	   
+   	   var main     = $('select[name="cities"]').val();
+   	   var type     = $('input[name="type"]:checked').val();
+   	   //var search   = $('input[name="search"]').val();
+   	   var search   = $('input[name="content"]').data('slug');
+   	   var content  = $('input[name="content"]').val();
+   	   console.log(content);
+   	   var str  = atob(content);
+   	   var res = str.split('_');
+   	   if(res[0]=='LOC'){
+   	     var mainURL  = baseUrl + 'search/properties/';
+   		 if(type==undefined){ type = ''; }
+   		 if(search==undefined){ search = ''; }
+   	     if(content==undefined){ content = ''; }
+   		 window.location.href = mainURL + main + '?location='+search+'&type='+type+'&content='+content;   
+   	   }
+   	   if(res[0]=='PROJ'){
+   		 //var mainURL  = baseUrl + 'property/' + search + '--' + res[1];  
+   		 var mainURL  = baseUrl + search;  
+   		 window.location.href = mainURL;  
+   	   }if(res[0]=='BLD'){
+   		 //var mainURL  = baseUrl + 'property/' + main + '/' + search + '--' + res[1];  
+   		 var mainURL  = baseUrl + search;  
+   		 window.location.href = mainURL;  
+   	   }if(content==''){
+   		 var mainURL  = baseUrl + main;
+   		 window.location.href = mainURL;  
+   	   }
+      }   
 </script>
