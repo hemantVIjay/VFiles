@@ -120,7 +120,7 @@ class Projects_model extends MY_Model{
 		return ($query->num_rows() > 0)?$query->result():FALSE;
 	}
 	
-	public function create_project($post_data, $specs, $floorPlans){
+	public function create_project($post_data, $specs, $floorPlans, $plotPlans){
 
 		$this->_table_name='projects';
         $this->_timestamps=TRUE;
@@ -139,6 +139,9 @@ class Projects_model extends MY_Model{
 			}
 			if(!empty($floorPlans)){
 			  $this->save_FloorPlans($floorPlans, $insert_id);
+			}
+			if(!empty($plotPlans)){
+			  $this->save_plotPlans($plotPlans, $insert_id);
 			}			
             if($update_id){
                 //if updated
@@ -169,7 +172,7 @@ class Projects_model extends MY_Model{
     }
 
 
-	public function update_project($project_id, $updated_data, $specs, $floorPlans){
+	public function update_project($project_id, $updated_data, $specs, $floorPlans, $plotPlans){
 		$this->_table_name='projects';
         $this->_timestamps=TRUE;
         $updated_id=$this->save($data=$updated_data, $id = $project_id);
@@ -187,6 +190,9 @@ class Projects_model extends MY_Model{
 			}
 			if(!empty($floorPlans)){
 			  $this->update_FloorPlans($floorPlans, $project_id);
+			}
+			if(!empty($plotPlans)){
+			  $this->update_plotPlans($plotPlans, $project_id);
 			}			
             if($update_id){
                 //if updated
@@ -254,6 +260,7 @@ class Projects_model extends MY_Model{
 		}*/
 		$mData = array();
 		foreach($post_data as $key=>$data){
+			$sdata['floor_planImage'] = $data[$key]['floor_planImage'];
 			$sdata['floor_totalRoomSizes'] = $data[$key]['floor_totalRoomSizes'];
 			$sdata['floor_size'] = $data[$key]['floor_size'];
 			$sdata['floor_roomDesc'] = $data[$key]['floor_roomDesc'];
@@ -272,6 +279,21 @@ class Projects_model extends MY_Model{
         return true;		
 	}
 
+	public function save_plotPlans($post_data, $id){
+		$mData = array();
+		foreach($post_data as $key=>$data){
+			$sdata['plot_Image']      = $data[$key]['plot_Image'];
+			$sdata['plot_size']       = $data[$key]['plot_size'];
+			$sdata['plot_basePrice']  = $data[$key]['plot_basePrice'];
+			$sdata['plot_totalPrice'] = $data[$key]['plot_totalPrice'];
+			$sdata['listing_id']      = $id;
+            $mData[] = $sdata;
+		}
+        $this->db->insert_batch('plot_plans', $mData);
+        $this->db->insert_batch('plot_plan_revisions', $mData);
+        return true;		
+	}
+
 	public function update_FloorPlans($post_data, $id){
 		$this->db->trans_start();
 		$this->db->where('listing_id', $id);
@@ -284,6 +306,7 @@ class Projects_model extends MY_Model{
 		}
 		$mData = array();
 		foreach($post_data as $key=>$data){
+			$sdata['floor_planImage'] = $data[$key]['floor_planImage'];
 			$sdata['floor_totalRoomSizes'] = $data[$key]['floor_totalRoomSizes'];
 			$sdata['floor_size'] = $data[$key]['floor_size'];
 			$sdata['floor_roomDesc'] = $data[$key]['floor_roomDesc'];
@@ -299,6 +322,30 @@ class Projects_model extends MY_Model{
 		}
         $this->db->insert_batch('floor_plans', $mData);
         $this->db->insert_batch('floor_plan_revisions', $mData);
+        return true;		
+	}
+
+	public function update_plotPlans($post_data, $id){
+		$this->db->trans_start();
+		$this->db->where('listing_id', $id);
+		$this->db->delete('plot_plans');
+		$this->db->trans_complete();
+        if ($this->db->trans_status() === FALSE) {
+		    $this->db->trans_rollback();
+		}else{
+			$this->db->trans_commit();
+		}
+		$mData = array();
+		foreach($post_data as $key=>$data){
+			$sdata['plot_Image']      = $data[$key]['plot_Image'];
+			$sdata['plot_size']       = $data[$key]['plot_size'];
+			$sdata['plot_basePrice']  = $data[$key]['plot_basePrice'];
+			$sdata['plot_totalPrice'] = $data[$key]['plot_totalPrice'];
+			$sdata['listing_id']      = $id;
+            $mData[] = $sdata;
+		}
+        $this->db->insert_batch('plot_plans', $mData);
+        $this->db->insert_batch('plot_plan_revisions', $mData);
         return true;		
 	}
 	

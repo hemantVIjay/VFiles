@@ -83,7 +83,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-                  <li class="nav-item">
+                  <!--<li class="nav-item">
                      <a class="btn btn-first" <?php if(isset($_SESSION['login']) && $_SESSION['login']['user_id']!=''){ ?>href="<?= base_url('post-property');?>" <?php }else{ ?>href="javascript:;" data-bs-toggle="modal" data-bs-target="#pvMdlLogin" <?php } ?> >
                         <span class="pvh-icon">
                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -119,7 +119,7 @@
                         </span>
                         Download App
                      </a>
-                  </li>
+                  </li>-->
                   <li class="nav-item">
                      <?php if(isset($_SESSION['login']) && $_SESSION['login']['is_site_login']=='1'){ ?>
                      <a class="nav-link usrlgd dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="javascript:;" ><img src="<?= base_url(); ?>assets/images/user.jpg" class="userPhot" /><span class="activeStatus"></span> <?= $_SESSION['login']['full_name']; ?></a>
@@ -148,7 +148,7 @@
                            </div>
                            <div class="col-6">
                               <form action="#" class="logoutForm d-block" method="post">
-                                 <a class="user-prof-inbox" href="<?= base_url(); ?>/auth/logout">
+                                 <a class="user-prof-inbox" href="<?= base_url(); ?>logout">
                                     <span class="user-prof-icon">
                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                           <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">

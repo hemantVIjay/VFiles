@@ -57,103 +57,25 @@
          </div>
          <div class="pvFltrBar megamenu">
             <div class="row bdra align-items-center">
-               <div class="col-xl-2 dropdown spdropdown">
+               <!--<div class="col-xl-2 dropdown spdropdown">
                   <a href="javascript:;" class="pvfbxb d-flex justify-content-between dropdown-toggle" id="ptypeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <span class="pvfbx">
                   Property Type
                   </span>
                   </a>
                   <ul class="dropdown-menu ddm" aria-labelledby="ptypeDropdown">
-                     <li>
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="pvApartment">
-                           <label class="form-check-label" for="pvApartment">
-                           Apartment
-                           </label>
-                        </div>
-                     </li>
-                     <li>
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="pvIHouse">
-                           <label class="form-check-label" for="pvIHouse">
-                           Independent House
-                           </label>
-                        </div>
-                     </li>
-                     <li>
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="pvFlat">
-                           <label class="form-check-label" for="pvFlat">
-                           Flat
-                           </label>
-                        </div>
-                     </li>
-                     <li>
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="pvPlot">
-                           <label class="form-check-label" for="pvPlot">
-                           Plot
-                           </label>
-                        </div>
-                     </li>
-                     <li>
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="pvVilla">
-                           <label class="form-check-label" for="pvVilla">
-                           Villa
-                           </label>
-                        </div>
-                     </li>
-                     <li>
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="pvDuplex">
-                           <label class="form-check-label" for="pvDuplex">
-                           Duplex
-                           </label>
-                        </div>
-                     </li>
+                     <?= _checkCategories(''); ?>
                   </ul>
-               </div>
+               </div>-->
                <div class="col-xl-2 dropdown spdropdown">
                   <a href="javascript:;" class="pvfbxb d-flex justify-content-between dropdown-toggle" id="bhkteDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <span class="pvfbx">
-                  BHK Type
+                  Bedrooms
                   </span>
                   </a>
                   <ul class="dropdown-menu ddm" aria-labelledby="bhkteDropdown">
-                     <li>
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="pv1BHK">
-                           <label class="form-check-label" for="pv1BHK">
-                           1 BHK
-                           </label>
-                        </div>
-                     </li>
-                     <li>
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="pv2BHK">
-                           <label class="form-check-label" for="pv2BHK">
-                           2 BHK
-                           </label>
-                        </div>
-                     </li>
-                     <li>
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="pv3BHK">
-                           <label class="form-check-label" for="pv3BHK">
-                           3 BHK
-                           </label>
-                        </div>
-                     </li>
-                     <li>
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="pv3plusBHK">
-                           <label class="form-check-label" for="pv3plusBHK">
-                           3+ BHK
-                           </label>
-                        </div>
-                     </li>
-                  </ul>
+                     <?php echo _filterRooms(''); ?>
+			      </ul>
                </div>
                <div class="col-xl-2 dropdown spdropdown">
                   <a href="javascript:;" class="pvfbxb d-flex justify-content-between dropdown-toggle" id="bhkteDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -208,7 +130,7 @@
                      </li>
                   </ul>
                </div>
-               <div class="col-xl-2 dropdown spdropdown">
+               <!--<div class="col-xl-2 dropdown spdropdown">
                   <a href="javascript:;" class="pvfbxb d-flex justify-content-between dropdown-toggle" id="bhkteDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <span class="pvfbx">
                   Localities
@@ -264,11 +186,11 @@
                         </div>
                      </li>
                   </ul>
-               </div>
+               </div>-->
                <div class="col-xl-2 dropdown spdropdown">
                   <a href="javascript:;" class="pvfbxb d-flex justify-content-between dropdown-toggle" id="bhkteDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <span class="pvfbx">
-                  Possession Status
+                  Possession within
                   </span>
                   </a>
                   <ul class="dropdown-menu ddm" aria-labelledby="bhkteDropdown">
@@ -276,7 +198,7 @@
                         <div class="form-check">
                            <input class="form-check-input" type="checkbox" value="" id="pv3Month">
                            <label class="form-check-label" for="pv3Month">
-                           In 3 months
+                            3 months
                            </label>
                         </div>
                      </li>
@@ -284,7 +206,7 @@
                         <div class="form-check">
                            <input class="form-check-input" type="checkbox" value="" id="pv6Month">
                            <label class="form-check-label" for="pv6Month">
-                           In 6 months
+                           6 months
                            </label>
                         </div>
                      </li>
@@ -292,7 +214,7 @@
                         <div class="form-check">
                            <input class="form-check-input" type="checkbox" value="" id="pv1Yr">
                            <label class="form-check-label" for="pv1Yr">
-                           In 1 year
+                           1 year
                            </label>
                         </div>
                      </li>
@@ -300,17 +222,55 @@
                         <div class="form-check">
                            <input class="form-check-input" type="checkbox" value="" id="pv2Yr">
                            <label class="form-check-label" for="pv2Yr">
-                           In 2 years
+                           2+ years
                            </label>
                         </div>
                      </li>
+                  </ul>
+               </div>
+			   
+			   <div class="col-xl-2 dropdown spdropdown">
+                  <a href="javascript:;" class="pvfbxb d-flex justify-content-between dropdown-toggle" id="bhkteDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <span class="pvfbx">
+                  Area Sqft
+                  </span>
+                  </a>
+                  <ul class="dropdown-menu ddm" aria-labelledby="bhkteDropdown">
                      <li>
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="pv2PYr">
-                           <label class="form-check-label" for="pv2PYr">
-                           In 2+ years
-                           </label>
-                        </div>
+					  <div class="row">
+					  <div class="col-sm-6">
+					  <label class="label">
+                       Minimum
+                      </label>
+					  <select class="form-control">
+					  <option>250 Sqft</option>
+					  <option>500 Sqft</option>
+					  <option>1000 Sqft</option>
+					  <option>1500 Sqft</option>
+					  <option>2000 Sqft</option>
+					  <option>2500 Sqft</option>
+					  <option>3000 Sqft</option>
+					  <option>3500 Sqft</option>
+					  <option>4000 Sqft</option>
+					  </select>
+					  </div>
+					  <div class="col-sm-6">
+					  <label class="label">
+                       Maximum
+                      </label>
+					  <select class="form-control">
+					  <option>500 Sqft</option>
+					  <option>1000 Sqft</option>
+					  <option>1500 Sqft</option>
+					  <option>2000 Sqft</option>
+					  <option>2500 Sqft</option>
+					  <option>3000 Sqft</option>
+					  <option>3500 Sqft</option>
+					  <option>4000 Sqft</option>
+					  <option>5000 Sqft</option>
+					  </select>
+					  </div>
+					  </div>
                      </li>
                   </ul>
                </div>
@@ -855,4 +815,9 @@
          prettify_enabled: true,
          prettify_separator: ","
        });
+	
+    function filterData(){
+	 console.log('assad');	
+	}  
+	   
 </script>

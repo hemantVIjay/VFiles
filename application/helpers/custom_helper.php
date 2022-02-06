@@ -942,7 +942,7 @@
           
            foreach ($Mq as $row) {
                $Sdata = (in_array($row->id, $arr)) ? 'checked' : '';
-               $banks .= '<li><div class="form-check"><input class="form-check-input" ' . $Sdata . ' id="pvBHK_' . $row->id . '" type="checkbox" name="pvBHK" value="' . $row->id . '"><label for="pvBHK_' . $row->id . '">';
+               $banks .= '<li><div class="form-check"><input class="form-check-input" ' . $Sdata . ' id="pvBHK_' . $row->id . '" type="checkbox" name="pvBHK" value="' . $row->id . '" onclick="filterData();"><label for="pvBHK_' . $row->id . '">';
                $banks .= $row->name;
                $banks .= "</label></div></li>";
            }
@@ -1041,7 +1041,7 @@
           
            foreach ($Mq as $row) {
                $Sdata = (in_array($row->slug, $arr)) ? 'checked' : '';
-               $banks .= '<li><div class="form-check"><input class="form-check-input" name="type" type="checkbox" value="' . $row->slug . '" id="pv_' . $row->id . '" ' . $Sdata . ' ><label class="form-check-label" for="pv_' . $row->id . '">';
+               $banks .= '<li><div class="form-check"><input class="form-check-input" name="type" type="checkbox" value="' . $row->slug . '" id="pv_' . $row->id . '" ' . $Sdata . '><label class="form-check-label" for="pv_' . $row->id . '">';
                $banks .= $row->name;
                $banks .= "</label></div></li>";
            }

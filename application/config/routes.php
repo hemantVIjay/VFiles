@@ -86,6 +86,7 @@ $route['terms-of-uses']              = 'pages/terms_of_uses';
 $route['refund-policy']              = 'pages/refund_policy';
 $route['disclaimer']                 = 'pages/disclaimer';
 $route['profile']                    = 'pages/profile';
+$route['logout']                     = 'auth/logout';
 
 //Admin Authentication
 $route[$r_admin . '/login']                    = 'admin/auth/login';

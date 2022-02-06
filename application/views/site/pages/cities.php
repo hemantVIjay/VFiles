@@ -20,8 +20,12 @@ bottom: -5px;
             <div class="row">
                <div class="col-md-8">
                   <div class="pv-breadcrumb twht mb-4">
-                     <a href="javascript:;">Home</a>
-                     <a href="javascript:;" class="current">Property in <?= $title; ?></a>
+                     <a href="<?= base_url(); ?>">Home</a>
+					 <?php 
+					 $c_arr = array('name'=>'city','parent_id'=>$info->id);
+					 $ct = _getlisting($c_arr);
+					 ?>
+                     <a href="<?= base_url($ct->url); ?>" class="current">Property in <?= $title; ?></a>
                   </div>
                </div>
                <div class="col-md-4 text-end py-3">

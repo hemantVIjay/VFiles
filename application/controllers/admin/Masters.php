@@ -686,7 +686,7 @@
            } else {
                $result = $this->masters->update_record($id, $post_data, 'floor_types');
            }
-           redirect('admin/masters/list_categories', 'refresh');
+           redirect('admin/masters/list_bedrooms', 'refresh');
        }
       
        public function delete_bedroom()

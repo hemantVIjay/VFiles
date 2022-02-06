@@ -12,20 +12,26 @@
             </tr>
         </thead>
         <tbody>
-            <?php $i=1; foreach($builders as $builder){ ?>
+            <?php $i=1; if(!empty($builders)){ foreach($builders as $builder){ ?>
 			<tr>
                 <td><?= $i; ?></td>
                 <td><?= $builder->builder_name; ?></td>
                 <td><?= $builder->builder_estabilished_year; ?></td>
                 <td><?= $builder->builder_phone; ?></td>
                 <td><?= $builder->builder_office_address; ?></td>
-                <td><?= $builder->builder_information; ?></td>
-                <td>
-				<a href="<?= base_url(); ?>admin/builders/edit_builder/<?= $builder->id; ?>">
+                <td><?= htmlspecialchars_decode($builder->builder_information); ?></td>
+                <td><a href="<?= base_url(); ?>admin/builders/edit_builder/<?= $builder->id; ?>">
                  <i class="bi bi-pencil"></i>
-                     </a><a href="javascript:void(0);" onclick="delete_this(this);" data-id="<?= $builder->id; ?>"><i class="bi bi-trash"></i></a></td>
+                     </a>
+				 <?php $pCount = $this->builder_model->get_builderProjects($builder->id); if(empty($pCount)){ ?>
+				 <a href="javascript:void(0);" onclick="delete_this(this);" data-id="<?= $builder->id; ?>"><i class="bi bi-trash"></i></a><?php } ?>
+			    </td>
             </tr>
-			<?php $i++; } ?>
+			<?php $i++; } }else{ ?>
+            <tr>
+               <td colspan="7" class="text-center">NO RECORDS</td>
+            </tr>
+            <?php } ?>
         </tbody>
     </table>
 	<div id="pagination" class="mt10"><?= $pagination; ?></div>

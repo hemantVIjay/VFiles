@@ -91,7 +91,7 @@ class Auth extends MY_Controller {
 		// Destroy session data
 		$this->session->unset_userdata('login');
 		//redirect to login
-		redirect('home', 'refresh');
+		redirect(base_url(), 'refresh');
 	}
 
 	//update login info

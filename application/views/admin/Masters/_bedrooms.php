@@ -5,7 +5,7 @@
             <h5 class="card-title">Add bedrooms</h5>
          </div>
          <div class="card-body">
-            <form method="POST" action="<?= base_url('admin/masters/add_bedrooms'); ?>" enctype="multipart/form-data" accept-charset="utf-8">
+            <form method="POST" action="<?= base_url('admin/masters/add_bedroom'); ?>" enctype="multipart/form-data" accept-charset="utf-8">
                <input type="hidden" name="id" value="<?php echo $record->id ?? '';?>">
                <div class="mb-3">
                   <label class="form-label">Bank Name</label>
@@ -51,9 +51,9 @@
                         <a href="<?= base_url('admin/masters/list_bedrooms/').$row->id; ?>">
                            <i class="bi bi-pencil"></i>
                         </a>
-                        <a class="ms-2" href="<?= base_url('admin/masters/delete_bedroom/').$row->id; ?>">
+                        <!--<a class="ms-2" href="<?= base_url('admin/masters/delete_bedroom/').$row->id; ?>">
                            <i class="bi bi-trash"></i>
-                        </a>
+                        </a>-->
                      </td>
                   </tr>
                   <?php $i++; } ?>

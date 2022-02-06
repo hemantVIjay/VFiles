@@ -79,7 +79,7 @@
          <div class="row">
             <div class="col-md-4 col-6 mb-4">
                <div class="lblpvfd mb-1">Possession Start Date</div>
-               <div class="valuepvfd"><?= my_date_show($project_info->project_start_date); ?></div>
+               <div class="valuepvfd"><?= my_date_show($project_info->possesion_start_date); ?></div>
             </div>
             <div class="col-md-4 col-6 mb-4">
                <div class="lblpvfd mb-1">Status</div>
@@ -95,7 +95,7 @@
             </div>
             <div class="col-md-4 col-6 mb-4">
                <div class="lblpvfd mb-1">Total Launched apartments</div>
-               <div class="valuepvfd">313</div>
+               <div class="valuepvfd"><?= number_format($project_info->launched_units); ?></div>
             </div>
             <div class="col-md-4 col-6 mb-4">
                <div class="lblpvfd mb-1">Launch Date</div>
@@ -107,9 +107,11 @@
             </div>
             <div class="col-md-4 col-6 mb-4">
                <div class="lblpvfd mb-1">Configuration</div>
-			   <?php $c_units = $this->home->configurationUnits($project_info->id); $all_conf = array(); 
-			      foreach($c_units as $c_row){ $all_con[] = $c_row->units; } ?>
-               <div class="valuepvfd"><?= (!empty($all_con))? implode(', ', $all_con).' BHK Apartments' : 'N/A'?></div>
+			   <?php $c_units = $this->home->configurationUnits($project_info->id); 
+			     $all_conf = array(); 
+			     if(isset($c_units) && !empty($c_units)){
+				 foreach($c_units as $c_row){ $all_conf[] = $c_row->units; } } ?>
+               <div class="valuepvfd"><?= (!empty($all_conf))? implode(', ', $all_conf).' BHK Apartments' : 'N/A'?></div>
             </div>
          </div>
          <div class="spcr-bdd mb-4"></div>
@@ -151,7 +153,7 @@
                                        <th>Price Details</th>
                                     </tr>
                                     <tr>
-                                       <td><img src="<?= base_url(); ?>assets/images/plan1.jpg" class="img-fluid fp-img"></td>
+                                       <td><img src="<?= base_url(); ?>uploads/projects/floorPlans/<?= $floorPlan->floor_planImage; ?>" class="img-fluid fp-img"></td>
                                        <td class="pvtlst"><?= $floorPlan->floor_bedrooms; ?> bedrooms<br>1 kitchens<br><?= $floorPlan->floor_bathrooms; ?> bathroom<br>3 balcony<br>1 living</td>
                                        <td>
                                           <div class="clbl">Super Built-up Area</div>

@@ -65,9 +65,9 @@
                      <a href="<?= base_url('admin/masters/list_cities/').$row->id; ?>">
                         <i class="bi bi-pencil"></i>
                      </a>
-                     <a class="ms-2" href="<?= base_url('admin/masters/delete_cities/').$row->id; ?>">
+                     <!--<a class="ms-2" href="<?= base_url('admin/masters/delete_cities/').$row->id; ?>">
                         <i class="bi bi-trash"></i>
-                     </a>
+                     </a>-->
                   </td>
                </tr>
 			   <?php $i++; } }else{ ?>

@@ -115,12 +115,15 @@
                'state_id' => $city->state,
                'country_id' => $city->country,
                'project_address' => $this->input->post('address'),
-               'project_type' => $this->input->post('p_type'),
+               'project_type' => $this->input->post('propertyType'),
+               'project_category' => $this->input->post('pvPTYP'),
                'no_of_towers' => $this->input->post('no_of_towers'),
                'no_of_flats' => $this->input->post('no_of_flats'),
                'total_area' => $this->input->post('total_area'),
                'project_phase' => $this->input->post('project_phase'),
-               'project_start_date' => date('Y-m-d', strtotime($this->input->post('project_start_date'))),
+               'project_start_date' => _sqlDate($this->input->post('project_start_date')),
+               'possesion_start_date' => _sqlDate($this->input->post('possesion_start_date')),
+               'launched_units' => $this->input->post('launched_units'),
                'architect_name' => $this->input->post('architect_name'),
                'project_start_date' => $this->input->post('project_start_date'),
                'project_overview' => htmlentities($this->input->post('project_overview')),
@@ -133,6 +136,7 @@
            );
            $specifications = array();
            $floorPlans     = array();
+           $plotPlans     = array();
            if (isset($_REQUEST['specifications'])) {
                foreach ($_REQUEST['specifications'] as $kk => $val) {
                    if (isset($_REQUEST['specifications'][$kk]) && $val != '') {
@@ -145,12 +149,12 @@
                foreach ($_REQUEST['floor_totalRoomSizes'] as $k => $fval) {
                    
 				   /******For Floor Image******/
-                   /*$_FILES['mFile']['name']      = $_FILES['floor_planImage']['name'][$k];
+                   $_FILES['mFile']['name']      = $_FILES['floor_planImage']['name'][$k];
                    $_FILES['mFile']['type']      = $_FILES['floor_planImage']['type'][$k];
                    $_FILES['mFile']['tmp_name']  = $_FILES['floor_planImage']['tmp_name'][$k];
                    $_FILES['mFile']['error']     = $_FILES['floor_planImage']['error'][$k];
                    $_FILES['mFile']['size']      = $_FILES['floor_planImage']['size'][$k];
-                   $fdata[$k]['floor_planImage'] = $this->singleUpload('mFile', 'projects/floorPlans');*/
+                   $fdata[$k]['floor_planImage'] = $this->singleUpload('mFile', 'projects/floorPlans');
                    /******For Floor Image******/
                   
                    $fdata[$k]['floor_totalRoomSizes'] = $_REQUEST['floor_totalRoomSizes'][$k];
@@ -164,6 +168,25 @@
                    $fdata[$k]['floor_basePrice']      = $_REQUEST['floor_basePrice'][$k];
                    $fdata[$k]['floor_totalPrice']     = $_REQUEST['floor_totalPrice'][$k];
                    $floorPlans[]                      = $fdata;
+               }
+           }
+
+           if (isset($_REQUEST['plot_size'])) {
+               foreach ($_REQUEST['plot_size'] as $k => $pval) {
+
+                   /******For Plot Image******/
+                   $_FILES['mFile']['name']      = $_FILES['plot_Image']['name'][$k];
+                   $_FILES['mFile']['type']      = $_FILES['plot_Image']['type'][$k];
+                   $_FILES['mFile']['tmp_name']  = $_FILES['plot_Image']['tmp_name'][$k];
+                   $_FILES['mFile']['error']     = $_FILES['plot_Image']['error'][$k];
+                   $_FILES['mFile']['size']      = $_FILES['plot_Image']['size'][$k];
+                   $pdata[$k]['plot_Image'] = $this->singleUpload('mFile', 'projects/plotPlans');
+                   /******For Plot Image******/
+                  
+                   $pdata[$k]['plot_size']            = $_REQUEST['plot_size'][$k];
+                   $pdata[$k]['plot_basePrice']       = $_REQUEST['plot_basePrice'][$k];
+                   $pdata[$k]['plot_totalPrice']      = $_REQUEST['plot_totalPrice'][$k];
+                   $plotPlans[]                       = $pdata;
                }
            }
           
@@ -181,7 +204,7 @@
            //XXS Clean
            $post_data = $this->security->xss_clean($post_data);
           
-           $result           = $this->project->create_project($post_data, $specifications, $floorPlans);
+           $result           = $this->project->create_project($post_data, $specifications, $floorPlans, $plotPlans);
            $rec              = $this->project->project_Info($result['id']);
            $arr['name']      = 'project';
            $arr['url']       = $rec->project_name;
@@ -214,12 +237,15 @@
                'state_id' => $city->state,
                'country_id' => $city->country,
                'project_address' => $this->input->post('address'),
-               'project_type' => $this->input->post('p_type'),
+               'project_type' => $this->input->post('propertyType'),
+               'project_category' => $this->input->post('pvPTYP'),
                'no_of_towers' => $this->input->post('no_of_towers'),
                'no_of_flats' => $this->input->post('no_of_flats'),
                'total_area' => $this->input->post('total_area'),
                'project_phase' => $this->input->post('project_phase'),
                'project_start_date' => _sqlDate($this->input->post('project_start_date')),
+			   'possesion_start_date' => _sqlDate($this->input->post('possesion_start_date')),
+               'launched_units' => $this->input->post('launched_units'),
                'architect_name' => $this->input->post('architect_name'),
                'project_overview' => htmlentities($this->input->post('project_overview')),
                'project_amenities' => $amenities,
@@ -229,6 +255,7 @@
            );
            $specifications = array();
            $floorPlans     = array();
+           $plotPlans     = array();
            if (isset($_REQUEST['specifications'])) {
                foreach ($_REQUEST['specifications'] as $kk => $val) {
                    if (isset($_REQUEST['specifications'][$kk]) && $val != '') {
@@ -242,12 +269,12 @@
                foreach ($_REQUEST['floor_totalRoomSizes'] as $k => $fval) {
                    
 				   /******For Floor Image******/
-                   /*$_FILES['mFile']['name']      = $_FILES['floor_planImage']['name'][$k];
+                   $_FILES['mFile']['name']      = $_FILES['floor_planImage']['name'][$k];
                    $_FILES['mFile']['type']      = $_FILES['floor_planImage']['type'][$k];
                    $_FILES['mFile']['tmp_name']  = $_FILES['floor_planImage']['tmp_name'][$k];
                    $_FILES['mFile']['error']     = $_FILES['floor_planImage']['error'][$k];
                    $_FILES['mFile']['size']      = $_FILES['floor_planImage']['size'][$k];
-                   $fdata[$k]['floor_planImage'] = $this->singleUpload('mFile', 'projects/floorPlans');*/
+                   $fdata[$k]['floor_planImage'] = $this->singleUpload('mFile', 'projects/floorPlans');
                    /******For Floor Image******/
                   
                    $fdata[$k]['floor_totalRoomSizes'] = $_REQUEST['floor_totalRoomSizes'][$k];
@@ -263,6 +290,25 @@
                    $floorPlans[]                      = $fdata;
                }
            }
+
+           if (isset($_REQUEST['plot_size'])) {
+               foreach ($_REQUEST['plot_size'] as $k => $pval) {
+
+                   /******For Plot Image******/
+                   $_FILES['mFile']['name']      = $_FILES['plot_Image']['name'][$k];
+                   $_FILES['mFile']['type']      = $_FILES['plot_Image']['type'][$k];
+                   $_FILES['mFile']['tmp_name']  = $_FILES['plot_Image']['tmp_name'][$k];
+                   $_FILES['mFile']['error']     = $_FILES['plot_Image']['error'][$k];
+                   $_FILES['mFile']['size']      = $_FILES['plot_Image']['size'][$k];
+                   $pdata[$k]['plot_Image'] = $this->singleUpload('mFile', 'projects/plotPlans');
+                   /******For Plot Image******/
+                  
+                   $pdata[$k]['plot_size']            = $_REQUEST['plot_size'][$k];
+                   $pdata[$k]['plot_basePrice']       = $_REQUEST['plot_basePrice'][$k];
+                   $pdata[$k]['plot_totalPrice']      = $_REQUEST['plot_totalPrice'][$k];
+                   $plotPlans[]                       = $pdata;
+               }
+           }
            if (isset($_FILES['main_image']) && $_FILES['main_image']['name'] != '') {
                $post_data['main_image'] = $this->singleUpload('main_image', 'projects/Main Image');
            }
@@ -276,7 +322,7 @@
            //XXS Clean
            $post_data = $this->security->xss_clean($post_data);
           
-           $result = $this->project->update_project($id, $post_data, $specifications, $floorPlans);
+           $result = $this->project->update_project($id, $post_data, $specifications, $floorPlans, $plotPlans);
            $rec = $this->project->project_Info($id);
            $arr['name'] = 'project';
            $arr['url']  = $rec->project_name;

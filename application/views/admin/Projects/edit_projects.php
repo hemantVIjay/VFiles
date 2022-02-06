@@ -16,7 +16,7 @@
                <div class="row">
                   <div class="col-md-12 mb-3">
                      <label class="required">Choose Builder</label>
-                     <select class="form-select" name="builder">
+                     <select class="form-select" name="builder" id="builder">
                         <option value="">--Select--</option>
                         <?= _builders($info->builder_id); ?>
                      </select>
@@ -46,6 +46,21 @@
                </div>
                <hr />
                <div class="cmnttl position-relative">Choose Property Type</div>
+               <div class="mb-4">
+                  <label class="required">Property Type</label>
+                  <div class="row">
+                     <div class="col-xl-8 col-md-10 d-flex">
+                        <div class="box2RB">
+                           <?php echo _pTypes($info->project_type); ?>
+                        </div>
+                     </div>
+                  </div>
+                   <label class="required">Properties Category</label>
+                  <div class="d-flex flex-wrap bdgchkrdo">
+                   <?php echo _p_categories($info->project_category); ?>
+                  </div>
+               </div>
+               <!--<div class="cmnttl position-relative">Choose Property Type</div>
                <div class="row">
                   <div class="col-md-6 mb-3">
                      <label class="required">Property Type</label>
@@ -54,7 +69,7 @@
                         <?= _propertyType($info->project_type); ?>
                      </select>
                   </div>
-               </div>
+               </div>-->
 			   </div>
                <div class="ptyp" id="pty_flat">
                   <div class="row">
@@ -85,6 +100,15 @@
                      <div class="col-md-4 mb-3">
                         <label class="required">Project Launch Date</label>
                         <input type="text" class="form-control calicon" id="dtpicker" data-toggle="datetimepicker" data-target="#dtpicker" name="project_start_date" autocomplete="Off" value="<?= _calDate($info->project_start_date); ?>"/>
+                     </div>
+					 <div class="col-md-4 mb-3">
+                        <label class="required">Launched Units</label>
+                        <input type="text" class="form-control" name="launched_units" autocomplete="Off" 
+						value="<?= $info->launched_units; ?>" />
+                     </div>
+                     <div class="col-md-4 mb-3">
+                        <label class="required">Possesion Start Date</label>
+                        <input type="text" name="possesion_start_date" autocomplete="Off" type="text" class="form-control calicon" id="possesion_start_date" data-toggle="datetimepicker" data-target="#possesion_start_date" value="<?= _calDate($info->possesion_start_date); ?>" />
                      </div>
                      <div class="col-md-12 mb-3">
                         <label class="required">Project Overview</label>
@@ -210,6 +234,7 @@
                            <th width="150">Builtup Area</th>
                            <th width="150">BSP</th>
                            <th width="150">Total Price</th>
+						   <th width="80">Plan Image</th>
                         </tr>
                      </thead>
                      <tbody id="floor_plans">
@@ -229,6 +254,7 @@
                            <td><input type="text" class="form-control text-right" id="builtupArea_<?= $key+1; ?>" name="floor_builtupArea[]" onkeyup="totalPrice(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off" value="<?= $floorPlan->floor_builtupArea; ?>" /></td>
                            <td><input type="text" class="form-control text-right" id="basePrice_<?= $key+1; ?>" name="floor_basePrice[]" onkeyup="totalPrice(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off" value="<?= $floorPlan->floor_basePrice; ?>" /></td>
                            <td><input type="text" class="form-control text-right" id="tPrice_<?= $key+1; ?>" name="floor_totalPrice[]" autocomplete="Off" value="<?= $floorPlan->floor_totalPrice; ?>" /></td>
+						   <td><input type="file" class="" id="floorplanImage_<?= $key+1; ?>" name="floor_planImage[]"/></td>
                         </tr>
 						<?php } }else{ ?>
 						<tr>
@@ -245,6 +271,7 @@
                            <td><input type="text" class="form-control text-right" id="builtupArea_1" name="floor_builtupArea[]" onkeyup="totalPrice(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
                            <td><input type="text" class="form-control text-right" id="basePrice_1" name="floor_basePrice[]" onkeyup="totalPrice(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
                            <td><input type="text" class="form-control text-right" id="tPrice_1" name="floor_totalPrice[]" autocomplete="Off"/></td>
+						   <td><input type="file" class="" id="floorplanImage_1" name="floor_planImage[]"/></td>
                         </tr>
 						<?php } ?>
                      </tbody>
@@ -259,15 +286,23 @@
                <div class="row">
                   <div class="col-md-4 mb-3">
                      <label class="required">No. of Plots</label>
-                     <input type="text" class="form-control" name="no_of_plots" onkeypress="return isNumberKey(this, event);" autocomplete="Off">
+                     <input type="text" class="form-control" name="no_of_plots" onkeypress="return isNumberKey(this, event);" autocomplete="Off" value="<?= $info->no_of_plots; ?>">
                   </div>
                   <div class="col-md-4 mb-3">
                      <label class="required">Total Area (In Acres)</label>
-                     <input type="text" class="form-control" name="total_area" onkeypress="return isNumberKey(this, event);" autocomplete="Off">
+                     <input type="text" class="form-control" name="total_area" onkeypress="return isNumberKey(this, event);" autocomplete="Off"  value="<?= $info->total_area; ?>">
                   </div>
                   <div class="col-md-4 mb-3">
                      <label class="required">Project Launch Date</label>
-                     <input type="text" class="form-control calicon" id="project_launch_date" data-toggle="datetimepicker" data-target="#project_launch_date" name="project_start_date" autocomplete="Off">
+                     <input type="text" class="form-control calicon" id="project_launch_date" data-toggle="datetimepicker" data-target="#project_launch_date" name="project_start_date" autocomplete="Off" value="<?= _calDate($info->project_start_date); ?>">
+                  </div>
+				  <div class="col-md-4 mb-3">
+                        <label class="required">Launched Units</label>
+                        <input type="text" class="form-control" name="launched_units" autocomplete="Off" value="<?= $info->launched_units; ?>" />
+                  </div>
+                  <div class="col-md-4 mb-3">
+                        <label class="required">Possesion Start Date</label>
+                        <input type="text" name="possesion_start_date" autocomplete="Off" type="text" class="form-control calicon" id="possesion_start_date" data-toggle="datetimepicker" data-target="#possesion_start_date" value="<?= _calDate($info->possesion_start_date); ?>" />
                   </div>
                   <div class="col-md-12 mb-3">
                      <label class="required">Project Overview</label>
@@ -281,7 +316,7 @@
                      <thead>
                         <tr>
                            <th width="50">SNo.</th>
-                           <th width="150">Plot Size in SQ. Yard</th>
+                           <th width="150">Plot Size in SQ.Ft.</th>
                            <th width="150">Base Price</th>
                            <th width="150">Total Price</th>
                            <th width="250">Image</th>
@@ -291,9 +326,9 @@
                         <?php $plots = $this->project->get_plots($id); if(!empty($plots)){ foreach($plots as $key=>$plot){ ?>
 						<tr>
                            <td><input type="checkbox"></td>
-                           <td><input type="text" class="form-control" name="plot_size[]" id="plotSize_<?= ($key+1); ?>" onkeyup="total_Price(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
-                           <td><input type="text" class="form-control" name="plot_basePrice[]" id="plotBasicPrice_<?= ($key+1); ?>" onkeyup="total_Price(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
-                           <td><input type="text" class="form-control" name="plot_totalPrice[]" id="plotTotalPrice_<?= ($key+1); ?>"  onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
+                           <td><input type="text" class="form-control text-right" name="plot_size[]" id="plotSize_<?= ($key+1); ?>" onkeyup="total_Price(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off" value="<?= $plot->plot_size; ?>"/></td>
+                           <td><input type="text" class="form-control" name="plot_basePrice[]" id="plotBasicPrice_<?= ($key+1); ?>" onkeyup="total_Price(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off" value="<?= $plot->plot_basePrice; ?>"/></td>
+                           <td><input type="text" class="form-control" name="plot_totalPrice[]" id="plotTotalPrice_<?= ($key+1); ?>"  onkeypress="return isNumberKey(this, event);" autocomplete="Off" value="<?= $plot->plot_totalPrice; ?>"/></td>
                            <td><input type="file" class="form-control" name="plot_Image[]" id="plotImage_<?= ($key+1); ?>"/></td>
                         </tr>
 						<?php } }else{ ?>
@@ -410,8 +445,13 @@
       removeButtons: 'PasteFromWord'
     });
  var dataURL = $('base').attr("href");
-   $(function () {
-	changeDetails($('#choose_pty'));
+
+$(function () {
+   changeDetails($('input[name="pvPTYP"]'));
+   $('input[name="pvPTYP"]').on('change',function(){
+      changeDetails($(this));
+   });
+	//changeDetails($('#choose_pty'));
 	if ($('#rera_approved').is(":checked")){
      $('.reraDetails').css('display','block');
       }else{
@@ -423,13 +463,16 @@
        $('#project_launch_date').datetimepicker({
            format: 'DD-MMM-YYYY'
        });
-   });
+	   $('#possesion_start_date').datetimepicker({
+           format: 'DD-MMM-YYYY'
+       });
+});
    function addRow(tableID) {
    var table = document.getElementById(tableID);
    var rowCount = table.rows.length;
    var row = table.insertRow(rowCount);
    rowCount = rowCount+1;
-   console.log(rowCount);
+
    var colCount = table.rows[0].cells.length;
    for (var i = 0; i < colCount; i++) {
    var newcell = row.insertCell(i);
@@ -574,13 +617,13 @@
    
    function changeDetails(ev){
 	   var pType = $(ev).val();
-	   if(pType == '2'){
+	   if(pType != '5'){
 		$('#pty_flat').css('display','none');   
 		$('#pty_plot').css('display','block');
         $('#pty_flat').find('input, textarea, button, select').attr('disabled','disabled');		
         $('#pty_plot').find('input, textarea, button, select').attr('disabled',false);		
 	   }
-	   if(pType == '1' || pType == '3'){
+	   if(pType == '5'){
 		$('#pty_flat').css('display','block');   
 		$('#pty_plot').css('display','none');
 		$('#pty_plot').find('input, textarea, button, select').attr('disabled','disabled');
@@ -651,6 +694,7 @@
         'use strict';
         initCities('city');
         $('#location').select2();
+        $('#builder').select2();
        });
        function initCities(cid){       
           $('#'+cid).select2({

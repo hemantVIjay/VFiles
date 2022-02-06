@@ -27,7 +27,7 @@
    </head>
    <style>
       body::-webkit-scrollbar {
-      width: 1em;
+      width: 4px;
       }
       body::-webkit-scrollbar-track {
       box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
@@ -37,8 +37,8 @@
       outline: 1px solid slategrey;
       }
       ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
+      width: 4px;
+      height: 4px;
       }
       ::-webkit-scrollbar-track {
       -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
