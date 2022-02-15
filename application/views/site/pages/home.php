@@ -40,7 +40,45 @@
 <section class="section prop-loc-bys">
    <div class="container">
       <h2 class="cmn-title mb-3">Explore Projects in India</h2>
-      <div id="#cityCarousel" class="owl-carousel owl-theme expprty mb-4">
+      <div id="commercialCarousel" class="owl-carousel owl-theme">
+         <?php if(!empty($_popularProjects)){ foreach($_popularProjects as $project){ ?>
+		 <div class="item">
+            <div class="card">
+               <div class="card-inner">
+                  <div class="card-img">
+				     <?php if($project->main_image!=''){ ?>
+                     <img src="<?= base_url(); ?>uploads/projects/Main Image/<?= $project->main_image; ?>" class="img-fluid">
+					 <?php }else{ ?>
+					 <img src="<?= base_url(); ?>assets/images/cities/noida.jpg" class="img-fluid">	 
+					 <?php } ?>
+                  </div>
+                  <div class="card-img-overlay">
+                     <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
+                     <div class="prop-snfc">Possession from <?= my_date_show($project->possesion_start_date); ?></div>
+                  </div>
+               </div>
+               <div class="card-body">
+                  <h5 class="pvpr-name"><?= $project->project_name; ?></h5>
+				  <?php 
+				   $b_arr = array('name'=>'builder','parent_id'=>$project->builder_id);
+				   $bd = $this->masters->get_record_id('builders', $project->builder_id);
+				  ?>
+                  <div class="bldr-name mb-1">by <?php if(isset($bd) && !empty($bd)){ echo$bd->builder_name; } ?></div>
+                  <div class="pvpr-loc mb-2"><?= $project->project_address; ?></div>
+                  <div class="d-flex justify-content-between">
+				     <?php $c_units = $this->home->configurationUnits($project->id); 
+					 $all_conf = array(); 
+					 if(isset($c_units) && !empty($c_units)){
+					 foreach($c_units as $c_row){ $all_conf[] = $c_row->units; } } ?>
+                     <div class="pvpr-bhk"><?= (!empty($all_conf))? implode(', ', $all_conf).' BHK Flats' : ''?></div>
+                     <div class="pvpr-prc">₹ <?php $lp = listing_prices($project->id, $project->project_category); ?><?php echo no_to_words($lp->min_price).' - '.no_to_words($lp->max_price); ?></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+		 <?php } } ?>
+      </div>
+	  <!--<div id="#cityCarousel" class="owl-carousel owl-theme expprty mb-4">
          <?php if(!empty($_popularProjects)){ foreach($_popularProjects as $project){ ?>
 		 <div class="item">
             <div class="card">
@@ -461,131 +499,29 @@
                   </div>
                   <div class="card-img-overlay">
                      <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
-                     <div class="prop-snfc">Possession from Mar 2024</div>
+                     <div class="prop-snfc">Possession from <?= my_date_show($p_project->possesion_start_date); ?></div>
                   </div>
                </div>
                <div class="card-body">
-                  <h5 class="pvpr-name">Godrej Nurture Phase 1</h5>
-                  <div class="bldr-name mb-1">by Prateek Group</div>
-                  <div class="pvpr-loc mb-2">Sector- 151, Noida</div>
+                  <h5 class="pvpr-name"><?= $p_project->project_name; ?></h5>
+				  <?php 
+				   $b_arr = array('name'=>'builder','parent_id'=>$p_project->builder_id);
+				   $bd = $this->masters->get_record_id('builders', $p_project->builder_id);
+				  ?>
+                  <div class="bldr-name mb-1">by <?php if(isset($bd) && !empty($bd)){ echo$bd->builder_name; } ?></div>
+                  <div class="pvpr-loc mb-2"><?= $p_project->project_address; ?></div>
                   <div class="d-flex justify-content-between">
-                     <div class="pvpr-bhk">2,3,4 BHK Flats</div>
-                     <div class="pvpr-prc">₹ 1.88 - 5.08 Cr.</div>
+				     <?php $c_units = $this->home->configurationUnits($p_project->id); 
+					 $all_conf = array(); 
+					 if(isset($c_units) && !empty($c_units)){
+					 foreach($c_units as $c_row){ $all_conf[] = $c_row->units; } } ?>
+                     <div class="pvpr-bhk"><?= (!empty($all_conf))? implode(', ', $all_conf).' BHK Flats' : ''?></div>
+                     <div class="pvpr-prc">₹ <?php $lp = listing_prices($p_project->id, $p_project->project_category); ?><?php echo no_to_words($lp->min_price).' - '.no_to_words($lp->max_price); ?></div>
                   </div>
                </div>
             </div>
          </div>
 		 <?php } } ?>
-         <div class="item">
-            <div class="card">
-               <div class="card-inner">
-                  <div class="card-img">
-                     <img src="<?= base_url(); ?>assets/images/cities/greater-noida.jpg" class="img-fluid">
-                  </div>
-                  <div class="card-img-overlay">
-                     <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
-                     <div class="prop-snfc">Possession from Mar 2024</div>
-                  </div>
-               </div>
-               <div class="card-body">
-                  <h5 class="pvpr-name">Godrej Nurture Phase 1</h5>
-                  <div class="bldr-name mb-1">by Prateek Group</div>
-                  <div class="pvpr-loc mb-2">Sector- 151, Noida</div>
-                  <div class="d-flex justify-content-between">
-                     <div class="pvpr-bhk">2,3,4 BHK Flats</div>
-                     <div class="pvpr-prc">₹ 1.88 - 5.08 Cr.</div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="item">
-            <div class="card">
-               <div class="card-inner">
-                  <div class="card-img">
-                     <img src="<?= base_url(); ?>assets/images/cities/ghaziabad.jpg" class="img-fluid">
-                  </div>
-                  <div class="card-img-overlay">
-                     <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
-                     <div class="prop-snfc">Possession from Mar 2024</div>
-                  </div>
-               </div>
-               <div class="card-body">
-                  <h5 class="pvpr-name">Godrej Nurture Phase 1</h5>
-                  <div class="bldr-name mb-1">by Prateek Group</div>
-                  <div class="pvpr-loc mb-2">Sector- 151, Noida</div>
-                  <div class="d-flex justify-content-between">
-                     <div class="pvpr-bhk">2,3,4 BHK Flats</div>
-                     <div class="pvpr-prc">₹ 1.88 - 5.08 Cr.</div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="item">
-            <div class="card">
-               <div class="card-inner">
-                  <div class="card-img">
-                     <img src="<?= base_url(); ?>assets/images/cities/delhi.jpg" class="img-fluid">
-                  </div>
-                  <div class="card-img-overlay">
-                     <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
-                     <div class="prop-snfc">Possession from Mar 2024</div>
-                  </div>
-               </div>
-               <div class="card-body">
-                  <h5 class="pvpr-name">Godrej Nurture Phase 1</h5>
-                  <div class="bldr-name mb-1">by Prateek Group</div>
-                  <div class="pvpr-loc mb-2">Sector- 151, Noida</div>
-                  <div class="d-flex justify-content-between">
-                     <div class="pvpr-bhk">2,3,4 BHK Flats</div>
-                     <div class="pvpr-prc">₹ 1.88 - 5.08 Cr.</div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="item">
-            <div class="card">
-               <div class="card-inner">
-                  <div class="card-img">
-                     <img src="<?= base_url(); ?>assets/images/cities/gurgaon.jpg" class="img-fluid">
-                  </div>
-                  <div class="card-img-overlay">
-                     <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
-                     <div class="prop-snfc">Possession from Mar 2024</div>
-                  </div>
-               </div>
-               <div class="card-body">
-                  <h5 class="pvpr-name">Godrej Nurture Phase 1</h5>
-                  <div class="bldr-name mb-1">by Prateek Group</div>
-                  <div class="pvpr-loc mb-2">Sector- 151, Noida</div>
-                  <div class="d-flex justify-content-between">
-                     <div class="pvpr-bhk">2,3,4 BHK Flats</div>
-                     <div class="pvpr-prc">₹ 1.88 - 5.08 Cr.</div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="item">
-            <div class="card">
-               <div class="card-inner">
-                  <div class="card-img">
-                     <img src="<?= base_url(); ?>assets/images/cities/faridabad.jpg" class="img-fluid">
-                  </div>
-                  <div class="card-img-overlay">
-                     <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
-                     <div class="prop-snfc">Possession from Mar 2024</div>
-                  </div>
-               </div>
-               <div class="card-body">
-                  <h5 class="pvpr-name">Godrej Nurture Phase 1</h5>
-                  <div class="bldr-name mb-1">by Prateek Group</div>
-                  <div class="pvpr-loc mb-2">Sector- 151, Noida</div>
-                  <div class="d-flex justify-content-between">
-                     <div class="pvpr-bhk">2,3,4 BHK Flats</div>
-                     <div class="pvpr-prc">₹ 1.88 - 5.08 Cr.</div>
-                  </div>
-               </div>
-            </div>
-         </div>
       </div>
    </div>
    </div>
