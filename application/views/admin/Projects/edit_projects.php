@@ -445,14 +445,13 @@
       removeButtons: 'PasteFromWord'
     });
  var dataURL = $('base').attr("href");
-
+ $('input[name="pvPTYP"]').on('change',function(){
+      changeDetails();
+ });
+	
 $(function () {
-   changeDetails($('input[name="pvPTYP"]'));
-   $('input[name="pvPTYP"]').on('change',function(){
-      changeDetails($(this));
-   });
-	//changeDetails($('#choose_pty'));
-	if ($('#rera_approved').is(":checked")){
+    changeDetails();
+ 	if ($('#rera_approved').is(":checked")){
      $('.reraDetails').css('display','block');
       }else{
      $('.reraDetails').css('display','none');
@@ -615,15 +614,16 @@ $(function () {
    }
    });
    
-   function changeDetails(ev){
-	   var pType = $(ev).val();
-	   if(pType != '5'){
+   function changeDetails(){
+	   var pType = $('input[name="pvPTYP"]:checked').val();
+	   console.log(pType);
+	   if(pType == '5'){
 		$('#pty_flat').css('display','none');   
 		$('#pty_plot').css('display','block');
         $('#pty_flat').find('input, textarea, button, select').attr('disabled','disabled');		
         $('#pty_plot').find('input, textarea, button, select').attr('disabled',false);		
 	   }
-	   if(pType == '5'){
+	   if(pType != '5'){
 		$('#pty_flat').css('display','block');   
 		$('#pty_plot').css('display','none');
 		$('#pty_plot').find('input, textarea, button, select').attr('disabled','disabled');

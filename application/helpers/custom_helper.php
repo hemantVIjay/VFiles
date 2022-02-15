@@ -1292,11 +1292,16 @@
   
    if (!function_exists('listing_prices')) {
       
-       function listing_prices($id)
+       function listing_prices($id, $type)
        {
-           $ci =& get_instance();
-           $ci->db->select('MIN(floor_totalPrice) as min_price, MAX(floor_totalPrice) as max_price');
-           $ci->db->from('floor_plans');
+		   $ci =& get_instance();
+		   if($type=='5'){
+			$ci->db->select('MIN(plot_totalPrice) as min_price, MAX(plot_totalPrice) as max_price');
+            $ci->db->from('plot_plans');
+           }else{
+			$ci->db->select('MIN(floor_totalPrice) as min_price, MAX(floor_totalPrice) as max_price');
+            $ci->db->from('floor_plans');
+           }
            $ci->db->where('listing_id', $id);
            $query  = $ci->db->get();
            $result = $query->row();
@@ -1481,6 +1486,29 @@
               return $details->url;
 			}else{
 			  $str = ''; 	
+			  return $str;	
+			}
+		}
+   }
+
+   if (!function_exists('_averageRates')) {
+		function _averageRates($id, $cat)
+		{   
+		    $ci =& get_instance();
+			if($cat=='5'){
+			 $ci->db->select('AVG(plot_basePrice) as avgRate');
+			 $ci->db->join('plot_plans pp','p.id = pp.listing_id','inner');
+			}if($cat!='5'){
+			 $ci->db->select('AVG(floor_basePrice) as avgRate');
+			 $ci->db->join('floor_plans fp','p.id = fp.listing_id','inner');
+			}
+			$ci->db->where('p.id', $id);
+			$query = $ci->db->get('projects p');
+			$details = $query->row();
+			if(!empty($details)){
+              return $details->avgRate;
+			}else{
+			  $str = 0.00; 	
 			  return $str;	
 			}
 		}

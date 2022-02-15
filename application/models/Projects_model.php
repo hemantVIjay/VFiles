@@ -260,7 +260,9 @@ class Projects_model extends MY_Model{
 		}*/
 		$mData = array();
 		foreach($post_data as $key=>$data){
-			$sdata['floor_planImage'] = $data[$key]['floor_planImage'];
+			if(isset($data[$key]['floor_planImage'])){
+			 $sdata['floor_planImage'] = $data[$key]['floor_planImage'];
+			}
 			$sdata['floor_totalRoomSizes'] = $data[$key]['floor_totalRoomSizes'];
 			$sdata['floor_size'] = $data[$key]['floor_size'];
 			$sdata['floor_roomDesc'] = $data[$key]['floor_roomDesc'];
@@ -282,7 +284,9 @@ class Projects_model extends MY_Model{
 	public function save_plotPlans($post_data, $id){
 		$mData = array();
 		foreach($post_data as $key=>$data){
-			$sdata['plot_Image']      = $data[$key]['plot_Image'];
+			if(isset($data[$key]['plot_Image'])){
+			 $sdata['plot_Image']      = $data[$key]['plot_Image'];
+			}
 			$sdata['plot_size']       = $data[$key]['plot_size'];
 			$sdata['plot_basePrice']  = $data[$key]['plot_basePrice'];
 			$sdata['plot_totalPrice'] = $data[$key]['plot_totalPrice'];
@@ -306,7 +310,9 @@ class Projects_model extends MY_Model{
 		}
 		$mData = array();
 		foreach($post_data as $key=>$data){
-			$sdata['floor_planImage'] = $data[$key]['floor_planImage'];
+			if(isset($data[$key]['floor_planImage'])){
+			 $sdata['floor_planImage'] = $data[$key]['floor_planImage'];
+			}
 			$sdata['floor_totalRoomSizes'] = $data[$key]['floor_totalRoomSizes'];
 			$sdata['floor_size'] = $data[$key]['floor_size'];
 			$sdata['floor_roomDesc'] = $data[$key]['floor_roomDesc'];
@@ -337,7 +343,9 @@ class Projects_model extends MY_Model{
 		}
 		$mData = array();
 		foreach($post_data as $key=>$data){
-			$sdata['plot_Image']      = $data[$key]['plot_Image'];
+			if(isset($data[$key]['plot_Image'])){
+			 $sdata['plot_Image']      = $data[$key]['plot_Image'];
+			}
 			$sdata['plot_size']       = $data[$key]['plot_size'];
 			$sdata['plot_basePrice']  = $data[$key]['plot_basePrice'];
 			$sdata['plot_totalPrice'] = $data[$key]['plot_totalPrice'];

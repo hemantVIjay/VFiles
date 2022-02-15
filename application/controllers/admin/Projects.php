@@ -149,12 +149,14 @@
                foreach ($_REQUEST['floor_totalRoomSizes'] as $k => $fval) {
                    
 				   /******For Floor Image******/
-                   $_FILES['mFile']['name']      = $_FILES['floor_planImage']['name'][$k];
-                   $_FILES['mFile']['type']      = $_FILES['floor_planImage']['type'][$k];
-                   $_FILES['mFile']['tmp_name']  = $_FILES['floor_planImage']['tmp_name'][$k];
-                   $_FILES['mFile']['error']     = $_FILES['floor_planImage']['error'][$k];
-                   $_FILES['mFile']['size']      = $_FILES['floor_planImage']['size'][$k];
-                   $fdata[$k]['floor_planImage'] = $this->singleUpload('mFile', 'projects/floorPlans');
+				   if($_FILES['floor_planImage']['name'][$k]!=''){
+					$_FILES['mFile']['name']      = $_FILES['floor_planImage']['name'][$k];
+                    $_FILES['mFile']['type']      = $_FILES['floor_planImage']['type'][$k];
+                    $_FILES['mFile']['tmp_name']  = $_FILES['floor_planImage']['tmp_name'][$k];
+                    $_FILES['mFile']['error']     = $_FILES['floor_planImage']['error'][$k];
+                    $_FILES['mFile']['size']      = $_FILES['floor_planImage']['size'][$k];
+                    $fdata[$k]['floor_planImage'] = $this->singleUpload('mFile', 'projects/floorPlans');
+                   }
                    /******For Floor Image******/
                   
                    $fdata[$k]['floor_totalRoomSizes'] = $_REQUEST['floor_totalRoomSizes'][$k];
@@ -175,12 +177,14 @@
                foreach ($_REQUEST['plot_size'] as $k => $pval) {
 
                    /******For Plot Image******/
-                   $_FILES['mFile']['name']      = $_FILES['plot_Image']['name'][$k];
+                   if($_FILES['plot_Image']['name'][$k]!=''){
+				   $_FILES['mFile']['name']      = $_FILES['plot_Image']['name'][$k];
                    $_FILES['mFile']['type']      = $_FILES['plot_Image']['type'][$k];
                    $_FILES['mFile']['tmp_name']  = $_FILES['plot_Image']['tmp_name'][$k];
                    $_FILES['mFile']['error']     = $_FILES['plot_Image']['error'][$k];
                    $_FILES['mFile']['size']      = $_FILES['plot_Image']['size'][$k];
                    $pdata[$k]['plot_Image'] = $this->singleUpload('mFile', 'projects/plotPlans');
+				   }
                    /******For Plot Image******/
                   
                    $pdata[$k]['plot_size']            = $_REQUEST['plot_size'][$k];
@@ -269,12 +273,14 @@
                foreach ($_REQUEST['floor_totalRoomSizes'] as $k => $fval) {
                    
 				   /******For Floor Image******/
-                   $_FILES['mFile']['name']      = $_FILES['floor_planImage']['name'][$k];
+                   if($_FILES['floor_planImage']['name'][$k]!=''){
+				   $_FILES['mFile']['name']      = $_FILES['floor_planImage']['name'][$k];
                    $_FILES['mFile']['type']      = $_FILES['floor_planImage']['type'][$k];
                    $_FILES['mFile']['tmp_name']  = $_FILES['floor_planImage']['tmp_name'][$k];
                    $_FILES['mFile']['error']     = $_FILES['floor_planImage']['error'][$k];
                    $_FILES['mFile']['size']      = $_FILES['floor_planImage']['size'][$k];
                    $fdata[$k]['floor_planImage'] = $this->singleUpload('mFile', 'projects/floorPlans');
+				   }
                    /******For Floor Image******/
                   
                    $fdata[$k]['floor_totalRoomSizes'] = $_REQUEST['floor_totalRoomSizes'][$k];
@@ -295,13 +301,15 @@
                foreach ($_REQUEST['plot_size'] as $k => $pval) {
 
                    /******For Plot Image******/
-                   $_FILES['mFile']['name']      = $_FILES['plot_Image']['name'][$k];
+                   if($_FILES['plot_Image']['name'][$k]!=''){
+				   $_FILES['mFile']['name']      = $_FILES['plot_Image']['name'][$k];
                    $_FILES['mFile']['type']      = $_FILES['plot_Image']['type'][$k];
                    $_FILES['mFile']['tmp_name']  = $_FILES['plot_Image']['tmp_name'][$k];
                    $_FILES['mFile']['error']     = $_FILES['plot_Image']['error'][$k];
                    $_FILES['mFile']['size']      = $_FILES['plot_Image']['size'][$k];
                    $pdata[$k]['plot_Image'] = $this->singleUpload('mFile', 'projects/plotPlans');
-                   /******For Plot Image******/
+                   }
+				   /******For Plot Image******/
                   
                    $pdata[$k]['plot_size']            = $_REQUEST['plot_size'][$k];
                    $pdata[$k]['plot_basePrice']       = $_REQUEST['plot_basePrice'][$k];
@@ -324,10 +332,15 @@
           
            $result = $this->project->update_project($id, $post_data, $specifications, $floorPlans, $plotPlans);
            $rec = $this->project->project_Info($id);
-           $arr['name'] = 'project';
-           $arr['url']  = $rec->project_name;
+		   $arr['name'] = 'project';
            $arr['parent_id'] = $rec->id;
-           $lr = _updatelistRecord($arr);
+		   $listing = _getlisting($arr);
+           $arr['url']  = $rec->project_name;
+		   if(empty($listing)){
+			$lr = _listRecord($arr);
+           }else{
+			$lr = _updatelistRecord($arr);
+           }
            redirect('admin/projects/list_projects','refresh');
        }
       

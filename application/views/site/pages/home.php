@@ -41,14 +41,24 @@
    <div class="container">
       <h2 class="cmn-title mb-3">Explore Projects in India</h2>
       <div id="#cityCarousel" class="owl-carousel owl-theme expprty mb-4">
-         <div class="item">
+         <?php if(!empty($_popularProjects)){ foreach($_popularProjects as $project){ ?>
+		 <div class="item">
             <div class="card">
-               <div class="card-img rounded">
-                  <img src="<?= base_url(); ?>assets/images/explore-property/flats.jpg" class="img-fluid rounded">
+               <div class="card-img rounded" style="min-height:265px;">
+			      <?php if($project->main_image!=''){ ?> 
+                  <img src="<?= base_url(); ?>uploads/projects/Main Image/<?= $project->main_image; ?>" class="img-fluid rounded" style="min-height:265px;">
+				  <?php }else{?>
+				  <img src="<?= base_url(); ?>assets/images/explore-property/flats.jpg" class="img-fluid rounded" style="min-height:265px;">  
+				  <?php } ?>
                </div>
-               <a href="javascript:;" class="card-img-overlay"><span class="ct-title"><span class="xplpcnt">2750</span><br />Flats</span></a>
+			   <?php 
+				 $o_arr = array('name'=>'project','parent_id'=>$project->id);
+				 $own = _getlisting($o_arr);
+			   ?>
+               <a href="<?php if(isset($own) && !empty($own)){ echo base_url($own->url); }else{ echo'javascript:;'; }?>" class="card-img-overlay"><span class="ct-title"><span class="xplpcnt"><?= $project->no_of_flats; ?></span><br />Flats</span></a>
             </div>
          </div>
+		 <?php } } ?>
          <!--<div class="item">
             <div class="card">
                <div class="card-img rounded">
@@ -436,13 +446,18 @@
 </section>
 <section class="section prop-loc-bys">
    <div class="container">
-      <h2 class="cmn-title mb-3 mt-4">Popular Commercial Properties</h2>
+      <h2 class="cmn-title mb-3 mt-4">Popular Residential Plots</h2>
       <div id="commercialCarousel" class="owl-carousel owl-theme">
-         <div class="item">
+         <?php if(!empty($_popularProjects)){ foreach($_popularProjects as $p_project){ ?>
+		 <div class="item">
             <div class="card">
                <div class="card-inner">
                   <div class="card-img">
-                     <img src="<?= base_url(); ?>assets/images/cities/noida.jpg" class="img-fluid">
+				     <?php if($p_project->main_image!=''){ ?>
+                     <img src="<?= base_url(); ?>uploads/projects/Main Image/<?= $p_project->main_image; ?>" class="img-fluid">
+					 <?php }else{ ?>
+					 <img src="<?= base_url(); ?>assets/images/cities/noida.jpg" class="img-fluid">	 
+					 <?php } ?>
                   </div>
                   <div class="card-img-overlay">
                      <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
@@ -460,6 +475,7 @@
                </div>
             </div>
          </div>
+		 <?php } } ?>
          <div class="item">
             <div class="card">
                <div class="card-inner">

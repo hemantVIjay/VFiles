@@ -12,6 +12,12 @@ class Home extends MY_Controller {
 	public function index()
 	{
 		$data['title']=$this->lang->line("text_home");
+		$count  = 10; 
+		$_popularProjects = $this->home->_popularProjects($count, '');
+		$_popularPlots = $this->home->_popularProjects($count, '5');
+		$data['_popularProjects'] = $_popularProjects;
+		$data['_popularPlots'] = $_popularPlots;
+		
 		$data['sub_view'] = $this->load->view('site/pages/home', $data, TRUE);
         $this->load->view('site/_layout', $data);
 	}	

@@ -112,6 +112,17 @@ class Home_model extends MY_Model{
      return ($query->num_rows() > 0)?$query->result():FALSE;
 	}
 
+	public function project_plots($id){
+	 
+	 $this->db->select("fp.id, fp.floor_bedrooms");
+     $this->db->from('floor_plans fp');
+     $this->db->where('fp.listing_id',$id);
+     $this->db->group_by('fp.floor_bedrooms');
+	 $query = $this->db->get();
+
+     return ($query->num_rows() > 0)?$query->result():FALSE;
+	}
+
 	public function project_Floorplans($id, $bedrooms){
 	 
 	 $this->db->select("fp.*");
@@ -245,6 +256,21 @@ class Home_model extends MY_Model{
         $this->db->join('projects p','b.id = p.builder_id','LEFT');
 		$this->db->where('p.locality_id',$id);
 		$this->db->limit(10, 0);
+		$query = $this->db->get();
+		//return fetched data
+        return ($query->num_rows() > 0)?$query->result():FALSE;
+	}
+
+	public function _popularProjects($count, $pCat){		
+		$this->db->select('p.*');
+        $this->db->from('projects p');
+        if($pCat!=''){
+		 $this->db->where('p.project_category', $pCat);
+		}else{
+		 $this->db->where('p.project_category !=', '5');
+		}
+		$this->db->limit($count, 0);
+		$this->db->order_by('p.id', 'desc');
 		$query = $this->db->get();
 		//return fetched data
         return ($query->num_rows() > 0)?$query->result():FALSE;
