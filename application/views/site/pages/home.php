@@ -53,18 +53,19 @@
 					 <?php } ?>
                   </div>
                   <div class="card-img-overlay">
-                     <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
+                     <?php if($project->rera_approved==1){?><span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span><?php } ?>
                      <div class="prop-snfc">Possession from <?= my_date_show($project->possesion_start_date); ?></div>
                   </div>
                </div>
                <div class="card-body">
                   <h5 class="pvpr-name"><?= $project->project_name; ?></h5>
 				  <?php 
-				   $b_arr = array('name'=>'builder','parent_id'=>$project->builder_id);
 				   $bd = $this->masters->get_record_id('builders', $project->builder_id);
+				   $lt = $this->masters->get_record_id('locations', $project->locality_id);
+				   $ct = $this->masters->get_record_id('cities', $project->city_id);
 				  ?>
                   <div class="bldr-name mb-1">by <?php if(isset($bd) && !empty($bd)){ echo$bd->builder_name; } ?></div>
-                  <div class="pvpr-loc mb-2"><?= $project->project_address; ?></div>
+                  <div class="pvpr-loc mb-2"><?php if(isset($lt) && !empty($lt)){ echo$lt->name.', '; }if(isset($ct) && !empty($ct)){ echo$ct->name; } ?></div>
                   <div class="d-flex justify-content-between">
 				     <?php $c_units = $this->home->configurationUnits($project->id); 
 					 $all_conf = array(); 
@@ -486,7 +487,7 @@
    <div class="container">
       <h2 class="cmn-title mb-3 mt-4">Popular Residential Plots</h2>
       <div id="commercialCarousel" class="owl-carousel owl-theme">
-         <?php if(!empty($_popularProjects)){ foreach($_popularProjects as $p_project){ ?>
+         <?php if(!empty($_popularPlots)){ foreach($_popularPlots as $p_project){ ?>
 		 <div class="item">
             <div class="card">
                <div class="card-inner">
@@ -498,18 +499,19 @@
 					 <?php } ?>
                   </div>
                   <div class="card-img-overlay">
-                     <span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span>
+                     <?php if($p_project->rera_approved==1){?><span class="aprvl-badge"><i class="bi bi-check-circle-fill"></i>RERA</span><?php } ?>
                      <div class="prop-snfc">Possession from <?= my_date_show($p_project->possesion_start_date); ?></div>
                   </div>
                </div>
                <div class="card-body">
                   <h5 class="pvpr-name"><?= $p_project->project_name; ?></h5>
 				  <?php 
-				   $b_arr = array('name'=>'builder','parent_id'=>$p_project->builder_id);
 				   $bd = $this->masters->get_record_id('builders', $p_project->builder_id);
+				   $lt = $this->masters->get_record_id('locations', $p_project->locality_id);
+				   $ct = $this->masters->get_record_id('cities', $p_project->city_id);
 				  ?>
                   <div class="bldr-name mb-1">by <?php if(isset($bd) && !empty($bd)){ echo$bd->builder_name; } ?></div>
-                  <div class="pvpr-loc mb-2"><?= $p_project->project_address; ?></div>
+                  <div class="pvpr-loc mb-2"><?php if(isset($lt) && !empty($lt)){ echo$lt->name.', '; }if(isset($ct) && !empty($ct)){ echo$ct->name; } ?></div>
                   <div class="d-flex justify-content-between">
 				     <?php $c_units = $this->home->configurationUnits($p_project->id); 
 					 $all_conf = array(); 
