@@ -121,7 +121,7 @@
             </div>
          </div>
          <div class="spcr-bds"></div>
-		 <?php if($project_info->project_category!='5')?>
+		 <?php if($project_info->project_category!='5'){ ?>
          <div class="page-section" id="2">
             <h4 class="cmn-title mb-4">Floor Plan & Units</h4>
             <div class="pvfp-tab">
