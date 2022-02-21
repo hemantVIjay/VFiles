@@ -38,7 +38,7 @@
                   <div class="col-md-8">
                      <h2 class="pvpd-title"><?= $project_info->project_name; ?></h2>
                      <h6 class="pvpd-py">By<span> <?php if(isset($bd) && !empty($bd)){ echo$bd->builder_name; } ?></span></h6>
-                     <h6 class="pvpd-locate"><?= $project_info->project_address; ?></h6>
+                     <h6 class="pvpd-locate"><?= $project_info->project_address.', '; ?> <?php if(isset($lt) && !empty($lt)){ echo$lt->name.', '; }if(isset($ct) && !empty($ct)){ echo$ct->name; } ?></h6>
                   </div>
                   <div class="col-md-4 text-end">
                      <h1 class="pvpd-prc mb-3">₹ <?php $lp = listing_prices($project_info->id, $project_info->project_category); ?><?php echo no_to_words($lp->min_price).' - '.no_to_words($lp->max_price); ?><span class="pv-sb">₹ <?= number_format(_averageRates($project_info->id, $project_info->project_category),2); ?>/ sq.ft</span></h1>

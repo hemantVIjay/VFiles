@@ -303,11 +303,16 @@
                      <div class="card-body">
                         <h5 class="pv-ptttl mb-1"><a href="<?php echo base_url();?><?= (isset($linfo->url))? $linfo->url : ''; ?>"><?= $project->project_name; ?></a></h5>
                         <h6 class="pvpd-py">By<span> <?= $builder['builder_name']; ?></span></h6>
-                        <h6 class="pvpd-locate mb-3"><?= $project->project_address; ?></h6>
+                        <?php 
+						   $bd = $this->masters->get_record_id('builders', $project->builder_id);
+						   $lt = $this->masters->get_record_id('locations', $project->locality_id);
+						   $ct = $this->masters->get_record_id('cities', $project->city_id);
+						?>
+						<h6 class="pvpd-locate mb-3"><?= $project->project_address.', '; ?><?php if(isset($lt) && !empty($lt)){ echo$lt->name.', '; }if(isset($ct) && !empty($ct)){ echo$ct->name; } ?></h6>
                         <div class="row mb-3">
                            <div class="col-xl-5 col-4">
-                              <h5 class="pv-lprc">₹ <?php $lp = listing_prices($project->id); ?><?php echo no_to_words($lp->min_price).' - '.no_to_words($lp->max_price); ?></h5>
-                              <div class="pv-lprc-sml">₹ 5,830 per sq.ft.</div>
+                              <h5 class="pv-lprc">₹ <?php $lp = listing_prices($project->id, $project->project_category); ?><?php echo no_to_words($lp->min_price).' - '.no_to_words($lp->max_price); ?></h5>
+                              <div class="pv-lprc-sml">₹ <?= number_format(_averageRates($project->id, $project->project_category),2); ?> per sq.ft.</div>
                            </div>
 						   <?php $p_listings = $this->project->get_projectPlans($project->id);?>
                            <div class="col-xl-7 col-4">
@@ -325,8 +330,10 @@
 							  </table>
                            </div>
                         </div>
-                        <div class="mb-4">
-                           <span class="badge badge-secondary">Ready to Move</span>
+                        
+						<div class="mb-4">
+                           <?php if($project->project_category!='5'){ ?><span class="badge badge-secondary">Ready to Move</span>
+     						<?php } ?>
                            <span class="badge badge-secondary ms-1">Resale</span>
                         </div>
                         <a href="<?php echo base_url();?><?= (isset($linfo->url))? $linfo->url : ''; ?>" class="rmLink">Read More<i class="bi bi-arrow-right"></i></a>
