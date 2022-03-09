@@ -31,7 +31,10 @@
       <div class="row">
          <div class="col-md-9">
             <div class="pvd-banner mb-3">
-               <img src="<?= base_url(); ?><?= ($project_info->main_image!='')? 'uploads/projects/Main Image/'.$project_info->main_image : 'assets/images/home-banner.jpg' ?>" class="img-fluid">
+				<a data-fancybox="gallery" href="<?= base_url(); ?><?= ($project_info->main_image!='')? 'uploads/projects/Main Image/'.$project_info->main_image : 'assets/images/home-banner.jpg' ?>" data-caption="">
+                           <img src="<?= base_url(); ?><?= ($project_info->main_image!='')? 'uploads/projects/Main Image/'.$project_info->main_image : 'assets/images/home-banner.jpg' ?>" class="img-fluid" />
+                           </a>
+               
             </div>
             <div class="pvpds mb-4">
                <div class="row">
@@ -154,7 +157,11 @@
                                        <th>Price Details</th>
                                     </tr>
                                     <tr>
-                                       <td><img src="<?= base_url(); ?>uploads/projects/floorPlans/<?= $floorPlan->floor_planImage; ?>" class="img-fluid fp-img"></td>
+                                       <td>
+									   <a data-fancybox="gallery" href="<?= base_url(); ?>uploads/projects/floorPlans/<?= $floorPlan->floor_planImage; ?>" data-caption="">
+                           <img src="<?= base_url(); ?>uploads/projects/floorPlans/<?= $floorPlan->floor_planImage; ?>" class="fp-img" />
+                           </a>
+									   </td>
                                        <td class="pvtlst"><?= $floorPlan->floor_bedrooms; ?> bedrooms<br>1 kitchens<br><?= $floorPlan->floor_bathrooms; ?> bathroom<br>3 balcony<br>1 living</td>
                                        <td>
                                           <div class="clbl">Super Built-up Area</div>
