@@ -94,7 +94,7 @@
                <div class="valuepvfd"><?= $project_info->no_of_towers; ?> Buildings - <?= $project_info->no_of_flats; ?> units</div>
             </div>
             <div class="col-md-4 col-6 mb-4">
-               <div class="lblpvfd mb-1">Total Launched apartments</div>
+               <div class="lblpvfd mb-1">Total Launched <?php echo ($project_info->project_category!='5')?'Apartments':'Plots'; ?></div>
                <div class="valuepvfd"><?= number_format($project_info->launched_units); ?></div>
             </div>
             <div class="col-md-4 col-6 mb-4">
@@ -183,45 +183,39 @@
             <h4 class="cmn-title mb-4">Plot Plans</h4>
             <div class="pvfp-tab">
                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                  <?php $floors = $this->home->project_plots($project_info->id); if(isset($plots)&& !empty($plots)){ foreach($plots as $key=>$plot){ ?>
+                  <?php $plots = $this->home->project_plots($project_info->id);?>
 				  <li class="nav-item" role="presentation">
-                     <button class="nav-link <?php if($key==0){echo'active'; }?>" id="bhka1-tab" data-bs-toggle="tab" data-bs-target="#bhka_<?=$key;?>" type="button" role="tab" aria-controls="bhka1" aria-selected="true"><?= $plot->floor_bedrooms; ?>BHK<br />Apartment</button>
+                     <button class="nav-link active" id="bhka1-tab" data-bs-toggle="tab" data-bs-target="#bhka_c" type="button" role="tab" aria-controls="bhka1" aria-selected="true">Configurations</button>
                   </li>
-				  <?php } } ?>
                </ul>
-               <div class="tab-content py-4" id="myTabContent">
-                  <?php if(isset($floors)&& !empty($floors)){ foreach($floors as $key=>$floor){ ?>
+			   <div class="tab-content py-4" id="myTabContent">
+                  <?php if(isset($plots)&& !empty($plots)){ foreach($plots as $key=>$plot){ ?>
 				  <div class="tab-pane fade <?php if($key==0){echo'show active'; }?>" id="bhka_<?=$key;?>" role="tabpanel" aria-labelledby="bhka1-tab">
-				     <?php $floorPlans = $this->home->project_Floorplans($project_info->id, $floor->floor_bedrooms); ?>
-                     <div class="vpvtab d-flex align-items-start">
+				     <div class="vpvtab d-flex align-items-start">
                         <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                           <?php if(isset($floorPlans)&& !empty($floorPlans)){ foreach($floorPlans as $ks=>$floorPlan){ ?>
-						   <button class="nav-link <?php if($ks==0){echo'active'; }?>" id="plan_<?=$ks;?>-tab" data-bs-toggle="pill" data-bs-target="#plan<?=$ks;?>" type="button" role="tab" aria-controls="plan<?=$ks;?>" aria-selected="true"><?= number_format($floorPlan->floor_size, 2); ?> SQ. FT</button>
+                           <?php if(isset($plots)&& !empty($plots)){ foreach($plots as $ks=>$plot){ ?>
+						   <button class="nav-link <?php if($ks==0){echo'active'; }?>" id="plan_<?=$ks;?>-tab" data-bs-toggle="pill" data-bs-target="#plan<?=$ks;?>" type="button" role="tab" aria-controls="plan<?=$ks;?>" aria-selected="true"><?= number_format($plot->plot_size, 2); ?> SQ. FT</button>
 						   <?php } } ?>
                         </div>
                         <div class="tab-content" id="v-pills-tabContent">
-                           <?php if(isset($floorPlans)&& !empty($floorPlans)){ foreach($floorPlans as $ls=>$floorPlan){ ?>
+                           <?php if(isset($plots)&& !empty($plots)){ foreach($plots as $ls=>$plot){ ?>
 						   <div class="tab-pane fade <?php if($ls==0){echo'active show'; }?>" id="plan<?=$ls;?>" role="tabpanel" aria-labelledby="plan<?=$ls;?>-tab">
                               <div class="fppv-tblwrp">
                                  <table class="table table-fppv">
                                     <tr>
-                                       <th>Floor Plan</th>
-                                       <th>Inclusions</th>
+                                       <th>Plot Plan</th>
                                        <th>Area Details</th>
                                        <th>Price Details</th>
                                     </tr>
                                     <tr>
-                                       <td><img src="<?= base_url(); ?>uploads/projects/floorPlans/<?= $floorPlan->floor_planImage; ?>" class="img-fluid fp-img"></td>
-                                       <td class="pvtlst"><?= $floorPlan->floor_bedrooms; ?> bedrooms<br>1 kitchens<br><?= $floorPlan->floor_bathrooms; ?> bathroom<br>3 balcony<br>1 living</td>
+                                       <td><img src="<?= base_url(); ?>uploads/projects/plotPlans/<?= $plot->plot_Image; ?>" class="img-fluid fp-img"></td>
                                        <td>
-                                          <div class="clbl">Super Built-up Area</div>
-                                          <div class="pvlv mb-2"><?= number_format($floorPlan->floor_size,2); ?> sq.ft.<span class="sbpv"><?= number_format(($floorPlan->floor_size*0.305),2); ?> sq.m.</span></div>
-                                          <div class="clbl">Builtup Area</div>
-                                          <div class="pvlv"><?= number_format($floorPlan->floor_builtupArea,2); ?> sq.ft.<span class="sbpv"><?= number_format(($floorPlan->floor_builtupArea*0.305),2); ?> sq.m.</span></div>
+                                          <div class="clbl">Plot Area</div>
+                                          <div class="pvlv mb-2"><?= number_format($plot->plot_size,2); ?> sq.ft.<span class="sbpv"><?= number_format(($plot->plot_size*0.305),2); ?> sq.m.</span></div>
                                        </td>
                                        <td>
                                           <div class="clbl">Base Price</div>
-                                          <div class="pvpclv">₹ <?= no_to_words($floorPlan->floor_totalPrice); ?></div>
+                                          <div class="pvpclv">₹ <?= no_to_words($plot->plot_totalPrice); ?></div>
                                        </td>
                                     </tr>
                                  </table>
@@ -268,8 +262,8 @@
                      <div class="row">
                         <?php foreach($images as $sk=>$p_image){ ?>
                         <div class="col-xl-3 col-md-4 col-sm-6 mt-2">
-                           <a data-fancybox="gallery" href="<?= base_url(); ?>uploads/properties/<?= $kk; ?>/<?= $p_image->image_name; ?>" data-caption="<?= $p_image->image_desc; ?>">
-                           <img src="<?= base_url(); ?>uploads/properties/<?= $kk; ?>/<?= $p_image->image_name; ?>" class="img-fluid" />
+                           <a data-fancybox="gallery" href="<?= base_url(); ?>uploads/projects/<?= $kk; ?>/<?= $p_image->image_name; ?>" data-caption="<?= $p_image->image_desc; ?>">
+                           <img src="<?= base_url(); ?>uploads/projects/<?= $kk; ?>/<?= $p_image->image_name; ?>" class="img-fluid" />
                            </a>
                         </div>
                         <?php } ?>

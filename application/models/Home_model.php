@@ -114,10 +114,9 @@ class Home_model extends MY_Model{
 
 	public function project_plots($id){
 	 
-	 $this->db->select("fp.id, fp.floor_bedrooms");
-     $this->db->from('floor_plans fp');
+	 $this->db->select("fp.*");
+     $this->db->from('plot_plans fp');
      $this->db->where('fp.listing_id',$id);
-     $this->db->group_by('fp.floor_bedrooms');
 	 $query = $this->db->get();
 
      return ($query->num_rows() > 0)?$query->result():FALSE;

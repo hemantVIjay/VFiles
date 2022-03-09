@@ -22,6 +22,29 @@
 	  <script src="<?= base_url(); ?>assets/js/site/<?= $class_name ?>.js"></script>
    </head>
    <style>
+      body::-webkit-scrollbar {
+      width: 4px;
+      }
+      body::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      }
+      body::-webkit-scrollbar-thumb {
+      background-color: darkgrey;
+      outline: 1px solid slategrey;
+      }
+      ::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+      }
+      ::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+      border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb {
+       border-radius: 10px;
+       -webkit-box-shadow: inset 0 0 6px rgb(239 164 28);
+       background-color: #efa41c;
+      }
       .page-loader {
       background:rgb(255 255 255 / 60%);
       position: absolute;

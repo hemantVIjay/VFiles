@@ -14,16 +14,21 @@
          <div class="col-xl-12 col-md-12">
             <div class="cbx">
                <div class="row">
-                  <div class="col-md-12 mb-3">
+                  <div class="col-md-5 mb-3">
                      <label class="required">Choose Builder</label>
                      <select class="form-select" name="builder" id="builder">
                         <option value="">--Select--</option>
                         <?= _builders($info->builder_id); ?>
                      </select>
                   </div>
-                  <div class="col-md-12 mb-3">
+                  <div class="col-md-7 mb-3">
                      <label class="required">Project Name</label>
                      <input type="text" class="form-control" name="project_name" autocomplete="Off" value="<?= $info->project_name; ?>" />
+                  </div>
+				  <div class="col-md-3 mb-3">
+                     <label class="required">Is Featured</label>
+                     <a class="form-check form-switch"><input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" value="1" data-id="15" name="is_featured" <?= ($info->is_featured)?'checked':''; ?>>
+			         </a>
                   </div>
                   <div class="col-md-3 mb-3">
                      <label class="required">City</label>
@@ -292,6 +297,14 @@
                      <label class="required">Total Area (In Acres)</label>
                      <input type="text" class="form-control" name="total_area" onkeypress="return isNumberKey(this, event);" autocomplete="Off"  value="<?= $info->total_area; ?>">
                   </div>
+				  <div class="col-md-4 mb-3">
+                        <label class="required">Project Phase</label>
+                        <select class="form-select" name="project_phase">
+                           <option value="On Going" <?php if($info->project_phase=='On Going'){ echo'selected'; } ?>>On Going</option>
+                           <option value="Pre-Launch" <?php if($info->project_phase=='Pre-Launch'){ echo'selected'; } ?>>Pre-Launch</option>
+                           <option value="Completed" <?php if($info->project_phase=='Completed'){ echo'selected'; } ?>>Completed</option>
+                        </select>
+                     </div>
                   <div class="col-md-4 mb-3">
                      <label class="required">Project Launch Date</label>
                      <input type="text" class="form-control calicon" id="project_launch_date" data-toggle="datetimepicker" data-target="#project_launch_date" name="project_start_date" autocomplete="Off" value="<?= _calDate($info->project_start_date); ?>">
@@ -302,7 +315,7 @@
                   </div>
                   <div class="col-md-4 mb-3">
                         <label class="required">Possesion Start Date</label>
-                        <input type="text" name="possesion_start_date" autocomplete="Off" type="text" class="form-control calicon" id="possesion_start_date" data-toggle="datetimepicker" data-target="#possesion_start_date" value="<?= _calDate($info->possesion_start_date); ?>" />
+                        <input type="text" name="possesion_start_date" autocomplete="Off" type="text" class="form-control calicon" id="possesion_start_dates" data-toggle="datetimepicker" data-target="#possesion_start_dates" value="<?= _calDate($info->possesion_start_date); ?>" />
                   </div>
                   <div class="col-md-12 mb-3">
                      <label class="required">Project Overview</label>
@@ -361,26 +374,38 @@
                <?php } ?>
             </div>
             <hr />
-            <div class="cmnttl position-relative">Main Image</div>
             <div class="row">
-               <div class="col-md-12 mb-3">
-                  <label class="required">Upload Image</label>
+               <div class="col-md-4 mb-3">
+                  <div class="cmnttl position-relative">Main Image</div>
+            	  <label class="required">Upload Image</label>
                   <input type="file" class="form-control" name="main_image"/>
                </div>
-            </div>
-			<hr />
-            <div class="cmnttl position-relative">Site Layout</div>
-            <div class="row">
-               <div class="col-md-12 mb-3">
+			   <div class="col-md-2">
+			     <?php if($info->main_image!=''){ ?>
+			     <img src="<?= base_url();?>uploads/projects/Main Image/<?= $info->main_image; ?>" style="width:150px;height:120px;"/>
+				 <?php } ?>
+               </div>
+			   <div class="col-md-4 mb-3">
+			   <div class="cmnttl position-relative">Site Layout</div>
                   <label class="required">Upload Image</label>
                   <input type="file" class="form-control" name="site_layout"/>
                </div>
+			   <div class="col-md-2 mb-3">
+			     <?php if($info->site_layout!=''){ ?>
+			     <img src="<?= base_url();?>uploads/projects/Site Layout/<?= $info->site_layout; ?>" style="width:150px;height:120px;"/>
+				 <?php } ?>
+               </div>
             </div>
-            <hr />
+			<hr />
             <div class="cmnttl position-relative">Payment Option</div>
             <div class="row">
-               <div class="col-xl-12 mb-3">
+               <div class="col-xl-4 mb-3">
                   <input type="file" class="form-control" name="payment_option"/>
+               </div>
+			   <div class="col-md-2 mb-3">
+			     <?php if($info->site_layout!=''){ ?>
+			     <img src="<?= base_url();?>uploads/projects/Payment Option/<?= $info->payment_option; ?>" style="width:150px;height:120px;"/>
+				 <?php } ?>
                </div>
             </div>
             <hr />
@@ -465,6 +490,9 @@ $(function () {
 	   $('#possesion_start_date').datetimepicker({
            format: 'DD-MMM-YYYY'
        });
+	   $('#possesion_start_dates').datetimepicker({
+		format: 'DD-MMM-YYYY'
+	});
 });
    function addRow(tableID) {
    var table = document.getElementById(tableID);

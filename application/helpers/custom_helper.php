@@ -1296,15 +1296,18 @@
        {
 		   $ci =& get_instance();
 		   if($type=='5'){
-			$ci->db->select('MIN(plot_totalPrice) as min_price, MAX(plot_totalPrice) as max_price');
+			$ci->db->select('IFNULL(MIN(plot_totalPrice), 0) as min_price, IFNULL(MAX(plot_totalPrice), 0) as max_price');
             $ci->db->from('plot_plans');
+			$ci->db->where('plot_totalPrice!=0');
            }else{
-			$ci->db->select('MIN(floor_totalPrice) as min_price, MAX(floor_totalPrice) as max_price');
+			$ci->db->select('IFNULL(MIN(floor_totalPrice), 0) as min_price, IFNULL(MAX(floor_totalPrice), 0) as max_price');
             $ci->db->from('floor_plans');
+			$ci->db->where('floor_totalPrice!=0');
            }
            $ci->db->where('listing_id', $id);
            $query  = $ci->db->get();
-           $result = $query->row();
+		   $result = $query->row();
+		   
            if (!empty($result)) {
                return $result;
            } else {
@@ -1491,6 +1494,23 @@
 		}
    }
 
+   if (!function_exists('_slugID')) {
+		function _slugID($slug)
+		{   
+		    $ci =& get_instance();
+			$ci->db->select('parent_id');
+			$ci->db->where('url', $slug);
+			$query = $ci->db->get('listings');
+			$details = $query->row();
+			if(!empty($details)){
+              return $details->parent_id;
+			}else{
+			  $str = ''; 	
+			  return $str;	
+			}
+		}
+   }
+
    if (!function_exists('_averageRates')) {
 		function _averageRates($id, $cat)
 		{   
@@ -1521,7 +1541,7 @@
        $no       = $ns[0];
        $finalval = '';
        if ($no == 0) {
-           return ' ';
+           return '0.00';
           
        } else {
            $n = strlen($no); // 7

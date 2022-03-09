@@ -47,7 +47,7 @@ class Reviews extends MY_Controller {
         if($this->permitted('list_articles')){
 			$Reviews = $this->reviews->get_allReviews($conditions);
 			//get pagination confing
-			$config=$this->pagination_config($base_url=base_url().'admin/Reviews/list_Projects',$total_rows=$ReviewsCount,$per_page=$this->perPage);
+			$config=$this->pagination_config($base_url=base_url().'admin/reviews/list_reviews',$total_rows=$ReviewsCount,$per_page=$this->perPage);
 			// Initialize
 			$this->pagination->initialize($config);
 			//set data array
@@ -55,7 +55,7 @@ class Reviews extends MY_Controller {
 			$data['page']=$page;
 			
 			$data['Reviews']=$Reviews;
-            $data['sub_view'] = $this->load->view('admin/reviews/list_reviews', $data, TRUE);
+            $data['sub_view'] = $this->load->view('admin/Reviews/list_reviews', $data, TRUE);
         }else{
             $data['sub_view'] = $this->load->view('errors/permission/denied', $data, TRUE);
         }

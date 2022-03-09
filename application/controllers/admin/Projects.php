@@ -134,6 +134,9 @@
                'status' => 1,
                'created_by' => $this->get_user_id()
            );
+		   if(isset($_REQUEST['is_featured'])){
+			 $post_data['is_featured'] = $_REQUEST['is_featured'];
+		   }
            $specifications = array();
            $floorPlans     = array();
            $plotPlans     = array();
@@ -257,6 +260,9 @@
                'rera_approved' => $this->input->post('rera_approved'),
                'rera_registrationNumber' => $this->input->post('rera_registrationNumber')
            );
+		   if(isset($_REQUEST['is_featured'])){
+			 $post_data['is_featured'] = $_REQUEST['is_featured'];
+		   }
            $specifications = array();
            $floorPlans     = array();
            $plotPlans     = array();
@@ -385,7 +391,12 @@
                exit();
            }
        }
-      
-      
+	   
+	   
+	   public function galleryModal(){
+		print_r($_GET);
+		$data = array();
+		echo $this->load->view('admin/projects/galleryModal', $data);
+	   }
    }
    

@@ -1,5 +1,5 @@
 <form id="reviews" action="<?= base_url('home/save_review'); ?>" method="POST" enctype="multipart/form-data" accept-charset="utf-8" autocomplete="off">
-   <input type="hidden" name="listing_id" id="listing_id" value="<?= $this->uri->segment(2); ?>">
+   <input type="hidden" name="listing_id" id="listing_id" value="<?= _slugID($this->uri->segment(1)); ?>">
    <div class="rtnrvw">
       <div class="row">
          <div class="col-xl-8 col-lg-9 col-md-10">

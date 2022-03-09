@@ -24,6 +24,11 @@
                      <label class="required">Project Name</label>
                      <input type="text" class="form-control" name="project_name" autocomplete="Off"/>
                   </div>
+				  <div class="col-md-12 mb-3">
+                     <label class="required">Is Featured</label>
+                     <a class="form-check form-switch"><input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" value="1" data-id="15" name="is_featured">
+			         </a>
+                  </div>
                   <div class="col-md-3 mb-3">
                      <label class="required">City</label>
                      <select class="form-select" name="city" id="city">
@@ -270,6 +275,14 @@
                      <label class="required">Total Area (In Acres)</label>
                      <input type="text" class="form-control" name="total_area" onkeypress="return isNumberKey(this, event);" autocomplete="Off">
                   </div>
+				  <div class="col-md-4 mb-3">
+                     <label class="required">Project Phase</label>
+                     <select class="form-select" name="project_phase">
+                        <option value="On Going">On Going</option>
+                        <option value="Pre-Launch">Pre-Launch</option>
+                        <option value="Completed">Completed</option>
+                     </select>
+                  </div>
                   <div class="col-md-4 mb-3">
                      <label class="required">Project Launch Date</label>
                      <input type="text" class="form-control calicon" id="project_launch_date" data-toggle="datetimepicker" data-target="#project_launch_date" name="project_start_date" autocomplete="Off">
@@ -280,7 +293,7 @@
                   </div>
                   <div class="col-md-4 mb-3">
                      <label class="required">Possesion Start Date</label>
-                     <input type="text" name="possesion_start_date" autocomplete="Off" type="text" class="form-control calicon" id="possesion_start_date" data-toggle="datetimepicker" data-target="#possesion_start_date"/>
+                     <input type="text" name="possesion_start_date" autocomplete="Off" type="text" class="form-control calicon" id="possesion_start_dates" data-toggle="datetimepicker" data-target="#possesion_start_dates"/>
                   </div>
                   <div class="col-md-12 mb-3">
                      <label class="required">Project Overview</label>
@@ -475,6 +488,9 @@ $(function () {
 		format: 'DD-MMM-YYYY'
 	});
 	$('#possesion_start_date').datetimepicker({
+		format: 'DD-MMM-YYYY'
+	});
+	$('#possesion_start_dates').datetimepicker({
 		format: 'DD-MMM-YYYY'
 	});
 });

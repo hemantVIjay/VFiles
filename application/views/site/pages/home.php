@@ -704,5 +704,11 @@
    		 var mainURL  = baseUrl + main;
    		 window.location.href = mainURL;  
    	   }
-      }   
+      }
+    $('#inputGroupSelect01').on('change',function(){
+       $('.autocomplete').trigger(jQuery.Event("keydown"));
+	});	  
+	$('.autocomplete').on("focus", function( event, ui ) {
+	  $(this).trigger(jQuery.Event("keydown"));
+	});	  
 </script>
