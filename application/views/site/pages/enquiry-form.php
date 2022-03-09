@@ -24,7 +24,7 @@
     font-size: 10px;
 }
 </style>
-<div class="card pveq-card border-0 shadow" id="eqbx">
+<div class="card pveq-card border" id="eqbx">
 			      <!-- *****PAGE LOADER*****  -->
       <div class="page-loader" id="page-loader" style="display:none;">
       <div class="ripple-loader">
