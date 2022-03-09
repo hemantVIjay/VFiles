@@ -2,9 +2,9 @@
 <script src="<?= base_url(); ?>assets/plugins/jqueryui/js/jquery-ui.js"></script>
 <div class="input-group gblsrh">	
    <input type="text" class="form-control form-control-lg autocomplete" placeholder="Search your property here..." name="i_search" autocomplete="off">
-   <button class="btn btn-lg btn-primary" type="button" id="imain_search"><i class="bi bi-search"></i></button>
-   <input type="hidden" id="search" name="content">	 			   
+   <button class="btn btn-lg btn-primary" type="button" id="imain_search"><i class="bi bi-search"></i></button>   		   
 </div>
+<input type="hidden" id="search" name="content">	 	
 <script>
 var baseUrl = $('base').attr("href");
 $(function () {
