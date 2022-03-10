@@ -394,9 +394,50 @@
 	   
 	   
 	   public function galleryModal(){
-		print_r($_GET);
 		$data = array();
-		echo $this->load->view('admin/projects/galleryModal', $data);
+		$data['id'] = $_GET['id'];
+		$p_images = $this->home->property_images($_GET['id']);
+		$i_arr = array();
+		if(!empty($p_images)){
+		  foreach($p_images as $key => $image) {
+		    $i_arr[$image->image_type][$key] = $image;
+		  }	
+		}
+		$data['p_images'] = $i_arr;
+		echo $this->load->view('admin/Projects/galleryModal', $data, TRUE);
 	   }
+	   
+	  public function upload_propertyImages()
+      {
+          $propertyImages = array();
+          foreach ($_FILES['image_name']['name'] as $k => $fval) {
+              /******For Image******/
+              $_FILES['mFile']['name']     = $_FILES['image_name']['name'][$k];
+              $_FILES['mFile']['type']     = $_FILES['image_name']['type'][$k];
+              $_FILES['mFile']['tmp_name'] = $_FILES['image_name']['tmp_name'][$k];
+              $_FILES['mFile']['error']    = $_FILES['image_name']['error'][$k];
+              $_FILES['mFile']['size']     = $_FILES['image_name']['size'][$k];
+              $fdata[$k]['image_name']     = $this->singleUpload('mFile', 'projects/' . $_REQUEST['image_type'][$k]);
+              /******For Image******/
+              $fdata[$k]['image_type']     = $_REQUEST['image_type'][$k];
+              $fdata[$k]['image_desc']     = $_REQUEST['image_desc'][$k];
+              $fdata[$k]['property_id']    = $_REQUEST['property_id'];
+              
+              $propertyImages[] = $fdata[$k];
+          }
+          //XXS Clean
+          $propertyImages = $this->security->xss_clean($propertyImages);
+          
+          $result = $this->project->upload_PropertyImages($propertyImages);
+          redirect('admin/projects/list_projects', 'refresh');
+          
+          echo '<pre/>';
+          print_r($propertyImages);
+          exit;
+      }
+	  
+	  public function deleteImg(){
+		$this->project->delete_Projectimage($_REQUEST['id']); 
+	  }
    }
    

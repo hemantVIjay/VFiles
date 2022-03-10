@@ -54,8 +54,7 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
    <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
-         <form method="POST" action="<?= base_url('admin/properties/upload_propertyImages'); ?>" id="img-upload-form" enctype="multipart/form-data" accept-charset="utf-8">
-            <input type="hidden" name="property_id" id="property_id">
+         <form method="POST" action="<?= base_url('admin/projects/upload_propertyImages'); ?>" id="img-upload-form" enctype="multipart/form-data" accept-charset="utf-8">
             <div class="modal-header">
                <h5 class="modal-title" id="exampleModalLabel">Project Gallery</h5>
                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -66,6 +65,7 @@
             <div class="modal-footer">
                <div class="mt-3">
                   <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Close</button>
                </div>
             </div>
          </form>
@@ -142,12 +142,25 @@
       }
    
    $('#exampleModal').on('show.bs.modal', function(e) {
-     var url = '<?= base_url();?>/admin/projects/galleryModal';
-	 var bookId = $(e.relatedTarget).data('parent-id');
-     //$(e.currentTarget).find('input[name="property_id"]').val(bookId);
-     $('.modal-body').load(url+'?id='+bookId,function(){
-        $('#exampleModal').modal({show:true});
-     });
+     var bookId = $(e.relatedTarget).data('parent-id');
+     var url = '<?= base_url();?>admin/projects/galleryModal?id='+bookId;
+	 $('.modal-body').load(url,function(){});
    });
-   
+    function confirmDelete(ev, bookId){
+		var dataURL = '<?= base_url();?>admin/projects/deleteImg';
+	 	if (!confirm("Do you want to delete")){
+		  return false;
+		}else{
+			$.ajax({
+			 type: 'POST',
+			 url: dataURL,
+			 data: {id:bookId},
+			 async: false,
+			 success: function (res) {
+				window.location.reload();
+			 },
+			 error: function(){}
+		  });
+		}	
+	}  
 </script>

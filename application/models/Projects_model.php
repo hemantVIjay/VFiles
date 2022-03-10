@@ -378,6 +378,34 @@ class Projects_model extends MY_Model{
 			return $return_data;
 		}
 	}
+	
+	public function upload_PropertyImages($post_data){
+        $this->db->insert_batch('properties_images', $post_data);
+        return true;		
+	}
+
+	public function delete_Projectimage($id){
+        $this->db->select('a.*');
+        $this->db->from('properties_images a');
+		$this->db->where('a.id', $id);
+		$query = $this->db->get();
+		$row = $query->row();
+		
+		$this->db->trans_start();
+		$this->db->where('id', $id);
+		$this->db->delete('properties_images');
+		$this->db->trans_complete();
+        if ($this->db->trans_status() === FALSE) {
+		    $this->db->trans_rollback();
+		}else{
+			$this->db->trans_commit();
+			$file_with_path = $_SERVER['DOCUMENT_ROOT'] . "/uploads/projects/".$row->image_type."/".$row->image_name;
+			if (file_exists($file_with_path)) {
+			  unlink($file_with_path);
+			}
+		}
+        return true;		
+	}
 
 }
 
