@@ -274,6 +274,9 @@
                      </li>
                   </ul>
                </div>
+			   <div class="col-xl-2">
+               <button type="button" class="btn btn-primary" onclick="search_projects();">Apply Filter</button>
+            </div>
             </div>
          </div>
 		 <div class="pv-breadcrumb mt-3">
@@ -805,26 +808,49 @@
    $('.dropdown.spdropdown .dropdown-menu').click(function(e) {
        e.stopPropagation();
    });
-   
-   	var custom_values = [1000, 10000, 100000, 1000000, 10000000];
-    // be careful! FROM and TO should be index of values array
-    var my_from = custom_values.indexOf(1000);
-    var my_to = custom_values.indexOf(1000000);
+   var baseUrl=$('base').attr("href");
+   	var ranges = [1000, 10000, 100000, 1000000, 10000000];
+    var my_from = ranges.indexOf(1000);
+    var my_to = ranges.indexOf(1000000);
        
     $("#example_id").ionRangeSlider({
          type: "double",
          grid: true,
          from: my_from,
          to: my_to,
-         values: custom_values,
+         values: ranges,
    		 prefix: "₹",
    		 step: 1000,
          prettify_enabled: true,
-         prettify_separator: ","
+         prettify_separator: ",",
+	     onFinish: function (data) {
+		  filterData();
+		}
        });
 	
-    function filterData(){
-	 console.log('assad');	
-	}  
+	 function filterData(){
+	   var bld = '<?php echo $this->uri->segment(1); ?>';
+	   var slider = $("#example_id").data("ionRangeSlider");
+	   var from   = slider.result.from;
+	   var to     = slider.result.to;
+	   var min_price = ranges[from];
+	   var max_price = ranges[to];
+	   var bedrooms = [];
+		$('input[name="pvBHK"]').each(function () {
+			if ($(this).is(':checked')) {
+				bedrooms.push($(this).val());
+			}
+		});
+   	   	if (type == undefined) {
+			type = '';
+		}
+   	   var search   = $('input[name="content"]').data('slug');
+   	   var content  = $('input[name="content"]').val();
+   	   var str  = atob(content);
+   	   var res = str.split('_');
+	   var type = '1';
+   	   var mainURL  = baseUrl + bld + '?type='+type+'&budget_min=' + min_price + '&budget_max=' + max_price + '&bedrooms=' + bedrooms;
+   		 window.location.href = mainURL;  
+   	 }
 	   
 </script>
