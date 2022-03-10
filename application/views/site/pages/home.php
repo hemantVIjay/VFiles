@@ -43,7 +43,7 @@
       <div id="commercialCarousel" class="owl-carousel owl-theme">
          <?php if(!empty($_popularProjects)){ foreach($_popularProjects as $project){ ?>
 		 <div class="item">
-            <div class="card">
+            <a href="javascript:;" class="card">
                <div class="card-inner">
                   <div class="card-img">
 				     <?php if($project->main_image!=''){ ?>
@@ -75,7 +75,7 @@
                      <div class="pvpr-prc">₹ <?php $lp = listing_prices($project->id, $project->project_category); ?><?php echo no_to_words($lp->min_price).' - '.no_to_words($lp->max_price); ?></div>
                   </div>
                </div>
-            </div>
+            </a>
          </div>
 		 <?php } } ?>
       </div>
@@ -245,7 +245,7 @@
       </div>
    </div>
 </section>
-<section class="section prop-loc-bys">
+<!--<section class="section prop-loc-bys">
    <div class="container">
       <h2 class="cmn-title mb-3">Popular Residential Projects</h2>
       <div id="flatCarousel" class="owl-carousel owl-theme">
@@ -482,14 +482,14 @@
          </div>
       </div>
    </div>
-</section>
+</section>-->
 <section class="section prop-loc-bys">
    <div class="container">
       <h2 class="cmn-title mb-3 mt-4">Popular Residential Plots</h2>
       <div id="commercialCarousel" class="owl-carousel owl-theme">
          <?php if(!empty($_popularPlots)){ foreach($_popularPlots as $p_project){ ?>
 		 <div class="item">
-            <div class="card">
+            <a href="javascript:;" class="card">
                <div class="card-inner">
                   <div class="card-img">
 				     <?php if($p_project->main_image!=''){ ?>
@@ -521,7 +521,7 @@
                      <div class="pvpr-prc">₹ <?php $lp = listing_prices($p_project->id, $p_project->project_category); ?><?php echo no_to_words($lp->min_price).' - '.no_to_words($lp->max_price); ?></div>
                   </div>
                </div>
-            </div>
+            </a>
          </div>
 		 <?php } } ?>
       </div>
