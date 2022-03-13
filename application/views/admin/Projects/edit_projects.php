@@ -5,6 +5,8 @@
    }
    #pty_flat,#pty_plot{
 	   display:none;
+   }.d-FLex{
+	   display:flex;
    }
 </style>
 <form method="POST" action="<?= base_url('admin/projects/update_project'); ?>" id="img-upload-form" enctype="multipart/form-data" accept-charset="utf-8">
@@ -259,7 +261,7 @@
                            <td><input type="text" class="form-control text-right" id="builtupArea_<?= $key+1; ?>" name="floor_builtupArea[]" onkeyup="totalPrice(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off" value="<?= $floorPlan->floor_builtupArea; ?>" /></td>
                            <td><input type="text" class="form-control text-right" id="basePrice_<?= $key+1; ?>" name="floor_basePrice[]" onkeyup="totalPrice(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off" value="<?= $floorPlan->floor_basePrice; ?>" /></td>
                            <td><input type="text" class="form-control text-right" id="tPrice_<?= $key+1; ?>" name="floor_totalPrice[]" autocomplete="Off" value="<?= $floorPlan->floor_totalPrice; ?>" /></td>
-						   <td><input type="file" class="" id="floorplanImage_<?= $key+1; ?>" name="floor_planImage[]"/></td>
+						   <td class="d-FLex"><input type="file" style="width:96%;margin-right:5px;" class="form-control" id="floorplanImage_<?= $key+1; ?>" name="floor_planImage[]"/><i class="bi bi-check-circle-fill" style="font-size:20px;color:<?= ($floorPlan->floor_planImage!='')?'green':'#ddd'; ?>"></i></td>
                         </tr>
 						<?php } }else{ ?>
 						<tr>
@@ -342,7 +344,7 @@
                            <td><input type="text" class="form-control text-right" name="plot_size[]" id="plotSize_<?= ($key+1); ?>" onkeyup="total_Price(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off" value="<?= $plot->plot_size; ?>"/></td>
                            <td><input type="text" class="form-control" name="plot_basePrice[]" id="plotBasicPrice_<?= ($key+1); ?>" onkeyup="total_Price(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off" value="<?= $plot->plot_basePrice; ?>"/></td>
                            <td><input type="text" class="form-control" name="plot_totalPrice[]" id="plotTotalPrice_<?= ($key+1); ?>"  onkeypress="return isNumberKey(this, event);" autocomplete="Off" value="<?= $plot->plot_totalPrice; ?>"/></td>
-                           <td><input type="file" class="form-control" name="plot_Image[]" id="plotImage_<?= ($key+1); ?>"/></td>
+                           <td  class="d-FLex"><input type="file" style="width:96%;margin-right:5px;" class="form-control" name="plot_Image[]" id="plotImage_<?= ($key+1); ?>"/><i class="bi bi-check-circle-fill" style="font-size:20px;color:<?= ($plot->plot_Image!='')?'green':'#ddd'; ?>"></i></td>
                         </tr>
 						<?php } }else{ ?>
 						<tr>
@@ -350,7 +352,7 @@
                            <td><input type="text" class="form-control" name="plot_size[]" id="plotSize_1" onkeyup="total_Price(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
                            <td><input type="text" class="form-control" name="plot_basePrice[]" id="plotBasicPrice_1" onkeyup="total_Price(this);" onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
                            <td><input type="text" class="form-control" name="plot_totalPrice[]" id="plotTotalPrice_1"  onkeypress="return isNumberKey(this, event);" autocomplete="Off"/></td>
-                           <td><input type="file" class="form-control" name="plot_Image[]" id="plotImage_1"/></td>
+                           <td><input type="file" class="form-control" name="plot_Image[]" id="plotImage_1"/> </td>
                         </tr>
 						<?php } ?>
                      </tbody>
@@ -503,6 +505,9 @@ $(function () {
    var colCount = table.rows[0].cells.length;
    for (var i = 0; i < colCount; i++) {
    var newcell = row.insertCell(i);
+   if(i==4||i==10){
+	   newcell.className = 'd-FLex';
+   }
    newcell.innerHTML = table.rows[0].cells[i].innerHTML;
    switch (newcell.childNodes[0].type) {
    	case "text":

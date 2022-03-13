@@ -15,10 +15,10 @@
          </thead>
          <tbody>
             <?php $i=0; if(!empty($Reviews)){
-               foreach($Reviews as $key=>$row){ ?>
+               foreach($Reviews as $key=>$row){ $details = _listingDetails($row->listing_id);?>
             <tr>
                <td><?= $i+1;?></td>
-               <td><a href="#" target="_blank"><?= $row->listing_id;?></a></td>
+               <td><a href="<?php if(isset($details) && !empty($details)){ echo base_url($details->url); }else{ echo'javascript:;'; }?>" target="_blank"><?= @$details->url;?></a></td>
                <td><?= $row->stars;?></td>
                <td><?php $usr = get_user($row->user_id); if(!empty($usr)){ echo$usr['full_name']; }?></td>
                <td><?php if($row->is_visible==''||$row->is_visible=='0'){ ?><label class="badge bg-warning">Not Published</label><?php }else{ ?><label class="badge bg-success">Published</label><?php } ?></td>

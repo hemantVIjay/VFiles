@@ -1494,16 +1494,32 @@
 		}
    }
 
+   if (!function_exists('_listingDetails')) {
+		function _listingDetails($id)
+		{   
+		    $ci =& get_instance();
+			$ci->db->select('*');
+			$ci->db->where('id', $id);
+			$query = $ci->db->get('listings');
+			$details = $query->row();
+			if(!empty($details)){
+              return $details;
+			}else{
+			  return array();	
+			}
+		}
+   }
+
    if (!function_exists('_slugID')) {
 		function _slugID($slug)
 		{   
 		    $ci =& get_instance();
-			$ci->db->select('parent_id');
+			$ci->db->select('id');
 			$ci->db->where('url', $slug);
 			$query = $ci->db->get('listings');
 			$details = $query->row();
 			if(!empty($details)){
-              return $details->parent_id;
+              return $details->id;
 			}else{
 			  $str = ''; 	
 			  return $str;	

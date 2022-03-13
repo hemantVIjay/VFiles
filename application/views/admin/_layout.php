@@ -80,7 +80,8 @@
          <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
          <span class="navbar-toggler-icon"></span>
          </button>
-         <div class="flex-shrink-0 dropdown me-3">
+         <a style="position:absolute;right:150px;" class="btn btn-success" href="<?= base_url(); ?>" target="_blank" >Website</a>
+		 <div class="flex-shrink-0 dropdown me-3">
             <a href="javascript:;" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="<?= base_url(); ?>assets/img/avatars/avatar.jpg" alt="mdo" width="32" height="32" class="rounded-circle">
             Hemant

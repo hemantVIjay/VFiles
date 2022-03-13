@@ -142,12 +142,12 @@
                      <div class="vpvtab d-flex align-items-start">
                         <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                            <?php if(isset($floorPlans)&& !empty($floorPlans)){ foreach($floorPlans as $ks=>$floorPlan){ ?>
-						   <button class="nav-link <?php if($ks==0){echo'active'; }?>" id="plan_<?=$ks;?>-tab" data-bs-toggle="pill" data-bs-target="#plan<?=$ks;?>" type="button" role="tab" aria-controls="plan<?=$ks;?>" aria-selected="true"><?= number_format($floorPlan->floor_size, 2); ?> SQ. FT</button>
+						   <button class="nav-link <?php if($ks==0){echo'active'; }?>" id="plan_<?=$ks;?>-tab" data-bs-toggle="pill" data-bs-target="#plan<?=$key;?><?=$ks;?>" type="button" role="tab" aria-controls="plan<?=$ks;?>" aria-selected="true"><?= number_format($floorPlan->floor_size, 2); ?> SQ. FT</button>
 						   <?php } } ?>
                         </div>
                         <div class="tab-content" id="v-pills-tabContent">
                            <?php if(isset($floorPlans)&& !empty($floorPlans)){ foreach($floorPlans as $ls=>$floorPlan){ ?>
-						   <div class="tab-pane fade <?php if($ls==0){echo'active show'; }?>" id="plan<?=$ls;?>" role="tabpanel" aria-labelledby="plan<?=$ls;?>-tab">
+						   <div class="tab-pane fade <?php if($ls==0){echo'active show'; }?>" id="plan<?=$key;?><?=$ls;?>" role="tabpanel" aria-labelledby="plan<?=$key;?><?=$ls;?>-tab">
                               <div class="fppv-tblwrp">
                                  <table class="table table-fppv">
                                     <tr>
@@ -158,9 +158,7 @@
                                     </tr>
                                     <tr>
                                        <td>
-									   <a data-fancybox="gallery" href="<?= base_url(); ?>uploads/projects/floorPlans/<?= $floorPlan->floor_planImage; ?>" data-caption="">
-                           <img src="<?= base_url(); ?>uploads/projects/floorPlans/<?= $floorPlan->floor_planImage; ?>" class="fp-img" />
-                           </a>
+									   <a data-fancybox="gallery" href="<?= base_url(); ?>uploads/projects/floorPlans/<?= $floorPlan->floor_planImage; ?>" data-caption=""><img src="<?= base_url(); ?>uploads/projects/floorPlans/<?= $floorPlan->floor_planImage; ?>" class="fp-img" /></a>
 									   </td>
                                        <td class="pvtlst"><?= $floorPlan->floor_bedrooms; ?> bedrooms<br>1 kitchens<br><?= $floorPlan->floor_bathrooms; ?> bathroom<br>3 balcony<br>1 living</td>
                                        <td>
