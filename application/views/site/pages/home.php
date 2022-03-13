@@ -43,9 +43,8 @@
       <div id="commercialCarousel" class="owl-carousel owl-theme">
          <?php if(!empty($_popularProjects)){ foreach($_popularProjects as $project){  $lpinfo = _listingInfo('project', $project->id);?>
 		 <div class="item">
-            <div class="card">
-			<a href="<?php echo base_url();?><?= (isset($lpinfo->url))? $lpinfo->url : ''; ?>" title="" target="_blank">
-			   <div class="card-inner">
+            <a href="<?php echo base_url();?><?= (isset($lpinfo->url))? $lpinfo->url : ''; ?>" title="" target="_blank" class="card">
+               <div class="card-inner">
                   <div class="card-img">
 				     <?php if($project->main_image!=''){ ?>
                      <img src="<?= base_url(); ?>uploads/projects/Main Image/<?= $project->main_image; ?>" class="img-fluid">
@@ -76,8 +75,7 @@
                      <div class="pvpr-prc">₹ <?php $lp = listing_prices($project->id, $project->project_category); ?><?php echo no_to_words($lp->min_price).' - '.no_to_words($lp->max_price); ?></div>
                   </div>
                </div>
-			   </a>
-            </div>
+			  </a>
          </div>
 		 <?php } } ?>
       </div>
@@ -247,7 +245,7 @@
       </div>
    </div>
 </section>
-<section class="section prop-loc-bys">
+<!--<section class="section prop-loc-bys">
    <div class="container">
       <h2 class="cmn-title mb-3">Popular Residential Projects</h2>
       <div id="flatCarousel" class="owl-carousel owl-theme">
@@ -484,16 +482,15 @@
          </div>
       </div>
    </div>
-</section>
+</section>-->
 <section class="section prop-loc-bys">
    <div class="container">
       <h2 class="cmn-title mb-3 mt-4">Popular Residential Plots</h2>
       <div id="commercialCarousel" class="owl-carousel owl-theme">
          <?php if(!empty($_popularPlots)){ foreach($_popularPlots as $p_project){ $linfo = _listingInfo('project', $p_project->id);?>
 		 <div class="item">
-            <div class="card">
-               <a href="<?php echo base_url();?><?= (isset($linfo->url))? $linfo->url : ''; ?>" title="" target="_blank">
-			   <div class="card-inner">
+            <a href="<?php echo base_url();?><?= (isset($linfo->url))? $linfo->url : ''; ?>" title="" target="_blank" class="card">
+               <div class="card-inner">
                   <div class="card-img">
 				     <?php if($p_project->main_image!=''){ ?>
                      <img src="<?= base_url(); ?>uploads/projects/Main Image/<?= $p_project->main_image; ?>" class="img-fluid">
@@ -525,7 +522,6 @@
                   </div>
                </div>
 			   </a>
-            </div>
          </div>
 		 <?php } } ?>
       </div>
