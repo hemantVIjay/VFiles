@@ -74,7 +74,7 @@
                   </span>
                   </a>
                   <ul class="dropdown-menu ddm" aria-labelledby="bhkteDropdown">
-                     <?php echo _filterRooms(''); ?>
+                     <?php echo _filterRooms($_GET['bedrooms']); ?>
 			      </ul>
                </div>
                <div class="col-xl-2 dropdown spdropdown">
@@ -98,7 +98,7 @@
                   <ul class="dropdown-menu ddm" aria-labelledby="bhkteDropdown">
                      <li>
                         <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="pvLSoon">
+                           <input class="form-check-input" type="checkbox" value="" id="pvLSoon" >
                            <label class="form-check-label" for="pvLSoon">
                            Launching Soon
                            </label>
@@ -130,63 +130,6 @@
                      </li>
                   </ul>
                </div>
-               <!--<div class="col-xl-2 dropdown spdropdown">
-                  <a href="javascript:;" class="pvfbxb d-flex justify-content-between dropdown-toggle" id="bhkteDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <span class="pvfbx">
-                  Localities
-                  </span>
-                  </a>
-                  <ul class="dropdown-menu ddm" aria-labelledby="bhkteDropdown">
-                     <li>
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="pvLNoida">
-                           <label class="form-check-label" for="pvLNoida">
-                           Noida
-                           </label>
-                        </div>
-                     </li>
-                     <li>
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="pvLGNoida">
-                           <label class="form-check-label" for="pvLGNoida">
-                           Gr. Noida
-                           </label>
-                        </div>
-                     </li>
-                     <li>
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="pvYExpress">
-                           <label class="form-check-label" for="pvYExpress">
-                           Yamuna Expressway
-                           </label>
-                        </div>
-                     </li>
-                     <li>
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="pvGhaziabad">
-                           <label class="form-check-label" for="pvGhaziabad">
-                           Ghaziabad
-                           </label>
-                        </div>
-                     </li>
-                     <li>
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="pvDelhi">
-                           <label class="form-check-label" for="pvDelhi">
-                           Delhi
-                           </label>
-                        </div>
-                     </li>
-                     <li>
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="pvGurgaon">
-                           <label class="form-check-label" for="pvGurgaon">
-                           Gurgaon
-                           </label>
-                        </div>
-                     </li>
-                  </ul>
-               </div>-->
                <div class="col-xl-2 dropdown spdropdown">
                   <a href="javascript:;" class="pvfbxb d-flex justify-content-between dropdown-toggle" id="bhkteDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <span class="pvfbx">
